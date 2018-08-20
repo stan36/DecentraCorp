@@ -1,0 +1,13 @@
+{
+  "name": "DecentraCorp",
+  "version": "1.0.0",
+  "description": " The worlds first Decentralized Autonomous Corporation",
+  "main": "index.js",
+  "repository": "https://github.com/stan36/DecentraCorp.git",
+  "author": "Christopher Dixon",
+  "license": "GNU",
+  "private": false,
+  "dependencies": {
+    "zeppelin-solidity": "^1.12.0"
+  }
+}
