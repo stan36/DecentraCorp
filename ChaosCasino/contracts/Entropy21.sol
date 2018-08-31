@@ -13,5 +13,25 @@ contract Entropy21 is Ownable {
   using SafeMath for uint256;
 
   ChaosCoin public chaosCoin;
-  
+
+  uint public gameCount;
+
+
+  Deck[] public decks;
+
+  struct Card {
+  string suit;
+  string number;
+  uint value;
+  }
+
+  struct Deck {
+    Card[] cardsInDeck;
+    Card[] cardsOutofDeck;
+  }
+
+  function newGame() public {
+
+  }
+
 }
