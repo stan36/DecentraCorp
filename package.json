@@ -6,5 +6,8 @@
   "repository": "https://github.com/stan36/DecentraCorp.git",
   "author": "Christopher Dixon",
   "license": "GNU",
-  "private": false
+  "private": false,
+  "dependencies": {
+    "zeppelin-solidity": "^1.12.0"
+  }
 }
