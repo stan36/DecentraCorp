@@ -6,14 +6,14 @@ import 'zeppelin-solidity/contracts/math/SafeMath.sol';
 contract DeckFactory is Ownable {
   using SafeMath for uint256;
 
-  string heart = 'heart';
-  string club = 'club';
-  string diamond = 'diamond';
-  string spade = 'spade';
-  string jack = 'jack';
-  string queen = 'queen';
-  string king = 'king';
+  uint public decktracker;
+  string public heart = 'heart';
+  string public club = 'club';
+  string public diamond = 'diamond';
+  string public spade = 'spade';
 
+
+  Deck[] decks;
 
 struct Card {
 string Suit;
@@ -26,8 +26,10 @@ struct Deck {
   Card[] cardsOutofDeck;
 }
 
-function makeCard() internal {
+function makeCard(uint _deckNumber uint _deckCount) internal {
 uint internalsuitCount = 0;
+uint internalNumberCount = 0;
+uint currentNumber;
 string currentSuit;
 
 if(internalsuitCount >= 4){
@@ -48,18 +50,27 @@ if(internalsuitCount = 0){
     internalsuitCount++;
   }
 
-
+if(internalNumberCount < 13) {
+  internalNumberCount++
+}
 
   Card memory card = Card({
     Suit: string(currentSuit),
-    Number: string(),
-    Value: uint()
-    })
+    Value: uint(currentNumber)
+  });
 
+  deckCount++;
+  uint  cardID = deckCount;
+  Deck memory deck = decks[_deckNumber];
+  deck.cardsInDeck[cardID] = card;
 }
 
 function createDeck() public {
-  cardsInDeck
+  uint deckCount;
+  decktracker++;
+  if(deckCount <= 52) {
+  makeCard(decktracker, deckCount);
+}
 
 }
 }
