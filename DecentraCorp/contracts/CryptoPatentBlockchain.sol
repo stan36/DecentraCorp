@@ -168,7 +168,7 @@ IDC.mintToken( _inventor, ideaBlockReward);
   }
 
 function generateReplicationBlock(uint _ideaId, address _repAdd) public returns(uint) {
-  RBG.replicationBlock( _ideaId,  _repAdd);
+
   globalRepCount++;
 //increases globval replication count
   uint RepBlockReward = IBG.getRepBlockAmount(_ideaId);
@@ -182,11 +182,11 @@ uint stake = IBG.getStakeAmount(_ideaId);
   uint blockReward = RepBlockReward - royalty;
   address inventor = IBG.getInventor(_ideaId);
 //sets inventor as the specific inventor for an idea
-
-
+if(members[msg.sender] == false){
   members[msg.sender] = true;
-//adds the inventor as a member of CryptoGrowDAC
+//adds the replicator as a member of CryptoGrowDAC
   memberCount++;
+}
 //increases global member count
 require(IDC.balanceOf(msg.sender) >= stake);
 //requires the replicator has enough IdeaCoin to meet the stake amount
@@ -198,6 +198,7 @@ IDC.mintToken(_repAdd, blockReward);
 IDC.mintToken( inventor, royalty);
 //mints royalty amount to the inventor
 IDC.mintToken(msg.sender, blockReward);
+RBG.replicationBlock( _ideaId,  _repAdd);
 //mints replication block reward to the replicator
 //this section creates a specific ReplicationInfo struct storing data for that replication
 RBG.safeTransfer(this, _repAdd, _repNumber);
@@ -267,10 +268,6 @@ UseBlockWeight(_rep);
     UBW.mint(_rep, _amount);
   //else the replication is minted the appropriate amount of weight
     }
-
-function buyMembership(address _newMember, uint _amountPurchased) public onlyOwner {
-  IDC.mintToken(_newMember, _amountPurchased);
-  members[_newMember] = true;
 
 }
 

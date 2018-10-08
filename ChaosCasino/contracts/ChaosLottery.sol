@@ -9,13 +9,17 @@ contract ChaosCoin {
     function burn(address _from, uint256 _value)  external;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
+contract ChaosCasino {
+  function getRandomNum() external;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
 contract Lottery is Ownable {
 
 using SafeMath for uint256;
 
 ChaosCoin public chaosCoin;
 uint public oneDayLotteryCount = 1;
-address public chaosCasino;
+chaosCasino public chaosCasino;
 OneDayLottery[] public shortLotterys;
 
 struct OneDayLottery {
@@ -26,7 +30,6 @@ struct OneDayLottery {
   mapping(address => uint) playerToNumber;
   mapping(uint => address) numberToPlayer;
 }
-
 
 
   function enterOneDayLottery(uint _amount) public  {
@@ -41,10 +44,11 @@ struct OneDayLottery {
     l.numberToPlayer[l.NumberOfPlayers] = msg.sender;
   }
 
-  function endOneDayAuction(uint _entropyUnit) public {
+  function endOneDayAuction() public {
     OneDayLottery storage l = shortLotterys[oneDayLotteryCount];
     require(now >= l.StartTime + 86400 seconds);
-    address winner = l.numberToPlayer[_entropyUnit];
+    uint randNum = getRandomNum();
+    address winner = l.numberToPlayer[randNum];
     uint potTotal = l.PotValue;
     uint houseCut = ((potTotal / 10) / 2);
     uint winnings = potTotal - houseCut;
@@ -53,6 +57,18 @@ struct OneDayLottery {
     oneDayLotteryCount++;
   }
 
+  function checkCurrentNumPlayers() public view returns(uint) {
+    OneDayLottery storage l = shortLotterys[oneDayLotteryCount];
+    return l.NumberOfPlayers;
+  }
 
+  function checkCurrentGameStartTime() public view returns(uint) {
+    OneDayLottery storage l = shortLotterys[oneDayLotteryCount];
+    return l.StartTime;
+  }
+  function checkCurrentPotValue() public view returns(uint) {
+    OneDayLottery storage l = shortLotterys[oneDayLotteryCount];
+    return l.PotValue;
+  }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////

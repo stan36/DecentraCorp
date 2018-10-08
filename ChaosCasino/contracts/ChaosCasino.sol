@@ -8,19 +8,39 @@ contract ChaosCoin {
     function burn(address _from, uint256 _value)  external;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
+contract ReplicationBlockGenerator {
+  function checkIfRep(address _add) external returns(bool);
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
 contract ChaosCasino is Ownable {
 
-  using SafeMath for uint256
+  using SafeMath for uint256;
 
   ChaosCoin public chaosCoin;
+  ReplicationBlockGenerator public RBG;
 
   uint etherBalance;
   uint chaosBalance = chaosCoin.balanceOf(this);
+  uint randNum = 0;
   address decentraCorp;
 
   mapping(address => bool) gameContracts;
 
+  modifier onlyReplication() {
+    require(RBG.checkIfRep(msg.sender) == true);
+    _;
+  }
+  //modifier requires that the address calling a function is a replication
 
+  modifier onlyGameContract() {
+    require(gameContracts[msg.sender] == true);
+    _;
+  }
+  //modifier requires that the address calling a function is a replication
+
+  function setRepGBAdd(address _add) {
+    RBG = ReplicationBlockGenerator(_add);
+  }
 
   function buyChaosCoin() public payable {
     require(msg.value > 0);
@@ -55,5 +75,12 @@ contract ChaosCasino is Ownable {
     msg.sender.transfer(chaosBalance);
   }
 
+  function setRandomNum(uint _randNum) external onlyReplication {
+      randNum = _randNum;
+  }
+
+  function getRandomNum() external onlyGameContract returns(uint) {
+      return randNum;
+  }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
