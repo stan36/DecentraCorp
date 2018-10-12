@@ -113,7 +113,7 @@ function checkIfMember(address _member) public view returns(bool) {
     return true;
   }
   //allows function caller to input an address and see if it is a member of CryptoGrowDAC
-}
+} 
 
 function getMemberCount() public view returns(uint) {
   return memberCount;

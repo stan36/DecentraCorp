@@ -1,5 +1,5 @@
 
-var onChain = artifacts.require("./CryptoGrowDAC.sol");
+var onChain = artifacts.require("./DecentraCorp.sol");
 
 
 module.exports = function(deployer) {
