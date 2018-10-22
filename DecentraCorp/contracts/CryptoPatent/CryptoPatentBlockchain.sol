@@ -1,12 +1,12 @@
 pragma solidity ^0.4.21;
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 ////////////////////////////////////////////////////////////////////////////////////////////
+contract DecentraCorpPoA {
+  function proxyMint(uint _amount, address _add) external;
+}
+////////////////////////////////////////////////////////////////////////////////////////////
 contract IdeaCoin {
-    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success);
-    function transferContractOwnership(address newOwner) public;
     function balanceOf(address _addr) public constant returns (uint);
-    function mintToken(address _to, uint256 _value) external;
-    function burn(address _from, uint256 _value)  external;
     function totalSupply() public constant returns (uint);
 }
 //IdeaCoin interface
@@ -50,7 +50,7 @@ contract GlobalUseBlockGenerator{
 
 contract CryptoPatentBlockchain is Ownable {
 
-IdeaCoin public IDC;
+DecentraCorpPoA public DCPoA;
 IdeaBlockGenerator public IBG;
 ReplicationBlockGenerator public RBG;
 GlobalUseBlockGenerator public GUBG;
@@ -97,8 +97,8 @@ function addMember(address _mem) public onlyOwner{
     members[_mem] = true;
 }
 
-function setGenerators(address _IDC, address _IBG, address _RBG, address _GUBG) public onlyOwner {
-IDC = IdeaCoin(_IDC);
+function setGenerators(address _dcpoa, address _IBG, address _RBG, address _GUBG) public onlyOwner {
+DCPoA = DecentraCorpPoA(_dcpoa);
 IBG = IdeaBlockGenerator(_IBG);
 RBG = ReplicationBlockGenerator(_RBG);
 GUBG = GlobalUseBlockGenerator(_GUBG);
