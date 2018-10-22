@@ -31,6 +31,10 @@ contract IdeaCoin {
      IDC.mintToken(_add, _amount);
    }
 
+   function proxyBurn(uint _amount, address _add) external onlyApprovedAdd {
+     IDC.burn(_add, _amount);
+   }
+
    function addApprovedContract(address _newContract) public onlyOwner {
      approvedContracts[_newContract] = true;
    }
