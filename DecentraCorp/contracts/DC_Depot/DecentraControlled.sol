@@ -6,7 +6,7 @@ import 'zeppelin-solidity/contracts/math/SafeMath.sol';
 /////////////////////////////////////////////////////////////////////////////////////////////
 contract DecentraCorpPoA {
   function proxyMint(uint _amount, address _add) external;
-  function proxyBurn(uint _amount, address _add) external
+  function proxyBurn(uint _amount, address _add) external;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
