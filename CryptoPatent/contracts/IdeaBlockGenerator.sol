@@ -7,8 +7,8 @@ contract IdeaBlockGenerator is Ownable, ERC721Token("ProofOfIdeaOwnership", "PoI
 
   uint public globalIdeaCount = 0;
 //tracks how many Idea Blocks exist
-
-
+  uint public stakeAmountInIDC = 100;
+//stakeAmountInIDC is the amount of ideacoin  that must be staked to activate a replication
   mapping (uint256 => IdeaInfo) public ideaVariables;
 //maps a specific ideas info struct to its ideaId number
 
@@ -16,9 +16,7 @@ contract IdeaBlockGenerator is Ownable, ERC721Token("ProofOfIdeaOwnership", "PoI
 
 
 struct IdeaInfo {
-  uint replicationBlockAmount;
   uint globalUseBlockAmount;
-  uint stakeAmountInIDC;
   uint royalty;
   uint miningTime;
   address inventorAddress;
@@ -26,12 +24,10 @@ struct IdeaInfo {
 
   function _generateIdeaBlock(
   string _ideaIPFS,
-  address _inventorsAddress,
-  uint _replicationBlockAmount,
   uint _globalUseBlockAmount,
-  uint _stakeAmountInIDC,
   uint _miningTime,
-  uint _royalty
+  uint _royalty,
+  address _inventorsAddress
   )
    external
   onlyOwner
@@ -43,9 +39,7 @@ struct IdeaInfo {
   _setTokenURI(_ideaId, _ideaIPFS);
 
   setIdeaInfo(
-     _replicationBlockAmount,
      _globalUseBlockAmount,
-     _stakeAmountInIDC,
      _royalty,
      _miningTime,
      _inventorsAddress
@@ -56,9 +50,7 @@ struct IdeaInfo {
 
 
 function setIdeaInfo(
-  uint _replicationBlockAmount,
   uint _globalUseBlockAmount,
-  uint _stakeAmountInIDC,
   uint _royalty,
   uint _miningTime,
   address _inventorAddress
@@ -67,9 +59,7 @@ function setIdeaInfo(
   {
 
     IdeaInfo memory _info = IdeaInfo({
-      replicationBlockAmount: uint(_replicationBlockAmount),
       globalUseBlockAmount: uint(_globalUseBlockAmount),
-      stakeAmountInIDC: uint(_stakeAmountInIDC),
       royalty: uint(_royalty),
       miningTime: uint(_miningTime),
       inventorAddress: address(_inventorAddress)
@@ -81,11 +71,7 @@ function setIdeaInfo(
 
 
 
-  function getRepBlockAmount(uint _ideaId) public view returns(uint) {
-    IdeaInfo memory info = ideaVariables[_ideaId];
-    uint RepBlockAmount = info.replicationBlockAmount;
-    return RepBlockAmount;
-  }
+
 
   function getGlobalUseBlockAmount(uint _ideaId) public view returns(uint) {
     IdeaInfo memory info = ideaVariables[_ideaId];
@@ -93,11 +79,6 @@ function setIdeaInfo(
     return globalUseBlockAmount;
   }
 
-  function getStakeAmount(uint _ideaId) public view returns(uint) {
-    IdeaInfo memory info = ideaVariables[_ideaId];
-    uint stakeAmount = info.stakeAmountInIDC;
-    return stakeAmount;
-    }
 
     function getRoyalty(uint _ideaId) public view returns(uint) {
       IdeaInfo memory info = ideaVariables[_ideaId];

@@ -548,3 +548,19 @@ contract IdeaCoin is ERC20Basic("IDC", "IdeaCoin", 18, 1000000000000000000000000
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////
+/*
+pragma solidity ^0.4.18;
+import "./poa-bridge-contracts/contracts/ERC677BridgeToken.sol";
+
+
+contract IdeaCoin is ERC677BridgeToken("IDC", "IdeaCoin", 18) {
+
+    constructor() public {
+      uint initialSupply = 1000000000000000000000000;
+      balanceOf[msg.sender] = initialSupply;
+    }
+
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////
+*/

@@ -1,3 +1,4 @@
+
 pragma solidity ^0.4.18;
 //this is just a basic ERC20 token implementation for testing
 //this contract could be deployed as is but for now just serves as a mock for scratch token

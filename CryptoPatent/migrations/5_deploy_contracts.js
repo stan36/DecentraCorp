@@ -1,9 +1,10 @@
 
-var UseWeight = artifacts.require("./UseBlockWeightGenerator.sol");
+var GUseBlockGen = artifacts.require("./GlobalUseBlockGenerator.sol");
 
 
 
 module.exports = function(deployer) {
-  deployer.deploy(UseWeight);
+  deployer.deploy(GUseBlockGen);
+
 
 }

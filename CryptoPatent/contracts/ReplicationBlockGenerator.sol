@@ -10,7 +10,6 @@ contract IdeaBlockGenerator{
     function balanceOf(address _owner) public view returns (uint256);
     function getRepBlockAmount(uint _ideaId) public view returns(uint);
     function getGlobalUseBlockAmount(uint _ideaId) public view returns(uint);
-    function getStakeAmount(uint _ideaId) public view returns(uint);
     function getRoyalty(uint _ideaId) public view returns(uint);
     function getInventor(uint _ideaId) public view returns(address);
     function getMiningTime(uint _ideaId) public view returns(uint);
@@ -22,6 +21,8 @@ contract ReplicationBlockGenerator is Ownable, ERC721Token("ProofOfReplicationOw
   IdeaBlockGenerator public IBG;
 
   uint public globalRepCount = 0;
+  uint public stakeAmountInIDC = 100000000000000000000;
+//stakeAmountInIDC is the amount of ideacoin  that must be staked to activate a replication
 
   mapping(address => mapping(uint => uint)) public replicationTracker;
   mapping (address => bool) replications;
@@ -32,6 +33,11 @@ contract ReplicationBlockGenerator is Ownable, ERC721Token("ProofOfReplicationOw
   //tracks which address owns a specific replication by its ideaID
   mapping (uint => uint) ideaRepCounter;
   //tracks the total number of replications for a specific idea
+
+
+  function changeStakeAmount(uint _newStakeAmount) external onlyOwner {
+    stakeAmountInIDC = _newStakeAmount;
+  }
 
   struct ReplicationInfo {
     uint BlockReward;
@@ -58,8 +64,6 @@ contract ReplicationBlockGenerator is Ownable, ERC721Token("ProofOfReplicationOw
     //sets RepBlockReward as the specific rep block amount Stored for an idea
     uint royalty = IBG.getRoyalty(_ideaId);
     //sets royalty as the specific royalty amount for an idea
-    uint stake = IBG.getStakeAmount(_ideaId);
-    //sets stake as the specific stake amount for an idea
     uint blockReward = RepBlockReward - royalty;
     //subtracts the royalty amount from the block reward
     uint _miningTime = IBG.getMiningTime(_ideaId);
@@ -75,7 +79,7 @@ contract ReplicationBlockGenerator is Ownable, ERC721Token("ProofOfReplicationOw
 
     ReplicationInfo memory _info = ReplicationInfo({
       BlockReward: uint( blockReward),
-      StakedAmount: uint(stake),
+      StakedAmount: stakeAmountInIDC,
       OwnersAddress: address(msg.sender),
       IdeaID: uint(_ideaId),
       Royalty: uint(royalty),

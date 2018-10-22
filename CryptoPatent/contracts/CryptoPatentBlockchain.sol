@@ -1,7 +1,5 @@
 pragma solidity ^0.4.21;
-
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
-import 'zeppelin-solidity/contracts/math/SafeMath.sol';
 ////////////////////////////////////////////////////////////////////////////////////////////
 contract IdeaCoin {
     function transferFrom(address _from, address _to, uint256 _value) public returns (bool success);
@@ -13,19 +11,12 @@ contract IdeaCoin {
 }
 //IdeaCoin interface
 /////////////////////////////////////////////////////////////////////////////////////////////
-contract UseBlockWeightGenerator {
-    function transferContractOwnership(address newOwner) public;
-    function mint(address _to, uint256 _amount) public returns (bool);
-}
-//Use Block Weight Generator interface
-/////////////////////////////////////////////////////////////////////////////////////////////
 contract IdeaBlockGenerator {
-    function _generateIdeaBlock(string _ideaIPFS, address _inventorsAddress,  uint _replicationBlockAmount,  uint _globalUseBlockAmount,  uint _stakeAmountInIDC,  uint _royalty) external;
+    function _generateIdeaBlock(string _ideaIPFS, uint _globalUseBlockAmount, uint miningTime, uint _royalty, address _inventorsAddress) external;
     function transferOwnership(address newOwner) public;
     function balanceOf(address _owner) public view returns (uint256);
     function getRepBlockAmount(uint _ideaId) public view returns(uint);
     function getGlobalUseBlockAmount(uint _ideaId) public view returns(uint);
-    function getStakeAmount(uint _ideaId) public view returns(uint);
     function getRoyalty(uint _ideaId) public view returns(uint);
     function getInventor(uint _ideaId) public view returns(address);
     function getMiningTime(uint _ideaId) public view returns(uint);
@@ -60,7 +51,6 @@ contract GlobalUseBlockGenerator{
 contract CryptoPatentBlockchain is Ownable {
 
 IdeaCoin public IDC;
-UseBlockWeightGenerator public UBW;
 IdeaBlockGenerator public IBG;
 ReplicationBlockGenerator public RBG;
 GlobalUseBlockGenerator public GUBG;
@@ -74,7 +64,9 @@ uint public memberCount;
 uint public globalUseBlock;
 //tracks global use blocks
 uint public globalBlockHalfTime;
+//used to track when the ideaBlockReward should be halved
 uint public ideaBlockReward = 1000000000000000000000;
+//IdeaBlock set to 1000 IDC
 
 
 
@@ -98,13 +90,17 @@ modifier onlyReplication() {
 //modifier requires that the address calling a function is a replication
 constructor() public {
   globalBlockHalfTime = now;
+  members[msg.sender] = true;
 }
 
-function setGenerators(address _IDC, address _IBG, address _RBG, address _UBW, address _GUBG) public onlyOwner {
+function addMember(address _mem) public onlyOwner{
+    members[_mem] = true;
+}
+
+function setGenerators(address _IDC, address _IBG, address _RBG, address _GUBG) public onlyOwner {
 IDC = IdeaCoin(_IDC);
 IBG = IdeaBlockGenerator(_IBG);
 RBG = ReplicationBlockGenerator(_RBG);
-UBW = UseBlockWeightGenerator(_UBW);
 GUBG = GlobalUseBlockGenerator(_GUBG);
 }
 
@@ -113,7 +109,7 @@ function checkIfMember(address _member) public view returns(bool) {
     return true;
   }
   //allows function caller to input an address and see if it is a member of CryptoGrowDAC
-} 
+}
 
 function getMemberCount() public view returns(uint) {
   return memberCount;
@@ -137,26 +133,22 @@ function ideaBlockTimeLord() internal returns(uint){
     }
     return ideaBlockReward;
 }
-
+//checks if the IdeaBlockReward should be adjusted
 function generateIdeaBlock(
   string _ideaIPFS,
-  uint  _replicationBlockAmount,
   uint  _globalUseBlockAmount,
-  uint stakeAmountInIDC,
   uint _royalty,
+  uint _miningTime,
   address _inventor
   )
   public
   onlyOwner
-  returns(uint)
   {
 
-    IBG._generateIdeaBlock( _ideaIPFS, _inventor, _replicationBlockAmount, _globalUseBlockAmount, stakeAmountInIDC, _royalty);
+    IBG._generateIdeaBlock( _ideaIPFS, _globalUseBlockAmount, _royalty, _miningTime, _inventor);
 //generates IdeaBlock ERC721 Token
     globalIdeaCount++;
 //increments IdeaCount
-    uint ideaId = globalIdeaCount;
-//sets IdeaID equal to  IdeaCount
     members[_inventor] = true;
 //adds the inventor as a member of CryptoGrowDAC
     memberCount++;
@@ -164,27 +156,23 @@ function generateIdeaBlock(
 ideaBlockTimeLord();
 IDC.mintToken( _inventor, ideaBlockReward);
 //mints 1000 IDC and sends it to the inventor
-    return ideaId;
   }
 
-function generateReplicationBlock(uint _ideaId, address _repAdd) public returns(uint) {
+function generateReplicationBlock(uint _ideaId, address _repAdd) public  {
 
   globalRepCount++;
 //increases globval replication count
-  uint RepBlockReward = IBG.getRepBlockAmount(_ideaId);
 //sets RepBlockReward as the specific rep block amount Stored for an idea
   uint _repNumber = globalRepCount;
 //sets _repNumber equal to globalRepCount
-  uint royalty = IBG.getRoyalty(_ideaId);
-//sets royalty as the specific royalty amount for an idea
-uint stake = IBG.getStakeAmount(_ideaId);
-//sets stake as the specific stake amount for an idea
-  uint blockReward = RepBlockReward - royalty;
+uint stake = 100000000000000000000;
+
+  uint blockReward = 50;
   address inventor = IBG.getInventor(_ideaId);
 //sets inventor as the specific inventor for an idea
 if(members[msg.sender] == false){
   members[msg.sender] = true;
-//adds the replicator as a member of CryptoGrowDAC
+//adds the replicator as a member of DecentraCorp
   memberCount++;
 }
 //increases global member count
@@ -193,17 +181,13 @@ require(IDC.balanceOf(msg.sender) >= stake);
 
 IDC.burn(msg.sender, stake);
 //burns the stake amount from the message sender
-IDC.mintToken(_repAdd, blockReward);
-//mints new ideaCoin to the replications address
-IDC.mintToken( inventor, royalty);
+IDC.mintToken( inventor, blockReward);
 //mints royalty amount to the inventor
-IDC.mintToken(msg.sender, blockReward);
 RBG.replicationBlock( _ideaId,  _repAdd);
 //mints replication block reward to the replicator
 //this section creates a specific ReplicationInfo struct storing data for that replication
 RBG.safeTransfer(this, _repAdd, _repNumber);
 //transferes replication ERC721 token to the replications address
-return _repNumber;
 }
 
 
@@ -249,26 +233,23 @@ UseBlockWeight(_rep);
     uint _blockReward = 1;
   //sets _blockReward equal to one
     uint _amount = calculatePromo(_blockReward, ideaID);
-  //sets _amount equal to the calculated block reward ependant upon promotion level of the replicator
+  //sets _amount equal to the calculated block reward dependant upon promotion level of the replicator
     uint weight = localWeightTracker[_rep][repID];
   // sets weight equal to the current weight of a specific replication
     uint newWeight = weight + _amount;
   // increases the weight of a specific replication
     uint globalWeight = weightTracker[ideaID];
   //sets globalWeight as the current highest weight for a specific idea
-    uint timeWizard = IBG.getMiningTime(ideaID);
+    uint timeLord = IBG.getMiningTime(ideaID);
     localWeightTracker[_rep][repID] = newWeight;
   //sets the newWeight for that specific replication
-    if(newWeight <= globalWeight && now >= timeWizard) {
+    if(newWeight >= globalWeight && now >= timeLord) {
   //checks if the replication has the heaviest weight
       generateGlobalUseBlock(_rep);
   //if it does it generates a global use block
       IBG.setMiningTime(ideaID);
+  //resets the global mining time for a specific idea after a useBlock is mined
       }
-    UBW.mint(_rep, _amount);
-  //else the replication is minted the appropriate amount of weight
     }
-
-}
 
 }

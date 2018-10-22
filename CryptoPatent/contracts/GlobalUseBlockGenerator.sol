@@ -13,9 +13,9 @@ contract GlobalUseBlockGenerator is Ownable, ERC721Token("GlobalUseBlock", "GUB"
 
   function _generateGUSBlock() external onlyOwner {
     globalUseBlocknumber++;
-    uint _replicationId = globalUseBlocknumber;
-  _mint(msg.sender, _replicationId);
-  globalUseBlockTracker[msg.sender] = globalUseBlocknumber;
+    uint _blockId = globalUseBlocknumber;
+  _mint(msg.sender, _blockId);
+  globalUseBlockTracker[msg.sender] = _blockId;
   }
 
 }

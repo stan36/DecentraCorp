@@ -391,7 +391,7 @@ contract PausableToken is StandardToken, Pausable {
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-contract ChaosCoin is ERC20Basic("CHA", "ChaosCoin", 18, 1000000000000000000),  PausableToken, Destructible, Contactable {
+contract ChaosCoin is ERC20Basic("CHA", "ChaosCoin", 18, 1000000000000000000),  PausableToken, Destructible {
 
     using SafeMath for uint;
 

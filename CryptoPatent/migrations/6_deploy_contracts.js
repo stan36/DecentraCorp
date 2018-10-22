@@ -1,10 +1,11 @@
 
-var GUseBlockGen = artifacts.require("./GlobalUseBlockGenerator.sol");
+var CPBlockChain = artifacts.require("./CryptoPatentBlockchain.sol");
 
 
 
 module.exports = function(deployer) {
-  deployer.deploy(GUseBlockGen);
+
+  deployer.deploy(CPBlockChain);
 
 
 }
