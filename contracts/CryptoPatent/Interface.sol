@@ -41,7 +41,7 @@ contract ReplicationBlockGenerator {
 //Replication Block Generator interface
 /////////////////////////////////////////////////////////////////////////////////////////////
 contract GlobalUseBlockGenerator{
-    function _generateGUSBlock() external;
+    function _generateGUSBlock(address _replicationOwner) external;
     function safeTransfer(address _from, address _to, uint _tokenId) public;
 }
 //Global Use Block Generator interface

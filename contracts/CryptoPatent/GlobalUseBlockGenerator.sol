@@ -11,11 +11,11 @@ contract GlobalUseBlockGenerator is Ownable, ERC721Token("GlobalUseBlock", "GUB"
   mapping(address => uint) public globalUseBlockTracker;
 
 
-  function _generateGUSBlock() external onlyOwner {
+  function _generateGUSBlock(address _replicationOwner) external onlyOwner {
     globalUseBlocknumber++;
     uint _blockId = globalUseBlocknumber;
-  _mint(msg.sender, _blockId);
-  globalUseBlockTracker[msg.sender] = _blockId;
+  _mint(_replicationOwner, _blockId);
+  globalUseBlockTracker[_replicationOwner] = _blockId;
   }
 
 }

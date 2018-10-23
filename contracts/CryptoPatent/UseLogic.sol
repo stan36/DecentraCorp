@@ -20,9 +20,7 @@ function generateGlobalUseBlock(address _rep) internal {
 //calculates BlockReward according to promotion status of a member
   globalUseBlock++;
 //increments global use block counter
-  GUBG._generateGUSBlock();
-  GUBG.safeTransfer(this, _rep, globalUseBlock);
-//transfers Global Use Block to the replication
+  GUBG._generateGUSBlock(repOwnerAddress);
   DCPoA.proxyMint(repOwnerAddress, BlockReward);
 //mints the replication Owner his block reward
   DCPoA.proxyMint(inventor, royalty);
