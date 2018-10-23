@@ -1,7 +1,7 @@
 pragma solidity ^0.4.21;
-import "./RB-Logic.sol";
+import "./RBLogic.sol";
 
-contract UB-Logic is RB-Logic {
+contract UseLogic is RBLogic {
 
 function generateGlobalUseBlock(address _rep) internal {
   address repOwnerAddress = RBG.getOwnersAddress(_rep);
@@ -23,9 +23,9 @@ function generateGlobalUseBlock(address _rep) internal {
   GUBG._generateGUSBlock();
   GUBG.safeTransfer(this, _rep, globalUseBlock);
 //transfers Global Use Block to the replication
-  IDC.mintToken(repOwnerAddress, BlockReward);
+  DCPoA.proxyMint(repOwnerAddress, BlockReward);
 //mints the replication Owner his block reward
-  IDC.mintToken(inventor, royalty);
+  DCPoA.proxyMint(inventor, royalty);
 //mints royalties to the idea inventor
 
 }

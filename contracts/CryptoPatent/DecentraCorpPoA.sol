@@ -3,15 +3,13 @@ pragma solidity ^0.4.21;
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 ////////////////////////////////////////////////////////////////////////////////////////////
 contract IdeaCoin {
-    function transferContractOwnership(address newOwner) public;
-    function balanceOf(address _addr) public constant returns (uint);
     function mintToken(address _to, uint256 _value) external;
     function burn(address _from, uint256 _value)  external;
-    function totalSupply() public constant returns (uint);
+
 }
 //IdeaCoin interface
 /////////////////////////////////////////////////////////////////////////////////////////////
- contract DecentraCorpPoA is ownable {
+ contract DecentraCorpPoA is Ownable {
 
    IdeaCoin public IDC;
 
@@ -27,11 +25,11 @@ contract IdeaCoin {
      IDC = IdeaCoin(_IDC);
    }
 
-   function proxyMint(uint _amount, address _add) external onlyApprovedAdd {
+   function proxyMint(address _add, uint _amount) external onlyApprovedAdd {
      IDC.mintToken(_add, _amount);
    }
 
-   function proxyBurn(uint _amount, address _add) external onlyApprovedAdd {
+   function proxyBurn(address _add,  uint _amount) external onlyApprovedAdd {
      IDC.burn(_add, _amount);
    }
 

@@ -1,29 +1,32 @@
 pragma solidity ^0.4.21;
-import "./CP-interface.sol";
+import "./Interface.sol";
 
-contract IB-Logic is CP-interface.sol {
+contract IBLogic is Interface {
 //checks if the IdeaBlockReward should be adjusted
 function generateIdeaBlock(
   string _ideaIPFS,
   uint  _globalUseBlockAmount,
-  uint _royalty,
   uint _miningTime,
+  uint _royalty,
   address _inventor
   )
   public
   onlyOwner
   {
 
-    IBG._generateIdeaBlock( _ideaIPFS, _globalUseBlockAmount, _royalty, _miningTime, _inventor);
+    IBG._generateIdeaBlock( _ideaIPFS, _globalUseBlockAmount, _miningTime, _royalty,  _inventor);
 //generates IdeaBlock ERC721 Token
     globalIdeaCount++;
+    if(members[_inventor] != true){
 //increments IdeaCount
     members[_inventor] = true;
-//adds the inventor as a member of CryptoGrowDAC
+
+//adds the inventor as a member of DecentraCorp
     memberCount++;
 //increases global member count
-ideaBlockTimeLord();
-IDC.mintToken( _inventor, ideaBlockReward);
+}
+    ideaBlockTimeLord();
+    DCPoA.proxyMint( _inventor, ideaBlockReward);
 //mints 1000 IDC and sends it to the inventor
   }
 

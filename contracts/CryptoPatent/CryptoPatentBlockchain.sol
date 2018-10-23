@@ -1,7 +1,7 @@
 pragma solidity ^0.4.21;
-import "./CP-interface.sol";
+import "./UseLogic.sol";
 
-contract CryptoPatentBlockchain is {
+contract CryptoPatentBlockchain is UseLogic {
 
   constructor() public {
     globalBlockHalfTime = now;
@@ -12,12 +12,13 @@ contract CryptoPatentBlockchain is {
       members[_mem] = true;
   }
 
-  function setGenerators(address _dcpoa, address _IBG, address _RBG, address _GUBG) public onlyOwner {
-  DCPoA = DecentraCorpPoA(_dcpoa);
-  IBG = IdeaBlockGenerator(_IBG);
-  RBG = ReplicationBlockGenerator(_RBG);
-  GUBG = GlobalUseBlockGenerator(_GUBG);
-  }
+  function setGenerators(address _dcpoa, address _IDC, address _IBG, address _RBG, address _GUBG) public onlyOwner {
+      DCPoA = DecentraCorpPoA(_dcpoa);
+      IDC = IdeaCoin(_IDC);
+      IBG = IdeaBlockGenerator(_IBG);
+      RBG = ReplicationBlockGenerator(_RBG);
+      GUBG = GlobalUseBlockGenerator(_GUBG);
+}
 
   function checkIfMember(address _member) public view returns(bool) {
     if(members[_member] == true){

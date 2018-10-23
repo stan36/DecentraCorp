@@ -2,8 +2,8 @@ pragma solidity ^0.4.21;
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 ////////////////////////////////////////////////////////////////////////////////////////////
 contract DecentraCorpPoA {
-  function proxyMint(uint _amount, address _add) external;
-  function proxyBurn(uint _amount, address _add) external;
+  function proxyMint(address _add, uint _amount) external;
+  function proxyBurn(address _add, uint _amount) external;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////
 contract IdeaCoin {
@@ -16,7 +16,6 @@ contract IdeaBlockGenerator {
     function _generateIdeaBlock(string _ideaIPFS, uint _globalUseBlockAmount, uint miningTime, uint _royalty, address _inventorsAddress) external;
     function transferOwnership(address newOwner) public;
     function balanceOf(address _owner) public view returns (uint256);
-    function getRepBlockAmount(uint _ideaId) public view returns(uint);
     function getGlobalUseBlockAmount(uint _ideaId) public view returns(uint);
     function getRoyalty(uint _ideaId) public view returns(uint);
     function getInventor(uint _ideaId) public view returns(address);
@@ -26,9 +25,8 @@ contract IdeaBlockGenerator {
 //Idea Block Generator interface
 /////////////////////////////////////////////////////////////////////////////////////////////
 contract ReplicationBlockGenerator {
-    function replicationBlock(uint _ideaId, address _repAdd) external;
+    function replicationBlock(uint _ideaId, address _repAdd, address _replicatorAdd) external;
     function getBlockReward(address _repAdd) public view returns(uint);
-    function getStakedAmount(address _repAdd) public view returns(uint);
     function getOwnersAddress(address _repAdd) public view returns(address);
     function getIdeaID(address _repAdd) public view returns(uint);
     function getInventorsAddress(address _repAdd) public view returns(address);
@@ -48,7 +46,8 @@ contract GlobalUseBlockGenerator{
 }
 //Global Use Block Generator interface
 /////////////////////////////////////////////////////////////////////////////////////////////
-contract CP-interface is Ownable {
+contract Interface is Ownable {
+  IdeaCoin public IDC;
   DecentraCorpPoA public DCPoA;
   IdeaBlockGenerator public IBG;
   ReplicationBlockGenerator public RBG;
@@ -66,8 +65,8 @@ contract CP-interface is Ownable {
   //used to track when the ideaBlockReward should be halved
   uint public ideaBlockReward = 1000000000000000000000;
   //IdeaBlock set to 1000 IDC
-
-
+  uint public repStake = 100000000000000000000;
+ //Replication stake amount set to 100 IDC
 
   mapping (uint => uint) weightTracker;
   //tracks current global highest weight

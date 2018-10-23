@@ -8,7 +8,6 @@ contract IdeaBlockGenerator{
     function _generateIdeaBlock(string _ideaIPFS, address _inventorsAddress,  uint _replicationBlockAmount,  uint _globalUseBlockAmount,  uint _stakeAmountInIDC,  uint _royalty) external;
     function transferOwnership(address newOwner) public;
     function balanceOf(address _owner) public view returns (uint256);
-    function getRepBlockAmount(uint _ideaId) public view returns(uint);
     function getGlobalUseBlockAmount(uint _ideaId) public view returns(uint);
     function getRoyalty(uint _ideaId) public view returns(uint);
     function getInventor(uint _ideaId) public view returns(address);
@@ -21,10 +20,10 @@ contract ReplicationBlockGenerator is Ownable, ERC721Token("ProofOfReplicationOw
   IdeaBlockGenerator public IBG;
 
   uint public globalRepCount = 0;
-  uint public stakeAmountInIDC = 100000000000000000000;
-//stakeAmountInIDC is the amount of ideacoin  that must be staked to activate a replication
 
   mapping(address => mapping(uint => uint)) public replicationTracker;
+  //maps a replicators address to the ideas id to store a unique replication
+  //ID for that replication
   mapping (address => bool) replications;
   //tracks if an address is a replication
   mapping (address => ReplicationInfo) repInfo;
@@ -35,13 +34,10 @@ contract ReplicationBlockGenerator is Ownable, ERC721Token("ProofOfReplicationOw
   //tracks the total number of replications for a specific idea
 
 
-  function changeStakeAmount(uint _newStakeAmount) external onlyOwner {
-    stakeAmountInIDC = _newStakeAmount;
-  }
+
 
   struct ReplicationInfo {
     uint BlockReward;
-    uint StakedAmount;
     address OwnersAddress;
     uint IdeaID;
     uint Royalty;
@@ -52,15 +48,19 @@ contract ReplicationBlockGenerator is Ownable, ERC721Token("ProofOfReplicationOw
   }
   // ReplicationInfo stores replication information
 
-  function _generateReplicationBlock(uint _ideaId) internal  {
-    globalRepCount++;
-  uint _replicationId = globalRepCount;
-  _mint(msg.sender, _replicationId);
-  replicationTracker[msg.sender][_ideaId] =_replicationId;
+  function setIBGadd(address _newAdd) public onlyOwner{
+    IBG = IdeaBlockGenerator(_newAdd);
   }
 
-  function replicationBlock(uint _ideaId, address _repAdd) external onlyOwner {
-    uint RepBlockReward = IBG.getRepBlockAmount(_ideaId);
+  function _generateReplicationBlock(uint _ideaId, address _replicatorAdd) internal  {
+    globalRepCount++;
+  uint _replicationId = globalRepCount;
+  _mint(_replicatorAdd, _replicationId);
+  replicationTracker[_replicatorAdd][_ideaId] =_replicationId;
+  }
+
+  function replicationBlock(uint _ideaId, address _repAdd, address _replicatorAdd) external onlyOwner {
+    uint RepBlockReward = IBG.getGlobalUseBlockAmount(_ideaId);
     //sets RepBlockReward as the specific rep block amount Stored for an idea
     uint royalty = IBG.getRoyalty(_ideaId);
     //sets royalty as the specific royalty amount for an idea
@@ -71,7 +71,7 @@ contract ReplicationBlockGenerator is Ownable, ERC721Token("ProofOfReplicationOw
     address inventor = IBG.getInventor(_ideaId);
     //sets inventor as the specific inventor for an idea
 
-    _generateReplicationBlock(_ideaId);
+    _generateReplicationBlock(_ideaId, _replicatorAdd);
     //generates an ERC721 replication block token
 
     uint _repId = globalRepCount;
@@ -79,8 +79,7 @@ contract ReplicationBlockGenerator is Ownable, ERC721Token("ProofOfReplicationOw
 
     ReplicationInfo memory _info = ReplicationInfo({
       BlockReward: uint( blockReward),
-      StakedAmount: stakeAmountInIDC,
-      OwnersAddress: address(msg.sender),
+      OwnersAddress: address(_replicatorAdd),
       IdeaID: uint(_ideaId),
       Royalty: uint(royalty),
       RepID: uint(_repId),
@@ -91,14 +90,15 @@ contract ReplicationBlockGenerator is Ownable, ERC721Token("ProofOfReplicationOw
 
 
       repInfo[_repAdd] = _info;
+      //stores new struct stored at the replications address
       uint ideaRepCount = ideaRepCounter[_ideaId];
       ideaRepCounter[_ideaId] = ideaRepCount++;
       //increments the global rep count for a specific idea
     replications[_repAdd] = true;
   //stores replications address as a replicator
-    uint ownerRepCount = repOwnes[msg.sender][_ideaId];
+    uint ownerRepCount = repOwnes[_replicatorAdd][_ideaId];
   //sets ownerRepCount to how many replications of a specific idea a replicator owns
-    repOwnes[msg.sender][_ideaId] = ownerRepCount++;
+    repOwnes[_replicatorAdd][_ideaId] = ownerRepCount++;
   //increments the amount of replications for an idea a replicator owns
 }
 
@@ -108,11 +108,6 @@ contract ReplicationBlockGenerator is Ownable, ERC721Token("ProofOfReplicationOw
     return blockReward;
   }
 
-  function getStakedAmount(address _repAdd) public view returns(uint) {
-    ReplicationInfo memory info = repInfo[_repAdd];
-    uint stake = info.StakedAmount;
-    return stake;
-  }
 
   function getOwnersAddress(address _repAdd) public view returns(address) {
     ReplicationInfo memory info = repInfo[_repAdd];
@@ -164,4 +159,5 @@ function getMiningTime(address _repAdd) external view returns(uint) {
   uint miningTime = info.MiningTime;
   return miningTime;
 }
+
 }
