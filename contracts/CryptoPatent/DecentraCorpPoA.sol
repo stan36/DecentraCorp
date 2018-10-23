@@ -37,4 +37,7 @@ contract IdeaCoin {
      approvedContracts[_newContract] = true;
    }
 
+   function exchangeChaosCoin(uint _amount, address _add) public onlyApprovedAdd {
+     _add.transfer(_amount);
+   }
  }
