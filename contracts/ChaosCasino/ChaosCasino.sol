@@ -8,7 +8,7 @@ contract DecentraCorpPoA {
 /////////////////////////////////////////////////////////////////////////////////////////////
 contract ChaosCoin {
     function balanceOf(address _addr) public constant returns (uint);
-    function mintToken(address _to, uint256 _value) external;
+    function mint(address _to, uint256 _value) external;
     function burn(address _from, uint256 _value)  external;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -37,6 +37,11 @@ contract ChaosCasino is Ownable {
   }
   //modifier requires that the address calling a function is a replication
 
+  constructor(ChaosCoin _CCC, DecentraCorpPoA _DCP, ReplicationBlockGenerator _RBG) public {
+    chaosCoin = ChaosCoin(_CCC);
+    decentraCorp = DecentraCorpPoA(_DCP);
+    RBG = ReplicationBlockGenerator(_RBG);
+  }
   function setRepGBAdd(address _add) public onlyOwner {
     RBG = ReplicationBlockGenerator(_add);
   }
@@ -50,7 +55,7 @@ contract ChaosCasino is Ownable {
   }
 
   function buyChaosCoin(uint _amount, address _player) public onlyOwner {
-    chaosCoin.mintToken(_player, _amount);
+    chaosCoin.mint(_player, _amount);
   }
 
 
