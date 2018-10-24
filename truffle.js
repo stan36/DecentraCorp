@@ -17,8 +17,7 @@ module.exports = {
     development: {
       host: "127.0.0.1",
       port: 7545,
-      gas: 10612388,
-      gasPrice: 65000000000,
+      gas: 5900000,
       network_id: "*" // Match any network id
     },
     solc: {
@@ -29,22 +28,3 @@ module.exports = {
     }
   }
 };
-
-/*
-module.exports = {
-  networks: {
-    CryptoPatentBlockchain: {
-      host: "127.0.0.1",
-      port: 7545,
-      gas: 4700000,
-      network_id: "*" // Match any network id
-    },
-    solc: {
-  optimizer: {
-    enabled: true,
-    runs: 200
-      }
-    }
-  }
-};
-*/

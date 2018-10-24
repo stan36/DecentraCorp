@@ -3,7 +3,7 @@ pragma solidity ^0.4.21;
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 ////////////////////////////////////////////////////////////////////////////////////////////
 contract IdeaCoin {
-    function mintToken(address _to, uint256 _value) external;
+    function mint(address _to, uint256 _value) external;
     function burn(address _from, uint256 _value)  external;
 
 }
@@ -21,12 +21,16 @@ contract IdeaCoin {
    }
    //modifier requires that the address calling a function is a replication
 
+   constructor(IdeaCoin _IDC) public {
+     IDC=(_IDC);
+   }
+
    function setIDCadd(address _IDC) public onlyOwner {
      IDC = IdeaCoin(_IDC);
    }
 
    function proxyMint(address _add, uint _amount) external onlyApprovedAdd {
-     IDC.mintToken(_add, _amount);
+     IDC.mint(_add, _amount);
    }
 
    function proxyBurn(address _add,  uint _amount) external onlyApprovedAdd {
