@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import web3 from '../utils/web3';
 import ipfs from '../utils/IPFS_util';
+import _CryptoPatentBlockchain from '../ethereum/CryptoPatent'
 
 
 class IdeaBlockApplication extends Component {
@@ -15,7 +16,7 @@ class IdeaBlockApplication extends Component {
       miningTime: '',
       royaltyPercentage: '',
       ideaInfo: '',
-      ipfsHash: null,
+      ipfsHash: '',
       message: ''
 
      }
@@ -34,7 +35,6 @@ class IdeaBlockApplication extends Component {
    }
 
 
-
   handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -47,12 +47,16 @@ class IdeaBlockApplication extends Component {
     var buf = Buffer.from(JSON.stringify(jsonObject));
     await ipfs.add(buf, (err, ipfsHash) => {
         console.log(err,ipfsHash);
-  if (err) { console.log("error")}
-   	if (ipfsHash) {
         this.setState({ ipfsHash: ipfsHash[0].hash, message: "the IpfsHash for your Idea Proposal is: " });
-      }
-});
-}
+        _CryptoPatentBlockchain.methods.proposeIdea(this.state.ipfsHash).send({from : this.state.applicantAddress}, (error, transactionHash) => {
+          console.log(transactionHash);
+          this.setState({transactionHash});
+        }); //storehash
+      })
+
+};
+
+
 
   render() {
     return (

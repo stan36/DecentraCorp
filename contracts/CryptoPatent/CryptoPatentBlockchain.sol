@@ -2,6 +2,18 @@ pragma solidity ^0.4.21;
 import "./UseLogic.sol";
 
 contract CryptoPatentBlockchain is UseLogic {
+  uint public minimumQuorum;
+  IdeaProposal[] public proposals;
+
+  struct IdeaProposal {
+       string IdeaIPFS;
+       bool executed;
+       bool proposalPassed;
+       uint numberOfVotes;
+       Vote[] votes;
+       mapping (address => bool) voted;
+   }
+
 
   constructor(address _dcpoa, address _IDC, address _IBG, address _RBG, address _GUBG) public {
     globalBlockHalfTime = now;
@@ -13,6 +25,92 @@ contract CryptoPatentBlockchain is UseLogic {
     GUBG = GlobalUseBlockGenerator(_GUBG);
   }
 
+
+
+ //Proposal struct stores info of a proposal
+  struct Vote {
+          bool inSupport;
+          address voter;
+      }
+
+      function proposeIdea(
+        string _ideaIPFS
+
+          )
+              public
+          {
+
+              uint IdeaProposalID = proposals.length++;
+              IdeaProposal storage p = proposals[IdeaProposalID];
+              p.IdeaIPFS = _ideaIPFS;
+              p.executed = false;
+              p.proposalPassed = false;
+              p.numberOfVotes = 0;
+          }
+
+          function set_Quorum() internal  {
+           uint maxQuorum = getMemberCount();
+           uint tenthQuorum = (maxQuorum / 10);
+           uint  halfQuorum = (maxQuorum / 2);
+            minimumQuorum = (halfQuorum + tenthQuorum);
+           }
+
+
+           function ideaBlockVote(uint _ideaProposalID, uint _globalUseBlockAmount,uint _miningTime, uint _royalty, address _inventor) public {
+            require(checkIfMember(msg.sender));
+             IdeaProposal storage p = proposals[_ideaProposalID];
+             // sets p equal to the specific proposalNumber
+             require(!p.executed);
+             string  _ideahash = p.IdeaIPFS;
+             uint quorum = 0;
+             uint yea = 0;
+             uint nay = 0;
+             set_Quorum();
+
+
+             for (uint i = 0; i <  p.votes.length; ++i) {
+                 Vote storage v = p.votes[i];
+                 uint voteWeight = 1;
+                 quorum += voteWeight;
+                 if (v.inSupport) {
+                     yea += voteWeight;
+                 } else {
+                     nay += voteWeight;
+                 }
+             }
+
+             require(quorum >= minimumQuorum); // Check if a minimum quorum has been reached
+
+             if (yea > nay ) {
+                 // Proposal passed; execute the transaction
+
+                 p.executed = true;
+                 p.proposalPassed = true;
+                 generateIdeaBlock( _ideahash,  _globalUseBlockAmount, _miningTime, _royalty, _inventor);
+             } else {
+                 // Proposal failed
+                 p.proposalPassed = false;
+             }
+            }
+ function vote(
+        uint _ideaProposalID,
+        bool supportsProposal
+    )
+        public
+        returns (uint voteID)
+    {
+        require(checkIfMember(msg.sender));
+        IdeaProposal storage p = proposals[_ideaProposalID];
+        require(p.voted[msg.sender] != true);
+
+        voteID = p.votes.length++;
+        p.votes[voteID] = Vote({inSupport: supportsProposal, voter: msg.sender});
+        p.voted[msg.sender] = true;
+        p.numberOfVotes = voteID++;
+
+        return voteID;
+    }
+// allows members to vote on proposals
   function addMember(address _mem) public onlyOwner{
       members[_mem] = true;
   }
