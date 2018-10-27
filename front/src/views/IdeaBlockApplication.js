@@ -17,7 +17,9 @@ class IdeaBlockApplication extends Component {
       royaltyPercentage: '',
       ideaInfo: '',
       ipfsHash: '',
-      message: ''
+      message: '',
+      transactionHash: '',
+      message2: ''
 
      }
      this.handleSubmit = this.handleSubmit.bind(this);
@@ -50,7 +52,8 @@ class IdeaBlockApplication extends Component {
         this.setState({ ipfsHash: ipfsHash[0].hash, message: "the IpfsHash for your Idea Proposal is: " });
         _CryptoPatentBlockchain.methods.proposeIdea(this.state.ipfsHash).send({from : this.state.applicantAddress}, (error, transactionHash) => {
           console.log(transactionHash);
-          this.setState({transactionHash});
+          this.setState({transactionHash, message2: 'Your Idea Has Been Successfully submitted to the CryptoPatent Blockchain! Your transaction hash is:'});
+
         }); //storehash
       })
 
@@ -83,6 +86,7 @@ class IdeaBlockApplication extends Component {
        <button>Send data!</button>
      </form>
      <p>{this.state.message} {this.state.ipfsHash}</p>
+     <p>{this.state.message2}{this.state.transactionHash}</p>
      </div>
     );
   }
