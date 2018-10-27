@@ -1,11 +1,11 @@
-import web3 from './web3';
+import web3 from '../utils/web3';
 import IdeaCoin from '../contracts/IdeaCoin.json';
 
 
 
  const _IdeaCoin = new web3.eth.Contract(
 	IdeaCoin.abi,
-	'0xac197d40ecbd862357f21621c18c3fb65c0d197d'
+	'0xbbb22c3b6bbe50d2990f3fb11e4b53cb16d8b4c6'
 );
 
 

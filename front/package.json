@@ -4,11 +4,12 @@
   "private": true,
   "dependencies": {
     "bulma-start": "^0.0.2",
+    "ipfs-api": "^25.0.0",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-scripts": "2.0.5",
     "truffle-contract": "^3.0.6",
-    "web3": "^1.0.0-beta.26",
+    "web3": "^1.0.0-beta.36",
     "web3-js": "^1.0.0-beta.26"
   },
   "scripts": {
