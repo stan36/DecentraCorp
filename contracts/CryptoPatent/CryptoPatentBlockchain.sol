@@ -111,8 +111,13 @@ contract CryptoPatentBlockchain is UseLogic {
         return voteID;
     }
 // allows members to vote on proposals
-  function addMember(address _mem) public onlyOwner{
+  function addMember(address _mem) internal {
       members[_mem] = true;
+  }
+
+  function buyMembership() public payable{
+    require(msg.value >= 1 ether);
+    addMember(msg.sender);
   }
 
   function setGenerators(

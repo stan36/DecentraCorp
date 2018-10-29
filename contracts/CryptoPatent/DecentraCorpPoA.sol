@@ -32,6 +32,8 @@ contract IdeaCoin {
      IDC = IdeaCoin(_IDC);
    }
 
+
+
    function proxyMint(address _add, uint _amount) external onlyApprovedAdd {
      IDC.mint(_add, _amount);
    }
@@ -48,4 +50,5 @@ contract IdeaCoin {
      _add.transfer(_amount);
    }
 
+   
  }
