@@ -50,5 +50,5 @@ contract IdeaCoin {
      _add.transfer(_amount);
    }
 
-   
+
  }

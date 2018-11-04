@@ -28,6 +28,7 @@ function generateIdeaBlock(
     ideaBlockTimeLord();
     DCPoA.proxyMint( _inventor, ideaBlockReward);
 //mints 1000 IDC and sends it to the inventor
+memberRank[_inventor]++;
   }
 
   function ideaBlockTimeLord() internal returns(uint){

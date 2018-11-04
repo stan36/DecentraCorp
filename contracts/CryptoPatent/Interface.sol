@@ -67,16 +67,32 @@ contract Interface is Ownable {
   //IdeaBlock set to 1000 IDC
   uint public repStake = 100000000000000000000;
  //Replication stake amount set to 100 IDC
-
+  uint public minimumQuorum;
+  //used to  track quorum info
+  IdeaProposal[] public proposals;
+  //array of idea proposals
   mapping (uint => uint) weightTracker;
   //tracks current global highest weight
   mapping (address => mapping (uint => uint)) localWeightTracker;
   //maps a replications address to its replication ID and stores that replications current weight
   mapping (address =>bool) members;
   //tracks if an address is a member
+  mapping(address => uint) memberRank;
+//tracks a members rank
 
-
-
+struct IdeaProposal {
+     string IdeaIPFS;
+     bool executed;
+     bool proposalPassed;
+     uint numberOfVotes;
+     Vote[] votes;
+     mapping (address => bool) voted;
+ }
+ //Proposal struct stores info of a proposal
+  struct Vote {
+          bool inSupport;
+          address voter;
+      }
 
   modifier onlyReplication() {
     require(RBG.checkIfRep(msg.sender) == true);

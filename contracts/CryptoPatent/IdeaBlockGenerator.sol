@@ -44,7 +44,7 @@ struct IdeaInfo {
      _miningTime,
      _inventorsAddress
     );
-
+    
   }
 
 

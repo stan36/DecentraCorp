@@ -2,8 +2,7 @@ pragma solidity ^0.4.21;
 
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 import 'zeppelin-solidity/contracts/token/ERC721/ERC721Token.sol';
-
-
+/////////////////////////////////////////////////////////////////////////////////////////////
 contract IdeaBlockGenerator{
     function _generateIdeaBlock(string _ideaIPFS, address _inventorsAddress,  uint _replicationBlockAmount,  uint _globalUseBlockAmount,  uint _stakeAmountInIDC,  uint _royalty) external;
     function transferOwnership(address newOwner) public;
@@ -57,6 +56,7 @@ contract ReplicationBlockGenerator is Ownable, ERC721Token("ProofOfReplicationOw
   uint _replicationId = globalRepCount;
   _mint(_replicatorAdd, _replicationId);
   replicationTracker[_replicatorAdd][_ideaId] =_replicationId;
+  
   }
 
   function replicationBlock(uint _ideaId, address _repAdd, address _replicatorAdd) external onlyOwner {

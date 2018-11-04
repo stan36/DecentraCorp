@@ -18,8 +18,9 @@ if(members[msg.sender] == false){
 RBG.replicationBlock( _ideaId,  _repAdd, msg.sender);
 //mints replication block reward to the replicator
 //this section creates a specific ReplicationInfo struct storing data for that replication
+memberRank[msg.sender]++;
   }
-  
+
   function changeStakeAmount(uint _newStakeAmount) external onlyOwner {
     repStake = _newStakeAmount;
   }

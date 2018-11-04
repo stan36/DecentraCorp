@@ -467,7 +467,7 @@
         "id": 229,
         "nodeType": "ImportDirective",
         "scope": 245,
-        "sourceUnit": 2941,
+        "sourceUnit": 2915,
         "src": "26:67:1",
         "symbolAliases": [],
         "unitAlias": ""
@@ -478,7 +478,7 @@
         "id": 230,
         "nodeType": "ImportDirective",
         "scope": 245,
-        "sourceUnit": 2760,
+        "sourceUnit": 2734,
         "src": "94:67:1",
         "symbolAliases": [],
         "unitAlias": ""
@@ -492,10 +492,10 @@
               "id": 231,
               "name": "MintableToken",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2940,
+              "referencedDeclaration": 2914,
               "src": "186:13:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_MintableToken_$2940",
+                "typeIdentifier": "t_contract$_MintableToken_$2914",
                 "typeString": "contract MintableToken"
               }
             },
@@ -510,10 +510,10 @@
               "id": 233,
               "name": "BurnableToken",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2759,
+              "referencedDeclaration": 2733,
               "src": "201:13:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_BurnableToken_$2759",
+                "typeIdentifier": "t_contract$_BurnableToken_$2733",
                 "typeString": "contract BurnableToken"
               }
             },
@@ -523,13 +523,13 @@
           }
         ],
         "contractDependencies": [
-          2592,
-          2688,
-          2759,
-          2802,
-          2834,
-          2940,
-          3187
+          2566,
+          2662,
+          2733,
+          2776,
+          2808,
+          2914,
+          3161
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -537,13 +537,13 @@
         "id": 244,
         "linearizedBaseContracts": [
           244,
-          2759,
-          2940,
-          2592,
-          3187,
-          2688,
-          2802,
-          2834
+          2733,
+          2914,
+          2566,
+          3161,
+          2662,
+          2776,
+          2808
         ],
         "name": "ChaosCoin",
         "nodeType": "ContractDefinition",
@@ -711,7 +711,7 @@
         "id": 229,
         "nodeType": "ImportDirective",
         "scope": 245,
-        "sourceUnit": 2941,
+        "sourceUnit": 2915,
         "src": "26:67:1",
         "symbolAliases": [],
         "unitAlias": ""
@@ -722,7 +722,7 @@
         "id": 230,
         "nodeType": "ImportDirective",
         "scope": 245,
-        "sourceUnit": 2760,
+        "sourceUnit": 2734,
         "src": "94:67:1",
         "symbolAliases": [],
         "unitAlias": ""
@@ -736,10 +736,10 @@
               "id": 231,
               "name": "MintableToken",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2940,
+              "referencedDeclaration": 2914,
               "src": "186:13:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_MintableToken_$2940",
+                "typeIdentifier": "t_contract$_MintableToken_$2914",
                 "typeString": "contract MintableToken"
               }
             },
@@ -754,10 +754,10 @@
               "id": 233,
               "name": "BurnableToken",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2759,
+              "referencedDeclaration": 2733,
               "src": "201:13:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_BurnableToken_$2759",
+                "typeIdentifier": "t_contract$_BurnableToken_$2733",
                 "typeString": "contract BurnableToken"
               }
             },
@@ -767,13 +767,13 @@
           }
         ],
         "contractDependencies": [
-          2592,
-          2688,
-          2759,
-          2802,
-          2834,
-          2940,
-          3187
+          2566,
+          2662,
+          2733,
+          2776,
+          2808,
+          2914,
+          3161
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -781,13 +781,13 @@
         "id": 244,
         "linearizedBaseContracts": [
           244,
-          2759,
-          2940,
-          2592,
-          3187,
-          2688,
-          2802,
-          2834
+          2733,
+          2914,
+          2566,
+          3161,
+          2662,
+          2776,
+          2808
         ],
         "name": "ChaosCoin",
         "nodeType": "ContractDefinition",
@@ -936,10 +936,10 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x7c45fbe5f89bb4fda45f3dca823ebf39719240a2",
-      "transactionHash": "0x02b3f0dd3ac72bdd31b3d703dde4be8870b73033ce2865610bbff9a45a4c8e7f"
+      "address": "0x73010e042b6121638323d16ac2fffe1ffe90982a",
+      "transactionHash": "0x361452b23a14bcd931d3c9b16081c305eaf2b45127efbf28fe3b639948ec9db0"
     }
   },
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-10-28T22:06:40.987Z"
+  "updatedAt": "2018-11-04T16:13:29.670Z"
 }
