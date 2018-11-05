@@ -6,7 +6,7 @@
  var HDWalletProvider = require("truffle-hdwallet-provider");
 
  var infura_apikey = "lHjU6q5aNKEfjBA0FQJr";
- var mnemonic = "skull woman enhance sauce omit post divide equal script audit drama common";
+ var mnemonic = "multiply shock swear there hero possible bomb morning million stairs neither client";
 //test wallet mnemonic
  module.exports = {
    networks: {
@@ -20,7 +20,7 @@
      provider: function(){
        return new HDWalletProvider(mnemonic, "https://ropsten.infura.io/"+ infura_apikey)
      },
-     gas: 4712387,
+  
      network_id: 3
    },
    solc: {

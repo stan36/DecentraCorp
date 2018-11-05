@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import web3 from '../utils/web3';
 import ipfs from '../utils/IPFS_util';
-import _CryptoPatentBlockchain from '../ethereum/CryptoPatent'
+import _CryptoPatentBlockchain from '../ethereum/CryptoPatent';
+import  DisplayIPFS  from '../components/DisplayIPFS';
+import './IdeaBlockApplication.css';
 
 
 class IdeaBlockApplication extends Component {
@@ -17,13 +19,13 @@ class IdeaBlockApplication extends Component {
       royaltyPercentage: '',
       ideaInfo: '',
       ipfsHash: '',
-      message: '',
       transactionHash: '',
-      message2: ''
+      message: '',
+      details: ''
 
      }
      this.handleSubmit = this.handleSubmit.bind(this);
-     this.onClick = this.onClick.bind(this);
+
   }
 
   async  componentDidMount(){
@@ -36,11 +38,7 @@ class IdeaBlockApplication extends Component {
      this.setState( [event.target.name]: event.target.value )
    }
 
-   async onClick (event) {
-     event.preventDefault();
-     const Hash = this.state.ipfsHash;
-     console.log(JSON.parse(await ipfs.cat(Hash)));
-   }
+
 
   handleSubmit = async (event) => {
     event.preventDefault();
@@ -53,11 +51,9 @@ class IdeaBlockApplication extends Component {
 
     var buf = Buffer.from(JSON.stringify(jsonObject));
     await ipfs.add(buf, (err, ipfsHash) => {
-        console.log(err,ipfsHash);
-        this.setState({ ipfsHash: ipfsHash[0].hash, message: "the IpfsHash for your Idea Proposal is: " });
-        _CryptoPatentBlockchain.methods.proposeIdea(this.state.ipfsHash).send({from : this.state.applicantAddress}, (error, transactionHash) => {
-          console.log(transactionHash);
-          this.setState({transactionHash, message2: 'Your Idea Has Been Successfully submitted to the CryptoPatent Blockchain! Your transaction hash is:'});
+    this.setState({ ipfsHash: ipfsHash[0].hash});
+    _CryptoPatentBlockchain.methods.proposeIdea(this.state.ipfsHash).send({from : this.state.applicantAddress}, (error, transactionHash) => {
+    this.setState({transactionHash, message: 'Your Idea Has Been Successfully submitted to the CryptoPatent Blockchain! Your transaction hash is:'});
         });
       })
 };
@@ -65,6 +61,7 @@ class IdeaBlockApplication extends Component {
 
 
   render() {
+    const { ipfsHash } = this.state;
     return (
       <div>
       <div>
@@ -85,19 +82,18 @@ class IdeaBlockApplication extends Component {
         <br/>
         <label htmlFor="royalty">The the percentage amount for your royalty(ex: 10%): </label>
         <input id="royalty" name="royalty" type="text"onChange={event => this.handleChange(event)} />
+          <br/>
+          <label htmlFor="details">Idea Details: </label>
+          <input className='details' id="details" name="details" type="text" onChange={event => this.handleChange(event)} />
         <br/>
        <button>Send data!</button>
      </form>
-     <form onClick={this.onClick}>
-       <button>See IPFS Data</button>
-     </form>
-     <p>{this.state.message} </p>
+
      <br/>
-     <p>{this.state.ipfsHash}</p>
-     <br/>
-     <p>{this.state.message2}</p>
+     <p>{this.state.message}</p>
      <br/>
      <p>{this.state.transactionHash}</p>
+     <DisplayIPFS ipfsHash={ipfsHash}/>
      </div>
     );
   }

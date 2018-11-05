@@ -4,7 +4,7 @@ import CryptoPatent from '../contracts/CryptoPatentBlockchain.json';
 
 const _CryptoPatentBlockchain = new web3.eth.Contract(
 	CryptoPatent.abi,
-	'0x61eaafa737a01577c8af52e90993b691da535996'
+	'0x49ed7be41ff6c1b2e85d27f4140b8e39af67cadf'
 );
 
 export default _CryptoPatentBlockchain;

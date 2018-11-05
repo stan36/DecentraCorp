@@ -3,7 +3,7 @@ import IdeaBlockGenerator from '../contracts/IdeaBlockGenerator.json';
 
 const _IdeaBlocks = new web3.eth.Contract(
 	IdeaBlockGenerator.abi,
-	'0x0de0c089ec7a927493084e5bc9d875cb20b24b28'
+	'0x302d511f0f70b383ee670135f5463e9537b5d18a'
 );
 
 

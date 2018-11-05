@@ -3,6 +3,8 @@ import "./UseLogic.sol";
 
 contract CryptoPatentBlockchain is UseLogic {
 
+
+
   constructor(address _dcpoa, address _IDC, address _IBG, address _RBG, address _GUBG) public {
     globalBlockHalfTime = now;
     members[msg.sender] = true;
@@ -14,7 +16,7 @@ contract CryptoPatentBlockchain is UseLogic {
     GUBG = GlobalUseBlockGenerator(_GUBG);
   }
 
-
+event IdeaProposed(string IdeaHash);
 
   function proposeIdea(string _ideaIPFS) public {
           uint IdeaProposalID = proposals.length++;
@@ -23,6 +25,7 @@ contract CryptoPatentBlockchain is UseLogic {
           p.executed = false;
           p.proposalPassed = false;
           p.numberOfVotes = 0;
+          IdeaProposed(_ideaIPFS);
   }
 
 function set_Quorum() internal  {

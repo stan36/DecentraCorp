@@ -3,7 +3,7 @@ import ReplicationBlockGenerator from '../contracts/ReplicationBlockGenerator.js
 
 export const _ReplicationBlocks = new web3.eth.Contract(
 	ReplicationBlockGenerator.abi,
-	'0x0de0c089ec7a927493084e5bc9d875cb20b24b28'
+	'0x4370ecaadbd11ec93686b1debad988a49df08d7a'
 );
 
 
