@@ -5,7 +5,7 @@ import IdeaCoin from '../contracts/IdeaCoin.json';
 
  const _IdeaCoin = new web3.eth.Contract(
 	IdeaCoin.abi,
-	'0x4bab8245825ecb9fc198ebca16c4363054ca2fae'
+	'0x756ada67590008a4e484e5dd84080e2da408b95e'
 );
 
 

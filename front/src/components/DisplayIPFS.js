@@ -49,9 +49,9 @@ onload = async ()=>{
    <br/>
    <label htmlFor="royalty">Inventors Royalty Amount: { Json.royalty } </label>
    <br/>
-   <label htmlFor="detailsdetails">Idea Details: { Json.details } </label>
+   <label htmlFor="detailsdetails">Idea Details: </label>
    <br/>
-
+   { Json.details }
 </form>
        </div>
      );

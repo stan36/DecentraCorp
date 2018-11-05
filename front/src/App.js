@@ -7,6 +7,7 @@ import Home from './views/Home';
 import DCWallet from './views/DCWallet';
 import IdeaBlockApplication from './views/IdeaBlockApplication';
 import BuyMembership from './components/BuyMembership';
+import IdeaList from './components/IdeaList';
 
 
 class App extends Component {
@@ -29,7 +30,7 @@ class App extends Component {
   render() {
     const {  isMember } = this.state;
 
-if(isMember) {
+if(!isMember) {
     return (
       <div className='app'>
         <h1>DecentraCorp Dapp</h1>
@@ -37,12 +38,14 @@ if(isMember) {
             <ul>
               <li><NavLink to='/'>Home</NavLink></li>
               <li><NavLink to='/IdeaBlockApplication'>IdeaBlock Application</NavLink></li>
-            </ul>
+              <li><NavLink to='/BuyMembership'>Become a DecentraCorp Member!</NavLink></li>
+          </ul>
           </nav>
           <Switch>
             <Route exact path='/' component={Home}></Route>
             <Route exact path='/IdeaBlockApplication' component={IdeaBlockApplication}></Route>
-          </Switch>
+            <Route exact path='/BuyMembership' component={BuyMembership}></Route>
+        </Switch>
 
       </div>
     );
@@ -55,14 +58,15 @@ if(isMember) {
             <li><NavLink to='/'>Home</NavLink></li>
             <li><NavLink to='/wallet'>DC Wallet</NavLink></li>
             <li><NavLink to='/IdeaBlockApplication'>IdeaBlock Application</NavLink></li>
-            <li><NavLink to='/BuyMembership'>Become a DecentraCorp Member!</NavLink></li>
+            <li><NavLink to='/IdeaList'>IdeaBlock Vote</NavLink></li>
+
           </ul>
         </nav>
         <Switch>
           <Route exact path='/' component={Home}></Route>
           <Route exact path='/wallet' component={DCWallet}></Route>
           <Route exact path='/IdeaBlockApplication' component={IdeaBlockApplication}></Route>
-          <Route exact path='/BuyMembership' component={BuyMembership}></Route>
+          <Route exact path='/IdeaList' component={IdeaList}></Route>
       </Switch>
       </div>
       );

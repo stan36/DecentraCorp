@@ -17,6 +17,7 @@ contract CryptoPatentBlockchain is UseLogic {
   }
 
 event IdeaProposed(string IdeaHash);
+event IdeaApproved(string _ideahash, uint _globalUseBlockAmount, uint _miningTime, uint _royalty, address _inventor);
 
   function proposeIdea(string _ideaIPFS) public {
           uint IdeaProposalID = proposals.length++;
@@ -25,7 +26,7 @@ event IdeaProposed(string IdeaHash);
           p.executed = false;
           p.proposalPassed = false;
           p.numberOfVotes = 0;
-          IdeaProposed(_ideaIPFS);
+          emit IdeaProposed(_ideaIPFS);
   }
 
 function set_Quorum() internal  {
@@ -66,6 +67,7 @@ function ideaBlockVote(uint _ideaProposalID, uint _globalUseBlockAmount,uint _mi
                p.executed = true;
                p.proposalPassed = true;
                generateIdeaBlock( _ideahash,  _globalUseBlockAmount, _miningTime, _royalty, _inventor);
+               emit IdeaApproved( _ideahash,  _globalUseBlockAmount, _miningTime, _royalty, _inventor);
            } else {
                  // Proposal failed
                p.proposalPassed = false;
@@ -99,6 +101,7 @@ function ideaBlockVote(uint _ideaProposalID, uint _globalUseBlockAmount,uint _mi
   function buyMembership() public payable{
     require(msg.value >= 1 ether);
     addMember(msg.sender);
+    DCPoA.proxyMint(msg.sender, 10000000000000000000000);
   }
 
   function setGenerators(
