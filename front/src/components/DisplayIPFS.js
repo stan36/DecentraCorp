@@ -12,12 +12,12 @@ this.state={
   Json: {}
 }
 
-this.onSubmit = this.onSubmit.bind(this);
+this.onload = this.onload.bind(this);
 }
 
 
-onSubmit = async (event)=>{
-  event.preventDefault();
+onload = async ()=>{
+
     const { ipfsHash }= this.props;
     const Json =JSON.parse(await ipfs.cat(ipfsHash));
     console.log(Json);
@@ -33,9 +33,10 @@ onSubmit = async (event)=>{
       ''
      );
    } else {
+     this.onload();
      return(
        <div className='DisplayIPFS'>
-<form onSubmit={this.onSubmit}>
+<form >
   <label htmlFor="ideaHash">Idea Hash: { ipfsHash } </label>
   <br/>
    <label htmlFor="ideaName">Idea Name: { Json.ideaName } </label>
@@ -50,7 +51,7 @@ onSubmit = async (event)=>{
    <br/>
    <label htmlFor="detailsdetails">Idea Details: { Json.details } </label>
    <br/>
-   <button>View data!</button>
+
 </form>
        </div>
      );
