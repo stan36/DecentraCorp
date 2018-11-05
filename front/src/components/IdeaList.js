@@ -11,18 +11,20 @@ class IdeaList extends Component {
     this.state = {
       userAccount: '',
       vote: false,
-      hashs: []
+      hashs: [],
+      hash: ''
 
     }
 this.PropHashs = this.PropHashs.bind(this);
+
   }
 
   async  componentDidMount(){
      const accounts = await web3.eth.getAccounts();
      const userAccount = accounts[0];
-     this.PropHashs();
      this.setState({ userAccount });
-     console.log(this.state.userAccount);
+     this.PropHashs();
+
    }
 
    PropHashs = async () => {
@@ -30,26 +32,30 @@ this.PropHashs = this.PropHashs.bind(this);
       _CryptoPatentBlockchain.events.IdeaProposed({
             fromBlock: '0',
             toBlock: 'latest'
-          },function(error, event){ console.log(event.returnValues.IdeaHash); })
-     .on('data', function(event){
-         const hashs = event.returnValues.IdeaHash;
-         return hashs;
-       })
-       .on((hashs) => {
-         this.setState({ hashs });
-         console.log( this.state.hashs );
-       });
+          },function(error, event){ console.log(""); })
+     .on('data', (event) => {
+         const currentArray = this.state.hashs;
+         const hash = event.returnValues.IdeaHash;
+          const newArray = currentArray.push(hash);
+         this.setState({ newArray });
+         console.log( this.state.hash );
+         console.log(this.state.hashs);
+        })
 
      }
 
 
 
-
   render() {
+
     return(
       <div className='IdeaLst'>
         <h2>IdeaList</h2>
-
+        <div>
+    {this.state.hashs.map((ipfshash, index) => (
+        <p key={index}>{ipfshash}</p>
+    ))}
+    </div>
       </div>
     );
   }
