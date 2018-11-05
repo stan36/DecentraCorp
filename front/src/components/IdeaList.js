@@ -20,7 +20,7 @@ class IdeaList extends Component {
     }
 this.PropHashs = this.PropHashs.bind(this);
 this.onClick = this.onClick.bind(this);
-
+this.stateSetter = this.stateSetter.bind(this);
   }
 
   async  componentDidMount(){
@@ -49,9 +49,12 @@ this.onClick = this.onClick.bind(this);
 
 onClick = (event) =>{
   event.preventDefault();
+
 }
 
-
+stateSetter = (ipfshash) =>{
+  this.setState({ selectedIpfs: ipfshash})
+}
 
   render() {
 if(!this.state.selectedIpfs){
@@ -61,9 +64,7 @@ if(!this.state.selectedIpfs){
         <div>
     {this.state.hashs.map((ipfshash, index) => (
       <div className="prop-detail" key ={index + 1}>
-
-
-      <button  onClick={() => this.setState({ selectedIpfs: ipfshash})} key={index + 2}>
+      <button  onClick={() => this.stateSetter(ipfshash)} key={index + 2}>
         <DisplayIPFSName key={index + 4} ipfsHash={ipfshash} />
         <p key={index}>{ipfshash}</p>
         <p key={index + 3}>Click Here to View This Idea</p>

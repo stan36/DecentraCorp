@@ -1,7 +1,8 @@
 
  import React, { Component } from 'react';
+ import web3 from '../utils/web3';
  import ipfs from '../utils/IPFS_util';
-
+import _CryptoPatentBlockchain from '../ethereum/CryptoPatent';
 
 
  class DisplayIPFS extends Component {
@@ -9,11 +10,29 @@
      super(props);
 
 this.state={
-  Json: {}
+  Json: {},
+  userAccount: '',
+  ProposalId: null,
+  hasVoted: false,
+  transactionHash: ''
+
+
 }
 
 this.onload = this.onload.bind(this);
+this.onYes = this.onYes.bind(this);
+this.onNo = this.onNo.bind(this);
 }
+
+async  componentDidMount(){
+  const { ipfsHash }= this.props;
+   const accounts = await web3.eth.getAccounts();
+   const userAccount = accounts[0];
+   const ProposalId = await _CryptoPatentBlockchain.methods.getPropID(ipfsHash).call();
+   this.setState({  userAccount, ProposalId });
+   console.log(this.state.ProposalId);
+
+ };
 
 
 onload = async ()=>{
@@ -22,6 +41,21 @@ onload = async ()=>{
     this.setState({ Json })
   };
 
+  onYes = async (event)=>{
+    event.preventDefault();
+    console.log('voted yes');
+    await _CryptoPatentBlockchain.methods.vote(this.state.ProposalId, true).send({from : this.state.userAccount}, (error, transactionHash) => {
+    this.setState({transactionHash, hasVoted: true });
+  });
+}
+
+  onNo = async (event)=>{
+    event.preventDefault();
+    console.log('voted no');
+    _CryptoPatentBlockchain.methods.vote(this.state.ProposalId, false).send({from : this.state.userAccount}, (error, transactionHash) => {
+    this.setState({transactionHash, hasVoted: true });
+  });
+}
    render() {
      const { ipfsHash }= this.props;
      const { Json }= this.state;
@@ -47,6 +81,8 @@ onload = async ()=>{
    <label htmlFor="detailsdetails">Idea Details: </label>
    <br/>
    { Json.details }
+   <br/>
+   <button onClick={this.onYes}>Vote Yes</button><button onClick={this.onNo}>Vote No</button>
 </form>
        </div>
      );

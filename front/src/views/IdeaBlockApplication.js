@@ -11,17 +11,10 @@ class IdeaBlockApplication extends Component {
     super(props);
 
     this.state = {
-      applicantName: '',
       applicantAddress: '',
-      ideaName: '',
-      globalUseBlockAmount: '',
-      miningTime: '',
-      royaltyPercentage: '',
-      ideaInfo: '',
       ipfsHash: '',
       transactionHash: '',
-      message: '',
-      details: ''
+      message: ''
 
      }
      this.handleSubmit = this.handleSubmit.bind(this);

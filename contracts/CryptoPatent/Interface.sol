@@ -79,6 +79,7 @@ contract Interface is Ownable {
   //tracks if an address is a member
   mapping(address => uint) memberRank;
 //tracks a members rank
+  mapping(string => uint) getHash;
 
 struct IdeaProposal {
      string IdeaIPFS;

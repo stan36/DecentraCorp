@@ -7,7 +7,7 @@ import Home from './views/Home';
 import DCWallet from './views/DCWallet';
 import IdeaBlockApplication from './views/IdeaBlockApplication';
 import BuyMembership from './components/BuyMembership';
-import IdeaList from './components/IdeaList';
+import IdeaVote from './views/IdeaVote';
 
 
 class App extends Component {
@@ -58,7 +58,7 @@ if(!isMember) {
             <li><NavLink to='/'>Home</NavLink></li>
             <li><NavLink to='/wallet'>DC Wallet</NavLink></li>
             <li><NavLink to='/IdeaBlockApplication'>IdeaBlock Application</NavLink></li>
-            <li><NavLink to='/IdeaList'>IdeaBlock Vote</NavLink></li>
+            <li><NavLink to='/IdeaVote'>IdeaBlock Vote</NavLink></li>
 
           </ul>
         </nav>
@@ -66,7 +66,7 @@ if(!isMember) {
           <Route exact path='/' component={Home}></Route>
           <Route exact path='/wallet' component={DCWallet}></Route>
           <Route exact path='/IdeaBlockApplication' component={IdeaBlockApplication}></Route>
-          <Route exact path='/IdeaList' component={IdeaList}></Route>
+          <Route exact path='/IdeaVote' component={IdeaVote}></Route>
       </Switch>
       </div>
       );

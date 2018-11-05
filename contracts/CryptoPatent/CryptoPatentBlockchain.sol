@@ -18,10 +18,12 @@ contract CryptoPatentBlockchain is UseLogic {
 
 event IdeaProposed(string IdeaHash);
 event IdeaApproved(string _ideahash, uint _globalUseBlockAmount, uint _miningTime, uint _royalty, address _inventor);
+event Voted(address _voter, bool inSupport);
 
   function proposeIdea(string _ideaIPFS) public {
           uint IdeaProposalID = proposals.length++;
           IdeaProposal storage p = proposals[IdeaProposalID];
+          getHash[_ideaIPFS] = IdeaProposalID;
           p.IdeaIPFS = _ideaIPFS;
           p.executed = false;
           p.proposalPassed = false;
@@ -89,7 +91,7 @@ function ideaBlockVote(uint _ideaProposalID, uint _globalUseBlockAmount,uint _mi
         p.votes[voteID] = Vote({inSupport: supportsProposal, voter: msg.sender});
         p.voted[msg.sender] = true;
         p.numberOfVotes = voteID++;
-
+        emit Voted(msg.sender, supportsProposal);
         return voteID;
     }
 // allows members to vote on proposals
@@ -132,6 +134,8 @@ function ideaBlockVote(uint _ideaProposalID, uint _globalUseBlockAmount,uint _mi
     return memberCount;
   }
   //returns total number of members
-
+  function getPropID(string hash) public view returns(uint){
+    return getHash[hash];
+  }
 
 }
