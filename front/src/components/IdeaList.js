@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import web3 from '../utils/web3';
 import ipfs from '../utils/IPFS_util';
 import _CryptoPatentBlockchain from '../ethereum/CryptoPatent';
+import  DisplayIPFSName  from '../components/DisplayIPFSName';
 import  DisplayIPFS  from '../components/DisplayIPFS';
+
+
 
 class IdeaList extends Component {
   constructor(props){
@@ -12,10 +15,11 @@ class IdeaList extends Component {
       userAccount: '',
       vote: false,
       hashs: [],
-      hash: ''
+      selectedIpfs: ''
 
     }
 this.PropHashs = this.PropHashs.bind(this);
+this.onClick = this.onClick.bind(this);
 
   }
 
@@ -38,27 +42,43 @@ this.PropHashs = this.PropHashs.bind(this);
          const hash = event.returnValues.IdeaHash;
           const newArray = currentArray.push(hash);
          this.setState({ newArray });
-         console.log( this.state.hash );
-         console.log(this.state.hashs);
+
         })
 
      }
 
+onClick = (event) =>{
+  event.preventDefault();
+}
+
 
 
   render() {
-
+if(!this.state.selectedIpfs){
     return(
       <div className='IdeaLst'>
         <h2>IdeaList</h2>
         <div>
     {this.state.hashs.map((ipfshash, index) => (
+      <div className="prop-detail" key ={index + 1}>
+
+
+      <button  onClick={() => this.setState({ selectedIpfs: ipfshash})} key={index + 2}>
+        <DisplayIPFSName key={index + 4} ipfsHash={ipfshash} />
         <p key={index}>{ipfshash}</p>
+        <p key={index + 3}>Click Here to View This Idea</p>
+        </button>
+
+          </div>
     ))}
     </div>
       </div>
+      );
+    }else{
+      return(
+      <DisplayIPFS ipfsHash={this.state.selectedIpfs} />
     );
+    }
   }
 }
-
     export default IdeaList;

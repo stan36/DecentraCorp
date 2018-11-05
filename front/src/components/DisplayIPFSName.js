@@ -4,7 +4,7 @@
 
 
 
- class DisplayIPFS extends Component {
+ class DisplayIPFSName extends Component {
    constructor(props){
      super(props);
 
@@ -36,17 +36,7 @@ onload = async ()=>{
 <form >
    <label htmlFor="ideaName">Idea Name: { Json.ideaName } </label>
    <br/>
-   <label htmlFor="applicantName">Inventors Name: { Json.username } </label>
-   <br/>
-   <label htmlFor="useblockamount">UseBlock Amount: { Json.useblockamount } </label>
-   <br/>
-   <label htmlFor="miningTime">Mining Time: { Json.miningTime } </label>
-   <br/>
-   <label htmlFor="royalty">Inventors Royalty Amount: { Json.royalty } </label>
-   <br/>
-   <label htmlFor="detailsdetails">Idea Details: </label>
-   <br/>
-   { Json.details }
+
 </form>
        </div>
      );
@@ -54,4 +44,4 @@ onload = async ()=>{
    }
  }
 
-     export default DisplayIPFS;
+     export default DisplayIPFSName;
