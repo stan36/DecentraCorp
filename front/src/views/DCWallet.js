@@ -51,6 +51,7 @@ class DcWallet extends Component {
   render() {
 
     return (
+      <div className='DCWallet'>
         <div className='container'>
           <h1> DecentraCorp Wallet </h1>
           <p> Token Name: </p>
@@ -82,12 +83,9 @@ class DcWallet extends Component {
             </div>
           </form>
           <hr/>
-
           <h3>{this.state.message}</h3>
-
-
         </div>
-
+</div>
     );
   }
 }

@@ -8,6 +8,8 @@ import DCWallet from './views/DCWallet';
 import IdeaBlockApplication from './views/IdeaBlockApplication';
 import BuyMembership from './components/BuyMembership';
 import IdeaVote from './views/IdeaVote';
+import DecentraCorpLogo from "./images/DecentraCorpLogo.png";
+
 
 
 class App extends Component {
@@ -33,7 +35,9 @@ class App extends Component {
 if(!isMember) {
     return (
       <div className='app'>
-        <h1>DecentraCorp Dapp</h1>
+      <div>
+        <img src={DecentraCorpLogo} alt ="DecentraCorp Dapp" className="DecentraCorpLogo1"/>
+      </div>
           <nav>
             <ul>
               <li><NavLink to='/'>Home</NavLink></li>
@@ -52,7 +56,9 @@ if(!isMember) {
   } else {
     return(
     <div className='app'>
-      <h1>DecentraCorp Dapp</h1>
+      <div>
+        <img src={DecentraCorpLogo} alt ="DecentraCorp Dapp" className="DecentraCorpLogo1"/>
+      </div>
         <nav>
           <ul>
             <li><NavLink to='/'>Home</NavLink></li>

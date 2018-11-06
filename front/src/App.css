@@ -9,29 +9,37 @@ html {
     }
 
     .app {
-      width: 960px;
-      margin: 0 auto;
-      padding: 20px;
+      width: 1060px;
+      margin:  500 auto;
+      padding: 0px;
     }
 
     nav ul {
       list-style: none;
       display: flex;
-      background-color: black;
-      margin-bottom: 20px;
+      background-color: gray;
+      width: 2000px;
+      height: 70px;
+      margin-bottom: 30px;
+      border-radius: 20px;
+
     }
 
     nav ul li {
-      padding: 20px;
+      padding-left : 15px;
+      padding-right : 15px;
+      padding-top : 50px;
+      padding-bottom : 5px;
     }
 
     nav ul li a {
-      color: white;
+      color: darkred;
       text-decoration: none;
+      text-shadow: black 4px;
     }
 
     .current {
-      border-bottom: 4px solid white;
+      border-bottom: 30px solid silver;
     }
 
     h1 {
@@ -40,4 +48,13 @@ html {
 
     p {
       margin-bottom: 15px;
+    }
+
+    .DecentraCorpLogo1{
+        margin-bottom: -230px;
+        margin-top: -140px;
+        margin-right: 0px;
+        margin-left: 0px;
+        max-width: 40%;
+        height: auto;
     }
