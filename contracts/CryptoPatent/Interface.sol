@@ -80,6 +80,8 @@ contract Interface is Ownable {
   mapping(address => uint) memberRank;
 //tracks a members rank
   mapping(string => uint) getHash;
+//maps ipfs hash to its token ID
+  mapping(address => uint[]) getTokens;
 
 struct IdeaProposal {
      string IdeaIPFS;
@@ -94,6 +96,8 @@ struct IdeaProposal {
           bool inSupport;
           address voter;
       }
+
+
 
   modifier onlyReplication() {
     require(RBG.checkIfRep(msg.sender) == true);

@@ -19,6 +19,7 @@ contract CryptoPatentBlockchain is UseLogic {
 event IdeaProposed(string IdeaHash);
 event IdeaApproved(string _ideahash, uint _globalUseBlockAmount, uint _miningTime, uint _royalty, address _inventor);
 event Voted(address _voter, bool inSupport);
+event NewMember(address member);
 
   function proposeIdea(string _ideaIPFS) public {
           uint IdeaProposalID = proposals.length++;
@@ -44,7 +45,7 @@ function ideaBlockVote(uint _ideaProposalID, uint _globalUseBlockAmount,uint _mi
         IdeaProposal storage p = proposals[_ideaProposalID];
              // sets p equal to the specific proposalNumber
         require(!p.executed);
-        string  _ideahash = p.IdeaIPFS;
+        string memory _ideahash = p.IdeaIPFS;
         uint quorum = 0;
         uint yea = 0;
         uint nay = 0;
@@ -101,9 +102,11 @@ function ideaBlockVote(uint _ideaProposalID, uint _globalUseBlockAmount,uint _mi
   }
 
   function buyMembership() public payable{
+    require(now <= globalBlockHalfTime + 15780000 seconds);
     require(msg.value >= 1 ether);
     addMember(msg.sender);
     DCPoA.proxyMint(msg.sender, 10000000000000000000000);
+    emit NewMember(msg.sender);
   }
 
   function setGenerators(
@@ -136,6 +139,17 @@ function ideaBlockVote(uint _ideaProposalID, uint _globalUseBlockAmount,uint _mi
   //returns total number of members
   function getPropID(string hash) public view returns(uint){
     return getHash[hash];
+  }
+
+  function stakeReplicatorWallet() public {
+    require(IDC.balanceOf(msg.sender) >= 100000000000000000000);
+    DCPoA.proxyBurn(msg.sender, 100000000000000000000);
+    members[msg.sender] = true;
+    emit NewMember(msg.sender);
+  }
+
+  function getIdeasOwner() public view returns(uint[]){
+    return getTokens[msg.sender];
   }
 
 }

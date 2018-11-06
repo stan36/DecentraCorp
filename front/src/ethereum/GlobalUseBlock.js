@@ -4,7 +4,7 @@ import GlobalUseBlockGenerator from '../contracts/GlobalUseBlockGenerator.json';
 
 const _GlobalUseBlocks = new web3.eth.Contract(
 	GlobalUseBlockGenerator.abi,
-	'0x2c1d38764e11439061aca946da24dfe608717f89'
+	'0x78d875c6821066b86aa948eb8e3c185dafbf4845'
 );
 
 

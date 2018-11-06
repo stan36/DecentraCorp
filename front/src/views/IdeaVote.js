@@ -6,8 +6,8 @@ import IdeaList from '../components/IdeaList';
 class IdeaVote extends Component {
   render() {
     return(
-      <div className='IdeaVote'>
-        <h1>IdeaVote</h1>
+      <div className='container'>
+        <h1>Select an Idea to view</h1>
         <IdeaList />
       </div>
     );

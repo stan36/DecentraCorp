@@ -20,7 +20,6 @@ function generateIdeaBlock(
     if(members[_inventor] != true){
 //increments IdeaCount
     members[_inventor] = true;
-
 //adds the inventor as a member of DecentraCorp
     memberCount++;
 //increases global member count
@@ -28,7 +27,8 @@ function generateIdeaBlock(
     ideaBlockTimeLord();
     DCPoA.proxyMint( _inventor, ideaBlockReward);
 //mints 1000 IDC and sends it to the inventor
-memberRank[_inventor]++;
+    memberRank[_inventor]++;
+    getTokens[_inventor].push(globalIdeaCount);
   }
 
   function ideaBlockTimeLord() internal returns(uint){

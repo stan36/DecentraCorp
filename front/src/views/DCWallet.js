@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import web3 from '../utils/web3';
 import _IdeaCoin from '../ethereum/IdeaCoin';
+import _CryptoPatentBlockchain from '../ethereum/CryptoPatent';
+import './DCWallet.css'
 
 class DcWallet extends Component {
 
@@ -14,8 +16,11 @@ class DcWallet extends Component {
        userAccount:'',
        message: '',
        transferamount: null,
-       transfertoadd: ''
+       transfertoadd: '',
+       ownedIdeas: []
      }
+
+
   }
 
  async  componentDidMount(){
@@ -25,9 +30,12 @@ class DcWallet extends Component {
     const symbol = await _IdeaCoin.methods.symbol().call();
     const userAccount = accounts[0];
     const userBalance = await _IdeaCoin.methods.balanceOf(userAccount).call();
-
-    this.setState({tokenName, symbol, userBalance, userAccount});
+    const Ideas = await _CryptoPatentBlockchain.methods.getIdeasOwner().call();
+    console.log(tokenName, Ideas);
+    this.setState({tokenName, symbol, userBalance, userAccount, ownedIdeas: Ideas});
+    console.log(symbol, this.state.ownedIdeas);
   }
+
 
   onSubmit = async (event)=>{
       event.preventDefault();
@@ -38,17 +46,24 @@ class DcWallet extends Component {
       this.setState({message: 'Smart Contract approved the Transfer'});
   };
 
+
+
   render() {
+
     return (
-        <div>
+        <div className='container'>
           <h1> DecentraCorp Wallet </h1>
-          <p> Token Name:  {this.state.tokenName}</p>
+          <p> Token Name: </p>
+          <p> {this.state.tokenName}</p>
           <br/>
-          <p> Token Symbol: {this.state.symbol}</p>
+          <p> Token Symbol: </p>
+          <p>{this.state.symbol}</p>
           <br/>
-          <p> Your IdeaCoin Balance Is:  {this.state.userBalance} </p>
+          <p> Your IdeaCoin Balance Is: </p>
+          <p> {this.state.userBalance} </p>
           <br/>
-          <p>Your Account Address is: {this.state.userAccount}</p>
+          <p>Your Account Address is: </p>
+          <p>{this.state.userAccount}</p>
           <hr/>
           <form onSubmit={this.onSubmit}>
             <h3>Transfer IdeaCoin</h3>
@@ -63,11 +78,14 @@ class DcWallet extends Component {
                 transfertoadd = {this.state.transfertoadd}
                 onChange = { event => this.setState({transfertoadd : event.target.value})}
               />
-            <button>Transfer</button>
+            <button>Transfer IdeaCoin</button>
             </div>
           </form>
           <hr/>
+
           <h3>{this.state.message}</h3>
+
+
         </div>
 
     );

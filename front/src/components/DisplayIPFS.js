@@ -3,7 +3,7 @@
  import web3 from '../utils/web3';
  import ipfs from '../utils/IPFS_util';
 import _CryptoPatentBlockchain from '../ethereum/CryptoPatent';
-
+import './DisplayIPFS.css'
 
  class DisplayIPFS extends Component {
    constructor(props){
@@ -14,7 +14,8 @@ this.state={
   userAccount: '',
   ProposalId: null,
   hasVoted: false,
-  transactionHash: ''
+  transactionHash: '',
+  ProposalProps: []
 
 
 }
@@ -22,6 +23,7 @@ this.state={
 this.onload = this.onload.bind(this);
 this.onYes = this.onYes.bind(this);
 this.onNo = this.onNo.bind(this);
+this.approveIdea = this.approveIdea.bind(this);
 }
 
 async  componentDidMount(){
@@ -29,8 +31,9 @@ async  componentDidMount(){
    const accounts = await web3.eth.getAccounts();
    const userAccount = accounts[0];
    const ProposalId = await _CryptoPatentBlockchain.methods.getPropID(ipfsHash).call();
-   this.setState({  userAccount, ProposalId });
-   console.log(this.state.ProposalId);
+   const ProposalProps = await _CryptoPatentBlockchain.methods.proposals(ProposalId).call();
+   this.setState({  userAccount, ProposalId, ProposalProps });
+   console.log(this.state.ProposalProps);
 
  };
 
@@ -56,21 +59,34 @@ onload = async ()=>{
     this.setState({transactionHash, hasVoted: true });
   });
 }
+
+approveIdea = async (event)=>{
+  event.preventDefault();
+  _CryptoPatentBlockchain.methods.ideaBlockVote(
+    this.state.ProposalId,
+    this.state.Json.useblockamount,
+    this.state.Json.miningTime,
+    this.state.Json.royalty,
+    this.state.Json.address
+  ).send({from : this.state.userAccount}, (error, transactionHash) => {
+  this.setState({transactionHash, hasVoted: true });
+});
+}
    render() {
      const { ipfsHash }= this.props;
-     const { Json }= this.state;
-     if(!ipfsHash){
-     return(
-      ''
-     );
-   } else {
+     const { Json,  ProposalProps}= this.state;
+     if (!ProposalProps.executed){
      this.onload();
      return(
-       <div className='DisplayIPFS'>
+       <div className='container'>
+         <h2>Voting is open on this Idea!</h2>
+         <h2>The number of votes on this Idea is {ProposalProps.numberOfVotes}</h2>
 <form >
    <label htmlFor="ideaName">Idea Name: { Json.ideaName } </label>
    <br/>
    <label htmlFor="applicantName">Inventors Name: { Json.username } </label>
+   <br/>
+   <label htmlFor="address">Inventors Address: { Json.address } </label>
    <br/>
    <label htmlFor="useblockamount">UseBlock Amount: { Json.useblockamount } </label>
    <br/>
@@ -83,7 +99,59 @@ onload = async ()=>{
    { Json.details }
    <br/>
    <button onClick={this.onYes}>Vote Yes</button><button onClick={this.onNo}>Vote No</button>
+   <br/>
+   <button onClick={this.approveIdea}>Click here if this Idea has enough Votes!</button>
 </form>
+       </div>
+     );
+   }else if(ProposalProps.proposalPassed){
+     return(
+       <div className='container'>
+       <h2>This Proposal was approved and can no longer be voted on</h2>
+       <h2>The number of votes for this Idea is {ProposalProps.numberOfVotes}</h2>
+         <form >
+            <label htmlFor="ideaName">Idea Name: { Json.ideaName } </label>
+            <br/>
+            <label htmlFor="applicantName">Inventors Name: { Json.username } </label>
+            <br/>
+            <label htmlFor="address">Inventors Address: { Json.address } </label>
+            <br/>
+            <label htmlFor="useblockamount">UseBlock Amount: { Json.useblockamount } </label>
+            <br/>
+            <label htmlFor="miningTime">Mining Time: { Json.miningTime } </label>
+            <br/>
+            <label htmlFor="royalty">Inventors Royalty Amount: { Json.royalty } </label>
+            <br/>
+            <label htmlFor="detailsdetails">Idea Details: </label>
+            <br/>
+            { Json.details }
+            <br/>
+            </form>
+       </div>
+     );
+   }else {
+     return(
+       <div className='container'>
+       <h2>This Proposal can no longer be voted on and it was not approved!</h2>
+       <h2>The number of votes for this Idea is {ProposalProps.numberOfVotes}</h2>
+         <form >
+            <label htmlFor="ideaName">Idea Name: { Json.ideaName } </label>
+            <br/>
+            <label htmlFor="applicantName">Inventors Name: { Json.username } </label>
+            <br/>
+            <label htmlFor="address">Inventors Address: { Json.address } </label>
+            <br/>
+            <label htmlFor="useblockamount">UseBlock Amount: { Json.useblockamount } </label>
+            <br/>
+            <label htmlFor="miningTime">Mining Time: { Json.miningTime } </label>
+            <br/>
+            <label htmlFor="royalty">Inventors Royalty Amount: { Json.royalty } </label>
+            <br/>
+            <label htmlFor="detailsdetails">Idea Details: </label>
+            <br/>
+            { Json.details }
+            <br/>
+            </form>
        </div>
      );
    }
