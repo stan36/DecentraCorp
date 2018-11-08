@@ -9,6 +9,8 @@ import IdeaBlockApplication from './views/IdeaBlockApplication';
 import BuyMembership from './components/BuyMembership';
 import IdeaVote from './views/IdeaVote';
 import DecentraCorpLogo from "./images/DecentraCorpLogo.png";
+import ChaosCasino from './views/ChaosCasino';
+import Entropy21 from './views/Entropy21';
 
 
 
@@ -43,12 +45,16 @@ if(!isMember) {
               <li><NavLink to='/'>Home</NavLink></li>
               <li><NavLink to='/IdeaBlockApplication'>IdeaBlock Application</NavLink></li>
               <li><NavLink to='/BuyMembership'>Become a DecentraCorp Member!</NavLink></li>
+              <li><NavLink to='/ChaosCasino'>ChaosCasino</NavLink></li>
+              <li><NavLink to='/Entropy21'>Entropy21</NavLink></li>
           </ul>
           </nav>
           <Switch>
             <Route exact path='/' component={Home}></Route>
             <Route exact path='/IdeaBlockApplication' component={IdeaBlockApplication}></Route>
             <Route exact path='/BuyMembership' component={BuyMembership}></Route>
+            <Route exact path='/ChaosCasino' component={ChaosCasino}></Route>
+            <Route exact path='/Entropy21' component={Entropy21}></Route>
         </Switch>
 
       </div>
@@ -65,7 +71,8 @@ if(!isMember) {
             <li><NavLink to='/wallet'>DC Wallet</NavLink></li>
             <li><NavLink to='/IdeaBlockApplication'>IdeaBlock Application</NavLink></li>
             <li><NavLink to='/IdeaVote'>IdeaBlock Vote</NavLink></li>
-
+            <li><NavLink to='/ChaosCasino'>ChaosCasino</NavLink></li>
+            <li><NavLink to='/Entropy21'>Entropy21</NavLink></li>
           </ul>
         </nav>
         <Switch>
@@ -73,6 +80,8 @@ if(!isMember) {
           <Route exact path='/wallet' component={DCWallet}></Route>
           <Route exact path='/IdeaBlockApplication' component={IdeaBlockApplication}></Route>
           <Route exact path='/IdeaVote' component={IdeaVote}></Route>
+          <Route exact path='/ChaosCasino' component={ChaosCasino}></Route>
+          <Route exact path='/Entropy21' component={Entropy21}></Route>
       </Switch>
       </div>
       );

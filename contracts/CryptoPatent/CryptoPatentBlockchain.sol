@@ -16,11 +16,6 @@ contract CryptoPatentBlockchain is UseLogic {
     GUBG = GlobalUseBlockGenerator(_GUBG);
   }
 
-event IdeaProposed(string IdeaHash);
-event IdeaApproved(string _ideahash, uint _globalUseBlockAmount, uint _miningTime, uint _royalty, address _inventor);
-event Voted(address _voter, bool inSupport);
-event NewMember(address member);
-
   function proposeIdea(string _ideaIPFS) public {
           uint IdeaProposalID = proposals.length++;
           IdeaProposal storage p = proposals[IdeaProposalID];
@@ -41,7 +36,7 @@ function set_Quorum() internal  {
 
 
 function ideaBlockVote(uint _ideaProposalID, uint _globalUseBlockAmount,uint _miningTime, uint _royalty, address _inventor) public {
-        require(checkIfMember(msg.sender));
+        require(checkIfMember(msg.sender) == true);
         IdeaProposal storage p = proposals[_ideaProposalID];
              // sets p equal to the specific proposalNumber
         require(!p.executed);
@@ -82,9 +77,10 @@ function ideaBlockVote(uint _ideaProposalID, uint _globalUseBlockAmount,uint _mi
         bool supportsProposal
     )
         public
+        onlyMember
         returns (uint voteID)
     {
-        require(checkIfMember(msg.sender));
+
         IdeaProposal storage p = proposals[_ideaProposalID];
         require(p.voted[msg.sender] != true);
 
@@ -96,60 +92,5 @@ function ideaBlockVote(uint _ideaProposalID, uint _globalUseBlockAmount,uint _mi
         return voteID;
     }
 // allows members to vote on proposals
-  function addMember(address _mem) internal {
-      members[_mem] = true;
-      memberRank[_mem]++;
-  }
-
-  function buyMembership() public payable{
-    require(now <= globalBlockHalfTime + 15780000 seconds);
-    require(msg.value >= 1 ether);
-    addMember(msg.sender);
-    DCPoA.proxyMint(msg.sender, 10000000000000000000000);
-    emit NewMember(msg.sender);
-  }
-
-  function setGenerators(
-    DecentraCorpPoA _dcpoa,
-    IdeaCoin _IDC,
-    IdeaBlockGenerator _IBG,
-    ReplicationBlockGenerator _RBG,
-    GlobalUseBlockGenerator _GUBG
-    )
-    public
-    onlyOwner
-    {
-      DCPoA = DecentraCorpPoA(_dcpoa);
-      IDC = IdeaCoin(_IDC);
-      IBG = IdeaBlockGenerator(_IBG);
-      RBG = ReplicationBlockGenerator(_RBG);
-      GUBG = GlobalUseBlockGenerator(_GUBG);
-    }
-
-  function checkIfMember(address _member) public view returns(bool) {
-    if(members[_member] == true){
-      return true;
-    }
-    //allows function caller to input an address and see if it is a member of CryptoGrowDAC
-  }
-
-  function getMemberCount() public view returns(uint) {
-    return memberCount;
-  }
-  //returns total number of members
-  function getPropID(string hash) public view returns(uint){
-    return getHash[hash];
-  }
-
-  function stakeReplicatorWallet() public {
-    require(IDC.balanceOf(msg.sender) >= 100000000000000000000);
-    DCPoA.proxyBurn(msg.sender, 100000000000000000000);
-    members[msg.sender] = true;
-    emit NewMember(msg.sender);
-  }
-
-  function getIdeasOwner() public view returns(uint[]){
-    return getTokens[msg.sender];
-  }
 
 }

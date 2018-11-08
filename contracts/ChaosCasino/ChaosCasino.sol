@@ -24,12 +24,9 @@ contract ChaosCasino is Ownable {
   DecentraCorpPoA public decentraCorp;
   ReplicationBlockGenerator public RBG;
 
-  uint randNum = 0;
+  uint randNum = 666;
 
   event RandomNumberSet(uint _number);
-  event RandomNumberRequest();
-
-  mapping(address => bool) gameContracts;
 
   modifier onlyReplication() {
     require(RBG.checkIfRep(msg.sender) == true);
@@ -54,15 +51,18 @@ contract ChaosCasino is Ownable {
     chaosCoin = ChaosCoin(_add);
   }
 
-  function buyChaosCoin(uint _amount, address _player) public onlyOwner {
-    chaosCoin.mint(_player, _amount);
+  function buyChaosCoin() public payable {
+    uint amount = msg.value;
+    uint _amount = amount.mul(1000);
+    chaosCoin.mint(msg.sender, _amount);
   }
 
 
   function cashOut(uint _amount) public {
     require(chaosCoin.balanceOf(msg.sender) >= _amount);
     chaosCoin.burn(msg.sender, _amount);
-    decentraCorp.exchangeChaosCoin(_amount, msg.sender);
+    uint amount = _amount.div(1000);
+    msg.sender.transfer(amount);
   }
 
   function setRandomNum(uint _randNum) external onlyReplication {
@@ -70,9 +70,8 @@ contract ChaosCasino is Ownable {
       emit RandomNumberSet(randNum);
   }
 
-  function getRandomNum() public returns(uint) {
+  function getRandomNum() public view returns(uint) {
       return randNum;
-      emit RandomNumberRequest();
   }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////

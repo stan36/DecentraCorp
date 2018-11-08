@@ -4,7 +4,7 @@ import "./IBLogic.sol";
 contract RBLogic is IBLogic{
 
 
-function generateReplicationBlock(uint _ideaId, address _repAdd) public  {
+function generateReplicationBlock(uint _ideaId, address _repAdd) public onlyMember {
 globalRepCount++;
 require(IDC.balanceOf(msg.sender) >= repStake);
 //requires the replicator has enough IdeaCoin to meet the stake amount

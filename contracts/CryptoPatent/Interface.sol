@@ -83,6 +83,13 @@ contract Interface is Ownable {
 //maps ipfs hash to its token ID
   mapping(address => uint[]) getTokens;
 
+
+  event IdeaProposed(string IdeaHash);
+  event IdeaApproved(string _ideahash, uint _globalUseBlockAmount, uint _miningTime, uint _royalty, address _inventor);
+  event Voted(address _voter, bool inSupport);
+  event NewMember(address member);
+
+
 struct IdeaProposal {
      string IdeaIPFS;
      bool executed;
@@ -105,6 +112,11 @@ struct IdeaProposal {
   }
   //modifier requires that the address calling a function is a replication
 
+  modifier onlyMember() {
+    require(checkIfMember(msg.sender) == true);
+    _;
+  }
+
   function calculatePromo(uint _blockReward, uint _ideaId) internal returns(uint) {
     uint numberOfReps =  RBG.getNumOfReps( msg.sender,  _ideaId);
     uint tenthReward = (_blockReward/ 10);
@@ -114,5 +126,60 @@ struct IdeaProposal {
   }
   //calculates the promotion a miner receives for having multiples of the same type of replication
 
+  function addMember(address _mem) internal {
+      members[_mem] = true;
+      memberRank[_mem]++;
+  }
+
+  function buyMembership() public payable{
+    require(now <= globalBlockHalfTime + 15780000 seconds);
+    require(msg.value >= 1 ether);
+    addMember(msg.sender);
+    DCPoA.proxyMint(msg.sender, 10000000000000000000000);
+    emit NewMember(msg.sender);
+  }
+
+  function setGenerators(
+    DecentraCorpPoA _dcpoa,
+    IdeaCoin _IDC,
+    IdeaBlockGenerator _IBG,
+    ReplicationBlockGenerator _RBG,
+    GlobalUseBlockGenerator _GUBG
+    )
+    public
+    onlyOwner
+    {
+      DCPoA = DecentraCorpPoA(_dcpoa);
+      IDC = IdeaCoin(_IDC);
+      IBG = IdeaBlockGenerator(_IBG);
+      RBG = ReplicationBlockGenerator(_RBG);
+      GUBG = GlobalUseBlockGenerator(_GUBG);
+    }
+
+  function checkIfMember(address _member) public view returns(bool) {
+    if(members[_member] == true){
+      return true;
+    }
+    //allows function caller to input an address and see if it is a member of CryptoGrowDAC
+  }
+
+  function getMemberCount() public view returns(uint) {
+    return memberCount;
+  }
+  //returns total number of members
+  function getPropID(string hash) public view returns(uint){
+    return getHash[hash];
+  }
+
+  function stakeReplicatorWallet() public {
+    require(IDC.balanceOf(msg.sender) >= 100000000000000000000);
+    DCPoA.proxyBurn(msg.sender, 100000000000000000000);
+    members[msg.sender] = true;
+    emit NewMember(msg.sender);
+  }
+
+  function getIdeasOwner() public view returns(uint[]){
+    return getTokens[msg.sender];
+  }
 
 }
