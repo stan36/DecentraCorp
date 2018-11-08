@@ -3,7 +3,7 @@ import ChaosCasino from '../contracts/ChaosCasino.json';
 
 const _ChaosCasino = new web3.eth.Contract(
 	ChaosCasino.abi,
-	'0x0dee632516ddcd21af8eed5d695824aca318a1b7'
+	'0x5ef5df381edfaf7db512fea3ac76164fa75a764b'
 );
 
 

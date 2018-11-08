@@ -25,7 +25,7 @@ contract ChaosCasino is Ownable {
   ReplicationBlockGenerator public RBG;
 
   uint randNum = 666;
-
+  mapping(address => uint) bets;
   event RandomNumberSet(uint _number);
 
   modifier onlyReplication() {
@@ -33,6 +33,7 @@ contract ChaosCasino is Ownable {
     _;
   }
   //modifier requires that the address calling a function is a replication
+
 
   constructor(ChaosCoin _CCC, DecentraCorpPoA _DCP, ReplicationBlockGenerator _RBG) public {
     chaosCoin = ChaosCoin(_CCC);
@@ -73,5 +74,22 @@ contract ChaosCasino is Ownable {
   function getRandomNum() public view returns(uint) {
       return randNum;
   }
+
+  function placeBet(uint _bet) public {
+    require(chaosCoin.balanceOf(msg.sender) >= _bet);
+    chaosCoin.burn(msg.sender, _bet);
+    bets[msg.sender] = _bet;
+  }
+
+
+  function updateUserBalance( bool _won) public {
+    uint currentBalance = bets[msg.sender];
+    if(_won == true){
+      chaosCoin.mint(msg.sender, currentBalance * 2);
+    }else{
+      bets[msg.sender] = 0;
+    }
+  }
+
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
