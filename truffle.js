@@ -10,17 +10,17 @@
 //test wallet mnemonic
  module.exports = {
    networks: {
-    development: {
+    DecentraCorpPoA: {
        host: "localhost",
-       port: 7545,
+       port: 8501,
        network_id: "*", // Match any network id
-
+       gas: 4700000
      },
    ropsten: {
      provider: function(){
        return new HDWalletProvider(mnemonic, "https://ropsten.infura.io/"+ infura_apikey)
      },
-  
+
      network_id: 3
    },
    solc: {
