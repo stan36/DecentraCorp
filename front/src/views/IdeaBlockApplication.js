@@ -59,6 +59,15 @@ class IdeaBlockApplication extends Component {
       <div>
       <p>Your Wallet address is: {this.state.applicantAddress}</p>
       </div>
+      <div>
+        <h3>Welcome to The IdeaBlock Application Page!</h3>
+        <p>In it's current state this part of the dApp is capable of</p>
+        <p>capturing input and saving it to a json format which is then uploaded to</p>
+        <p>IPFS where it receives a Unique hash on the Distributed Web!</p>
+        <p>From here the dApp uses the IPFS hash to create an Idea Proposal</p>
+        <p>on the CryptoPatent Blockchain!</p>
+
+      </div>
       <form onSubmit={this.handleSubmit}>
        <label htmlFor="name">Applicant Name(optional): </label>
        <br/>

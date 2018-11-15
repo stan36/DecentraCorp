@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import web3 from '../utils/web3';
 import _IdeaCoin from '../ethereum/IdeaCoin';
 import _CryptoPatentBlockchain from '../ethereum/CryptoPatent';
+import _ChaosCoin from '../ethereum/ChaosCoin';
 import './DCWallet.css'
 
 class DcWallet extends Component {
@@ -17,7 +18,8 @@ class DcWallet extends Component {
        message: '',
        transferamount: null,
        transfertoadd: '',
-       ownedIdeas: []
+       ownedIdeas: [],
+       chaosBalance: ''
      }
 
 
@@ -31,8 +33,9 @@ class DcWallet extends Component {
     const userAccount = accounts[0];
     const userBalance = await _IdeaCoin.methods.balanceOf(userAccount).call();
     const Ideas = await _CryptoPatentBlockchain.methods.getIdeasOwner().call();
+    const chaosBalance = await _ChaosCoin.methods.balanceOf(userAccount).call();
     console.log(tokenName, Ideas);
-    this.setState({tokenName, symbol, userBalance, userAccount, ownedIdeas: Ideas});
+    this.setState({tokenName, symbol, userBalance, userAccount, ownedIdeas: Ideas, chaosBalance});
     console.log(symbol, this.state.ownedIdeas);
   }
 
@@ -62,6 +65,9 @@ class DcWallet extends Component {
           <br/>
           <p> Your IdeaCoin Balance Is: </p>
           <p> {this.state.userBalance} </p>
+          <br/>
+          <p> Your ChaosCoin Balance Is: </p>
+          <p> {this.state.chaosBalance} </p>
           <br/>
           <p>Your Account Address is: </p>
           <p>{this.state.userAccount}</p>

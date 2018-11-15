@@ -93,13 +93,16 @@ async startNewGame(type) {
     }
   }
 
-  getRandomCard(deck) {
+  async getRandomCard(deck) {
     const updatedDeck = deck;
-    const randomIndex = Math.floor(Math.random() * updatedDeck.length);
+    const entropyUnit = await _ChaosCasino.methods.getRandomNum().call();
+    const randomIndex = Math.random() * (entropyUnit, updatedDeck)+ updatedDeck;
     const randomCard = updatedDeck[randomIndex];
     updatedDeck.splice(randomIndex, 1);
     return { randomCard, updatedDeck };
   }
+
+
 
 async  placeBet() {
     const currentBet = this.state.inputValue;
