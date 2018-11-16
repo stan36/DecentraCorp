@@ -11,6 +11,7 @@ import IdeaVote from './views/IdeaVote';
 import DecentraCorpLogo from "./images/DecentraCorpLogo.png";
 import ChaosCasino from './views/ChaosCasino';
 import Entropy21 from './views/Entropy21';
+import About from './views/About';
 
 
 
@@ -37,26 +38,28 @@ class App extends Component {
 if(!isMember) {
     return (
       <div className='app'>
-      <div>
-        <img src={DecentraCorpLogo} alt ="DecentraCorp Dapp" className="DecentraCorpLogo1"/>
-      </div>
+        <div>
+          <img src={DecentraCorpLogo} alt ="DecentraCorp Dapp" className="DecentraCorpLogo1"/>
+        </div>
+        <div>
           <nav>
             <ul>
               <li><NavLink to='/'>Home</NavLink></li>
               <li><NavLink to='/IdeaBlockApplication'>IdeaBlock Application</NavLink></li>
               <li><NavLink to='/BuyMembership'>Become a DecentraCorp Member!</NavLink></li>
               <li><NavLink to='/ChaosCasino'>ChaosCasino</NavLink></li>
-              <li><NavLink to='/Entropy21'>Entropy21</NavLink></li>
+              <li><NavLink to='/About'>About</NavLink></li>
           </ul>
           </nav>
+      </div>
           <Switch>
             <Route exact path='/' component={Home}></Route>
             <Route exact path='/IdeaBlockApplication' component={IdeaBlockApplication}></Route>
             <Route exact path='/BuyMembership' component={BuyMembership}></Route>
             <Route exact path='/ChaosCasino' component={ChaosCasino}></Route>
             <Route exact path='/Entropy21' component={Entropy21}></Route>
+            <Route exact path='/About' component={About}></Route>
         </Switch>
-
       </div>
     );
   } else {
@@ -65,6 +68,7 @@ if(!isMember) {
       <div>
         <img src={DecentraCorpLogo} alt ="DecentraCorp Dapp" className="DecentraCorpLogo1"/>
       </div>
+      <div>
         <nav>
           <ul>
             <li><NavLink to='/'>Home</NavLink></li>
@@ -72,9 +76,10 @@ if(!isMember) {
             <li><NavLink to='/IdeaBlockApplication'>IdeaBlock Application</NavLink></li>
             <li><NavLink to='/IdeaVote'>IdeaBlock Vote</NavLink></li>
             <li><NavLink to='/ChaosCasino'>ChaosCasino</NavLink></li>
-            <li><NavLink to='/Entropy21'>Entropy21</NavLink></li>
+            <li><NavLink to='/About'>About</NavLink></li>
           </ul>
         </nav>
+        </div>
         <Switch>
           <Route exact path='/' component={Home}></Route>
           <Route exact path='/wallet' component={DCWallet}></Route>
@@ -82,6 +87,7 @@ if(!isMember) {
           <Route exact path='/IdeaVote' component={IdeaVote}></Route>
           <Route exact path='/ChaosCasino' component={ChaosCasino}></Route>
           <Route exact path='/Entropy21' component={Entropy21}></Route>
+          <Route exact path='/About' component={About}></Route>
       </Switch>
       </div>
       );

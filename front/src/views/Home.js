@@ -4,6 +4,7 @@ class Home extends Component {
   render() {
     return(
       <div className='container'>
+        <div>
         <h1>Welcome to the DecentraCorp dApp</h1>
         <br/>
         <p>DecentraCorp is the world's first Decentralized Autonomous Corporation</p>
@@ -26,6 +27,7 @@ class Home extends Component {
         <p> Please Feel Free to explore this dApp During its Early alpha phase!</p>
         <p>You must be connected to the ropsten test network Inorder to use this dApp!</p>
       </div>
+    </div>
     );
   }
 }

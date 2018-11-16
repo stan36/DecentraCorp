@@ -19,7 +19,9 @@ class Entropy21 extends React.Component {
       currentBet: null,
       gameOver: false,
       message: null,
-      userAccount: ""
+      userAccount: "",
+      entropyUnit: 0,
+      loading: true
 
     };
 
@@ -38,12 +40,12 @@ class Entropy21 extends React.Component {
     return deck;
   }
 
-  dealCards(deck) {
-    const playerCard1 = this.getRandomCard(deck);
-    const dealerCard1 = this.getRandomCard(playerCard1.updatedDeck);
-    const playerCard2 = this.getRandomCard(dealerCard1.updatedDeck);
-    const playerStartingHand = [playerCard1.randomCard, playerCard2.randomCard];
-    const dealerStartingHand = [dealerCard1.randomCard, {}];
+   dealCards(deck) {
+    const playerCard1 =  this.getRandomCard(deck);
+    const dealerCard1 =  this.getRandomCard(playerCard1.updatedDeck);
+    const playerCard2 =  this.getRandomCard(dealerCard1.updatedDeck);
+    const playerStartingHand =  [playerCard1.randomCard, playerCard2.randomCard];
+    const dealerStartingHand =  [dealerCard1.randomCard, {}];
 
     const player = {
       cards: playerStartingHand,
@@ -69,7 +71,9 @@ async startNewGame(type) {
           player,
           currentBet: null,
           gameOver: false,
-          message: null
+          message: null,
+          loading: false
+          
         });
       } else {
         this.setState({ message: 'Game over! You are broke! Please start a new game.' });
@@ -85,18 +89,19 @@ async startNewGame(type) {
         currentBet: null,
         gameOver: false,
         message: null,
+        loading: false
       });
-      const accounts = await web3.eth.getAccounts();
-      const userAccount = accounts[0];
-      const wallet = await _ChaosCoin.methods.balanceOf(userAccount).call();
-      this.setState({ wallet, userAccount});
+
+
     }
+
   }
 
-  async getRandomCard(deck) {
+
+
+ getRandomCard(deck) {
     const updatedDeck = deck;
-    const entropyUnit = await _ChaosCasino.methods.getRandomNum().call();
-    const randomIndex = Math.random() * (entropyUnit, updatedDeck)+ updatedDeck;
+    const randomIndex =Math.floor(Math.random() * updatedDeck.length);
     const randomCard = updatedDeck[randomIndex];
     updatedDeck.splice(randomIndex, 1);
     return { randomCard, updatedDeck };
@@ -150,6 +155,7 @@ async  placeBet() {
     dealer.cards.push(randomCard);
     dealer.count = this.getCount(dealer.cards);
     return { dealer, updatedDeck };
+
   }
 
   getCount(cards) {
@@ -268,13 +274,33 @@ async  placeBet() {
 
 
   async componentWillMount() {
-    this.startNewGame();
+    const entropyUnit = await _ChaosCasino.methods.getRandomNum().call();
+    this.setState({ entropyUnit });
+    console.log(entropyUnit);
+    const accounts = await web3.eth.getAccounts();
+    const userAccount = accounts[0];
+    const wallet = await _ChaosCoin.methods.balanceOf(userAccount).call();
+    this.setState({ wallet, userAccount });
+    console.log(wallet, userAccount);
     const body = document.querySelector('body');
     body.addEventListener('keydown', this.handleKeyDown.bind(this));
+    this.startNewGame();
+
   }
 
 
+
   render() {
+    if(this.state.loading){
+      return(
+        <div>
+          <p>Loading...</p>
+
+        </div>
+
+      );
+    }else{
+
     let dealerCount;
     const card1 = this.state.dealer.cards[0].number;
     const card2 = this.state.dealer.cards[1].number;
@@ -339,6 +365,7 @@ async  placeBet() {
       </div>
     );
   }
+}
 };
 
 

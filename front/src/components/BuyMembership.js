@@ -41,13 +41,15 @@ class BuyMembership extends Component {
         <p>As of right now DecentraCorp is ONLY live on the Ropsten TestNet!</p>
         <p>It is important to note that while a membership is necissary to use this dApp</p>
         <p>to its full capabilities, buying a membership now</p>
-        <p>DOES NOT</p>
+        <p style={{  color: "red"}}>DOES NOT</p>
         <p>Guaruntee anytype of membership when Decentracorp Goes Live!</p>
        <form onSubmit={this.onSubmit}>
     <p>To get early access membership to DecentraCorp</p>
     <br/>
     <p> which includes 10,000 IdeaCoin and a Staked Replication Account Click Here:</p>
+    <div style={{ textAlign: "center"}}>
     <button>Buy Membership Now(1 Ether)</button>
+    </div>
   </form>
      </div>
     );
