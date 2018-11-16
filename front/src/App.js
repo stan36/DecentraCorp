@@ -20,7 +20,8 @@ class App extends Component {
     super(props);
 
     this.state = {
-      isMember: false
+      isMember: false,
+      accounts: null,
      }
   }
 
@@ -28,12 +29,40 @@ class App extends Component {
     const accounts = await web3.eth.getAccounts();
     const userAccount = accounts[0];
     const isMember = await _CryptoPatentBlockchain.methods.checkIfMember(userAccount).call()
-    this.setState({ isMember })
+    this.setState({ accounts, isMember })
 
   }
 
   render() {
-    const {  isMember } = this.state;
+    const {  isMember, accounts } = this.state;
+
+
+
+    if(accounts === null){
+      return(
+        <div className='app'>
+          <p style={{ color: "red"}}>YOU ARE NOT CONNECTED TO WEB3!</p>
+          <p style={{ color: "red"}}>MOST FEATURES ON THIS WEBSITE REQUIRE WEB3 AND HAVE BEEN DISABLED!</p>
+          <p style={{ color: "red"}}>PLEASE INSTALL METAMASK FOR CHROME AND FIREFOX OR CIPHER ON MOBILE!</p>
+          <div>
+            <img src={DecentraCorpLogo} alt ="DecentraCorp Dapp" className="DecentraCorpLogo1"/>
+          </div>
+          <div>
+            <nav>
+              <ul>
+                <li><NavLink to='/'>Home</NavLink></li>
+                <li><NavLink to='/About'>About</NavLink></li>
+            </ul>
+            </nav>
+        </div>
+            <Switch>
+              <Route exact path='/' component={Home}></Route>
+              <Route exact path='/About' component={About}></Route>
+          </Switch>
+        </div>
+
+      );
+    }
 
 if(!isMember) {
     return (
