@@ -94,7 +94,7 @@ if(!isMember) {
             <Route exact path='/Entropy21' component={Entropy21}></Route>
             <Route exact path='/About' component={About}></Route>
             <Route exact path='/About' component={About}></Route>
-            <li><NavLink to='/RoadMap'>RoadMap</NavLink></li>
+              <Route exact path='/RoadMap' component={RoadMap}></Route>
         </Switch>
       </div>
     );
