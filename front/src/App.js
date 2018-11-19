@@ -44,6 +44,7 @@ class App extends Component {
         <div className='app'>
           <p style={{ color: "red"}}>YOU ARE NOT CONNECTED TO WEB3!</p>
           <p style={{ color: "red"}}>MOST FEATURES ON THIS WEBSITE REQUIRE WEB3 AND HAVE BEEN DISABLED!</p>
+          <p style={{ color: "red"}}>THIS WEBSITE IS NOT MOBILE OPTIMIAZED AND IS BEST VIEWED ON A DESKTOP!</p>
           <p style={{ color: "red"}}>PLEASE INSTALL METAMASK FOR CHROME AND FIREFOX OR CIPHER ON MOBILE!</p>
           <div>
             <img src={DecentraCorpLogo} alt ="DecentraCorp Dapp" className="DecentraCorpLogo1"/>
