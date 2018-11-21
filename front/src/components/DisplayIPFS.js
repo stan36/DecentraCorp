@@ -81,6 +81,7 @@ approveIdea = async (event)=>{
        <div className='container'>
          <h2>Voting is open on this Idea!</h2>
          <h2>The number of votes on this Idea is {ProposalProps.numberOfVotes}</h2>
+          <img src={"https://ipfs.io/ipfs/" + Json.photo } alt ="No Image" className="ideaPhoto"/>
 <form >
    <label htmlFor="ideaName">Idea Name: { Json.ideaName } </label>
    <br/>
@@ -109,6 +110,7 @@ approveIdea = async (event)=>{
        <div className='container'>
        <h2>This Proposal was approved and can no longer be voted on</h2>
        <h2>The number of votes for this Idea is {ProposalProps.numberOfVotes}</h2>
+       <img src={"https://ipfs.io/ipfs/" + Json.photo } alt ="No Image" className="ideaPhoto"/>
          <form >
             <label htmlFor="ideaName">Idea Name: { Json.ideaName } </label>
             <br/>
@@ -134,6 +136,7 @@ approveIdea = async (event)=>{
        <div className='container'>
        <h2>This Proposal can no longer be voted on and it was not approved!</h2>
        <h2>The number of votes for this Idea is {ProposalProps.numberOfVotes}</h2>
+       <img src={"https://ipfs.io/ipfs/" + Json.photo } alt ="No Image" className="ideaPhoto"/>
          <form >
             <label htmlFor="ideaName">Idea Name: { Json.ideaName } </label>
             <br/>

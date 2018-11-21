@@ -13,10 +13,11 @@ class IdeaBlockApplication extends Component {
       applicantAddress: '',
       ipfsHash: '',
       transactionHash: '',
-      message: ''
-
+      message: '',
+      buffer: '',
+      photoHash: ''
      }
-     this.handleSubmit = this.handleSubmit.bind(this);
+     
 
   }
 
@@ -35,11 +36,14 @@ class IdeaBlockApplication extends Component {
   handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
-    let jsonObject = {};
+    let jsonObject = {
+        photo: this.state.photoHash
+    };
 
       for (const [key, value]  of formData.entries()) {
           jsonObject[key] = value;
           }
+          console.log(jsonObject);
 
     var buf = Buffer.from(JSON.stringify(jsonObject));
     await ipfs.add(buf, (err, ipfsHash) => {
@@ -49,6 +53,21 @@ class IdeaBlockApplication extends Component {
         });
       })
 };
+
+fileSelectedHandler = async (event) => {
+  event.preventDefault();
+  const file = event.target.files[0];
+  const reader = new window.FileReader();
+  reader.readAsArrayBuffer(file);
+  reader.onloadend = async () => {
+    var buf = Buffer(reader.result);
+    await ipfs.add(buf, (err, ipfsHash) => {
+    this.setState({ photoHash: ipfsHash[0].hash});
+    console.log(this.state.photoHash);
+  })
+}
+};
+
 
 
 
@@ -68,6 +87,9 @@ class IdeaBlockApplication extends Component {
         <p>on the CryptoPatent Blockchain!</p>
 
       </div>
+      <label htmlFor="details">Upload Idea Photo: </label>
+      <input className='photo' id="photo" name="photo" type='file' onChange={this.fileSelectedHandler}/>
+      <br/>
       <form onSubmit={this.handleSubmit}>
        <label htmlFor="name">Applicant Name(optional): </label>
        <br/>
@@ -96,6 +118,8 @@ class IdeaBlockApplication extends Component {
           <label htmlFor="details">Idea Details: </label>
           <br/>
           <input className='details' id="details" name="details" type="text" onChange={event => this.handleChange(event)} />
+
+        <br/>
         <br/>
        <button>Send data!</button>
      </form>

@@ -12,3 +12,8 @@ body {
    text-align:center;
 
 }
+
+.ideaPhoto{
+  max-width: 40%;
+  height: auto;
+}

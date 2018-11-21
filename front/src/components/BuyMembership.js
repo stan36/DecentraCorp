@@ -44,11 +44,11 @@ class BuyMembership extends Component {
         <p style={{  color: "red"}}>DOES NOT</p>
         <p>Guaruntee anytype of membership when Decentracorp Goes Live!</p>
        <form onSubmit={this.onSubmit}>
-    <p>To get early access membership to DecentraCorp</p>
+    <p>To get early (alpha)access membership to DecentraCorp</p>
     <br/>
     <p> which includes 10,000 IdeaCoin and a Staked Replication Account Click Here:</p>
     <div style={{ textAlign: "center"}}>
-    <button>Buy Membership Now(1 Ether)</button>
+    <button>Buy Membership Now(1 Ropsten Test Ether)</button>
     </div>
   </form>
      </div>

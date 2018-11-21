@@ -20,6 +20,7 @@ onload = async ()=>{
     const { ipfsHash }= this.props;
     const Json =JSON.parse(await ipfs.cat(ipfsHash));
     this.setState({ Json })
+    console.log(this.state.Json )
   };
 
    render() {
@@ -33,6 +34,7 @@ onload = async ()=>{
      this.onload();
      return(
        <div className='DisplayIPFS'>
+         <img src={"https://ipfs.io/ipfs/" + Json.photo } alt ="No Image" className="ideaPhoto"/>
 <form >
    <label htmlFor="ideaName">Idea Name: { Json.ideaName } </label>
    <br/>
