@@ -185,7 +185,6 @@ struct IdeaProposal {
     if(members[_member] == true){
       return true;
     }
-    //allows function caller to input an address and see if it is a member of CryptoGrowDAC
   }
 
 

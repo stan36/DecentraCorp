@@ -2,6 +2,15 @@ pragma solidity ^0.4.21;
 
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 import 'zeppelin-solidity/contracts/token/ERC721/ERC721Token.sol';
+////////////////////////////////////////////////////////////////////////////////////////////
+/// @title ReplicationBlockGenerator Contract
+/// @author DecentraCorp
+/// @notice this contract is built from the zeppelin-solidity library
+/// @dev All function calls are currently implement without side effects
+////////////////////////////////////////////////////////////////////////////////////////////
+
+/// @author Christopher Dixon
+/// @dev this contract contains both the Ownable and ERC721Token contracts from Open Zepplin
 /////////////////////////////////////////////////////////////////////////////////////////////
 contract IdeaBlockGenerator{
     function _generateIdeaBlock(string _ideaIPFS, address _inventorsAddress,  uint _replicationBlockAmount,  uint _globalUseBlockAmount,  uint _stakeAmountInIDC,  uint _royalty) external;
@@ -16,6 +25,7 @@ contract IdeaBlockGenerator{
 /////////////////////////////////////////////////////////////////////////////////////////////
 contract ReplicationBlockGenerator is Ownable, ERC721Token("ProofOfReplicationOwnership", "PoRO") {
 
+///@
   IdeaBlockGenerator public IBG;
 
   uint public globalRepCount = 0;
@@ -56,7 +66,7 @@ contract ReplicationBlockGenerator is Ownable, ERC721Token("ProofOfReplicationOw
   uint _replicationId = globalRepCount;
   _mint(_replicatorAdd, _replicationId);
   replicationTracker[_replicatorAdd][_ideaId] =_replicationId;
-  
+
   }
 
   function replicationBlock(uint _ideaId, address _repAdd, address _replicatorAdd) external onlyOwner {
@@ -87,7 +97,7 @@ contract ReplicationBlockGenerator is Ownable, ERC721Token("ProofOfReplicationOw
       InventorsAddress: address(inventor),
       ReplicationAddress: address(_repAdd)
       });
-
+//creates replication struct for new rep
 
       repInfo[_repAdd] = _info;
       //stores new struct stored at the replications address
@@ -102,6 +112,8 @@ contract ReplicationBlockGenerator is Ownable, ERC721Token("ProofOfReplicationOw
   //increments the amount of replications for an idea a replicator owns
 }
 
+///@notice the following functions allow for easier access to info by both the front end and other contracts
+///@dev all the following contracts allow for the retreval of ideablock information
   function getBlockReward(address _repAdd) public view returns(uint) {
     ReplicationInfo memory info = repInfo[_repAdd];
     uint blockReward = info.BlockReward;

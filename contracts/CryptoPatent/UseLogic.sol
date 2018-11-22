@@ -1,8 +1,26 @@
 pragma solidity ^0.4.21;
 import "./RBLogic.sol";
+////////////////////////////////////////////////////////////////////////////////////////////
+/// @title UseLogic Contract for the CryptoPatent Blockchain
+/// @author DecentraCorp
+/// @notice this contract is the fouth contract in the CryptoPatent Blockchain
+/// @dev All function calls are currently implement without side effects
+////////////////////////////////////////////////////////////////////////////////////////////
+/// @author Christopher Dixon
 
 contract UseLogic is RBLogic {
 
+///@notice generateUseBlockWeight allows a replication block to generate a local use weight
+///        and possibly a global use blocks
+///@dev this function is the first in a chain of function and implements the onlyReplication modifier
+///@dev events from this function are to be used by the EPMS to trigger internal timers set to info in the original idea's IPFS info
+function generateUseBlockWeight() public onlyReplication {
+  address _rep = msg.sender;
+  UseBlockWeight(_rep);
+  }
+
+///@notice generateGlobalUseBlock is an internal function called when the cryptopatent blockchain has determined
+///        that a replication has mined a global use block.
 function generateGlobalUseBlock(address _rep) internal {
   address repOwnerAddress = RBG.getOwnersAddress(_rep);
 //sets repOwnerAddress as a specific replications owner from a rep struct
@@ -28,14 +46,9 @@ function generateGlobalUseBlock(address _rep) internal {
 
 }
 
-function generateUseBlockWeight() public onlyReplication {
-address _rep = msg.sender;
-UseBlockWeight(_rep);
-}
-
-
+///@notice UseBlockWeight is an internal function that tracks loacal use weightTracker
+///@dev this is called by generateUseBlockWeight
 function UseBlockWeight(address _rep) internal {
-
   uint ideaID = RBG.getIdeaID(_rep);
 //sets ideaID as a specific ideaID from the replications struct
   uint repID = RBG.getRepID(_rep);
