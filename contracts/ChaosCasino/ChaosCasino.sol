@@ -24,7 +24,7 @@ contract ChaosCasino is Ownable {
   DecentraCorpPoA public decentraCorp;
   ReplicationBlockGenerator public RBG;
 
-  uint randNum = 666;
+  uint randNum = 6874925454687615356;
   mapping(address => uint) bets;
   event RandomNumberSet(uint _number);
 

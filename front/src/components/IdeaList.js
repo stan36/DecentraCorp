@@ -66,13 +66,13 @@ if(!this.state.selectedIpfs){
           <h2>IdeaList</h2>
     {this.state.hashs.map((ipfshash, index) => (
       <div className="prop-detail" key ={index + 1}>
-      <button  onClick={() => this.stateSetter(ipfshash)} key={index + 2}>
         <DisplayIPFSName key={index + 4} ipfsHash={ipfshash} />
         <p key={index + 5}>IPFS Hash:</p>
         <p key={index}>{ipfshash}</p>
-        <p style={{ color: "red"}} key={index + 3}>Click Here to View This Idea</p>
-        </button>
-
+          <button  style={{ color: "red"}} onClick={() => this.stateSetter(ipfshash)} key={index + 2}>Click Here To View This Idea</button>
+          <br/>
+          <br/>
+          <br/>
           </div>
     ))}
     </div>

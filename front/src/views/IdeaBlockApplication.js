@@ -17,7 +17,7 @@ class IdeaBlockApplication extends Component {
       buffer: '',
       photoHash: ''
      }
-     
+
 
   }
 
@@ -91,33 +91,33 @@ fileSelectedHandler = async (event) => {
       <input className='photo' id="photo" name="photo" type='file' onChange={this.fileSelectedHandler}/>
       <br/>
       <form onSubmit={this.handleSubmit}>
-       <label htmlFor="name">Applicant Name(optional): </label>
+       <label htmlFor="name">Applicant Name: </label>
        <br/>
-       <input id="username" name="username" type="text" />
+       <input id="username" name="username" type="text" placeholder = 'Optional'/>
        <br/>
          <label htmlFor="address">Applicant Wallet address: </label>
          <br/>
-         <input id="address" name="address" type="text" />
+         <input id="address" name="address" type="text" placeholder = 'Address that will hold the patent'/>
          <br/>
        <label htmlFor="ideaName">Name of your Idea: </label>
        <br/>
-       <input id="ideaName" name="ideaName" type="text" onChange={event => this.handleChange(event)}/>
+       <input id="ideaName" name="ideaName" type="text" placeholder = 'The Name of Your Idea' onChange={event => this.handleChange(event)}/>
        <br/>
        <label htmlFor="useblockamount">The amount your Idea should mint upon its Use: </label>
        <br/>
-       <input id="useblockamount" name="useblockamount" type="text" onChange={event => this.handleChange(event)}/>
+       <input id="useblockamount" name="useblockamount" type="text" placeholder = 'Enter amount as 18 decimals' onChange={event => this.handleChange(event)}/>
        <br/>
         <label htmlFor="miningTime">Enter the time period for mining Global UseBlocks: </label>
         <br/>
-        <input id="miningTime" name="miningTime" type="text" onChange={event => this.handleChange(event)}/>
+        <input id="miningTime" name="miningTime" type="text" placeholder = 'min time between GUB in sec'onChange={event => this.handleChange(event)}/>
         <br/>
         <label htmlFor="royalty">The the percentage amount for your royalty(ex: 10%): </label>
         <br/>
-        <input id="royalty" name="royalty" type="text"onChange={event => this.handleChange(event)} />
+        <input id="royalty" name="royalty" type="text" placeholder = 'no symbols like % please' onChange={event => this.handleChange(event)} />
           <br/>
           <label htmlFor="details">Idea Details: </label>
           <br/>
-          <input className='details' id="details" name="details" type="text" onChange={event => this.handleChange(event)} />
+          <input className='details' id="details" name="details" type="text" placeholder = 'Description of your Idea' onChange={event => this.handleChange(event)} />
 
         <br/>
         <br/>

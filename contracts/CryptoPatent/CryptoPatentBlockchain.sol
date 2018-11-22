@@ -1,6 +1,6 @@
 pragma solidity ^0.4.21;
 import "./UseLogic.sol";
-
+/////////////////////////////////////////////////////////////////////////////////////////////
 contract CryptoPatentBlockchain is UseLogic {
 
 
@@ -8,6 +8,7 @@ contract CryptoPatentBlockchain is UseLogic {
   constructor(address _dcpoa, address _IDC, address _IBG, address _RBG, address _GUBG) public {
     globalBlockHalfTime = now;
     members[msg.sender] = true;
+    memberCount++;
     memberRank[msg.sender]++;
     DCPoA = DecentraCorpPoA(_dcpoa);
     IDC = IdeaCoin(_IDC);

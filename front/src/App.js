@@ -23,14 +23,17 @@ class App extends Component {
     this.state = {
       isMember: false,
       accounts: null,
+      memberCount: ''
      }
   }
 
   async componentDidMount() {
     const accounts = await web3.eth.getAccounts();
     const userAccount = accounts[0];
-    const isMember = await _CryptoPatentBlockchain.methods.checkIfMember(userAccount).call()
-    this.setState({ accounts, isMember })
+    const isMember = await _CryptoPatentBlockchain.methods.checkIfMember(userAccount).call();
+    const memberCount = await _CryptoPatentBlockchain.methods.getMemberCount().call();
+    console.log(memberCount);
+    this.setState({ accounts, isMember, memberCount });
 
   }
 
@@ -71,6 +74,7 @@ class App extends Component {
 if(!isMember) {
     return (
       <div className='app'>
+        <p style={{ fontSize: "14px"}}>Total DecentraCorp members: { this.state.memberCount }</p>
         <div>
           <img src={DecentraCorpLogo} alt ="DecentraCorp Dapp" className="DecentraCorpLogo1"/>
         </div>
@@ -78,11 +82,11 @@ if(!isMember) {
           <nav>
             <ul>
               <li><NavLink to='/'>Home</NavLink></li>
+              <li><NavLink to='/About'>About</NavLink></li>
+              <li><NavLink to='/RoadMap'>RoadMap</NavLink></li>
               <li><NavLink to='/IdeaBlockApplication'>IdeaBlock Application</NavLink></li>
               <li><NavLink to='/BuyMembership'>Become a DecentraCorp Member!</NavLink></li>
               <li><NavLink to='/ChaosCasino'>ChaosCasino</NavLink></li>
-              <li><NavLink to='/About'>About</NavLink></li>
-              <li><NavLink to='/RoadMap'>RoadMap</NavLink></li>
           </ul>
           </nav>
       </div>
@@ -93,14 +97,14 @@ if(!isMember) {
             <Route exact path='/ChaosCasino' component={ChaosCasino}></Route>
             <Route exact path='/Entropy21' component={Entropy21}></Route>
             <Route exact path='/About' component={About}></Route>
-            <Route exact path='/About' component={About}></Route>
-              <Route exact path='/RoadMap' component={RoadMap}></Route>
+            <Route exact path='/RoadMap' component={RoadMap}></Route>
         </Switch>
       </div>
     );
   } else {
     return(
     <div className='app'>
+      <p style={{ fontSize: "14px"}}>Total DecentraCorp members: { this.state.memberCount }</p>
       <div>
         <img src={DecentraCorpLogo} alt ="DecentraCorp Dapp" className="DecentraCorpLogo1"/>
       </div>
@@ -108,12 +112,12 @@ if(!isMember) {
         <nav>
           <ul>
             <li><NavLink to='/'>Home</NavLink></li>
-            <li><NavLink to='/wallet'>DC Wallet</NavLink></li>
+            <li><NavLink to='/About'>About</NavLink></li>
+            <li><NavLink to='/RoadMap'>RoadMap</NavLink></li>
             <li><NavLink to='/IdeaBlockApplication'>IdeaBlock Application</NavLink></li>
             <li><NavLink to='/IdeaVote'>IdeaBlock Vote</NavLink></li>
             <li><NavLink to='/ChaosCasino'>ChaosCasino</NavLink></li>
-            <li><NavLink to='/About'>About</NavLink></li>
-            <li><NavLink to='/RoadMap'>RoadMap</NavLink></li>
+            <li><NavLink to='/wallet'>DC Wallet</NavLink></li>
           </ul>
         </nav>
         </div>
