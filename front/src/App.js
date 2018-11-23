@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import web3 from './utils/web3';
-import _CryptoPatentBlockchain from './ethereum/CryptoPatent'
+import _CryptoPatentBlockchain from './ethereum/CryptoPatent';
+import _IdeaCoin from './ethereum/IdeaCoin';
 import { NavLink, Switch, Route } from 'react-router-dom';
 import Home from './views/Home';
 import DCWallet from './views/DCWallet';
@@ -13,6 +14,7 @@ import ChaosCasino from './views/ChaosCasino';
 import Entropy21 from './views/Entropy21';
 import About from './views/About';
 import RoadMap from './views/RoadMap';
+import ApprovedIdeas from "./views/ApprovedIdeas";
 
 
 
@@ -23,7 +25,8 @@ class App extends Component {
     this.state = {
       isMember: false,
       accounts: null,
-      memberCount: ''
+      memberCount: '',
+      idcTotal: null
      }
   }
 
@@ -32,8 +35,9 @@ class App extends Component {
     const userAccount = accounts[0];
     const isMember = await _CryptoPatentBlockchain.methods.checkIfMember(userAccount).call();
     const memberCount = await _CryptoPatentBlockchain.methods.getMemberCount().call();
-    console.log(memberCount);
-    this.setState({ accounts, isMember, memberCount });
+    const total = await _IdeaCoin.methods.totalSupply().call();
+    const idcTotal = web3.utils.fromWei(total);
+    this.setState({ accounts, isMember, memberCount, idcTotal });
 
   }
 
@@ -58,6 +62,7 @@ class App extends Component {
                 <li><NavLink to='/'>Home</NavLink></li>
                 <li><NavLink to='/About'>About</NavLink></li>
                 <li><NavLink to='/RoadMap'>RoadMap</NavLink></li>
+                <li><NavLink to='/ApprovedIdeas'>Approved Ideas</NavLink></li>
             </ul>
             </nav>
         </div>
@@ -65,6 +70,8 @@ class App extends Component {
               <Route exact path='/' component={Home}></Route>
               <Route exact path='/About' component={About}></Route>
               <Route exact path='/RoadMap' component={RoadMap}></Route>
+              <Route exact path='/ApprovedIdeas' component={ApprovedIdeas}></Route>
+
           </Switch>
         </div>
 
@@ -75,6 +82,7 @@ if(!isMember) {
     return (
       <div className='app'>
         <p style={{ fontSize: "14px"}}>Total DecentraCorp members: { this.state.memberCount }</p>
+        <p style={{ fontSize: "14px"}}>IdeaCoin Total Supply: { this.state.idcTotal }</p>
         <div>
           <img src={DecentraCorpLogo} alt ="DecentraCorp Dapp" className="DecentraCorpLogo1"/>
         </div>
@@ -85,6 +93,7 @@ if(!isMember) {
               <li><NavLink to='/About'>About</NavLink></li>
               <li><NavLink to='/RoadMap'>RoadMap</NavLink></li>
               <li><NavLink to='/IdeaBlockApplication'>IdeaBlock Application</NavLink></li>
+              <li><NavLink to='/ApprovedIdeas'>Approved Ideas</NavLink></li>
               <li><NavLink to='/BuyMembership'>Become a DecentraCorp Member!</NavLink></li>
               <li><NavLink to='/ChaosCasino'>ChaosCasino</NavLink></li>
           </ul>
@@ -98,6 +107,7 @@ if(!isMember) {
             <Route exact path='/Entropy21' component={Entropy21}></Route>
             <Route exact path='/About' component={About}></Route>
             <Route exact path='/RoadMap' component={RoadMap}></Route>
+            <Route exact path='/ApprovedIdeas' component={ApprovedIdeas}></Route>
         </Switch>
       </div>
     );
@@ -105,7 +115,9 @@ if(!isMember) {
     return(
     <div className='app'>
       <p style={{ fontSize: "14px"}}>Total DecentraCorp members: { this.state.memberCount }</p>
-      <div>
+      <p style={{ fontSize: "14px"}}>IdeaCoin Total Supply: { this.state.idcTotal }</p>
+
+    <div>
         <img src={DecentraCorpLogo} alt ="DecentraCorp Dapp" className="DecentraCorpLogo1"/>
       </div>
       <div>
@@ -115,6 +127,7 @@ if(!isMember) {
             <li><NavLink to='/About'>About</NavLink></li>
             <li><NavLink to='/RoadMap'>RoadMap</NavLink></li>
             <li><NavLink to='/IdeaBlockApplication'>IdeaBlock Application</NavLink></li>
+            <li><NavLink to='/ApprovedIdeas'>DC Approved Ideas</NavLink></li>
             <li><NavLink to='/IdeaVote'>IdeaBlock Vote</NavLink></li>
             <li><NavLink to='/ChaosCasino'>ChaosCasino</NavLink></li>
             <li><NavLink to='/wallet'>DC Wallet</NavLink></li>
@@ -130,6 +143,7 @@ if(!isMember) {
           <Route exact path='/Entropy21' component={Entropy21}></Route>
           <Route exact path='/About' component={About}></Route>
           <Route exact path='/RoadMap' component={RoadMap}></Route>
+          <Route exact path='/ApprovedIdeas' component={ApprovedIdeas}></Route>
       </Switch>
       </div>
       );

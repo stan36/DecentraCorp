@@ -5,7 +5,7 @@ import DecentraCorpPoA from '../contracts/DecentraCorpPoA.json';
 
 const _DecentraCorp = new web3.eth.Contract(
 	DecentraCorpPoA.abi,
-	'0x352bc06c5f1a2b749cd0e84e66c20dc6ec342a3d'
+	'0x144ba43e16aba1c34ac9b7053fc3862a57649110'
 );
 
 

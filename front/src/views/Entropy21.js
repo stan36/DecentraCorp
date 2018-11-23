@@ -21,7 +21,7 @@ class Entropy21 extends React.Component {
       message: null,
       userAccount: "",
       entropyUnit: 0,
-      loading: true
+
 
     };
 
@@ -60,6 +60,7 @@ class Entropy21 extends React.Component {
   }
 
 async startNewGame(type) {
+
     if (type === 'continue') {
       if (this.state.wallet > 0) {
         const deck = (this.state.deck.length < 10) ? this.generateDeck() : this.state.deck;
@@ -72,8 +73,8 @@ async startNewGame(type) {
           currentBet: null,
           gameOver: false,
           message: null,
-          loading: false
-          
+
+
         });
       } else {
         this.setState({ message: 'Game over! You are broke! Please start a new game.' });
@@ -89,12 +90,17 @@ async startNewGame(type) {
         currentBet: null,
         gameOver: false,
         message: null,
-        loading: false
+
       });
 
 
     }
-
+    const entropyUnit = await _ChaosCasino.methods.getRandomNum().call();
+    this.setState({ entropyUnit });
+    const accounts = await web3.eth.getAccounts();
+    const userAccount = accounts[0];
+    const wallet = await _ChaosCoin.methods.balanceOf(userAccount).call();
+    this.setState({ wallet, userAccount });
   }
 
 
@@ -110,7 +116,7 @@ async startNewGame(type) {
 
 
 async  placeBet() {
-    const currentBet = this.state.inputValue;
+    const currentBet = web3.uitls.toWei(this.state.inputValue);
 
     if (currentBet > this.state.wallet) {
       this.setState({ message: 'Insufficient funds to bet that amount.' });
@@ -216,12 +222,10 @@ async  placeBet() {
           message = 'Dealer wins...';
           this.updateUserBalance(false);
         } else if (winner === 'player') {
-          wallet += this.state.currentBet * 2;
           message = 'You win!';
           this.updateUserBalance(true);
           console.log("balance updated");
         } else {
-          wallet += this.state.currentBet;
           message = 'Push.';
           this.updateUserBalance(true);
         }
@@ -274,14 +278,6 @@ async  placeBet() {
 
 
   async componentWillMount() {
-    const entropyUnit = await _ChaosCasino.methods.getRandomNum().call();
-    this.setState({ entropyUnit });
-    console.log(entropyUnit);
-    const accounts = await web3.eth.getAccounts();
-    const userAccount = accounts[0];
-    const wallet = await _ChaosCoin.methods.balanceOf(userAccount).call();
-    this.setState({ wallet, userAccount });
-    console.log(wallet, userAccount);
     const body = document.querySelector('body');
     body.addEventListener('keydown', this.handleKeyDown.bind(this));
     this.startNewGame();
@@ -291,16 +287,6 @@ async  placeBet() {
 
 
   render() {
-    if(this.state.loading){
-      return(
-        <div>
-          <p>Loading...</p>
-
-        </div>
-
-      );
-    }else{
-
     let dealerCount;
     const card1 = this.state.dealer.cards[0].number;
     const card2 = this.state.dealer.cards[1].number;
@@ -365,7 +351,7 @@ async  placeBet() {
       </div>
     );
   }
-}
+
 };
 
 

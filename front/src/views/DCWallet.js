@@ -31,10 +31,11 @@ class DcWallet extends Component {
     const tokenName = await _IdeaCoin.methods.name().call();
     const symbol = await _IdeaCoin.methods.symbol().call();
     const userAccount = accounts[0];
-    const userBalance = await _IdeaCoin.methods.balanceOf(userAccount).call();
+    const balance = await _IdeaCoin.methods.balanceOf(userAccount).call();
+    const userBalance = web3.utils.fromWei(balance);
     const Ideas = await _CryptoPatentBlockchain.methods.getIdeasOwner().call();
-    const chaosBalance = await _ChaosCoin.methods.balanceOf(userAccount).call();
-    console.log(tokenName, Ideas);
+    const chaostoken = await _ChaosCoin.methods.balanceOf(userAccount).call();
+    const chaosBalance = web3.utils.fromWei(chaostoken);
     this.setState({tokenName, symbol, userBalance, userAccount, ownedIdeas: Ideas, chaosBalance});
     console.log(symbol, this.state.ownedIdeas);
   }
@@ -43,7 +44,8 @@ class DcWallet extends Component {
   onSubmit = async (event)=>{
       event.preventDefault();
       const address = this.state.transfertoadd;
-      const amount = this.state.transferamount;
+      const bAmount = this.state.transferamount;
+      const amount = web3.utils.toWei(bAmount);
       this.setState({message: 'Approving through the IdeaCoin smart contract ..... Mining in process ! '});
       await _IdeaCoin.methods.transfer( address, amount).send({from: this.state.userAccount});
       this.setState({message: 'Smart Contract approved the Transfer'});
@@ -64,10 +66,10 @@ class DcWallet extends Component {
           <p>{this.state.symbol}</p>
           <br/>
           <p> Your IdeaCoin Balance Is: </p>
-          <p> {this.state.userBalance} </p>
+          <p> {this.state.userBalance} {this.state.symbol}</p>
           <br/>
           <p> Your ChaosCoin Balance Is: </p>
-          <p> {this.state.chaosBalance} </p>
+          <p> {this.state.chaosBalance} ChaosCoin</p>
           <br/>
           <p>Your Account Address is: </p>
           <p>{this.state.userAccount}</p>

@@ -14,20 +14,20 @@ contract RBLogic is IBLogic{
 ///@notice generateReplicationBlock is used to generate a replication block when someone sucessfully replicates an Idea
 ///@dev this requires the replicator has enough IdeaCoin to meet the stake amount and burns it from existence
 ///@dev it also adds the replicator as a member of DecentraCorp
-///@@dev finally, this contract calls the Proof of Replication Ownership contract and mints a PoRO token to the msg.sender
+///@dev finally, this contract calls the Proof of Replication Ownership contract and mints a PoRO token to the msg.sender
 function generateReplicationBlock(uint _ideaId, address _repAdd) public onlyMember {
 globalRepCount++;
 require(IDC.balanceOf(msg.sender) >= repStake);
 DCPoA.proxyBurn(msg.sender, repStake);
 if(members[msg.sender] == false){
   members[msg.sender] = true;
-  memberCount++;
+
 }
 RBG.replicationBlock( _ideaId,  _repAdd, msg.sender);
 memberRank[msg.sender]++;
   }
 ///@notice changeStakeAmount will allow the community to change the stake amount required to stake a replication if it sees fit through a voted
-///@dev this new amount must account for 18 decimals 
+///@dev this new amount must account for 18 decimals
   function changeStakeAmount(uint _newStakeAmount) external onlyOwner {
     repStake = _newStakeAmount;
   }

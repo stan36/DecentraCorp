@@ -38,7 +38,7 @@ contract ChaosCasino is Ownable {
 ///@param bets stores the bets of an address
 ///@dev this will need to be updated for multiple games
   mapping(address => uint) bets;
-///@param event is used by front end games and Chaos Miners
+///@param _number is used by front end games and Chaos Miners
   event RandomNumberSet(uint _number);
 
 
@@ -88,7 +88,7 @@ contract ChaosCasino is Ownable {
       emit RandomNumberSet(randNum);
   }
 
-///@notic getRandomNum is used by the front end to get a random Number
+///@notice getRandomNum is used by the front end to get a random Number
   function getRandomNum() public view returns(uint) {
       return randNum;
   }

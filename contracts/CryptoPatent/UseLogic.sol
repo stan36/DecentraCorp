@@ -13,7 +13,7 @@ contract UseLogic is RBLogic {
 ///@notice generateUseBlockWeight allows a replication block to generate a local use weight
 ///        and possibly a global use blocks
 ///@dev this function is the first in a chain of function and implements the onlyReplication modifier
-///@dev events from this function are to be used by the EPMS to trigger internal timers set to info in the original idea's IPFS info
+///@dev generateUseBlockWeight is fired from this function are to be used by the EPMS to trigger internal timers set to info in the original idea's IPFS info
 function generateUseBlockWeight() public onlyReplication {
   address _rep = msg.sender;
   UseBlockWeight(_rep);

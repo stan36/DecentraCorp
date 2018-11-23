@@ -7,7 +7,8 @@ import  DisplayIPFS  from '../components/DisplayIPFS';
 
 
 
-class IdeaList extends Component {
+
+class ApprovedIdeas extends Component {
   constructor(props){
     super(props);
 
@@ -28,18 +29,19 @@ this.stateSetter = this.stateSetter.bind(this);
      const userAccount = accounts[0];
      this.setState({ userAccount });
      this.PropHashs();
+     console.log(this.state.hashs);
 
    }
 
    PropHashs = async () => {
 
-      _CryptoPatentBlockchain.events.IdeaProposed({
+      _CryptoPatentBlockchain.events.IdeaApproved({
             fromBlock: '0',
             toBlock: 'latest'
-          },function(error, event){ console.log(""); })
+          },function(error, event){ console.log(event.returnValues[0]); })
      .on('data', (event) => {
          const currentArray = this.state.hashs;
-         const hash = event.returnValues.IdeaHash;
+         const hash = event.returnValues[0];
          const newArray = currentArray.push(hash);
          this.setState({ newArray });
 
@@ -59,10 +61,10 @@ stateSetter = (ipfshash) =>{
   render() {
 if(!this.state.selectedIpfs){
     return(
-      <div className='IdeaLst'>
-        <div>
+<div className='container'>
+          <div>
           <h1>Select an Idea to view</h1>
-          <h2>IdeaList</h2>
+          <h2>Approved Ideas</h2>
     {this.state.hashs.map((ipfshash, index) => (
       <div className="prop-detail" key ={index + 1}>
         <DisplayIPFSName key={index + 4} ipfsHash={ipfshash} />
@@ -84,4 +86,4 @@ if(!this.state.selectedIpfs){
     }
   }
 }
-    export default IdeaList;
+    export default ApprovedIdeas;

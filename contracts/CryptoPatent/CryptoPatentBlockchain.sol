@@ -80,7 +80,7 @@ function ideaBlockVote(uint _ideaProposalID, uint _globalUseBlockAmount,uint _mi
                p.executed = true;
                p.proposalPassed = true;
                generateIdeaBlock( _ideahash,  _globalUseBlockAmount, _miningTime, _royalty, _inventor);
-               emit IdeaApproved( _ideahash,  _globalUseBlockAmount, _miningTime, _royalty, _inventor);
+               emit IdeaApproved( _ideahash);
            } else {
                  // Proposal failed
                p.proposalPassed = false;

@@ -10,13 +10,13 @@ contract DecentraCorpPoA {
   function proxyMint(address _add, uint _amount) external;
   function proxyBurn(address _add, uint _amount) external;
 }
-///@contract DecentraCorp PoA inteface
+/// DecentraCorp PoA inteface
 ////////////////////////////////////////////////////////////////////////////////////////////
 contract IdeaCoin {
     function balanceOf(address _addr) public constant returns (uint);
     function totalSupply() public constant returns (uint);
 }
-///@contract IdeaCoin interface
+/// IdeaCoin interface
 /////////////////////////////////////////////////////////////////////////////////////////////
 contract IdeaBlockGenerator {
     function _generateIdeaBlock(string _ideaIPFS, uint _globalUseBlockAmount, uint miningTime, uint _royalty, address _inventorsAddress) external;
@@ -28,7 +28,7 @@ contract IdeaBlockGenerator {
     function getMiningTime(uint _ideaId) public view returns(uint);
     function setMiningTime(uint _ideaId) external view;
 }
-///@contract Idea Block Generator interface
+/// Idea Block Generator interface
 /////////////////////////////////////////////////////////////////////////////////////////////
 contract ReplicationBlockGenerator {
     function replicationBlock(uint _ideaId, address _repAdd, address _replicatorAdd) external;
@@ -44,13 +44,13 @@ contract ReplicationBlockGenerator {
     function getRepTotal(uint _ideaId) external returns(uint);
     function safeTransfer(address _from, address _to, uint _tokenId) public;
   }
-///@contract Replication Block Generator interface
+/// Replication Block Generator interface
 /////////////////////////////////////////////////////////////////////////////////////////////
 contract GlobalUseBlockGenerator{
     function _generateGUSBlock(address _replicationOwner) external;
     function safeTransfer(address _from, address _to, uint _tokenId) public;
 }
-///@contract Global Use Block Generator interface
+/// Global Use Block Generator interface
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 /// @author Christopher Dixon
@@ -63,7 +63,7 @@ contract Interface is Ownable {
   IdeaBlockGenerator public IBG;
   ReplicationBlockGenerator public RBG;
   GlobalUseBlockGenerator public GUBG;
-  ///@params above turn each interface into a useable variable
+  ///@param above turn each interface into a useable variable
 
   ///@param globalIdeaCount tracks amount of ideas on the CryptoPatent Blockchain
   ///@param globalRepCount tracks the total number of replications on the CryptoPatent Blockchain
@@ -97,9 +97,9 @@ contract Interface is Ownable {
   mapping(string => uint) getHash;
   mapping(address => uint[]) getTokens;
 
-///@events emited for front end to use called at the end of functions
+
   event IdeaProposed(string IdeaHash);
-  event IdeaApproved(string _ideahash, uint _globalUseBlockAmount, uint _miningTime, uint _royalty, address _inventor);
+  event IdeaApproved(string _ideahash);
   event Voted(address _voter, bool inSupport);
   event NewMember(address member);
 
@@ -147,6 +147,7 @@ struct IdeaProposal {
   function addMember(address _mem) internal {
       members[_mem] = true;
       memberRank[_mem]++;
+      memberCount++;
   }
 
 ///@notice buyMembership function allows for the purchase of a membership for 6 months after official launch.

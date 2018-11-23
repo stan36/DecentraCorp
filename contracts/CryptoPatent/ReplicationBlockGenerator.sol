@@ -25,7 +25,7 @@ contract IdeaBlockGenerator{
 /////////////////////////////////////////////////////////////////////////////////////////////
 contract ReplicationBlockGenerator is Ownable, ERC721Token("ProofOfReplicationOwnership", "PoRO") {
 
-///@
+///@notice IBG allows ideaBlock functions to be called
   IdeaBlockGenerator public IBG;
 
   uint public globalRepCount = 0;

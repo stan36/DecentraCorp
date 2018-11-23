@@ -23,7 +23,8 @@ class ChaosCasino extends Component {
   async componentDidMount() {
     const accounts = await web3.eth.getAccounts();
     const userAccount = accounts[0];
-    const userBalance = await _ChaosCoin.methods.balanceOf(userAccount).call();
+    const balance = await _ChaosCoin.methods.balanceOf(userAccount).call();
+    const userBalance = web3.utils.fromWei(balance);
     const entropyUnit = await _ChaosCasino.methods.getRandomNum().call();
     this.setState({ userAccount, userBalance, entropyUnit });
 
@@ -41,7 +42,8 @@ class ChaosCasino extends Component {
 
   onClick = async (event) => {
       event.preventDefault();
-      await _ChaosCasino.methods.cashOut(this.state.exchangeAmount).send
+      const amount = web3.utils.toWei(this.state.exchangeAmount);
+      await _ChaosCasino.methods.cashOut(amount).send
       ({
         from: this.state.userAccount,
         gas: '3000000'

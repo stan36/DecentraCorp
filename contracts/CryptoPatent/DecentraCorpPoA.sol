@@ -23,7 +23,6 @@ contract IdeaCoin {
 ///@param approvedContracts is a mappiung of contracts alloud to call function on other
 ///       IdeaCoin contract
    mapping(address => bool) approvedContracts;
-///@param onlyApprovedAdd is a modifier that requires that the address calling a function is a replication
    modifier onlyApprovedAdd() {
      require(approvedContracts[msg.sender] == true);
      _;

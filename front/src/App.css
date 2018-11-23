@@ -30,13 +30,14 @@ html {
       padding-right : 10px;
       padding-top : 50px;
       padding-bottom : 5px;
-      
+
     }
 
     nav ul li a {
       color: darkred;
       text-decoration: none;
       text-shadow: black 4px;
+      font-size: 15px;
     }
 
     .current {
