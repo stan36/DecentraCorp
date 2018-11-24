@@ -45,7 +45,7 @@ class DcWallet extends Component {
       event.preventDefault();
       const address = this.state.transfertoadd;
       const bAmount = this.state.transferamount;
-      const amount = web3.utils.toWei(bAmount);
+      const amount = web3.utils.toWei(bAmount.toString());
       this.setState({message: 'Approving through the IdeaCoin smart contract ..... Mining in process ! '});
       await _IdeaCoin.methods.transfer( address, amount).send({from: this.state.userAccount});
       this.setState({message: 'Smart Contract approved the Transfer'});

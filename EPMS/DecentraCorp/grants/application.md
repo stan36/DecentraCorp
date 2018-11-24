@@ -22,10 +22,15 @@ earn a living for doing what they love while simultaneously helping to better th
 DecentraCorp relies heavily on its first project, The CryptoPatent Blockchain(In Alpha) to make all this possible. The CryptoPatent Blockchain is an open-source patent system which allows replications of any idea to mine IdeaCoin when they are used! The CryptoPatent Blockchain will exist on a second-layer Proof of Authority network anchored to the Main Ethereum Network.
 
 A early Working Alpha of the project can be found at DecentraCorp.now.sh
+
 -Documentation for DecentraCorp and its associated projects can be found at:
-  -DecentraCorp:
-  -CryptoPatent Blockchain
+  -DecentraCorp: https://drive.google.com/open?id=1hhsuQ_JnBz5E0813V-4trPZhiflaTBwr
+
+  -CryptoPatent Blockchain:
+  https://drive.google.com/open?id=1Me8pn45kzBCucV-F1LyjYHv4LLBKWX6w
+
   -ChaosCasino:
+  https://drive.google.com/open?id=12Fw9pM8V9B1zs1QvsQpNDL504ylq84Ic
 
 
 
@@ -47,11 +52,12 @@ Success reward: Up to $50k in ANT, given out when all deliverables are ready.
 
 ## Application requirements
 
--$2000 upon application approval for the Acquisition of necessary equipment including a computer from this    decade and multiple raspberry pi's along with assorted parts.
--$16000 a month to cover the payroll expenses of five people for 6 months until the project is in its Beta release, at which point it should be capable of sustaining itself financially Via the onchain contracts membership sales.
+-$3000 upon application approval for the Acquisition of necessary equipment including new computers for the team and multiple raspberry pi's along with assorted parts.
+-$5000 to retain legal counsel for the entire project
+-$16000 a month to cover the payroll expenses of five people for 6 months until the project is in its Beta release, at which point it should be capable of sustaining itself financially Via the on-chain contracts membership sales.
 -All remaining funds will be put towards the initial bank balance of the ChaosCasino!
--Organizational Structure: upon receipt of the Grant a team of up to five people will be hired on to further development of the project and carry it to completion! Positions being filled would include a react developer
-a Python developer, and a PR manager. Upon completion of the Projects Beta Phase, project development will transition to fully open source! DecentraCorp operates as a meritocracy where an individual is judged by what they have contributed to the community!
+-Organizational Structure: upon receipt of the Grant a team of up to three developers will be hired on to further development of the project and carry it to completion! Positions being filled would include a react developer
+two Python developers. Upon completion of the Projects Beta Phase, project development will transition to fully open source! DecentraCorp operates as a meritocracy where an individual is judged by what they have contributed to the community!
 
 ## Development timeline
 

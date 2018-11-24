@@ -95,12 +95,7 @@ async startNewGame(type) {
 
 
     }
-    const entropyUnit = await _ChaosCasino.methods.getRandomNum().call();
-    this.setState({ entropyUnit });
-    const accounts = await web3.eth.getAccounts();
-    const userAccount = accounts[0];
-    const wallet = await _ChaosCoin.methods.balanceOf(userAccount).call();
-    this.setState({ wallet, userAccount });
+
   }
 
 
@@ -116,20 +111,21 @@ async startNewGame(type) {
 
 
 async  placeBet() {
-    const currentBet = web3.uitls.toWei(this.state.inputValue);
 
-    if (currentBet > this.state.wallet) {
+    if (this.state.inputValue > this.state.wallet) {
       this.setState({ message: 'Insufficient funds to bet that amount.' });
-    } else if (currentBet % 1 !== 0) {
+    } else if (this.state.inputValue % 1 !== 0) {
       this.setState({ message: 'Please bet whole numbers only.' });
     } else {
-      console.log(currentBet);
+      console.log(this.state.inputValue);
       // Deduct current bet from wallet
+      const currentBet = web3.utils.toWei(this.state.inputValue.toString());
       await _ChaosCasino.methods.placeBet(currentBet).send({
         from: this.state.userAccount,
         gas: '3000000',
       });
-      const wallet = await _ChaosCoin.methods.balanceOf(this.state.userAccount).call();
+      const bWallet = await _ChaosCoin.methods.balanceOf(this.state.userAccount).call();
+      const wallet = web3.utils.fromWei(bWallet);
       this.setState({ wallet, inputValue: '', currentBet });
     }
   }
@@ -209,7 +205,6 @@ async  placeBet() {
         this.setState({
           deck,
           dealer,
-          wallet: this.state.wallet + this.state.currentBet * 2,
           gameOver: true,
           message: 'Dealer bust! You win!'
         });
@@ -220,14 +215,11 @@ async  placeBet() {
 
         if (winner === 'dealer') {
           message = 'Dealer wins...';
-          this.updateUserBalance(false);
         } else if (winner === 'player') {
           message = 'You win!';
-          this.updateUserBalance(true);
-          console.log("balance updated");
         } else {
           message = 'Push.';
-          this.updateUserBalance(true);
+
         }
 
         this.setState({
@@ -245,11 +237,17 @@ async  placeBet() {
 
  getWinner(dealer, player) {
     if (dealer.count > player.count) {
+      this.updateUserBalance(false);
+      console.log("balance updated lost");
       return 'dealer';
     } else if (dealer.count < player.count) {
+      this.updateUserBalance(true);
+      console.log("balance updated won");
       return 'player';
     } else {
+      this.updateUserBalance(true);
       return 'push';
+      console.log("balance updated push");
     }
 
   }
@@ -274,16 +272,29 @@ async  placeBet() {
       from: this.state.userAccount,
       gas: '3000000',
     });
+    const bWallet = await _ChaosCoin.methods.balanceOf(this.state.userAccount).call();
+    const wallet = web3.utils.fromWei(bWallet);
+    this.setState({ wallet });
   }
 
 
-  async componentWillMount() {
+   componentWillMount() {
+
     const body = document.querySelector('body');
     body.addEventListener('keydown', this.handleKeyDown.bind(this));
     this.startNewGame();
 
   }
 
+  async componentDidMount(){
+    const entropyUnit = await _ChaosCasino.methods.getRandomNum().call();
+    this.setState({ entropyUnit });
+    const accounts = await web3.eth.getAccounts();
+    const userAccount = accounts[0];
+    const bWallet = await _ChaosCoin.methods.balanceOf(userAccount).call();
+    const wallet = web3.utils.fromWei(bWallet);
+    this.setState({ wallet, userAccount });
+  }
 
 
   render() {
@@ -311,7 +322,7 @@ async  placeBet() {
           <button onClick={() => {this.stand()}}>Stand</button>
         </div>
 
-        <p>Wallet: ${ this.state.wallet }</p>
+        <p>Wallet: { this.state.wallet } ChaosCoins</p>
         {
           !this.state.currentBet ?
           <div className="input-bet">

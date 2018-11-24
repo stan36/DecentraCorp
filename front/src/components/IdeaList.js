@@ -41,10 +41,10 @@ this.stateSetter = this.stateSetter.bind(this);
          const currentArray = this.state.hashs;
          const hash = event.returnValues.IdeaHash;
          const newArray = currentArray.push(hash);
-         this.setState({ newArray });
+
 
         })
-
+      
      }
 
 onClick = (event) =>{
