@@ -15,7 +15,7 @@
 1. Develop Node.js based CrossChain Smart-Contract Relay that allows the Ethereum MainChain DecentraCorp contract and the PoA based DecentraCorp contract to trustlessly relay information between eachother.
 2. Launch Aragon based Main Chain DecentraCorp contracts
 3. Improve DecentraCorp dApp interface
-4. Improve ChaosCasino dApp interface including the existing Entropy21 implementation and the yet to be implemented lottery view
+4. Improve ChaosCasino dApp interface including the existing Entropy21 implementation and the yet to be implemented lottery game
 
 ### Q3 2019
 
