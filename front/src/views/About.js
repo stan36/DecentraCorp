@@ -27,21 +27,21 @@ class About extends Component {
         <br/>
         <p>
         To view the DecentraCorp WhitePaper
-        <button><Link style={{ textDecoration: 'none', color: "red"}} to='//drive.google.com/open?id=1hhsuQ_JnBz5E0813V-4trPZhiflaTBwr'> Click Here!</Link></button>
+        <a style={{ textDecoration: 'none', color: "red"}} href='https://drive.google.com/open?id=1hhsuQ_JnBz5E0813V-4trPZhiflaTBwr'> Click Here!</a>
         </p>
         </div>
         <br/>
         <div>
         <p>
         To view the WhitePaper for the CryptoPatent Blockchain
-        <button><Link style={{ textDecoration: 'none', color: "red"}} to='//drive.google.com/open?id=1Me8pn45kzBCucV-F1LyjYHv4LLBKWX6w'> Click Here!</Link></button>
+        <a style={{ textDecoration: 'none', color: "red"}} href='https://drive.google.com/open?id=1Me8pn45kzBCucV-F1LyjYHv4LLBKWX6w'> Click Here!</a>
         </p>
         </div>
         <br/>
         <div>
         <p>
         To view the ChaosCasino's WhitePaper
-        <button><Link style={{ textDecoration: 'none', color: "red"}} to='//drive.google.com/open?id=12Fw9pM8V9B1zs1QvsQpNDL504ylq84Ic'> Click Here!</Link></button>
+        <a style={{ textDecoration: 'none', color: "red"}} href='https://drive.google.com/open?id=12Fw9pM8V9B1zs1QvsQpNDL504ylq84Ic'> Click Here!</a>
         </p>
         </div>
       </div>
