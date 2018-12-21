@@ -1,35 +1,51 @@
+
 html {
-      box-sizing: border-box;
+    display: flex;
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     }
 
     *, *::before, *::after {
-      box-sizing: inherit;
-      padding: 0;
-      margin: 0;
+      box-sizing: flex;
+      padding: 2px;
+      margin: 2px;
+      align-items: center;
     }
 
     .app {
-      width: 1060px;
-      margin:  500 auto;
-      padding: 0px;
+      flex: 1;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+
     }
 
     nav ul {
       list-style: none;
-      display: flex;
       background-color: gray;
-      width: 1000px;
-      height: 70px;
-      margin-bottom: 30px;
-      border-radius: 20px;
-
+      margin-bottom: 20px;
+      margin-top: 10px;
+      border-radius: 50px;
+      display: flex;
+      flex: 1;
+      justify-content: center;
+      align-items: center;
     }
 
     nav ul li {
-      padding-left : 5px;
+      padding-left : 15px;
       padding-right : 10px;
-      padding-top : 50px;
+      padding-top : 70px;
       padding-bottom : 5px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
 
     }
 
@@ -38,25 +54,209 @@ html {
       text-decoration: none;
       text-shadow: black 4px;
       font-size: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
     }
 
     .current {
-      border-bottom: 30px solid silver;
+      border-bottom: 10px solid silver;
+      align-items: center;
+      display: flex;
+      flex: 1;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     h1 {
       margin-bottom: 20px;
+      display: flex;
+      flex: 1;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-size:4vw;
+      align-items: center;
+
+    }
+    h2 {
+      margin-bottom: 20px;
+      margin-top: 20px;
+      display: flex;
+      flex: 1;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-size:3vw;
+      align-items: center;
+
+    }
+    h3 {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      display: flex;
+      flex: 1;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-size:2vw;
+      align-items: center;
+
     }
 
     p {
-      margin-bottom: 15px;
+      margin-bottom: 20px;
+      margin-top: 20px;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      font-size:1.5vw;
+      align-items: center;
+
     }
 
     .DecentraCorpLogo1{
-        margin-bottom: -230px;
-        margin-top: -140px;
-        margin-right: 0px;
+        margin-bottom: -160px;
+        margin-top: 60px;
+        margin-right: 1000px;
         margin-left: 0px;
-        max-width: 40%;
+        max-width: 30%;
         height: auto;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+
+
+    @media only screen and (max-width: 720px) {
+      nav ul {
+        list-style: none;
+        display: flex;
+        background-color: gray;
+        flex: 1;
+        flex-wrap: wrap;
+        flex-direction: column;
+        border: 2px solid silver;
+        border-radius: 20px;
+        width: auto;
+        align-items: center;
+        justify-content: center;
+      }
+
+      nav ul li {
+        padding-left : 10px;
+        padding-right : 10px;
+        padding-top : 10px;
+        padding-bottom : 5px;
+        display: flex;
+        flex: 1;
+        flex-wrap: wrap;
+        flex-direction: column;
+        border: 2px solid silver;
+        border-radius: 20px;
+        width: 520px;
+        align-items: center;
+        justify-content: center;
+      }
+
+      nav ul li a {
+        color: darkred;
+        text-decoration: none;
+        text-shadow: black 4px;
+        font-size: 15px;
+        display: flex;
+        flex: 1;
+        flex-wrap: wrap;
+        flex-direction: column;
+        width: 520px;
+        align-items: center;
+        justify-content: center;
+      }
+
+      html {
+          display: flex;
+          flex: 1;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          }
+
+
+          .app {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+          }
+
+          .DecentraCorpLogo1{
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: auto;
+              background-color: gray;
+          }
+
+          i {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+          }
+          h1 {
+            margin-bottom: 20px;
+            display: flex;
+            flex: 1;
+            flex-wrap: wrap;
+            justify-content: center;
+            font-size:4.5vw;
+            align-items: center;
+
+          }
+          h2 {
+            margin-bottom: 20px;
+            margin-top: 20px;
+            display: flex;
+            flex: 1;
+            flex-wrap: wrap;
+            justify-content: center;
+            font-size:4vw;
+            align-items: center;
+
+          }
+          h3 {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            flex: 1;
+            flex-wrap: wrap;
+            justify-content: center;
+            font-size:3.5vw;
+            align-items: center;
+
+          }
+
+          p {
+            margin-bottom: 20px;
+            margin-top: 20px;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            font-size:3vw;
+            align-items: center;
+
+          }
+
+          .menu {
+              background-color: gray;
+              flex: 1;
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: center;
+              align-items: center;
+              width: 100%;
+              border: 2px solid silver;
+              border-radius: 20px;
+          }
     }
