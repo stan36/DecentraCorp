@@ -6,15 +6,14 @@
  var HDWalletProvider = require("truffle-hdwallet-provider");
 
  var infura_apikey = "lHjU6q5aNKEfjBA0FQJr";
- var mnemonic = "multiply shock swear there hero possible bomb morning million stairs neither client";
+ var mnemonic = "category claim bright modify pond mass pet coffee orbit series harsh wish";
 //test wallet mnemonic
  module.exports = {
    networks: {
-    DecentraCorpPoA: {
+    Ganache: {
        host: "localhost",
-       port: 8501,
+       port: 7545,
        network_id: "*", // Match any network id
-       gas: 4700000
      },
    ropsten: {
      provider: function(){

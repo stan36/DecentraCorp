@@ -4,7 +4,7 @@ import './DCD_Escrow.sol';
 
 contract DCD_Confirmation is DCD_Escrow  {
 
-function ConfirmItemReciept(uint _escrowId,   string _itemIPFSHash) public onlyDev {
+function ConfirmItemReciept(uint _escrowId,   string _itemIPFSHash) public onlyOwner {
 
 Escrow memory escrow = itemInEscrow[_escrowId];
 
@@ -25,25 +25,24 @@ if(_IDCBuyerMultiplier == 0) {
 _IDCSellerMultiplier = _IDCSellerMultiplier * 5000000000000000000;
 _IDCBuyerMultiplier = _IDCBuyerMultiplier * 5000000000000000000;
 
+if(!_payedInIDC) {
+  _seller.transfer(_price);
+} else {
+  uint newIDCPrice = (_price / _IDC_PriceMod) + _price;
+  decentraCorp.proxyMint(_seller, newIDCPrice);
+}
 
   PoPT.mintItemToken(_itemIPFSHash);
   uint _tokenId = PoPT.ipfsLookUp(_itemIPFSHash);
   PoPT.safeTransferFrom(this, _buyer, _tokenId);
-  IdeaCoin.transfer(_buyer, _IDCBuyerMultiplier);
+  decentraCorp.proxyMint(_buyer, _IDCBuyerMultiplier);
 
-  IdeaCoin.transfer(_seller, _IDCSellerMultiplier);
+  decentraCorp.proxyMint(_seller, _IDCSellerMultiplier);
 
-
-    if(!_payedInArtis) {
-      _seller.transfer(_price);
-    } else {
-      uint newIDCPrice = (_price / _IDC_PriceMod) + _price;
-      IdeaCoin.transfer(_seller, newIDCPrice);
-    }
 
 }
 
-function releaseFundsBackToBuyer(uint _escrowId) public onlyDev {
+function releaseFundsBackToBuyer(uint _escrowId) public onlyOwner {
   Escrow memory escrow = itemInEscrow[ _escrowId];
   bool _payedInIDC = escrow.PayedInIDC;
   address _buyer = escrow.buyer;
@@ -51,7 +50,7 @@ function releaseFundsBackToBuyer(uint _escrowId) public onlyDev {
     if(!_payedInIDC) {
       _buyer.transfer(_price);
     } else {
-      IdeaCoin.transfer(_buyer, _price);
+      decentraCorp.proxyMint(_buyer, _price);
     }
   }
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import DCRoadMapPart1 from "../images/DCRoadMapPart1.gif";
 import DCRoadMapPart2 from "../images/DCRoadMapPart2.gif";
 import DCRoadMapPart3 from "../images/DCRoadMapPart3.gif";
+import './RoadMap.css';
 
 class RoadMap extends Component {
   render() {
@@ -17,7 +18,7 @@ class RoadMap extends Component {
           <img src={DCRoadMapPart2} alt ="DecentraCorp RoadMap2" className="DecentraCorpRoadMap2"/>
         </div>
         <div>
-          <img src={DCRoadMapPart3} alt ="DecentraCorp RoadMap3" className="DecentraCorpRoadMap2"/>
+          <img src={DCRoadMapPart3} alt ="DecentraCorp RoadMap3" className="DecentraCorpRoadMap3"/>
         </div>
       </div>
     </div>

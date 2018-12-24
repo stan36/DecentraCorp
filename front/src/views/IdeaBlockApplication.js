@@ -72,19 +72,19 @@ fileSelectedHandler = async (event) => {
 
 
   render() {
-    const { ipfsHash } = this.state;
+    const { ipfsHash, photoHash } = this.state;
     return (
       <div className='container'>
       <div>
-      <p>Your Wallet address is: {this.state.applicantAddress}</p>
+      <p className="info">Your Wallet address is: {this.state.applicantAddress}</p>
       </div>
       <div>
-        <h3>Welcome to The IdeaBlock Application Page!</h3>
-        <p>In it's current state this part of the dApp is capable of</p>
-        <p>capturing input and saving it to a json format which is then uploaded to</p>
-        <p>IPFS where it receives a Unique hash on the Distributed Web!</p>
-        <p>From here the dApp uses the IPFS hash to create an Idea Proposal</p>
-        <p>on the CryptoPatent Blockchain!</p>
+        <h3 className="info">Welcome to The IdeaBlock Application Page!</h3>
+        <p className="info">In it's current state this part of the dApp is capable of
+        capturing input and saving it to a json format which is then uploaded to
+        IPFS where it receives a Unique hash on the Distributed Web!
+        From here the dApp uses the IPFS hash to create an Idea Proposal
+        on the CryptoPatent Blockchain!</p>
 
       </div>
       <label htmlFor="details">Upload Idea Photo: </label>
@@ -128,6 +128,10 @@ fileSelectedHandler = async (event) => {
      <p>{this.state.message}</p>
      <br/>
      <p>{this.state.transactionHash}</p>
+     <br/>
+     <p>idea hash: {ipfsHash}</p>
+     <br/>
+     <p>photo hash: {photoHash}</p>
      </div>
     );
   }

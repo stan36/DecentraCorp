@@ -7,4 +7,6 @@ module.exports = (deployer) => {
   deployer.deploy(ChaosCoin).then(function() {
     return deployer.deploy(ChaosCasino, ChaosCoin.address, DCPoA.address, RepBlockGen.address)
   });
+
+
 };

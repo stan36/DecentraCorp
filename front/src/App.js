@@ -143,11 +143,11 @@ navigationLinksMobile() {
     <nav>
     <div>
     <ul>
-      <li key={1}><NavLink to='/'>Home</NavLink></li>
-      <li key={2}><NavLink to='/About'>About</NavLink></li>
-      <li key={3}><NavLink to='/RoadMap'>RoadMap</NavLink></li>
-      <li key={4}><NavLink to='/Donate'>Donate</NavLink></li>
-      <li key={5}><NavLink to='/JoinCore'>Join the Team</NavLink></li>
+      <li key={1}><NavLink to='/'><button onClick={this.closeOnClick.bind(this)}>Home</button></NavLink></li>
+      <li key={2}><NavLink to='/About'><button onClick={this.closeOnClick.bind(this)}>About</button></NavLink></li>
+      <li key={3}><NavLink to='/RoadMap'><button onClick={this.closeOnClick.bind(this)}>RoadMap</button></NavLink></li>
+      <li key={4}><NavLink to='/Donate'><button onClick={this.closeOnClick.bind(this)}>Donate</button></NavLink></li>
+      <li key={5}><NavLink to='/JoinCore'><button onClick={this.closeOnClick.bind(this)}>Join the Team</button></NavLink></li>
     </ul>
     </div>
     </nav>
@@ -170,15 +170,15 @@ return [
 <nav>
 <div>
 <ul>
-  <li key={1}><NavLink to='/'>Home</NavLink></li>
-  <li key={2}><NavLink to='/About'>About</NavLink></li>
-  <li key={3}><NavLink to='/RoadMap'>RoadMap</NavLink></li>
-  <li key={4}><NavLink to='/ApprovedIdeas'>Approved Ideas</NavLink></li>
-  <li key={5}><NavLink to='/Donate'>Donate</NavLink></li>
-  <li key={6}><NavLink to='/JoinCore'>Join the Team</NavLink></li>
-  <li key={7}><NavLink to='/IdeaBlockApplication'>IdeaBlock Application</NavLink></li>
-  <li key={8}><NavLink to='/BuyMembership'>Become a Member!</NavLink></li>
-  <li key={9}><NavLink to='/ChaosCasino'>ChaosCasino</NavLink></li>
+  <li key={1}><NavLink to='/'><button onClick={this.closeOnClick.bind(this)}>Home</button></NavLink></li>
+  <li key={2}><NavLink to='/About'><button onClick={this.closeOnClick.bind(this)}>About</button></NavLink></li>
+  <li key={3}><NavLink to='/RoadMap'><button onClick={this.closeOnClick.bind(this)}>RoadMap</button></NavLink></li>
+  <li key={4}><NavLink to='/ApprovedIdeas'><button onClick={this.closeOnClick.bind(this)}>Approved Ideas</button></NavLink></li>
+  <li key={5}><NavLink to='/Donate'><button onClick={this.closeOnClick.bind(this)}>Donate</button></NavLink></li>
+  <li key={6}><NavLink to='/JoinCore'><button onClick={this.closeOnClick.bind(this)}>Join the Team</button></NavLink></li>
+  <li key={7}><NavLink to='/IdeaBlockApplication'><button onClick={this.closeOnClick.bind(this)}>IdeaBlock Application</button></NavLink></li>
+  <li key={8}><NavLink to='/BuyMembership'><button onClick={this.closeOnClick.bind(this)}>Become a Member!</button></NavLink></li>
+  <li key={9}><NavLink to='/ChaosCasino'><button onClick={this.closeOnClick.bind(this)}>ChaosCasino</button></NavLink></li>
 </ul>
 </div>
 </nav>
@@ -195,16 +195,16 @@ return [
 <nav>
 <div>
 <ul>
-<li key={1}><NavLink to='/'>Home</NavLink></li>
-<li key={2}><NavLink to='/About'>About</NavLink></li>
-<li key={3}><NavLink to='/RoadMap'>RoadMap</NavLink></li>
-<li key={4}><NavLink to='/ApprovedIdeas'>Approved Ideas</NavLink></li>
-<li key={5}><NavLink to='/Donate'>Donate</NavLink></li>
-<li key={6}><NavLink to='/JoinCore'>Join the Team</NavLink></li>
-<li key={7}><NavLink to='/IdeaBlockApplication'>IdeaBlock Application</NavLink></li>
-<li key={8}><NavLink to='/ChaosCasino'>ChaosCasino</NavLink></li>
-<li key={9}><NavLink to='/IdeaVote'>IdeaBlock Vote</NavLink></li>
-<li key={10}><NavLink to='/wallet'>DC Wallet</NavLink></li>
+<li key={1}><NavLink to='/'><button onClick={this.closeOnClick.bind(this)}>Home</button></NavLink></li>
+<li key={2}><NavLink to='/About'><button onClick={this.closeOnClick.bind(this)}>About</button></NavLink></li>
+<li key={3}><NavLink to='/RoadMap'><button onClick={this.closeOnClick.bind(this)}>RoadMap</button></NavLink></li>
+<li key={4}><NavLink to='/ApprovedIdeas'><button onClick={this.closeOnClick.bind(this)}>Approved Ideas</button></NavLink></li>
+<li key={5}><NavLink to='/Donate'><button onClick={this.closeOnClick.bind(this)}>Donate</button></NavLink></li>
+<li key={6}><NavLink to='/JoinCore'><button onClick={this.closeOnClick.bind(this)}>Join the Team</button></NavLink></li>
+<li key={7}><NavLink to='/IdeaBlockApplication'><button onClick={this.closeOnClick.bind(this)}>IdeaBlock Application</button></NavLink></li>
+<li key={8}><NavLink to='/ChaosCasino'><button onClick={this.closeOnClick.bind(this)}>ChaosCasino</button></NavLink></li>
+<li key={9}><NavLink to='/IdeaVote'><button onClick={this.closeOnClick.bind(this)}>IdeaBlock Vote</button></NavLink></li>
+<li key={10}><NavLink to='/wallet'><button onClick={this.closeOnClick.bind(this)}>DC Wallet</button></NavLink></li>
 </ul>
 </div>
 </nav>
@@ -226,6 +226,10 @@ return [
     } else {
       this.setState({mobileNavVisible: false});
     }
+  }
+
+  closeOnClick() {
+    this.setState({mobileNavVisible: false});
   }
 
   renderNavigation() {

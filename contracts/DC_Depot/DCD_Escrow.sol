@@ -3,7 +3,7 @@ pragma solidity ^0.4.21;
 import "./DecentraControlled.sol";
 
 
-contract DCD_Escrow is Ownable, DecentraControlled {
+contract DCD_Escrow is DecentraControlled {
 
 event ItemBought(
   uint pricePayedEther,

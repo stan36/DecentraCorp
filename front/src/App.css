@@ -134,9 +134,9 @@ html {
         flex: 1;
         flex-wrap: wrap;
         flex-direction: column;
-        border: 2px solid silver;
+        border: 20px solid silver;
         border-radius: 20px;
-        width: auto;
+        width: 520px;
         align-items: center;
         justify-content: center;
       }
@@ -150,7 +150,7 @@ html {
         flex: 1;
         flex-wrap: wrap;
         flex-direction: column;
-        border: 2px solid silver;
+        border: 20px solid silver;
         border-radius: 20px;
         width: 520px;
         align-items: center;
@@ -178,6 +178,7 @@ html {
           flex-wrap: wrap;
           justify-content: center;
           align-items: center;
+          width: 400px;
           }
 
 
@@ -187,7 +188,7 @@ html {
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            width: 100%;
+            width: 400px;
           }
 
           .DecentraCorpLogo1{
@@ -203,6 +204,7 @@ html {
             justify-content: center;
             align-items: center;
             height: auto;
+            width: auto
           }
           h1 {
             margin-bottom: 20px;
@@ -212,7 +214,7 @@ html {
             justify-content: center;
             font-size:4.5vw;
             align-items: center;
-
+            width: auto
           }
           h2 {
             margin-bottom: 20px;
@@ -223,7 +225,7 @@ html {
             justify-content: center;
             font-size:4vw;
             align-items: center;
-
+            width: auto
           }
           h3 {
             margin-top: 20px;
@@ -234,7 +236,7 @@ html {
             justify-content: center;
             font-size:3.5vw;
             align-items: center;
-
+            width: auto
           }
 
           p {
@@ -245,7 +247,7 @@ html {
             justify-content: center;
             font-size:3vw;
             align-items: center;
-
+            width: auto
           }
 
           .menu {
@@ -255,7 +257,8 @@ html {
               flex-wrap: wrap;
               justify-content: center;
               align-items: center;
-              width: 100%;
+              width: 520px;
+              height: 60px;
               border: 2px solid silver;
               border-radius: 20px;
           }
