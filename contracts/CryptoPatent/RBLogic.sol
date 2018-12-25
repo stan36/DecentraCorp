@@ -21,6 +21,8 @@ require(IDC.balanceOf(msg.sender) >= repStake);
 DCPoA.proxyIDCBurn(msg.sender, repStake);
 globalRepCount++;
 DCPoA.replicationBlock( _ideaId,  _repAdd, msg.sender);
+DCPoA.increaseMemRank(msg.sender);
+DCPoA.levelUpFacility(msg.sender);
 emit NewReplication(_repAdd);
   }
 ///@notice changeStakeAmount will allow the community to change the stake amount required to stake a replication if it sees fit through a voted

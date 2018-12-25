@@ -18,6 +18,7 @@ contract DecentraCorpPoA {
   function _checkIfMember(address _member) public view returns(bool);
   function getMemberCount() public view returns(uint);
   function increaseMemRank(address _add) external;
+  function levelUpFacility(address _facAdd) public;
 }
 /// DecentraCorp PoA inteface
 ////////////////////////////////////////////////////////////////////////////////////////////

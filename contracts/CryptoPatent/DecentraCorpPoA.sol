@@ -1,5 +1,7 @@
 pragma solidity ^0.4.21;
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
+import "zeppelin-solidity/contracts/math/SafeMath.sol";
+
 ////////////////////////////////////////////////////////////////////////////////////////////
 /// @title DecentraCorpPoA
 /// @author DecentraCorp
@@ -37,6 +39,7 @@ contract CryptoPatentBlockGenerator {
 /////////////////////////////////////////////////////////////////////////////////////////////
 
  contract DecentraCorpPoA is Ownable {
+   using SafeMath for uint256;
 ///@param IDC is used to make calls to the IdeaCoin Contract
    IdeaCoin public IDC;
    CryptoPatentBlockGenerator public CPBG;
@@ -46,6 +49,7 @@ contract CryptoPatentBlockGenerator {
    uint public memberCount;
    mapping (address =>bool) members;
    mapping(address => uint) memberRank;
+   mapping(address => uint) facilityLevel;
 ///@param approvedContracts is a mappiung of contracts alloud to call function on other
 
    mapping(address => bool) approvedContracts;
@@ -64,6 +68,7 @@ contract CryptoPatentBlockGenerator {
      members[msg.sender] = true;
      memberCount++;
      memberRank[msg.sender]++;
+     facilityLevel[msg.sender].add(100);
    }
 
 //@addApprovedContract allows another contract to call functions
@@ -128,5 +133,7 @@ function mintItemToken( string _itemIPFSHash) external onlyApprovedAdd {
     function increaseMemRank(address _add) external onlyApprovedAdd {
       memberRank[_add]++;
     }
-
+    function levelUpFacility(address _facAdd) public onlyApprovedAdd {
+      facilityLevel[_facAdd].add(1);
+    }
  }
