@@ -47,7 +47,16 @@ onload = async ()=>{
   onYes = async (event)=>{
     event.preventDefault();
     console.log('voted yes');
-    await _CryptoPatentBlockchain.methods.vote(this.state.ProposalId, true).send({from : this.state.userAccount}, (error, transactionHash) => {
+    await _CryptoPatentBlockchain.methods.vote(
+      this.state.ProposalId,
+      true,
+      this.state.Json.useblockamount,
+      this.state.Json.miningTime,
+      this.state.Json.royalty,
+      this.state.Json.inventorAddress,
+      this.state.Json.inventionAddress
+    )
+    .send({from : this.state.userAccount}, (error, transactionHash) => {
     this.setState({transactionHash, hasVoted: true });
   });
 }
@@ -55,23 +64,20 @@ onload = async ()=>{
   onNo = async (event)=>{
     event.preventDefault();
     console.log('voted no');
-    _CryptoPatentBlockchain.methods.vote(this.state.ProposalId, false).send({from : this.state.userAccount}, (error, transactionHash) => {
+    _CryptoPatentBlockchain.methods.vote(
+      this.state.ProposalId,
+      false,
+      this.state.Json.useblockamount,
+      this.state.Json.miningTime,
+      this.state.Json.royalty,
+      this.state.Json.inventorAddress,
+      this.state.Json.inventionAddress
+    )
+    .send({from : this.state.userAccount}, (error, transactionHash) => {
     this.setState({transactionHash, hasVoted: true });
   });
 }
 
-approveIdea = async (event)=>{
-  event.preventDefault();
-  _CryptoPatentBlockchain.methods.ideaBlockVote(
-    this.state.ProposalId,
-    this.state.Json.useblockamount,
-    this.state.Json.miningTime,
-    this.state.Json.royalty,
-    this.state.Json.address
-  ).send({from : this.state.userAccount}, (error, transactionHash) => {
-  this.setState({transactionHash, hasVoted: true });
-});
-}
    render() {
      const { ipfsHash }= this.props;
      const { Json,  ProposalProps}= this.state;
@@ -87,8 +93,11 @@ approveIdea = async (event)=>{
    <br/>
    <label htmlFor="applicantName">Inventors Name: { Json.username } </label>
    <br/>
-   <label htmlFor="address">Inventors Address: { Json.address } </label>
+   <label htmlFor="inventorAddress">Inventors Address: { Json.inventorAddress } </label>
    <br/>
+     <br/>
+     <label htmlFor="inventionAddress">Invention Address: { Json.inventionAddress } </label>
+     <br/>
    <label htmlFor="useblockamount">UseBlock Amount: { Json.useblockamount } </label>
    <br/>
    <label htmlFor="miningTime">Mining Time: { Json.miningTime } </label>
@@ -101,7 +110,6 @@ approveIdea = async (event)=>{
    <br/>
    <button onClick={this.onYes}>Vote Yes</button><button onClick={this.onNo}>Vote No</button>
    <br/>
-   <button onClick={this.approveIdea}>Click here if this Idea has enough Votes!</button>
 </form>
        </div>
      );
@@ -115,9 +123,12 @@ approveIdea = async (event)=>{
             <label htmlFor="ideaName">Idea Name: { Json.ideaName } </label>
             <br/>
             <label htmlFor="applicantName">Inventors Name: { Json.username } </label>
-            <br/>
-            <label htmlFor="address">Inventors Address: { Json.address } </label>
-            <br/>
+              <br/>
+              <label htmlFor="inventorAddress">Inventors Address: { Json.inventorAddress } </label>
+              <br/>
+                <br/>
+                <label htmlFor="inventionAddress">Invention Address: { Json.inventionAddress } </label>
+                <br/>
             <label htmlFor="useblockamount">UseBlock Amount: { Json.useblockamount } </label>
             <br/>
             <label htmlFor="miningTime">Mining Time: { Json.miningTime } </label>
@@ -141,9 +152,12 @@ approveIdea = async (event)=>{
             <label htmlFor="ideaName">Idea Name: { Json.ideaName } </label>
             <br/>
             <label htmlFor="applicantName">Inventors Name: { Json.username } </label>
-            <br/>
-            <label htmlFor="address">Inventors Address: { Json.address } </label>
-            <br/>
+              <br/>
+              <label htmlFor="inventorAddress">Inventors Address: { Json.inventorAddress } </label>
+              <br/>
+                <br/>
+                <label htmlFor="inventionAddress">Invention Address: { Json.inventionAddress } </label>
+                <br/>
             <label htmlFor="useblockamount">UseBlock Amount: { Json.useblockamount } </label>
             <br/>
             <label htmlFor="miningTime">Mining Time: { Json.miningTime } </label>

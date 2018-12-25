@@ -7,5 +7,5 @@ var RepBlockGen = artifacts.require("./CryptoPatent/CryptoPatentBlockGenerator.s
 
 
 module.exports = (deployer) => {
-  deployer.deploy(ChaosCasino, RepBlockGen.address, DCPoA.address, ChaosCoin.address)
+  deployer.deploy(ChaosCasino, DCPoA.address,  RepBlockGen.address, ChaosCoin.address)
 };

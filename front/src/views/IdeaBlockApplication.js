@@ -131,12 +131,17 @@ fileSelectedHandler = async (event) => {
        <br/>
          <label htmlFor="address">Applicant Wallet address: </label>
          <br/>
-         <input id="address" name="address" type="text" placeholder = 'Address that will hold the patent'/>
+         <input id="inventorAddress" name="inventorAddress" type="text" placeholder = 'Address that will hold the patent'/>
          <br/>
        <label htmlFor="ideaName">Name of your Idea: </label>
        <br/>
        <input id="ideaName" name="ideaName" type="text" placeholder = 'The Name of Your Idea' onChange={event => this.handleChange(event)}/>
        <br/>
+         <br/>
+       <label htmlFor="inventionAddress">Inventions Address:</label>
+         <br/>
+         <input id="inventionAddress" name="inventionAddress" type="text" placeholder = 'Address of the original invention'/>
+         <br/>
        <label htmlFor="useblockamount">The amount your Idea should mint upon its Use: </label>
        <br/>
        <input id="useblockamount" name="useblockamount" type="text" placeholder = 'Enter amount as 18 decimals' onChange={event => this.handleChange(event)}/>

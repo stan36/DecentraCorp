@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import web3 from './utils/web3';
 import _CryptoPatentBlockchain from './ethereum/CryptoPatent';
+import _DecentraCorp from './ethereum/DecentraCorp';
 import _IdeaCoin from './ethereum/IdeaCoin';
 import { NavLink, Switch, Route } from 'react-router-dom';
 import Home from './views/Home';
@@ -46,8 +47,8 @@ class App extends Component {
       this.setState({ loading: true });
       const accounts = await web3.eth.getAccounts();
       const userAccount = accounts[0];
-      const isMember = await _CryptoPatentBlockchain.methods.checkIfMember(userAccount).call();
-      const memberCount = await _CryptoPatentBlockchain.methods.getMemberCount().call();
+      const isMember = await _DecentraCorp.methods._checkIfMember(userAccount).call();
+      const memberCount = await _DecentraCorp.methods.getMemberCount().call();
       const total = await _IdeaCoin.methods.totalSupply().call();
       const idcTotal = web3.utils.fromWei(total);
       this.setState({ accounts, isMember, memberCount, idcTotal, loading: false });
