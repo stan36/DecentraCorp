@@ -32,7 +32,7 @@ if(!_payedInIDC) {
   decentraCorp.proxyMint(_seller, newIDCPrice);
 }
 
-  PoPT.mintItemToken(_itemIPFSHash);
+  decentraCorp.mintItemToken(_itemIPFSHash);
   uint _tokenId = PoPT.ipfsLookUp(_itemIPFSHash);
   PoPT.safeTransferFrom(this, _buyer, _tokenId);
   decentraCorp.proxyMint(_buyer, _IDCBuyerMultiplier);

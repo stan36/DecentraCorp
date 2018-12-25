@@ -4,7 +4,7 @@ import ipfs from '../utils/IPFS_util';
 import _CryptoPatentBlockchain from '../ethereum/CryptoPatent';
 import  DisplayIPFSName  from '../components/DisplayIPFSName';
 import  DisplayIPFS  from '../components/DisplayIPFS';
-
+import Loader from "../images/75.gif";
 
 
 
@@ -16,7 +16,8 @@ class ApprovedIdeas extends Component {
       userAccount: '',
       vote: false,
       hashs: [],
-      selectedIpfs: ''
+      selectedIpfs: '',
+      loading:false
 
     }
 this.PropHashs = this.PropHashs.bind(this);
@@ -25,12 +26,13 @@ this.stateSetter = this.stateSetter.bind(this);
   }
 
   async  componentDidMount(){
+    this.setState({ loading : true });
      const accounts = await web3.eth.getAccounts();
      const userAccount = accounts[0];
      this.setState({ userAccount });
      this.PropHashs();
      console.log(this.state.hashs);
-
+     this.setState({ loading: false})
    }
 
    PropHashs = async () => {
@@ -59,6 +61,13 @@ stateSetter = (ipfshash) =>{
 }
 
   render() {
+    if(this.state.loading === true){
+      return(
+        <div className="Loader">
+        <img src={Loader} alt ="Loader" className="Loader" />
+        </div>
+      );
+    } else {
 if(!this.state.selectedIpfs){
     return(
       <div className='IdeaList'>
@@ -87,5 +96,6 @@ if(!this.state.selectedIpfs){
     );
     }
   }
+}
 }
     export default ApprovedIdeas;

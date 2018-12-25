@@ -7,8 +7,17 @@ import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 /// @dev All function calls are currently implement without side effects
 ////////////////////////////////////////////////////////////////////////////////////////////
 contract DecentraCorpPoA {
-  function proxyMint(address _add, uint _amount) external;
-  function proxyBurn(address _add, uint _amount) external;
+  function proxyIDCMint(address _add, uint _amount) external;
+  function proxyIDCBurn(address _add, uint _amount) external;
+  function proxyCCMint(address _add, uint _amount) external;
+  function proxyCCBurn(address _add, uint _amount) external;
+  function generateIdeaBlock(string _ideaIPFS, uint _globalUseBlockAmount, uint miningTime, uint _royalty, address _inventorsAddress) external;
+  function replicationBlock(uint _ideaId, address _repAdd, address _replicatorAdd) external;
+  function generateGUSBlock(address _replicationOwner) external;
+  function _addMember(address _mem) external;
+  function _checkIfMember(address _member) public view returns(bool);
+  function getMemberCount() public view returns(uint);
+  function increaseMemRank(address _add) external;
 }
 /// DecentraCorp PoA inteface
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -18,20 +27,13 @@ contract IdeaCoin {
 }
 /// IdeaCoin interface
 /////////////////////////////////////////////////////////////////////////////////////////////
-contract IdeaBlockGenerator {
-    function _generateIdeaBlock(string _ideaIPFS, uint _globalUseBlockAmount, uint miningTime, uint _royalty, address _inventorsAddress) external;
-    function transferOwnership(address newOwner) public;
+contract CryptoPatentBlockGenerator {
     function balanceOf(address _owner) public view returns (uint256);
     function getGlobalUseBlockAmount(uint _ideaId) public view returns(uint);
     function getRoyalty(uint _ideaId) public view returns(uint);
     function getInventor(uint _ideaId) public view returns(address);
     function getMiningTime(uint _ideaId) public view returns(uint);
     function setMiningTime(uint _ideaId) external view;
-}
-/// Idea Block Generator interface
-/////////////////////////////////////////////////////////////////////////////////////////////
-contract ReplicationBlockGenerator {
-    function replicationBlock(uint _ideaId, address _repAdd, address _replicatorAdd) external;
     function getBlockReward(address _repAdd) public view returns(uint);
     function getOwnersAddress(address _repAdd) public view returns(address);
     function getIdeaID(address _repAdd) public view returns(uint);
@@ -39,19 +41,14 @@ contract ReplicationBlockGenerator {
     function getReplicationAddress(address _repAdd) public view returns(address);
     function getRoyalty(address _repAdd) public view returns(uint);
     function getRepID(address _repAdd) public view returns(uint);
-    function checkIfRep(address _add) external returns(bool);
-    function getNumOfReps(address _add, uint _ideaId) external returns(uint);
-    function getRepTotal(uint _ideaId) external returns(uint);
-    function safeTransfer(address _from, address _to, uint _tokenId) public;
-  }
-/// Replication Block Generator interface
-/////////////////////////////////////////////////////////////////////////////////////////////
-contract GlobalUseBlockGenerator{
-    function _generateGUSBlock(address _replicationOwner) external;
+    function checkIfRep(address _add) external view returns(bool);
+    function getNumOfReps(address _add, uint _ideaId) external view returns(uint);
+    function getRepTotal(uint _ideaId) external view returns(uint);
     function safeTransfer(address _from, address _to, uint _tokenId) public;
 }
-/// Global Use Block Generator interface
+/// Idea Block Generator interface
 /////////////////////////////////////////////////////////////////////////////////////////////
+
 
 /// @author Christopher Dixon
 /// @notice contract Interface is the first contract in the CryptoPatent Blockchain
@@ -60,9 +57,8 @@ contract GlobalUseBlockGenerator{
 contract Interface is Ownable {
   IdeaCoin public IDC;
   DecentraCorpPoA public DCPoA;
-  IdeaBlockGenerator public IBG;
-  ReplicationBlockGenerator public RBG;
-  GlobalUseBlockGenerator public GUBG;
+  CryptoPatentBlockGenerator public CPBG;
+
   ///@param above turn each interface into a useable variable
 
   ///@param globalIdeaCount tracks amount of ideas on the CryptoPatent Blockchain
@@ -75,7 +71,6 @@ contract Interface is Ownable {
   ///@param minimumQuorum used to  track quorum info
   uint public globalIdeaCount;
   uint public globalRepCount;
-  uint public memberCount;
   uint public globalUseBlock;
   uint public globalBlockHalfTime;
   uint public ideaBlockReward = 1000000000000000000000;
@@ -85,6 +80,7 @@ contract Interface is Ownable {
   ///@param IdeaProposal array of idea proposals
   IdeaProposal[] public proposals;
 
+  address[] public inventions;
   ///@param weightTracker tracks current global highest weight
   ///@param localWeightTracker maps a replications address to its replication ID and stores that replications current weight
   ///@param members tracks if an address is a member
@@ -92,16 +88,16 @@ contract Interface is Ownable {
   ///@param getHash maps ipfs hash to its token ID
   mapping (uint => uint) weightTracker;
   mapping (address => mapping (uint => uint)) localWeightTracker;
-  mapping (address =>bool) members;
-  mapping(address => uint) memberRank;
   mapping(string => uint) getHash;
   mapping(address => uint[]) getTokens;
+
 
 
   event IdeaProposed(string IdeaHash);
   event IdeaApproved(string _ideahash);
   event Voted(address _voter, bool inSupport);
   event NewMember(address member);
+  event NewReplication(address _repAdd);
 
 
 ///@struct IdeaProposal stores info of a proposal
@@ -122,7 +118,7 @@ struct IdeaProposal {
 
 //@modifier requires that the address calling a function is a replication
   modifier onlyReplication() {
-    require(RBG.checkIfRep(msg.sender) == true);
+    require(CPBG.checkIfRep(msg.sender) == true);
     _;
   }
 
@@ -134,8 +130,8 @@ struct IdeaProposal {
 
 ///@notice calculatePromo function calculates the promotion a miner receives for having multiples of the same type of replication
 ///@dev calculatePromo takes in a block Reward and an idea ID to retun a specific block reward
-  function calculatePromo(uint _blockReward, uint _ideaId) internal returns(uint) {
-    uint numberOfReps =  RBG.getNumOfReps( msg.sender,  _ideaId);
+  function calculatePromo(uint _blockReward, uint _ideaId) internal view returns(uint) {
+    uint numberOfReps =  CPBG.getNumOfReps( msg.sender,  _ideaId);
     uint tenthReward = (_blockReward/ 10);
     uint modulator = tenthReward * numberOfReps;
     uint blockReward = _blockReward + modulator;
@@ -145,9 +141,7 @@ struct IdeaProposal {
 ///@notice addMember function is an internal function for adding a member to decentracorp
 ///@dev addMember takes in an address _mem, sets its membership to true and increments their rank by one
   function addMember(address _mem) internal {
-      members[_mem] = true;
-      memberRank[_mem]++;
-      memberCount++;
+    DCPoA._addMember(_mem);
   }
 
 ///@notice buyMembership function allows for the purchase of a membership for 6 months after official launch.
@@ -156,7 +150,7 @@ struct IdeaProposal {
     require(now <= globalBlockHalfTime + 15780000 seconds);
     require(msg.value >= 1 ether);
     addMember(msg.sender);
-    DCPoA.proxyMint(msg.sender, 10000000000000000000000);
+    DCPoA.proxyIDCMint(msg.sender, 10000000000000000000000);
     emit NewMember(msg.sender);
   }
 
@@ -165,35 +159,27 @@ struct IdeaProposal {
   function setGenerators(
     DecentraCorpPoA _dcpoa,
     IdeaCoin _IDC,
-    IdeaBlockGenerator _IBG,
-    ReplicationBlockGenerator _RBG,
-    GlobalUseBlockGenerator _GUBG
+    CryptoPatentBlockGenerator  _CPBG
     )
     public
     onlyOwner
     {
       DCPoA = DecentraCorpPoA(_dcpoa);
       IDC = IdeaCoin(_IDC);
-      IBG = IdeaBlockGenerator(_IBG);
-      RBG = ReplicationBlockGenerator(_RBG);
-      GUBG = GlobalUseBlockGenerator(_GUBG);
+      CPBG =(_CPBG);
     }
 
 
 ///@notice checkIfMember function allowsother contracts/front end to check if an address is a member
 ///@dev checkIfMember takes in
-  function checkIfMember(address _member) public view returns(bool) {
-    if(members[_member] == true){
-      return true;
-    }
+function checkIfMember(address _member) public view returns(bool) {
+  if( DCPoA._checkIfMember( _member) == true ) {
+    return true;
   }
+}
 
 
-///@notice getMemberCount function returns total membercount
-///@dev getMemberCount is for front end and internal use
-  function getMemberCount() public view returns(uint) {
-    return memberCount;
-  }
+
 
   ///@notice getPropID function allows one to rerieve a proposal ID by its ipfs hash
   ///@dev getPropID is made for easier front end interaction
@@ -206,9 +192,8 @@ struct IdeaProposal {
 ///@dev stakeReplicatorWallet costs 100 IDC and burns them from existence
   function stakeReplicatorWallet() public {
     require(IDC.balanceOf(msg.sender) >= 100000000000000000000);
-    DCPoA.proxyBurn(msg.sender, 100000000000000000000);
-    members[msg.sender] = true;
-    memberCount++;
+    DCPoA.proxyIDCBurn(msg.sender, 100000000000000000000);
+    DCPoA._addMember(msg.sender);
     emit NewMember(msg.sender);
   }
 

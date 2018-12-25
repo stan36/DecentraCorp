@@ -10,6 +10,7 @@ import IdeaBlockApplication from './views/IdeaBlockApplication';
 import BuyMembership from './components/BuyMembership';
 import IdeaVote from './views/IdeaVote';
 import DecentraCorpLogo from "./images/DecentraCorpLogo.png";
+import Loader from "./images/75.gif";
 import ChaosCasino from './views/ChaosCasino';
 import Entropy21 from './views/Entropy21';
 import About from './views/About';
@@ -31,7 +32,8 @@ class App extends Component {
       memberCount: '',
       idcTotal: null,
       windowWidth: window.innerWidth,
-      mobileNavVisible: false
+      mobileNavVisible: false,
+      loading: false
      }
   }
 
@@ -41,17 +43,20 @@ class App extends Component {
 
   async componentDidMount() {
       window.addEventListener('resize', this.handleResize.bind(this));
+      this.setState({ loading: true });
       const accounts = await web3.eth.getAccounts();
       const userAccount = accounts[0];
       const isMember = await _CryptoPatentBlockchain.methods.checkIfMember(userAccount).call();
       const memberCount = await _CryptoPatentBlockchain.methods.getMemberCount().call();
       const total = await _IdeaCoin.methods.totalSupply().call();
       const idcTotal = web3.utils.fromWei(total);
-      this.setState({ accounts, isMember, memberCount, idcTotal });
+      this.setState({ accounts, isMember, memberCount, idcTotal, loading: false });
+      console.log(this.state.loading);
   }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize.bind(this));
+
   }
 
   navigationLinks() {
@@ -258,6 +263,13 @@ return [
 
 
   render() {
+    if(this.state.loading === true){
+      return(
+        <div className="Loader">
+        <img src={Loader} alt ="Loader" className="Loader" />
+        </div>
+      );
+    } else {
     return (
       <div className="app">
       <div>
@@ -281,6 +293,7 @@ return [
       );
     }
   }
+}
 
 
 

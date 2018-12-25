@@ -10,29 +10,28 @@ import 'zeppelin-solidity/contracts/math/SafeMath.sol';
 /// @author Christopher Dixon
 /////////////////////////////////////////////////////////////////////////////////////////////
 contract DecentraCorpPoA {
-  function exchangeChaosCoin(uint _amount, address _player) public;
+  function proxyCCMint(address _add, uint _amount) external;
+  function proxyCCBurn(address _add, uint _amount) external;
 }
 //DecentraCorpPoA interface
 /////////////////////////////////////////////////////////////////////////////////////////////
-contract ChaosCoin {
-    function balanceOf(address _addr) public constant returns (uint);
-    function mint(address _to, uint256 _value) external;
-    function burn(address _from, uint256 _value)  external;
-}
-//ChaosCoin interface
-/////////////////////////////////////////////////////////////////////////////////////////////
-contract ReplicationBlockGenerator {
+contract CryptoPatentBlockGenerator {
   function checkIfRep(address _add) external returns(bool);
 }
-//ReplicationBlockGenerator interface
+//CryptoPatentBlockGenerator interface
+/////////////////////////////////////////////////////////////////////////////////////////////
+contract ChaosCoin {
+    function balanceOf(address _addr) public constant returns (uint);
+}
+//ChaosCoin interface
 /////////////////////////////////////////////////////////////////////////////////////////////
 contract ChaosCasino is Ownable {
 
   using SafeMath for uint256;
 ///@params below are used to import the contracts as usable objects
-  ChaosCoin public chaosCoin;
   DecentraCorpPoA public decentraCorp;
-  ReplicationBlockGenerator public RBG;
+  CryptoPatentBlockGenerator public RBG;
+  ChaosCoin public CC;
 ///@param randNum is set by ChaosMiners, preset for testing
   uint randNum = 6874925454687615356;
 ///@param bets stores the bets of an address
@@ -50,34 +49,32 @@ contract ChaosCasino is Ownable {
   }
 
 ///@notice constructor sets up outside contract addresses at deployemnt through truffle dark arts
-  constructor(ChaosCoin _CCC, DecentraCorpPoA _DCP, ReplicationBlockGenerator _RBG) public {
-    chaosCoin = ChaosCoin(_CCC);
+  constructor( DecentraCorpPoA _DCP, CryptoPatentBlockGenerator _RBG, ChaosCoin _CC) public {
     decentraCorp = DecentraCorpPoA(_DCP);
-    RBG = ReplicationBlockGenerator(_RBG);
+    RBG = CryptoPatentBlockGenerator(_RBG);
+    CC = ChaosCoin(_CC);
   }
 
 ///@notice folowing three function allow for contract upgrades
   function setRepGBAdd(address _add) public onlyOwner {
-    RBG = ReplicationBlockGenerator(_add);
+    RBG = CryptoPatentBlockGenerator(_add);
   }
   function setDCadd(address _add) public onlyOwner {
     decentraCorp = DecentraCorpPoA(_add);
   }
-  function setCCadd(address _add) public onlyOwner {
-    chaosCoin = ChaosCoin(_add);
-  }
+
 
 ///@notice buyChaosCoin allows anyone to exchange ether for ChaosCoin
   function buyChaosCoin() public payable {
     uint amount = msg.value;
     uint _amount = amount.mul(1000);
-    chaosCoin.mint(msg.sender, _amount);
+    decentraCorp.proxyCCMint(msg.sender, _amount);
   }
 
 ///@notice cahsOut allows ChaosCoin to be cashed out into ether
   function cashOut(uint _amount) public {
-    require(chaosCoin.balanceOf(msg.sender) >= _amount);
-    chaosCoin.burn(msg.sender, _amount);
+    require(CC.balanceOf(msg.sender) >= _amount);
+    decentraCorp.proxyCCBurn(msg.sender, _amount);
     uint amount = _amount.div(1000);
     msg.sender.transfer(amount);
   }
@@ -95,8 +92,8 @@ contract ChaosCasino is Ownable {
 
 ///@notice placeBet Allows a User to place a bet
   function placeBet(uint _bet) public {
-    require(chaosCoin.balanceOf(msg.sender) >= _bet);
-    chaosCoin.burn(msg.sender, _bet);
+    require(CC.balanceOf(msg.sender) >= _bet);
+    decentraCorp.proxyCCBurn(msg.sender, _bet);
     bets[msg.sender] = _bet;
   }
 
@@ -105,7 +102,7 @@ contract ChaosCasino is Ownable {
   function updateUserBalance( bool _won) public {
     uint currentBalance = bets[msg.sender];
     if(_won == true){
-      chaosCoin.mint(msg.sender, currentBalance * 2);
+      decentraCorp.proxyCCMint(msg.sender, currentBalance * 2);
     }else{
       bets[msg.sender] = 0;
     }

@@ -3,6 +3,7 @@ import web3 from '../utils/web3';
 import ipfs from '../utils/IPFS_util';
 import _CryptoPatentBlockchain from '../ethereum/CryptoPatent';
 import './IdeaBlockApplication.css';
+import Loader from "../images/75.gif";
 
 
 class IdeaBlockApplication extends Component {
@@ -15,16 +16,19 @@ class IdeaBlockApplication extends Component {
       transactionHash: '',
       message: '',
       buffer: '',
-      photoHash: ''
+      photoHash: '',
+      loading: false,
+      hasApplied: false
      }
 
 
   }
 
   async  componentDidMount(){
+    this.setState({ loading : true });
      const accounts = await web3.eth.getAccounts();
      const userAccount = accounts[0];
-     this.setState({ applicantAddress: userAccount });
+     this.setState({ applicantAddress: userAccount, loading : false });
    }
 
    handleChange (event) {
@@ -35,6 +39,7 @@ class IdeaBlockApplication extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
+    this.setState({ loading : true });
     const formData = new FormData(event.target);
     let jsonObject = {
         photo: this.state.photoHash
@@ -52,7 +57,20 @@ class IdeaBlockApplication extends Component {
     this.setState({transactionHash, message: 'Your Idea Has Been Successfully submitted to the CryptoPatent Blockchain! Your transaction hash is:'});
         });
       })
+
 };
+
+
+onReturn = async => {
+  _CryptoPatentBlockchain.once( 'IdeaProposed', {
+    filter: {IdeaHash: this.state.ipfsHash},
+    fromBlock: '0',
+    toBlock: 'latest',
+  }, function(error, event){
+    console.log(event);
+  })
+  this.setState({ loading: false, hasApplied: true });
+}
 
 fileSelectedHandler = async (event) => {
   event.preventDefault();
@@ -62,7 +80,7 @@ fileSelectedHandler = async (event) => {
   reader.onloadend = async () => {
     var buf = Buffer(reader.result);
     await ipfs.add(buf, (err, ipfsHash) => {
-    this.setState({ photoHash: ipfsHash[0].hash});
+    this.setState({ photoHash: ipfsHash[0].hash });
     console.log(this.state.photoHash);
   })
 }
@@ -73,6 +91,22 @@ fileSelectedHandler = async (event) => {
 
   render() {
     const { ipfsHash, photoHash } = this.state;
+    if(this.state.hasApplied === true){
+      return(
+        <div>
+      <h1>Thank you for Appying for a</h1>
+      <h2>CryptoPatent IdeaBlock!</h2>
+      <h3>Yor idea is now pending community approval!</h3>
+        </div>
+      );
+    } else {
+    if(this.state.loading === true){
+      return(
+        <div className="Loader">
+        <img src={Loader} alt ="Loader" className="Loader" />
+        </div>
+      );
+    } else {
     return (
       <div className='container'>
       <div>
@@ -136,5 +170,6 @@ fileSelectedHandler = async (event) => {
     );
   }
 }
-
+}
+}
 export default IdeaBlockApplication;

@@ -9,6 +9,9 @@ class Home extends Component {
         <div>
           <h2 style={{ color: "gold"}}>Welcome to DecentraCorp</h2>
         <br/>
+        <p style={{ fontSize: '12px', color:'red'}}>
+          If you just purchased a Membership please reload the page!
+        </p>
         <p>DecentraCorp is the world's first Decentralized Autonomous Corporation
         where the CEO’s and shareholders are the same people who build and maintain
         the machinery.</p>

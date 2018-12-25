@@ -13,16 +13,13 @@ contract CryptoPatentBlockchain is UseLogic {
 ///@notice constructor is used to set up the CryptoPatent Blockchain
 ///@dev this contract is fed the addresses of the other contracts through truffle magic
 ///@dev the address that launches the contracts is set as the first DecentraCorp Member
-  constructor(address _dcpoa, address _IDC, address _IBG, address _RBG, address _GUBG) public {
+  constructor(address _dcpoa, address _IDC, address _CPBG) public {
     globalBlockHalfTime = now;
-    members[msg.sender] = true;
-    memberCount++;
-    memberRank[msg.sender]++;
     DCPoA = DecentraCorpPoA(_dcpoa);
     IDC = IdeaCoin(_IDC);
-    IBG = IdeaBlockGenerator(_IBG);
-    RBG = ReplicationBlockGenerator(_RBG);
-    GUBG = GlobalUseBlockGenerator(_GUBG);
+    CPBG = CryptoPatentBlockGenerator(_CPBG);
+
+
   }
 
 ///@notice proposeIdea is used to allow ANYONE to petition the community for idea approval
@@ -42,7 +39,7 @@ contract CryptoPatentBlockchain is UseLogic {
 ///@notice set_Quorum is an internal function used by proposal vote counts to see if the community approves
 ///@dev quorum is set to 60%
 function set_Quorum() internal  {
-        uint maxQuorum = getMemberCount();
+        uint maxQuorum = DCPoA.getMemberCount();
         uint tenthQuorum = (maxQuorum / 10);
         uint  halfQuorum = (maxQuorum / 2);
         minimumQuorum = (halfQuorum + tenthQuorum);
@@ -50,8 +47,7 @@ function set_Quorum() internal  {
 
 ///@notice ideaBlockVote counts the votes and executes and Idea Proposal, adding an idea to the cryptopatent Blockchain
 ///@dev seperate but similiar structures will need to be implemented in the future to stream line voting on different subjects(beta)
-function ideaBlockVote(uint _ideaProposalID, uint _globalUseBlockAmount,uint _miningTime, uint _royalty, address _inventor) public {
-        require(checkIfMember(msg.sender) == true);
+function ideaBlockVote(uint _ideaProposalID, uint _globalUseBlockAmount,uint _miningTime, uint _royalty, address _inventor, address _invention) internal {
         IdeaProposal storage p = proposals[_ideaProposalID];
              // sets p equal to the specific proposalNumber
         require(!p.executed);
@@ -79,7 +75,7 @@ function ideaBlockVote(uint _ideaProposalID, uint _globalUseBlockAmount,uint _mi
                  // Proposal passed; execute the transaction
                p.executed = true;
                p.proposalPassed = true;
-               generateIdeaBlock( _ideahash,  _globalUseBlockAmount, _miningTime, _royalty, _inventor);
+               generateIdeaBlock( _ideahash,  _globalUseBlockAmount, _miningTime, _royalty, _inventor, _invention);
                emit IdeaApproved( _ideahash);
            } else {
                  // Proposal failed
@@ -90,7 +86,12 @@ function ideaBlockVote(uint _ideaProposalID, uint _globalUseBlockAmount,uint _mi
 ///@dev onlyMember modifier ensures votes are only cast by DC Members
  function vote(
         uint _ideaProposalID,
-        bool supportsProposal
+        bool supportsProposal,
+        uint _globalUseBlockAmount,
+        uint _miningTime,
+        uint _royalty,
+        address _inventor,
+        address _invention
     )
         public
         onlyMember
@@ -105,6 +106,10 @@ function ideaBlockVote(uint _ideaProposalID, uint _globalUseBlockAmount,uint _mi
         p.voted[msg.sender] = true;
         p.numberOfVotes = voteID++;
         emit Voted(msg.sender, supportsProposal);
+        set_Quorum();
+        if(p.numberOfVotes >= minimumQuorum) {
+          ideaBlockVote(_ideaProposalID, _globalUseBlockAmount,_miningTime, _royalty, _inventor, _invention);
+        }
         return voteID;
     }
 // allows members to vote on proposals

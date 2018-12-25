@@ -25,7 +25,7 @@ contract ProofOfPurchaseToken is ERC721Token("Proof Of Purchase Token", "PoPT"),
 @param _itemid is always set to the newly incremented globalItemCount
 @param IPFStoID is used to allow a backwards itemId look up from an items associated IPFS hash
 */
-  function mintItemToken( string _itemIPFSHash) external onlyOwner {
+  function _mintItemToken( string _itemIPFSHash) external onlyOwner {
   globalItemCount++;
   uint _itemId = globalItemCount;
   _mint(msg.sender, _itemId);

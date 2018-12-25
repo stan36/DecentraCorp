@@ -8,6 +8,7 @@ var ChaosCoin = artifacts.require("./ChaosCasino/ChaosCoin.sol");
 var ChaosCasino = artifacts.require("./ChaosCasino/ChaosCasino.sol");
 var PoPT = artifacts.require("./DC_Depot/ProofOfPurchaseToken.sol");
 var Depot = artifacts.require("./DC_Depot/DC_Depot.sol");
+var BlockGen = artifacts.require("./CryptoPatent/CryptoPatentBlockGenerator.sol");
 
 
 
@@ -15,22 +16,11 @@ module.exports = (deployer) => {
   var  b, cp;
  deployer.then(function(){
    return CryptoPatent.deployed();
-  }).then(function(instance) {
-    cp = instance;
-    return IdeaBlockGen.deployed();
-  }).then(function(instance) {
-    b = instance;
-    return b.transferOwnership(CryptoPatent.address);
   }).then(function() {
-    return RepBlockGen.deployed();
+    return BlockGen.deployed();
   }).then(function(instance) {
     b = instance;
-    return b.transferOwnership(CryptoPatent.address);
-  }).then(function() {
-    return UseBlockGen.deployed();
-  }).then(function(instance) {
-    b = instance;
-    return b.transferOwnership(CryptoPatent.address);
+    return b.transferOwnership(DCPoA.address);
   }).then(function() {
     return IdeaCoin.deployed();
   }).then(function(instance) {
@@ -45,17 +35,22 @@ module.exports = (deployer) => {
     return ChaosCoin.deployed();
   }).then(function(instance) {
     b = instance;
-    return b.transferOwnership(ChaosCasino.address);
+    return b.transferOwnership(DCPoA.address);
   }).then(function(){
     return PoPT.deployed();
   }).then(function(instance) {
     b = instance;
-    return b.transferOwnership(Depot.address);
+    return b.transferOwnership(DCPoA.address);
   }).then(function() {
     return DCPoA.deployed();
   }).then(function(instance) {
     b = instance;
     return b.addApprovedContract(Depot.address);
+  }).then(function() {
+    return DCPoA.deployed();
+  }).then(function(instance) {
+    b = instance;
+    return b.addApprovedContract(ChaosCasino.address);
   })
 
 };

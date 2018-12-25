@@ -124,6 +124,13 @@ html {
         flex-wrap: wrap;
     }
 
+  .Loader {
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
 
 
     @media only screen and (max-width: 720px) {

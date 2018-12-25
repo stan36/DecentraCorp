@@ -16,15 +16,12 @@ contract RBLogic is IBLogic{
 ///@dev it also adds the replicator as a member of DecentraCorp
 ///@dev finally, this contract calls the Proof of Replication Ownership contract and mints a PoRO token to the msg.sender
 function generateReplicationBlock(uint _ideaId, address _repAdd) public onlyMember {
-globalRepCount++;
+require(checkIfMember(msg.sender) == true);
 require(IDC.balanceOf(msg.sender) >= repStake);
-DCPoA.proxyBurn(msg.sender, repStake);
-if(members[msg.sender] == false){
-  members[msg.sender] = true;
-
-}
-RBG.replicationBlock( _ideaId,  _repAdd, msg.sender);
-memberRank[msg.sender]++;
+DCPoA.proxyIDCBurn(msg.sender, repStake);
+globalRepCount++;
+DCPoA.replicationBlock( _ideaId,  _repAdd, msg.sender);
+emit NewReplication(_repAdd);
   }
 ///@notice changeStakeAmount will allow the community to change the stake amount required to stake a replication if it sees fit through a voted
 ///@dev this new amount must account for 18 decimals

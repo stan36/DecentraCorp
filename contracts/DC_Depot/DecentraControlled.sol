@@ -7,6 +7,7 @@ import 'zeppelin-solidity/contracts/math/SafeMath.sol';
 contract DecentraCorpPoA {
   function proxyMint(address _add, uint _amount) external;
   function proxyBurn(address _add, uint _amount) external;
+  function mintItemToken( string _itemIPFSHash) external;
 }
 /// DecentraCorp PoA inteface
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -18,7 +19,6 @@ contract IdeaCoin {
 /////////////////////////////////////////////////////////////////////////////////////////////
 contract ProofOfPurchaseToken{
     function safeTransferFrom(address _from, address _to, uint256 _tokenId) public;
-    function mintItemToken( string _itemIPFSHash) external;
     function balanceOf(address _owner) public view returns (uint256);
     function updatePOPTokenIPFS(uint _itemId, string _newIPFSHash) public;
     function ipfsLookUp(string _ipfsHash) public view returns(uint);

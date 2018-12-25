@@ -22,26 +22,24 @@ function generateIdeaBlock(
   uint  _globalUseBlockAmount,
   uint _miningTime,
   uint _royalty,
-  address _inventor
+  address _inventor,
+  address _invention
   )
   public
   onlyOwner
   {
 
-    IBG._generateIdeaBlock( _ideaIPFS, _globalUseBlockAmount, _miningTime, _royalty,  _inventor);
+    DCPoA.generateIdeaBlock( _ideaIPFS, _globalUseBlockAmount, _miningTime, _royalty,  _inventor);
 //generates IdeaBlock ERC721 Token
     globalIdeaCount++;
-    if(members[_inventor] != true){
-//increments IdeaCount
-    members[_inventor] = true;
-//adds the inventor as a member of DecentraCorp
-    memberCount++;
-//increases global member count
+    if(checkIfMember(_inventor) != true){
+      DCPoA._addMember(_inventor);
 }
+inventions.push(_invention);
     ideaBlockTimeLord();
-    DCPoA.proxyMint( _inventor, ideaBlockReward);
+    DCPoA.proxyIDCMint( _inventor, ideaBlockReward);
 //mints 1000 IDC and sends it to the inventor
-    memberRank[_inventor]++;
+    DCPoA.increaseMemRank(_inventor);
     getTokens[_inventor].push(globalIdeaCount);
   }
 
