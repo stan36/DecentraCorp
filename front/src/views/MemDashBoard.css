@@ -1,0 +1,70 @@
+
+
+body {
+  background-color: #0c2033;
+  font-family: 'Open Sans', sans-serif;
+  color: #fff;
+  letter-spacing: .5px;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0 auto;
+  width: 1060px;
+  padding: 0px;
+}
+
+.MemDash {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-direction: row;
+
+}
+
+
+.container {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: row;
+}
+
+.ProfileInfo {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.memberPhoto {
+  max-width: 40%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Profile{
+  max-width: 40%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  font-size: 20px;
+}
+p {
+  font-size: 20px;
+}
+.DCWallet {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+}

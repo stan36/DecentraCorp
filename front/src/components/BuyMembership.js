@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import web3 from '../utils/web3';
+import ipfs from '../utils/IPFS_util';
 import _CryptoPatentBlockchain from '../ethereum/CryptoPatent';
+import _DecentraCorp from '../ethereum/DecentraCorp';
 import { Redirect } from 'react-router-dom';
 import Loader from "../images/75.gif";
 
@@ -14,9 +16,11 @@ class BuyMembership extends Component {
       IsMember: false,
       loading: false,
       txHahs: null,
-      toDashboard: false
+      toDashboard: false,
+      ipfsHash: '',
+      photoHash: ''
      }
-this.onReturn = this.onReturn.bind(this);
+
 
   }
 
@@ -27,31 +31,51 @@ this.onReturn = this.onReturn.bind(this);
      this.setState({ userAccount, loading: false});
    }
 
-   onSubmit = async (event)=>{
-       event.preventDefault();
-       this.setState({ loading: true})
-       await _CryptoPatentBlockchain.methods.buyMembership().send({
-         from: this.state.userAccount,
-          gas: '3000000',
-					value: web3.utils.toWei(String(1), 'ether')
-        }, (error, txHash) => {
-        this.setState({txHash});
-            });
-            this.onReturn();
+
+
+
+
+ handleSubmit = async (event) => {
+   event.preventDefault();
+   this.setState({ loading : true });
+   const formData = new FormData(event.target);
+   let jsonObject = {
+       photo: this.state.photoHash
    };
 
- onReturn = async => {
-   _CryptoPatentBlockchain.once( 'NewMember', {
-     filter: {member: this.state.userAccount},
-     fromBlock: '0',
-     toBlock: 'latest',
-   }, function(error, event){
-     console.log(event);
-   })
-   this.setState({ loading: false, toDashboard: true });
- }
+     for (const [key, value]  of formData.entries()) {
+         jsonObject[key] = value;
+         }
+         console.log(jsonObject);
+
+   var buf = Buffer.from(JSON.stringify(jsonObject));
+   await ipfs.add(buf, (err, ipfsHash) => {
+   this.setState({ ipfsHash: ipfsHash[0].hash});
+  _CryptoPatentBlockchain.methods.buyMembership(this.state.ipfsHash)
+  .send({from : this.state.userAccount,
+    gas: '3000000',
+    value: web3.utils.toWei(String(1), 'ether')
+  }, (error, transactionHash) => {
+   this.setState({transactionHash, loading: false});
+       });
+     })
 
 
+};
+
+fileSelectedHandler = async (event) => {
+  event.preventDefault();
+  const file = event.target.files[0];
+  const reader = new window.FileReader();
+  reader.readAsArrayBuffer(file);
+  reader.onloadend = async () => {
+    var buf = Buffer(reader.result);
+    await ipfs.add(buf, (err, ipfsHash) => {
+    this.setState({ photoHash: ipfsHash[0].hash });
+    console.log(this.state.photoHash);
+  })
+}
+};
 
   render() {
     if (this.state.toDashboard === true) {
@@ -77,13 +101,22 @@ this.onReturn = this.onReturn.bind(this);
         <p>to its full capabilities, buying a membership now</p>
         <p style={{  color: "red"}}>DOES NOT</p>
         <p>Guaruntee anytype of membership when Decentracorp Goes Live!</p>
-       <form onSubmit={this.onSubmit}>
-    <p>To get early (alpha)access membership to DecentraCorp</p>
+          <p>To get early (alpha)access membership to DecentraCorp</p>
+          <br/>
+          <p> which includes 10,000 IdeaCoin and a Staked Replication Account, fill out the form below:</p>
+          <label htmlFor="details">Upload Profile Picture: </label>
+          <input className='photo' id="photo" name="photo" type='file' onChange={this.fileSelectedHandler}/>
+          <br/>
+       <form onSubmit={this.handleSubmit}>
+    <label htmlFor="name">Applicant Name: </label>
     <br/>
-    <p> which includes 10,000 IdeaCoin and a Staked Replication Account Click Here:</p>
-    <div style={{ textAlign: "center"}}>
+    <input id="username" name="username" type="text" placeholder = 'Optional'/>
+    <br/>
+      <label htmlFor="address">Main Wallet address: </label>
+      <br/>
+      <input id="Address" name="Address" type="text" placeholder = 'Address that will hold the patent'/>
+      <br/>
     <button>Buy Membership Now(1 Ropsten Test Ether)</button>
-    </div>
   </form>
      </div>
     );

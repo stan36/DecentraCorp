@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import web3 from '../utils/web3';
+import ipfs from '../utils/IPFS_util';
 import _IdeaCoin from '../ethereum/IdeaCoin';
 import _CryptoPatentBlockchain from '../ethereum/CryptoPatent';
+import _DecentraCorp from '../ethereum/DecentraCorp';
 import _ChaosCoin from '../ethereum/ChaosCoin';
-import './DCWallet.css'
+import './MemDashBoard.css'
 
-class DcWallet extends Component {
+class MemDashBoard extends Component {
 
   constructor(props){
     super(props);
@@ -19,7 +21,11 @@ class DcWallet extends Component {
        transferamount: null,
        transfertoadd: '',
        ownedIdeas: [],
-       chaosBalance: ''
+       chaosBalance: '',
+       userRank: null,
+       facilityLevel: null,
+       Json: {},
+       profileHash: ""
      }
 
 
@@ -36,7 +42,11 @@ class DcWallet extends Component {
     const Ideas = await _CryptoPatentBlockchain.methods.getIdeasOwner().call();
     const chaostoken = await _ChaosCoin.methods.balanceOf(userAccount).call();
     const chaosBalance = web3.utils.fromWei(chaostoken);
-    this.setState({tokenName, symbol, userBalance, userAccount, ownedIdeas: Ideas, chaosBalance});
+    const userRank =  await _DecentraCorp.methods.getRank(userAccount).call();
+    const facilityLevel = await _DecentraCorp.methods.getLevel(userAccount).call();
+    const profileHash = await  _DecentraCorp.methods.getProfileHahs(userAccount).call();
+    const Json =JSON.parse(await ipfs.cat(profileHash));
+    this.setState({tokenName, symbol, userBalance, userAccount, ownedIdeas: Ideas, chaosBalance, userRank, facilityLevel, profileHash, Json});
     console.log(symbol, this.state.ownedIdeas);
   }
 
@@ -54,36 +64,48 @@ class DcWallet extends Component {
 
 
   render() {
-
+    const { Json, userBalance, symbol, chaosBalance, message, profileHash, userRank, facilityLevel } =this.state;
     return (
-      <div className='DCWallet'>
-        <div className='container'>
-          <h1> DecentraCorp Wallet </h1>
-          <p> Token Name: </p>
-          <p> {this.state.tokenName}</p>
-          <br/>
-          <p> Token Symbol: </p>
-          <p>{this.state.symbol}</p>
+      <div className='container'>
+        <h1> DecentraCorp </h1>
+        <h2>Member DashBoard</h2>
+      <div className='MemDash'>
+        <div className='ProfileInfo'>
+          <img src={"https://ipfs.io/ipfs/" + Json.photo } alt ="No Image" className="memberPhoto"/>
+          <h3>{Json.username}</h3>
+          <p>Your Profile Hash is:</p>
+          <p>{profileHash}</p>
+          </div>
+          <div className='Profile'>
+              <br/>
+              <p>Your Current Account Address is: </p>
+              <p>{Json.Address}</p>
+              <br/>
+              <p>Your Membership ranking is: </p>
+              <p>{userRank}</p>
+              <br/>
+              <p>Your Facility Rating is: </p>
+              <p>{facilityLevel}</p>
+          </div>
+          <div className='DCWallet'>
           <br/>
           <p> Your IdeaCoin Balance Is: </p>
-          <p> {this.state.userBalance} {this.state.symbol}</p>
+          <p> {userBalance} {symbol}</p>
           <br/>
           <p> Your ChaosCoin Balance Is: </p>
-          <p> {this.state.chaosBalance} ChaosCoin</p>
+          <p> {chaosBalance} ChaosCoin</p>
           <br/>
-          <p>Your Account Address is: </p>
-          <p>{this.state.userAccount}</p>
           <hr/>
           <form onSubmit={this.onSubmit}>
             <h3>Transfer IdeaCoin</h3>
             <div>
               <input
-                placeholder = 'Amount to Transfer'
+                placeholder = 'Amount of IDC to Transfer'
                 transferamount = {this.state.transferamount}
                 onChange = { event => this.setState({transferamount : event.target.value})}
               />
               <input
-                placeholder = 'Address to Transfer to'
+                placeholder = 'Address of IDC to Transfer to'
                 transfertoadd = {this.state.transfertoadd}
                 onChange = { event => this.setState({transfertoadd : event.target.value})}
               />
@@ -91,11 +113,12 @@ class DcWallet extends Component {
             </div>
           </form>
           <hr/>
-          <h3>{this.state.message}</h3>
+          <h3>{message}</h3>
+          </div>
         </div>
 </div>
     );
   }
 }
 
-export default DcWallet;
+export default MemDashBoard;

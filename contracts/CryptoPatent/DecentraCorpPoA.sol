@@ -50,6 +50,7 @@ contract CryptoPatentBlockGenerator {
    mapping (address =>bool) members;
    mapping(address => uint) memberRank;
    mapping(address => uint) facilityLevel;
+   mapping(address => string) memberProfileHash;
 ///@param approvedContracts is a mappiung of contracts alloud to call function on other
 
    mapping(address => bool) approvedContracts;
@@ -68,7 +69,7 @@ contract CryptoPatentBlockGenerator {
      members[msg.sender] = true;
      memberCount++;
      memberRank[msg.sender]++;
-     facilityLevel[msg.sender].add(100);
+     facilityLevel[msg.sender] += 100;
    }
 
 //@addApprovedContract allows another contract to call functions
@@ -134,6 +135,18 @@ function mintItemToken( string _itemIPFSHash) external onlyApprovedAdd {
       memberRank[_add]++;
     }
     function levelUpFacility(address _facAdd) public onlyApprovedAdd {
-      facilityLevel[_facAdd].add(1);
+      facilityLevel[_facAdd]++;
+    }
+    function getRank(address _add) public view returns(uint) {
+      return memberRank[_add];
+    }
+    function getLevel(address _add) public view returns(uint) {
+      return facilityLevel[_add];
+    }
+    function setProfileHash(address _add, string _hash) public onlyApprovedAdd {
+      memberProfileHash[_add] = _hash;
+    }
+    function getProfileHahs(address _add) public view returns(string) {
+      return memberProfileHash[_add];
     }
  }

@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 import web3 from './utils/web3';
-import _CryptoPatentBlockchain from './ethereum/CryptoPatent';
 import _DecentraCorp from './ethereum/DecentraCorp';
 import _IdeaCoin from './ethereum/IdeaCoin';
 import { NavLink, Switch, Route } from 'react-router-dom';
 import Home from './views/Home';
-import DCWallet from './views/DCWallet';
+import MemDashBoard from './views/MemDashBoard';
 import IdeaBlockApplication from './views/IdeaBlockApplication';
 import BuyMembership from './components/BuyMembership';
 import IdeaVote from './views/IdeaVote';
@@ -54,12 +53,6 @@ class App extends Component {
       const userAccount = accounts[0];
       console.log(userAccount);
       if(userAccount !== undefined){
-        var account = web3.eth.accounts[0];
-        setInterval(function () {
-            if (web3.eth.accounts[0] !== account) {
-              window.location.reload();
-  }
-}, 100);
 
         const isMember = await _DecentraCorp.methods._checkIfMember(userAccount).call();
         const memberCount = await _DecentraCorp.methods.getMemberCount().call();
@@ -145,7 +138,7 @@ return [
   <li key={7}><NavLink to='/IdeaBlockApplication'>IdeaBlock Application</NavLink></li>
   <li key={8}><NavLink to='/ChaosCasino'>ChaosCasino</NavLink></li>
   <li key={9}><NavLink to='/IdeaVote'>IdeaBlock Vote</NavLink></li>
-  <li key={10}><NavLink to='/wallet'>DC Wallet</NavLink></li>
+  <li key={10}><NavLink to='/MemDashBoard'>DashBoard</NavLink></li>
 </ul>
 </div>
 </nav>
@@ -220,7 +213,7 @@ return [
 <li key={7}><NavLink to='/IdeaBlockApplication'><button onClick={this.closeOnClick.bind(this)}>IdeaBlock Application</button></NavLink></li>
 <li key={8}><NavLink to='/ChaosCasino'><button onClick={this.closeOnClick.bind(this)}>ChaosCasino</button></NavLink></li>
 <li key={9}><NavLink to='/IdeaVote'><button onClick={this.closeOnClick.bind(this)}>IdeaBlock Vote</button></NavLink></li>
-<li key={10}><NavLink to='/wallet'><button onClick={this.closeOnClick.bind(this)}>DC Wallet</button></NavLink></li>
+<li key={10}><NavLink to='/MemDashBoard'><button onClick={this.closeOnClick.bind(this)}>DashBoard</button></NavLink></li>
 </ul>
 </div>
 </nav>
@@ -288,7 +281,7 @@ return [
       </div>
         <Switch>
           <Route exact path='/' component={Home}></Route>
-          <Route exact path='/wallet' component={DCWallet}></Route>
+          <Route exact path='/MemDashBoard' component={MemDashBoard}></Route>
           <Route exact path='/IdeaBlockApplication' component={IdeaBlockApplication}></Route>
           <Route exact path='/IdeaVote' component={IdeaVote}></Route>
           <Route exact path='/ChaosCasino' component={ChaosCasino}></Route>

@@ -105,6 +105,7 @@ function ideaBlockVote(uint _ideaProposalID, uint _globalUseBlockAmount,uint _mi
         p.votes[voteID] = Vote({inSupport: supportsProposal, voter: msg.sender});
         p.voted[msg.sender] = true;
         p.numberOfVotes = voteID++;
+        DCPoA.increaseMemRank(msg.sender);
         emit Voted(msg.sender, supportsProposal);
         set_Quorum();
         if(p.numberOfVotes >= minimumQuorum) {

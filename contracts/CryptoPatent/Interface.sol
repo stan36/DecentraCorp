@@ -19,6 +19,7 @@ contract DecentraCorpPoA {
   function getMemberCount() public view returns(uint);
   function increaseMemRank(address _add) external;
   function levelUpFacility(address _facAdd) public;
+  function setProfileHash(address _add, string _hash) public;
 }
 /// DecentraCorp PoA inteface
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -147,10 +148,11 @@ struct IdeaProposal {
 
 ///@notice buyMembership function allows for the purchase of a membership for 6 months after official launch.
 ///@dev mints the user 10,000 IDC
-  function buyMembership() public payable{
+  function buyMembership(string _hash) public payable{
     require(now <= globalBlockHalfTime + 15780000 seconds);
     require(msg.value >= 1 ether);
     addMember(msg.sender);
+    DCPoA.setProfileHash(msg.sender, _hash);
     DCPoA.proxyIDCMint(msg.sender, 10000000000000000000000);
     emit NewMember(msg.sender);
   }
@@ -191,10 +193,11 @@ function checkIfMember(address _member) public view returns(bool) {
 ///@notice stakeReplicatorWallet function allows for the activation of a replication wallet by
 ///        burning IdeaCoin from the msg.sender
 ///@dev stakeReplicatorWallet costs 100 IDC and burns them from existence
-  function stakeReplicatorWallet() public {
+  function stakeReplicatorWallet(string _hash) public {
     require(IDC.balanceOf(msg.sender) >= 100000000000000000000);
     DCPoA.proxyIDCBurn(msg.sender, 100000000000000000000);
     DCPoA._addMember(msg.sender);
+    DCPoA.setProfileHash(msg.sender, _hash);
     emit NewMember(msg.sender);
   }
 
