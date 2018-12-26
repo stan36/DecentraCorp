@@ -69,32 +69,31 @@ class MemDashBoard extends Component {
       <div className='container'>
         <h1> DecentraCorp </h1>
         <h2>Member DashBoard</h2>
+        <hr/>
       <div className='MemDash'>
         <div className='ProfileInfo'>
           <img src={"https://ipfs.io/ipfs/" + Json.photo } alt ="No Image" className="memberPhoto"/>
+          <hr/>
           <h3>{Json.username}</h3>
+          <hr/>
           <p>Your Profile Hash is:</p>
           <p>{profileHash}</p>
+          <hr/>
           </div>
           <div className='Profile'>
               <br/>
               <p>Your Current Account Address is: </p>
               <p>{Json.Address}</p>
-              <br/>
-              <p>Your Membership ranking is: </p>
-              <p>{userRank}</p>
-              <br/>
-              <p>Your Facility Rating is: </p>
-              <p>{facilityLevel}</p>
+              <hr/>
+              <p>Membership Level: {userRank}</p>
+              <hr/>
+              <p>Facility Level is: {facilityLevel}</p>
+              <hr/>
           </div>
           <div className='DCWallet'>
-          <br/>
-          <p> Your IdeaCoin Balance Is: </p>
-          <p> {userBalance} {symbol}</p>
-          <br/>
-          <p> Your ChaosCoin Balance Is: </p>
-          <p> {chaosBalance} ChaosCoin</p>
-          <br/>
+          <p> Your IdeaCoin Balance Is: {userBalance} {symbol}</p>
+          <hr/>
+          <p> Your ChaosCoin Balance Is: {chaosBalance} ChaosCoin</p>
           <hr/>
           <form onSubmit={this.onSubmit}>
             <h3>Transfer IdeaCoin</h3>

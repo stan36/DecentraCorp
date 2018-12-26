@@ -8,6 +8,8 @@ contract DecentraCorpPoA {
   function proxyMint(address _add, uint _amount) external;
   function proxyBurn(address _add, uint _amount) external;
   function mintItemToken( string _itemIPFSHash) external;
+  function getLevel(address _add) public view returns(uint);
+  function getProfileHahs(address _add) public view returns(string);
 }
 /// DecentraCorp PoA inteface
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -36,6 +38,8 @@ contract DecentraControlled is Ownable {
   uint public globalEscrowCount = 0;
   uint public _IDC_PriceMod = 10;
   uint public _DecentraCorpFee = 0.001 ether;
+
+
 
 
 

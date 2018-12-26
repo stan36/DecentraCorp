@@ -4,8 +4,8 @@ import './DCD_Escrow.sol';
 
 contract DCD_Confirmation is DCD_Escrow  {
 
-function ConfirmItemReciept(uint _escrowId,   string _itemIPFSHash) public onlyOwner {
-
+function ConfirmItemReciept(uint _escrowId,   string _itemIPFSHash) public  {
+  require(DCPoA.getLevel(msg.sender) >= 100);
 Escrow memory escrow = itemInEscrow[_escrowId];
 
   bool _payedInIDC = escrow.PayedInIDC;
@@ -36,13 +36,11 @@ if(!_payedInIDC) {
   uint _tokenId = PoPT.ipfsLookUp(_itemIPFSHash);
   PoPT.safeTransferFrom(this, _buyer, _tokenId);
   decentraCorp.proxyMint(_buyer, _IDCBuyerMultiplier);
-
   decentraCorp.proxyMint(_seller, _IDCSellerMultiplier);
-
-
 }
 
-function releaseFundsBackToBuyer(uint _escrowId) public onlyOwner {
+function releaseFundsBackToBuyer(uint _escrowId) public  {
+  require(DCPoA.getLevel(msg.sender) >= 100);
   Escrow memory escrow = itemInEscrow[ _escrowId];
   bool _payedInIDC = escrow.PayedInIDC;
   address _buyer = escrow.buyer;

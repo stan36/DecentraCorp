@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import web3 from '../utils/web3';
 import ipfs from '../utils/IPFS_util';
 import _CryptoPatentBlockchain from '../ethereum/CryptoPatent';
@@ -18,7 +19,8 @@ class IdeaBlockApplication extends Component {
       buffer: '',
       photoHash: '',
       loading: false,
-      hasApplied: false
+      hasApplied: false,
+      home: false
      }
 
 
@@ -55,6 +57,7 @@ class IdeaBlockApplication extends Component {
     this.setState({ ipfsHash: ipfsHash[0].hash});
     _CryptoPatentBlockchain.methods.proposeIdea(this.state.ipfsHash).send({from : this.state.applicantAddress}, (error, transactionHash) => {
     this.setState({transactionHash, message: 'Your Idea Has Been Successfully submitted to the CryptoPatent Blockchain! Your transaction hash is:'});
+    this.onReturn();
         });
       })
 
@@ -62,14 +65,20 @@ class IdeaBlockApplication extends Component {
 
 
 onReturn = async => {
+
   _CryptoPatentBlockchain.once( 'IdeaProposed', {
     filter: {IdeaHash: this.state.ipfsHash},
     fromBlock: '0',
     toBlock: 'latest',
-  }, function(error, event){
+  }, (error, event) => {
     console.log(event);
+    this.stateSetter();
   })
-  this.setState({ loading: false, hasApplied: true });
+
+}
+
+stateSetter = async => {
+  this.setState({  loading: false, hasApplied: true });
 }
 
 fileSelectedHandler = async (event) => {
@@ -86,17 +95,23 @@ fileSelectedHandler = async (event) => {
 }
 };
 
-
+goHome = () => {
+  this.setState({ home: true})
+}
 
 
   render() {
     const { ipfsHash, photoHash } = this.state;
+    if (this.state.home === true) {
+    return <Redirect to='/' />
+   }else{
     if(this.state.hasApplied === true){
       return(
         <div>
       <h1>Thank you for Appying for a</h1>
       <h2>CryptoPatent IdeaBlock!</h2>
       <h3>Yor idea is now pending community approval!</h3>
+      <button onClick={this.goHome}>Click Here to go home</button>
         </div>
       );
     } else {
@@ -174,6 +189,7 @@ fileSelectedHandler = async (event) => {
      </div>
     );
   }
+}
 }
 }
 }

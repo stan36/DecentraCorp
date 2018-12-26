@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import web3 from '../utils/web3';
 import ipfs from '../utils/IPFS_util';
 import _CryptoPatentBlockchain from '../ethereum/CryptoPatent';
-import _DecentraCorp from '../ethereum/DecentraCorp';
 import { Redirect } from 'react-router-dom';
 import Loader from "../images/75.gif";
 
@@ -18,7 +17,8 @@ class BuyMembership extends Component {
       txHahs: null,
       toDashboard: false,
       ipfsHash: '',
-      photoHash: ''
+      photoHash: '',
+      message: "",
      }
 
 
@@ -56,12 +56,28 @@ class BuyMembership extends Component {
     gas: '3000000',
     value: web3.utils.toWei(String(1), 'ether')
   }, (error, transactionHash) => {
-   this.setState({transactionHash, loading: false});
+   this.setState({transactionHash});
+   this.onReturn();
        });
      })
-
-
 };
+
+onReturn = async => {
+
+_CryptoPatentBlockchain.once( 'NewMember', {
+  filter: {member: this.state.userAccount},
+  fromBlock: '0',
+  toBlock: 'latest',
+}, (error, event) => {
+  console.log(event);
+  this.stateSetter();
+})
+
+}
+
+stateSetter = async => {
+  this.setState({  toDashboard: true });
+}
 
 fileSelectedHandler = async (event) => {
   event.preventDefault();
@@ -71,7 +87,7 @@ fileSelectedHandler = async (event) => {
   reader.onloadend = async () => {
     var buf = Buffer(reader.result);
     await ipfs.add(buf, (err, ipfsHash) => {
-    this.setState({ photoHash: ipfsHash[0].hash });
+    this.setState({ photoHash: ipfsHash[0].hash, message: 'upload complete!' });
     console.log(this.state.photoHash);
   })
 }
@@ -79,7 +95,7 @@ fileSelectedHandler = async (event) => {
 
   render() {
     if (this.state.toDashboard === true) {
-     return <Redirect to='/' />
+     return <Redirect to='/MemDashBoard' />
    }else{
     if(this.state.loading === true){
       return(
@@ -106,6 +122,7 @@ fileSelectedHandler = async (event) => {
           <p> which includes 10,000 IdeaCoin and a Staked Replication Account, fill out the form below:</p>
           <label htmlFor="details">Upload Profile Picture: </label>
           <input className='photo' id="photo" name="photo" type='file' onChange={this.fileSelectedHandler}/>
+          <p>{ this.state.message }</p>
           <br/>
        <form onSubmit={this.handleSubmit}>
     <label htmlFor="name">Applicant Name: </label>

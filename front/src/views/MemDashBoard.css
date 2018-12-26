@@ -68,3 +68,11 @@ p {
   width: 100%;
   flex-direction: column;
 }
+
+hr{
+  border: 0;
+  width: 80%;
+  color: #f00;
+  background-color: #f00;
+  height: 1px;
+}

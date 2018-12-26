@@ -45,12 +45,17 @@ class App extends Component {
       window.addEventListener('resize', this.handleResize.bind(this));
       this.setState({ loading: true });
       if (typeof window === 'undefined' && typeof window.web3 === 'undefined') {
-        alert('YOU ARE NOT CONNECTED TO WEB3! MOST FEATURES ON THIS WEBSITE REQUIRE WEB3 AND HAVE BEEN DISABLED! PLEASE INSTALL METAMASK FOR CHROME AND FIREFOX OR CIPHER ON MOBILE! IF YOU ARE USING A WEB3 ENABLED BROWSER AND STILL SEEING THIS MESSAGE YOU MAY NEED TO UNLOCK YOUR WALLET', null, null);
+        alert('YOU ARE NOT CONNECTED TO WEB3! MOST FEATURES ON THIS WEBSITE REQUIRE WEB3 AND HAVE BEEN DISABLED! PLEASE INSTALL METAMASK FOR CHROME AND FIREFOX OR CIPHER ON MOBILE!', null, null);
 
         this.setState({ loading: false });
       }
       const accounts = await web3.eth.getAccounts();
       const userAccount = accounts[0];
+      console.log(userAccount);
+      if(userAccount === undefined){
+        alert('MOST FEATURES ON THIS WEBSITE REQUIRE YOUR ACCOUNT TO BE UNLOCKED AND HAVE THERE FOR BEEN DISABLED! UNLOCK YOUR WALLET TO RE-ENABLE THEM!', null, null);
+
+      }
       console.log(userAccount);
       if(userAccount !== undefined){
 

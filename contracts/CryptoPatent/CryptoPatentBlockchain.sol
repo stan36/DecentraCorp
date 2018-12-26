@@ -115,4 +115,9 @@ function ideaBlockVote(uint _ideaProposalID, uint _globalUseBlockAmount,uint _mi
     }
 // allows members to vote on proposals
 
+function checkIfVoted(address _add, uint _ideaProposalID) public view returns(bool) {
+  IdeaProposal storage p = proposals[_ideaProposalID];
+  return p.voted[_add];
+}
+
 }

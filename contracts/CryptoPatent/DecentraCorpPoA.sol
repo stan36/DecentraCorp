@@ -69,6 +69,7 @@ contract CryptoPatentBlockGenerator {
      members[msg.sender] = true;
      memberCount++;
      memberRank[msg.sender]++;
+     memberProfileHash[msg.sender] = "QmVNfMcLqW4qCWKNHr7Q8x3HddFzGR1vXpEtCs8oMEJN92";
      facilityLevel[msg.sender] += 100;
    }
 
