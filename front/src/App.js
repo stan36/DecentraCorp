@@ -45,14 +45,31 @@ class App extends Component {
   async componentDidMount() {
       window.addEventListener('resize', this.handleResize.bind(this));
       this.setState({ loading: true });
+      if (typeof window === 'undefined' && typeof window.web3 === 'undefined') {
+        alert('YOU ARE NOT CONNECTED TO WEB3! MOST FEATURES ON THIS WEBSITE REQUIRE WEB3 AND HAVE BEEN DISABLED! PLEASE INSTALL METAMASK FOR CHROME AND FIREFOX OR CIPHER ON MOBILE! IF YOU ARE USING A WEB3 ENABLED BROWSER AND STILL SEEING THIS MESSAGE YOU MAY NEED TO UNLOCK YOUR WALLET', null, null);
+
+        this.setState({ loading: false });
+      }
       const accounts = await web3.eth.getAccounts();
       const userAccount = accounts[0];
-      const isMember = await _DecentraCorp.methods._checkIfMember(userAccount).call();
-      const memberCount = await _DecentraCorp.methods.getMemberCount().call();
-      const total = await _IdeaCoin.methods.totalSupply().call();
-      const idcTotal = web3.utils.fromWei(total);
-      this.setState({ accounts, isMember, memberCount, idcTotal, loading: false });
-      console.log(this.state.loading);
+      console.log(userAccount);
+      if(userAccount !== undefined){
+        var account = web3.eth.accounts[0];
+        setInterval(function () {
+            if (web3.eth.accounts[0] !== account) {
+              window.location.reload();
+  }
+}, 100);
+
+        const isMember = await _DecentraCorp.methods._checkIfMember(userAccount).call();
+        const memberCount = await _DecentraCorp.methods.getMemberCount().call();
+        const total = await _IdeaCoin.methods.totalSupply().call();
+        const idcTotal = web3.utils.fromWei(total);
+        this.setState({ accounts, isMember, memberCount, idcTotal, loading: false });
+        console.log(this.state.loading);
+
+      }
+      this.setState({ loading: false });
   }
 
   componentWillUnmount() {
@@ -78,10 +95,6 @@ class App extends Component {
       </div>
       </nav>
       <div>
-      <p style={{ color: "red"}}>YOU ARE NOT CONNECTED TO WEB3!</p>
-      <p style={{ color: "red"}}>MOST FEATURES ON THIS WEBSITE REQUIRE WEB3 AND HAVE BEEN DISABLED!</p>
-      <p style={{ color: "red"}}>THIS WEBSITE IS NOT MOBILE OPTIMIAZED AND IS BEST VIEWED ON A DESKTOP!</p>
-      <p style={{ color: "red"}}>PLEASE INSTALL METAMASK FOR CHROME AND FIREFOX OR CIPHER ON MOBILE!</p>
       </div>
       </div>
     ];
@@ -144,6 +157,7 @@ return [
 navigationLinksMobile() {
   const {  isMember, accounts } = this.state;
     if(accounts === null){
+
   return [
     <div>
     <nav>
@@ -158,10 +172,6 @@ navigationLinksMobile() {
     </div>
     </nav>
     <div>
-    <p style={{ color: "red"}}>YOU ARE NOT CONNECTED TO WEB3!</p>
-    <p style={{ color: "red"}}>MOST FEATURES ON THIS WEBSITE REQUIRE WEB3 AND HAVE BEEN DISABLED!</p>
-    <p style={{ color: "red"}}>THIS WEBSITE IS NOT MOBILE OPTIMIAZED AND IS BEST VIEWED ON A DESKTOP!</p>
-    <p style={{ color: "red"}}>PLEASE INSTALL METAMASK FOR CHROME AND FIREFOX OR CIPHER ON MOBILE!</p>
     </div>
     </div>
   ];
