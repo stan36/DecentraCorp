@@ -125,14 +125,22 @@ fileSelectedHandler = async (event) => {
           <p>{ this.state.message }</p>
           <br/>
        <form onSubmit={this.handleSubmit}>
-    <label htmlFor="name">Applicant Name: </label>
+    <label htmlFor="username">Your  Name: </label>
     <br/>
     <input id="username" name="username" type="text" placeholder = 'Optional'/>
     <br/>
-      <label htmlFor="address">Main Wallet address: </label>
+      <label htmlFor="Address">Facility Owners address: </label>
       <br/>
-      <input id="Address" name="Address" type="text" placeholder = 'Address that will hold the patent'/>
+      <input id="Address" name="Address" type="text" placeholder = 'Address of the facility owner'/>
       <br/>
+        <label htmlFor="FacilityName">Facility Name: </label>
+        <br/>
+        <input id="FacilityName" name="FacilityName" type="text" placeholder = 'The name of your Facility'/>
+        <br/>
+          <label htmlFor="PhysicalAddress">Facility Physical Address: </label>
+          <br/>
+          <input id="PhysicalAddress" name="PhysicalAddress" type="text" placeholder = 'Optional'/>
+          <br/>
     <button>Buy Membership Now(1 Ropsten Test Ether)</button>
   </form>
      </div>

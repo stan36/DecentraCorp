@@ -48,8 +48,8 @@ contract CryptoPatentBlockGenerator {
 
    uint public memberCount;
    mapping (address =>bool) members;
-   mapping(address => uint) memberRank;
-   mapping(address => uint) facilityLevel;
+   mapping(address => uint) memberLevel;
+   mapping(address => uint) facilityRank;
    mapping(address => string) memberProfileHash;
 ///@param approvedContracts is a mappiung of contracts alloud to call function on other
 
@@ -68,9 +68,9 @@ contract CryptoPatentBlockGenerator {
      PoPT = (_PoPT);
      members[msg.sender] = true;
      memberCount++;
-     memberRank[msg.sender]++;
-     memberProfileHash[msg.sender] = "QmVNfMcLqW4qCWKNHr7Q8x3HddFzGR1vXpEtCs8oMEJN92";
-     facilityLevel[msg.sender] += 100;
+     memberLevel[msg.sender]++;
+     memberProfileHash[msg.sender] = "QmexWoAsvZrTwJYgE4sfFK3pUi7XkVPSCcZqqfyFE4uyPN";
+     facilityRank[msg.sender] += 100;
    }
 
 //@addApprovedContract allows another contract to call functions
@@ -118,7 +118,8 @@ function mintItemToken( string _itemIPFSHash) external onlyApprovedAdd {
 ///@dev addMember takes in an address _mem, sets its membership to true and increments their rank by one
   function _addMember(address _mem) external onlyApprovedAdd {
       members[_mem] = true;
-      memberRank[_mem]++;
+      memberLevel[_mem]++;
+      facilityRank[_mem]++;
       memberCount++;
   }
   function _checkIfMember(address _member) public view returns(bool) {
@@ -132,22 +133,22 @@ function mintItemToken( string _itemIPFSHash) external onlyApprovedAdd {
       return memberCount;
     }
 
-    function increaseMemRank(address _add) external onlyApprovedAdd {
-      memberRank[_add]++;
+    function increaseMemLev(address _add) external onlyApprovedAdd {
+      memberLevel[_add]++;
     }
-    function levelUpFacility(address _facAdd) public onlyApprovedAdd {
-      facilityLevel[_facAdd]++;
-    }
-    function getRank(address _add) public view returns(uint) {
-      return memberRank[_add];
+    function increaseFacilityRank(address _facAdd) public onlyApprovedAdd {
+      facilityRank[_facAdd]++;
     }
     function getLevel(address _add) public view returns(uint) {
-      return facilityLevel[_add];
+      return memberLevel[_add];
+    }
+    function getRank(address _add) public view returns(uint) {
+      return facilityRank[_add];
     }
     function setProfileHash(address _add, string _hash) public onlyApprovedAdd {
       memberProfileHash[_add] = _hash;
     }
-    function getProfileHahs(address _add) public view returns(string) {
+    function getProfileHash(address _add) public view returns(string) {
       return memberProfileHash[_add];
     }
  }

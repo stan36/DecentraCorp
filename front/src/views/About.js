@@ -29,7 +29,7 @@ class About extends Component {
         </div>
         <div className='What_is_DAO'>
         <h3 style={{ color: "red" }}>
-        What is a Decentralized Autonomous Organization?
+        What is a Decentralized Autonomous Corporation?
         </h3>
         <br/>
         <p>
@@ -58,7 +58,9 @@ class About extends Component {
         DecentraCorp seeks to separate the two terms by first defining a Decentralized Autonomous
         Corporation as a DAO (as defined above). We then add to this definition that a DAC is a DAO that
         possesses a product or products; invented, manufactured, marketed and maintained by its community
-        members.
+        members. The Members of a DAC act as its employees as well as its CEO's. They manufacture and sell DecentraCorp products
+        and vote on DecentraCorp decisions. There is no top down structure and there is no one "in charge". Members are only ranked
+        by how much they participate within the company by inventing and replicating products(ideas) on the CryptoPatent Blockchain.
         </p>
         <br/>
         <h3 style={{ color: "silver"}}>
@@ -240,7 +242,7 @@ class About extends Component {
         <br/>
         <p>The DecentraCorp Core Development Team can be reached at:</p>
         <br/>
-        <p>decentracorp@protonmail.com</p>
+        <p>decentracorp@pm.me</p>
       </div>
     );
   }

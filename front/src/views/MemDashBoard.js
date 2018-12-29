@@ -44,7 +44,7 @@ class MemDashBoard extends Component {
     const chaosBalance = web3.utils.fromWei(chaostoken);
     const userRank =  await _DecentraCorp.methods.getRank(userAccount).call();
     const facilityLevel = await _DecentraCorp.methods.getLevel(userAccount).call();
-    const profileHash = await  _DecentraCorp.methods.getProfileHahs(userAccount).call();
+    const profileHash = await  _DecentraCorp.methods.getProfileHash(userAccount).call();
     const Json =JSON.parse(await ipfs.cat(profileHash));
     this.setState({tokenName, symbol, userBalance, userAccount, ownedIdeas: Ideas, chaosBalance, userRank, facilityLevel, profileHash, Json});
     console.log(symbol, this.state.ownedIdeas);
@@ -56,9 +56,7 @@ class MemDashBoard extends Component {
       const address = this.state.transfertoadd;
       const bAmount = this.state.transferamount;
       const amount = web3.utils.toWei(bAmount.toString());
-      this.setState({message: 'Approving through the IdeaCoin smart contract ..... Mining in process ! '});
       await _IdeaCoin.methods.transfer( address, amount).send({from: this.state.userAccount});
-      this.setState({message: 'Smart Contract approved the Transfer'});
   };
 
 
@@ -75,6 +73,7 @@ class MemDashBoard extends Component {
           <img src={"https://ipfs.io/ipfs/" + Json.photo } alt ="No Image" className="memberPhoto"/>
           <hr/>
           <h3>{Json.username}</h3>
+          <p>Membership Level: {userRank}</p>
           <hr/>
           <p>Your Profile Hash is:</p>
           <p>{profileHash}</p>
@@ -82,12 +81,12 @@ class MemDashBoard extends Component {
           </div>
           <div className='Profile'>
               <br/>
-              <p>Your Current Account Address is: </p>
+              <p>Your Profile Account Address is: </p>
               <p>{Json.Address}</p>
               <hr/>
-              <p>Membership Level: {userRank}</p>
-              <hr/>
-              <p>Facility Level is: {facilityLevel}</p>
+              <p>Facility: { Json.FacilityName }</p>
+              <p>Facility Level: {facilityLevel}</p>
+              <p>{ Json.PhysicalAddress }</p>
               <hr/>
           </div>
           <div className='DCWallet'>

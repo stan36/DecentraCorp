@@ -18,7 +18,7 @@ import RoadMap from './views/RoadMap';
 import ApprovedIdeas from "./views/ApprovedIdeas";
 import Donate from './views/Donate';
 import JoinCore from './views/JoinCore';
-
+import Footer from './components/Footer';
 
 
 
@@ -272,6 +272,7 @@ return [
 
 
   render() {
+
     if(this.state.loading === true){
       return(
         <div className="Loader">
@@ -298,6 +299,10 @@ return [
           <Route exact path='/JoinCore' component={JoinCore}></Route>
           <Route exact path='/BuyMembership' component={BuyMembership}></Route>
       </Switch>
+      <div>
+<Footer />
+</div>
+
       </div>
       );
     }

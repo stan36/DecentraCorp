@@ -43,7 +43,7 @@ function generateGlobalUseBlock(address _rep) internal {
 //mints the replication Owner his block reward
   DCPoA.proxyIDCMint(inventor, royalty);
 //mints royalties to the idea inventor
-DCPoA.increaseMemRank( repOwnerAddress);
+DCPoA.increaseMemLev( repOwnerAddress);
 
 }
 

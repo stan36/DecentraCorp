@@ -450,14 +450,14 @@
     "absolutePath": "/home/stan36/repos/DecentraCorp/contracts/CryptoPatent/IdeaCoin.sol",
     "exportedSymbols": {
       "IdeaCoin": [
-        1161
+        1166
       ]
     },
-    "id": 1162,
+    "id": 1167,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1130,
+        "id": 1135,
         "literals": [
           "solidity",
           "^",
@@ -470,10 +470,10 @@
       {
         "absolutePath": "zeppelin-solidity/contracts/token/ERC20/MintableToken.sol",
         "file": "zeppelin-solidity/contracts/token/ERC20/MintableToken.sol",
-        "id": 1131,
+        "id": 1136,
         "nodeType": "ImportDirective",
-        "scope": 1162,
-        "sourceUnit": 1770,
+        "scope": 1167,
+        "sourceUnit": 1775,
         "src": "25:67:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -481,10 +481,10 @@
       {
         "absolutePath": "zeppelin-solidity/contracts/token/ERC20/BurnableToken.sol",
         "file": "zeppelin-solidity/contracts/token/ERC20/BurnableToken.sol",
-        "id": 1132,
+        "id": 1137,
         "nodeType": "ImportDirective",
-        "scope": 1162,
-        "sourceUnit": 1589,
+        "scope": 1167,
+        "sourceUnit": 1594,
         "src": "93:67:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -495,17 +495,17 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1133,
+              "id": 1138,
               "name": "MintableToken",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1769,
+              "referencedDeclaration": 1774,
               "src": "488:13:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_MintableToken_$1769",
+                "typeIdentifier": "t_contract$_MintableToken_$1774",
                 "typeString": "contract MintableToken"
               }
             },
-            "id": 1134,
+            "id": 1139,
             "nodeType": "InheritanceSpecifier",
             "src": "488:13:2"
           },
@@ -513,68 +513,68 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1135,
+              "id": 1140,
               "name": "BurnableToken",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1588,
+              "referencedDeclaration": 1593,
               "src": "503:13:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_BurnableToken_$1588",
+                "typeIdentifier": "t_contract$_BurnableToken_$1593",
                 "typeString": "contract BurnableToken"
               }
             },
-            "id": 1136,
+            "id": 1141,
             "nodeType": "InheritanceSpecifier",
             "src": "503:13:2"
           }
         ],
         "contractDependencies": [
-          1421,
-          1517,
-          1588,
-          1631,
-          1663,
-          1769,
-          2016
+          1426,
+          1522,
+          1593,
+          1636,
+          1668,
+          1774,
+          2021
         ],
         "contractKind": "contract",
         "documentation": "//////////////////////////////////////////////////////////////////////////////////////////\n @title IdeaCoin Contract\n @author DecentraCorp\n @notice this contract is built from contracts from the zeppelin-solidity library\n @dev All function calls are currently implement without side effects",
         "fullyImplemented": true,
-        "id": 1161,
+        "id": 1166,
         "linearizedBaseContracts": [
-          1161,
-          1588,
-          1769,
-          1421,
-          2016,
-          1517,
-          1631,
-          1663
+          1166,
+          1593,
+          1774,
+          1426,
+          2021,
+          1522,
+          1636,
+          1668
         ],
         "name": "IdeaCoin",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 1150,
+              "id": 1155,
               "nodeType": "Block",
               "src": "728:92:2",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1141,
+                    "id": 1146,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1139,
+                      "id": 1144,
                       "name": "totalSupply_",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1436,
+                      "referencedDeclaration": 1441,
                       "src": "734:12:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -586,7 +586,7 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "31303030303030303030303030303030303030303030303030",
-                      "id": 1140,
+                      "id": 1145,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -607,14 +607,14 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1142,
+                  "id": 1147,
                   "nodeType": "ExpressionStatement",
                   "src": "734:40:2"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1148,
+                    "id": 1153,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -623,34 +623,34 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 1143,
+                        "id": 1148,
                         "name": "balances",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1434,
+                        "referencedDeclaration": 1439,
                         "src": "780:8:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                           "typeString": "mapping(address => uint256)"
                         }
                       },
-                      "id": 1146,
+                      "id": 1151,
                       "indexExpression": {
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1144,
+                          "id": 1149,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3147,
+                          "referencedDeclaration": 3152,
                           "src": "789:3:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 1145,
+                        "id": 1150,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -679,11 +679,11 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 1147,
+                      "id": 1152,
                       "name": "totalSupply_",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1436,
+                      "referencedDeclaration": 1441,
                       "src": "803:12:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -696,14 +696,14 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1149,
+                  "id": 1154,
                   "nodeType": "ExpressionStatement",
                   "src": "780:35:2"
                 }
               ]
             },
             "documentation": "@author Christopher Dixon\n @notice constructor is run only once when the contract is deployed\n @dev sets total supply to 1 million IdeaCoin and transfers is to msg.sender",
-            "id": 1151,
+            "id": 1156,
             "implemented": true,
             "isConstructor": true,
             "isDeclaredConst": false,
@@ -711,19 +711,19 @@
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1137,
+              "id": 1142,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "718:2:2"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1138,
+              "id": 1143,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "728:0:2"
             },
-            "scope": 1161,
+            "scope": 1166,
             "src": "707:113:2",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -731,10 +731,10 @@
           },
           {
             "constant": true,
-            "id": 1154,
+            "id": 1159,
             "name": "name",
             "nodeType": "VariableDeclaration",
-            "scope": 1161,
+            "scope": 1166,
             "src": "901:40:2",
             "stateVariable": true,
             "storageLocation": "default",
@@ -743,7 +743,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 1152,
+              "id": 1157,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "901:6:2",
@@ -755,7 +755,7 @@
             "value": {
               "argumentTypes": null,
               "hexValue": "49646561436f696e",
-              "id": 1153,
+              "id": 1158,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -774,10 +774,10 @@
           },
           {
             "constant": true,
-            "id": 1157,
+            "id": 1162,
             "name": "symbol",
             "nodeType": "VariableDeclaration",
-            "scope": 1161,
+            "scope": 1166,
             "src": "945:37:2",
             "stateVariable": true,
             "storageLocation": "default",
@@ -786,7 +786,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 1155,
+              "id": 1160,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "945:6:2",
@@ -798,7 +798,7 @@
             "value": {
               "argumentTypes": null,
               "hexValue": "494443",
-              "id": 1156,
+              "id": 1161,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -817,10 +817,10 @@
           },
           {
             "constant": true,
-            "id": 1160,
+            "id": 1165,
             "name": "decimals",
             "nodeType": "VariableDeclaration",
-            "scope": 1161,
+            "scope": 1166,
             "src": "986:35:2",
             "stateVariable": true,
             "storageLocation": "default",
@@ -829,7 +829,7 @@
               "typeString": "uint8"
             },
             "typeName": {
-              "id": 1158,
+              "id": 1163,
               "name": "uint8",
               "nodeType": "ElementaryTypeName",
               "src": "986:5:2",
@@ -841,7 +841,7 @@
             "value": {
               "argumentTypes": null,
               "hexValue": "3138",
-              "id": 1159,
+              "id": 1164,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -859,7 +859,7 @@
             "visibility": "public"
           }
         ],
-        "scope": 1162,
+        "scope": 1167,
         "src": "467:557:2"
       }
     ],
@@ -869,14 +869,14 @@
     "absolutePath": "/home/stan36/repos/DecentraCorp/contracts/CryptoPatent/IdeaCoin.sol",
     "exportedSymbols": {
       "IdeaCoin": [
-        1161
+        1166
       ]
     },
-    "id": 1162,
+    "id": 1167,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1130,
+        "id": 1135,
         "literals": [
           "solidity",
           "^",
@@ -889,10 +889,10 @@
       {
         "absolutePath": "zeppelin-solidity/contracts/token/ERC20/MintableToken.sol",
         "file": "zeppelin-solidity/contracts/token/ERC20/MintableToken.sol",
-        "id": 1131,
+        "id": 1136,
         "nodeType": "ImportDirective",
-        "scope": 1162,
-        "sourceUnit": 1770,
+        "scope": 1167,
+        "sourceUnit": 1775,
         "src": "25:67:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -900,10 +900,10 @@
       {
         "absolutePath": "zeppelin-solidity/contracts/token/ERC20/BurnableToken.sol",
         "file": "zeppelin-solidity/contracts/token/ERC20/BurnableToken.sol",
-        "id": 1132,
+        "id": 1137,
         "nodeType": "ImportDirective",
-        "scope": 1162,
-        "sourceUnit": 1589,
+        "scope": 1167,
+        "sourceUnit": 1594,
         "src": "93:67:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -914,17 +914,17 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1133,
+              "id": 1138,
               "name": "MintableToken",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1769,
+              "referencedDeclaration": 1774,
               "src": "488:13:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_MintableToken_$1769",
+                "typeIdentifier": "t_contract$_MintableToken_$1774",
                 "typeString": "contract MintableToken"
               }
             },
-            "id": 1134,
+            "id": 1139,
             "nodeType": "InheritanceSpecifier",
             "src": "488:13:2"
           },
@@ -932,68 +932,68 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1135,
+              "id": 1140,
               "name": "BurnableToken",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1588,
+              "referencedDeclaration": 1593,
               "src": "503:13:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_BurnableToken_$1588",
+                "typeIdentifier": "t_contract$_BurnableToken_$1593",
                 "typeString": "contract BurnableToken"
               }
             },
-            "id": 1136,
+            "id": 1141,
             "nodeType": "InheritanceSpecifier",
             "src": "503:13:2"
           }
         ],
         "contractDependencies": [
-          1421,
-          1517,
-          1588,
-          1631,
-          1663,
-          1769,
-          2016
+          1426,
+          1522,
+          1593,
+          1636,
+          1668,
+          1774,
+          2021
         ],
         "contractKind": "contract",
         "documentation": "//////////////////////////////////////////////////////////////////////////////////////////\n @title IdeaCoin Contract\n @author DecentraCorp\n @notice this contract is built from contracts from the zeppelin-solidity library\n @dev All function calls are currently implement without side effects",
         "fullyImplemented": true,
-        "id": 1161,
+        "id": 1166,
         "linearizedBaseContracts": [
-          1161,
-          1588,
-          1769,
-          1421,
-          2016,
-          1517,
-          1631,
-          1663
+          1166,
+          1593,
+          1774,
+          1426,
+          2021,
+          1522,
+          1636,
+          1668
         ],
         "name": "IdeaCoin",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 1150,
+              "id": 1155,
               "nodeType": "Block",
               "src": "728:92:2",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1141,
+                    "id": 1146,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1139,
+                      "id": 1144,
                       "name": "totalSupply_",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1436,
+                      "referencedDeclaration": 1441,
                       "src": "734:12:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -1005,7 +1005,7 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "31303030303030303030303030303030303030303030303030",
-                      "id": 1140,
+                      "id": 1145,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -1026,14 +1026,14 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1142,
+                  "id": 1147,
                   "nodeType": "ExpressionStatement",
                   "src": "734:40:2"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1148,
+                    "id": 1153,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1042,34 +1042,34 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 1143,
+                        "id": 1148,
                         "name": "balances",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1434,
+                        "referencedDeclaration": 1439,
                         "src": "780:8:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                           "typeString": "mapping(address => uint256)"
                         }
                       },
-                      "id": 1146,
+                      "id": 1151,
                       "indexExpression": {
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1144,
+                          "id": 1149,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3147,
+                          "referencedDeclaration": 3152,
                           "src": "789:3:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 1145,
+                        "id": 1150,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1098,11 +1098,11 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 1147,
+                      "id": 1152,
                       "name": "totalSupply_",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1436,
+                      "referencedDeclaration": 1441,
                       "src": "803:12:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -1115,14 +1115,14 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1149,
+                  "id": 1154,
                   "nodeType": "ExpressionStatement",
                   "src": "780:35:2"
                 }
               ]
             },
             "documentation": "@author Christopher Dixon\n @notice constructor is run only once when the contract is deployed\n @dev sets total supply to 1 million IdeaCoin and transfers is to msg.sender",
-            "id": 1151,
+            "id": 1156,
             "implemented": true,
             "isConstructor": true,
             "isDeclaredConst": false,
@@ -1130,19 +1130,19 @@
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1137,
+              "id": 1142,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "718:2:2"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1138,
+              "id": 1143,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "728:0:2"
             },
-            "scope": 1161,
+            "scope": 1166,
             "src": "707:113:2",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1150,10 +1150,10 @@
           },
           {
             "constant": true,
-            "id": 1154,
+            "id": 1159,
             "name": "name",
             "nodeType": "VariableDeclaration",
-            "scope": 1161,
+            "scope": 1166,
             "src": "901:40:2",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1162,7 +1162,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 1152,
+              "id": 1157,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "901:6:2",
@@ -1174,7 +1174,7 @@
             "value": {
               "argumentTypes": null,
               "hexValue": "49646561436f696e",
-              "id": 1153,
+              "id": 1158,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -1193,10 +1193,10 @@
           },
           {
             "constant": true,
-            "id": 1157,
+            "id": 1162,
             "name": "symbol",
             "nodeType": "VariableDeclaration",
-            "scope": 1161,
+            "scope": 1166,
             "src": "945:37:2",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1205,7 +1205,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 1155,
+              "id": 1160,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "945:6:2",
@@ -1217,7 +1217,7 @@
             "value": {
               "argumentTypes": null,
               "hexValue": "494443",
-              "id": 1156,
+              "id": 1161,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -1236,10 +1236,10 @@
           },
           {
             "constant": true,
-            "id": 1160,
+            "id": 1165,
             "name": "decimals",
             "nodeType": "VariableDeclaration",
-            "scope": 1161,
+            "scope": 1166,
             "src": "986:35:2",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1248,7 +1248,7 @@
               "typeString": "uint8"
             },
             "typeName": {
-              "id": 1158,
+              "id": 1163,
               "name": "uint8",
               "nodeType": "ElementaryTypeName",
               "src": "986:5:2",
@@ -1260,7 +1260,7 @@
             "value": {
               "argumentTypes": null,
               "hexValue": "3138",
-              "id": 1159,
+              "id": 1164,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -1278,7 +1278,7 @@
             "visibility": "public"
           }
         ],
-        "scope": 1162,
+        "scope": 1167,
         "src": "467:557:2"
       }
     ],
@@ -1406,8 +1406,8 @@
         }
       },
       "links": {},
-      "address": "0x7ab4a4c6433aefdc14b1096d713b5e56aa360fdd",
-      "transactionHash": "0xef10527e3376bbe2342d288f2d8d0ca52d120dd884a0fe735ddb080666633bcb"
+      "address": "0x17aed78fa6220f0f77b9f8eba7ed26e6029081bd",
+      "transactionHash": "0x11cb28293dce761b954efa77c5c9ca1996cdd91a586f62131ed068931bf5956b"
     },
     "3636": {
       "events": {},
@@ -1537,5 +1537,5 @@
     }
   },
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-12-26T13:14:20.537Z"
+  "updatedAt": "2018-12-28T11:59:35.324Z"
 }

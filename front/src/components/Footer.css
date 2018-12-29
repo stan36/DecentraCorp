@@ -1,0 +1,31 @@
+
+html {
+    display: flex;
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    }
+
+    *, *::before, *::after {
+      box-sizing: flex;
+      padding: 2px;
+      margin: 2px;
+      align-items: center;
+    }
+
+    .footer {
+      flex: 1;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
+      width: 1200px;
+      background-color: gray;
+      margin-bottom: 20px;
+      margin-top: 10px;
+      border-radius: 50px;
+      flex-direction: row;
+
+    }
