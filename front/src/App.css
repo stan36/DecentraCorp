@@ -8,13 +8,7 @@ html {
     align-items: center;
     }
 
-    *, *::before, *::after {
-      box-sizing: flex;
-      padding: 2px;
-      margin: 2px;
-      align-items: center;
-    }
-
+  
     .app {
       flex: 1;
       display: flex;
@@ -25,40 +19,7 @@ html {
 
     }
 
-    nav ul {
-      list-style: none;
-      background-color: gray;
-      margin-bottom: 20px;
-      margin-top: 10px;
-      border-radius: 50px;
-      display: flex;
-      flex: 1;
-      justify-content: center;
-      align-items: center;
-    }
 
-    nav ul li {
-      padding-left : 15px;
-      padding-right : 10px;
-      padding-top : 70px;
-      padding-bottom : 5px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-
-    }
-
-    nav ul li a {
-      color: darkred;
-      text-decoration: none;
-      text-shadow: black 4px;
-      font-size: 15px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-    }
 
     .current {
       border-bottom: 10px solid silver;
@@ -103,8 +64,8 @@ html {
     }
 
     p {
-      margin-bottom: 20px;
-      margin-top: 20px;
+      margin-bottom: 10px;
+      margin-top: 10px;
       flex: 1;
       display: flex;
       justify-content: center;
@@ -114,8 +75,8 @@ html {
     }
 
     .DecentraCorpLogo1{
-        margin-bottom: -160px;
-        margin-top: 60px;
+        margin-bottom: -50px;
+        margin-top: 10px;
         margin-right: 1000px;
         margin-left: 0px;
         max-width: 30%;

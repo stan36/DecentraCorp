@@ -20,6 +20,7 @@ contract DecentraCorpPoA {
   function increaseMemLev(address _add) external;
   function increaseFacilityRank(address _facAdd) public;
   function setProfileHash(address _add, string _hash) public;
+  function addNewInvention(address _newInvention) external ;
 }
 /// DecentraCorp PoA inteface
 ////////////////////////////////////////////////////////////////////////////////////////////

@@ -59,5 +59,6 @@ contract DecentraControlled is Ownable {
         PoPT = ProofOfPurchaseToken(_newPoPAdd);
         }
 
+  
 
 }
