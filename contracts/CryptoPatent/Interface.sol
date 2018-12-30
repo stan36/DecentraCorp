@@ -101,6 +101,7 @@ contract Interface is Ownable {
   event Voted(address _voter, bool inSupport);
   event NewMember(address member);
   event NewReplication(address _repAdd);
+  event ProfileUpdated(address updatedAccount);
 
 
 ///@struct IdeaProposal stores info of a proposal
@@ -184,6 +185,7 @@ function checkIfMember(address _member) public view returns(bool) {
 
 function updateProfile(string _newHash) public {
     DCPoA.setProfileHash(msg.sender, _newHash);
+     ProfileUpdated(msg.sender);
 }
 
   ///@notice getPropID function allows one to rerieve a proposal ID by its ipfs hash

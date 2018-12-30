@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import web3 from '../utils/web3';
-import ipfs from '../utils/IPFS_util';
-import _CryptoPatentBlockchain from '../ethereum/CryptoPatent';
+import web3 from '../../utils/web3';
+import ipfs from '../../utils/IPFS_util';
+import _CryptoPatentBlockchain from '../../ethereum/CryptoPatent';
 import { Redirect } from 'react-router-dom';
-import Loader from "../images/75.gif";
+import Loader from "../../images/75.gif";
 
-class BuyMembership extends Component {
+class UpdateProfile extends Component {
   constructor(props){
     super(props);
 
@@ -51,10 +51,9 @@ class BuyMembership extends Component {
    var buf = Buffer.from(JSON.stringify(jsonObject));
    await ipfs.add(buf, (err, ipfsHash) => {
    this.setState({ ipfsHash: ipfsHash[0].hash});
-  _CryptoPatentBlockchain.methods.buyMembership(this.state.ipfsHash)
+  _CryptoPatentBlockchain.methods.updateProfile(this.state.ipfsHash)
   .send({from : this.state.userAccount,
-    gas: '3000000',
-    value: web3.utils.toWei(String(1), 'ether')
+    gas: '3000000'
   }, (error, transactionHash) => {
    this.setState({transactionHash});
    this.onReturn();
@@ -64,7 +63,7 @@ class BuyMembership extends Component {
 
 onReturn = async => {
 
-_CryptoPatentBlockchain.once( 'NewMember', {
+_CryptoPatentBlockchain.once( 'ProfileUpdated', {
   filter: {member: this.state.userAccount},
   fromBlock: '0',
   toBlock: 'latest',
@@ -109,15 +108,7 @@ fileSelectedHandler = async (event) => {
     } else {
     return (
       <div>
-        <h3>Welcome to the DecentraCorp Membership Portal!</h3>
-        <p>As of right now DecentraCorp is ONLY live on the Ropsten TestNet!</p>
-        <p>It is important to note that while a membership is necissary to use this dApp</p>
-        <p>to its full capabilities, buying a membership now</p>
-        <p style={{  color: "red"}}>DOES NOT</p>
-        <p>Guaruntee anytype of membership when Decentracorp Goes Live!</p>
-          <p>To get early (alpha)access membership to DecentraCorp</p>
-          <br/>
-          <p> which includes 10,000 IdeaCoin and a Staked Replication Account, fill out the form below:</p>
+        <h3>This page allows you to update your profile</h3>
           <label htmlFor="details">Upload Profile Picture: </label>
           <input className='photo' id="photo" name="photo" type='file' onChange={this.fileSelectedHandler}/>
           <p>{ this.state.message }</p>
@@ -139,7 +130,7 @@ fileSelectedHandler = async (event) => {
           <br/>
           <input id="PhysicalAddress" name="PhysicalAddress" type="text" placeholder = 'Optional'/>
           <br/>
-    <button>Buy Membership Now(1 Ropsten Test Ether)</button>
+    <button>Submit new Profile Info</button>
   </form>
      </div>
     );
@@ -147,4 +138,4 @@ fileSelectedHandler = async (event) => {
 }
 }
 }
-export default BuyMembership;
+export default UpdateProfile;

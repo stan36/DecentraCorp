@@ -12,13 +12,31 @@ body {
   padding: 0px;
 }
 
+.SideBar {
+  max-width: 15%;
+  list-style: none;
+  background-color: gray;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  display: flex;
+  flex: .2;
+  justify-content: left;
+  align-items: left;
+  flex-direction: column;
+
+}
+
+ol {
+  list-style: none;
+}
+
 .MemDash {
   flex: 1;
   display: flex;
   flex-wrap: wrap;
-justify-content: space-between;
-  align-items: center;
-  width: 100%;
+justify-content: space-around;
+  align-items: left;
   flex-direction: row;
 
 }
@@ -35,21 +53,22 @@ justify-content: space-between;
 }
 
 .ProfileInfo {
-  flex: 1;
+  max-width: 30%;
+  flex: .8;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
 }
 
 .memberPhoto {
-  max-width: 40%;
+  max-width: 100%;
   height: auto;
   display: flex;
   flex-wrap: wrap;
 }
 
 .Profile{
-  max-width: 40%;
+  max-width: 30%;
   height: auto;
   display: flex;
   flex-wrap: wrap;

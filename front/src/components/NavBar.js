@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { NavLink, Switch, Route } from 'react-router-dom';
 import Home from '../views/Home';
-import MemDashBoard from '../views/MemDashBoard';
+import Profile from '../components/DashboardComponents/Profile';
+import IDC_Wallet from '../components/DashboardComponents/IDC_Wallet';
+import UpdateProfile from '../components/DashboardComponents/UpdateProfile';
 import IdeaBlockApplication from '../views/IdeaBlockApplication';
 import BuyMembership from './BuyMembership';
 import IdeaVote from '../views/IdeaVote';
@@ -105,8 +107,7 @@ return [
   <li key={6}><NavLink to='/JoinCore'>Join the Team</NavLink></li>
   <li key={7}><NavLink to='/IdeaBlockApplication'>IdeaBlock Application</NavLink></li>
   <li key={8}><NavLink to='/ChaosCasino'>ChaosCasino</NavLink></li>
-  <li key={9}><NavLink to='/IdeaVote'>IdeaBlock Vote</NavLink></li>
-  <li key={10}><NavLink to='/MemDashBoard'>DashBoard</NavLink></li>
+  <li key={9}><NavLink to='/Profile'>DashBoard</NavLink></li>
 </ul>
 </div>
 </nav>
@@ -180,8 +181,7 @@ return [
 <li key={6}><NavLink to='/JoinCore'><button onClick={this.closeOnClick.bind(this)}>Join the Team</button></NavLink></li>
 <li key={7}><NavLink to='/IdeaBlockApplication'><button onClick={this.closeOnClick.bind(this)}>IdeaBlock Application</button></NavLink></li>
 <li key={8}><NavLink to='/ChaosCasino'><button onClick={this.closeOnClick.bind(this)}>ChaosCasino</button></NavLink></li>
-<li key={9}><NavLink to='/IdeaVote'><button onClick={this.closeOnClick.bind(this)}>IdeaBlock Vote</button></NavLink></li>
-<li key={10}><NavLink to='/MemDashBoard'><button onClick={this.closeOnClick.bind(this)}>DashBoard</button></NavLink></li>
+<li key={9}><NavLink to='/Profile'><button onClick={this.closeOnClick.bind(this)}>DashBoard</button></NavLink></li>
 </ul>
 </div>
 </nav>
@@ -250,7 +250,7 @@ return [
       </div>
         <Switch>
           <Route exact path='/' component={Home}></Route>
-          <Route exact path='/MemDashBoard' component={MemDashBoard}></Route>
+          <Route exact path='/Profile' component={Profile}></Route>
           <Route exact path='/IdeaBlockApplication' component={IdeaBlockApplication}></Route>
           <Route exact path='/IdeaVote' component={IdeaVote}></Route>
           <Route exact path='/ChaosCasino' component={ChaosCasino}></Route>
@@ -270,6 +270,8 @@ return [
           <Route exact path='/IdeaCoin' component={IdeaCoin}></Route>
           <Route exact path='/EPMS' component={EPMS}></Route>
           <Route exact path='/DCPoA' component={DCPoA}></Route>
+          <Route exact path='/IDC_Wallet' component={IDC_Wallet}></Route>
+          <Route exact path='/UpdateProfile' component={UpdateProfile}></Route>
           <Route exact path='/ExternalResources' component={ExternalResources}></Route>
       </Switch>
       </div>
