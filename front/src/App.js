@@ -65,10 +65,10 @@ class App extends Component {
 
 
   render() {
-const { isMember, accounts} = this.state;
+const { isMember, accounts, memberCount, idcTotal} = this.state;
     return (
       <div className="app">
-    <NavBar isMember={isMember} accounts={accounts}/>
+    <NavBar isMember={isMember} accounts={accounts} memberCount={memberCount} idcTotal={idcTotal}/>
       <div>
 <Footer />
 </div>

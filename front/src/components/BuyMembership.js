@@ -127,9 +127,9 @@ fileSelectedHandler = async (event) => {
     <br/>
     <input id="username" name="username" type="text" placeholder = 'Optional'/>
     <br/>
-      <label htmlFor="Address">Facility Owners address: </label>
+      <label htmlFor="Address">Facility  address: </label>
       <br/>
-      <input id="Address" name="Address" type="text" placeholder = 'Address of the facility owner'/>
+      <input id="Address" name="Address" type="text" placeholder = 'Address of the facility Owner'/>
       <br/>
         <label htmlFor="FacilityName">Facility Name: </label>
         <br/>

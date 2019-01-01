@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Info from './Info';
+import JoinCore from './JoinCore';
 
 class ExternalResources extends Component {
   render() {
@@ -7,8 +8,9 @@ class ExternalResources extends Component {
 <div className="flex-container">
   <Info />
         <div className='papers'>
+          <JoinCore />
           <div>
-        <p>To view the DecentraCorp WhitePaper</p>
+        <p>To view the Introductory WhitePaper for DecentraCorp and its associated projects</p>
         <p><a style={{ textDecoration: 'none', color: "red"}} href='https://drive.google.com/open?id=1hhsuQ_JnBz5E0813V-4trPZhiflaTBwr'> Click Here!</a></p>
         <br/>
         </div>
@@ -29,11 +31,6 @@ class ExternalResources extends Component {
         </p>
         <br/>
         <br/>
-        </div>
-        <div>
-        <p>The DecentraCorp Core Development Team can be reached at:</p>
-        <br/>
-        <p>decentracorp@pm.me</p>
         </div>
       </div>
     </div>

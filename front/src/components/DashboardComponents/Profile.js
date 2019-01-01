@@ -51,16 +51,17 @@ class Profile extends Component {
           </div>
           <div className='Profile'>
               <br/>
-
+              <h3>Facility Information</h3>
               <hr/>
               <p>Facility: { Json.FacilityName }</p>
               <p>Facility Level: {facilityRank}</p>
               <p>{ Json.PhysicalAddress }</p>
               <hr/>
           </div>
+          <h3>Profile Information</h3>
           <hr/>
           <div>
-          <p>Your Profile Account Address is: </p>
+          <p>Your Facility Account Address is: </p>
           <p>{Json.Address}</p>
           <hr/>
           <p>Your Profile Hash is:</p>

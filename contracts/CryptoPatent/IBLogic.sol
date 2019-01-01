@@ -41,7 +41,7 @@ inventions.push(_invention);
 //mints 1000 IDC and sends it to the inventor
     DCPoA.increaseMemLev(_inventor);
     getTokens[_inventor].push(globalIdeaCount);
-    DCPoA.increaseFacilityRank( _inventor);
+    DCPoA.increaseFacilityRank( _inventor, 20);
   }
 
 ///@notice ideaBlockTimeLord is called to half an ideablock reward every two years

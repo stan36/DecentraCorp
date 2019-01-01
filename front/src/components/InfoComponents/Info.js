@@ -10,7 +10,7 @@ class Info extends Component {
       <ol>
         <li><Link style={{ textDecoration: 'none', color: "white"}} to='/Intro'>Introduction to DecentraCorp</Link>
         <hr/></li>
-        <li><Link style={{ textDecoration: 'none', color: "white"}} to='/WhatIsDAO'>What is a DAO?</Link>
+        <li><Link style={{ textDecoration: 'none', color: "white"}} to='/WhatIsDAC'>What is a DAC?</Link>
         <hr/></li>
         <li><Link style={{ textDecoration: 'none', color: "white"}} to='/Members'>Who are the Members of DecentraCorp?</Link>
         <hr/></li>
@@ -28,7 +28,13 @@ class Info extends Component {
         <hr/></li>
         <li><Link style={{ textDecoration: 'none', color: "white"}} to='/DCPoA'>DC's Proof of Authority Network(PoA)</Link>
         <hr/></li>
+        <li><Link style={{ textDecoration: 'none', color: "white"}} to='/ChaosCasinoInfo'>The ChaosCasino and ChaosCoin</Link>
+        <hr/></li>
+        <li><Link style={{ textDecoration: 'none', color: "white"}} to='/DC_DepotInfo'>The DC Depot</Link>
+        <hr/></li>
         <li><Link style={{ textDecoration: 'none', color: "white"}} to='/ExternalResources'>External Resources</Link>
+        <hr/></li>
+        <li><Link style={{ textDecoration: 'none', color: "white"}} to='/Donate'>Donate to the Project!</Link>
         <hr/></li>
         </ol>
       </div>

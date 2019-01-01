@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Info from './Info';
 
-class WhatIsDAO extends Component {
+class WhatIsDAC extends Component {
   render() {
     return(
 <div className="flex-container">
@@ -51,4 +51,4 @@ class WhatIsDAO extends Component {
   }
 }
 
-    export default WhatIsDAO;
+    export default WhatIsDAC;

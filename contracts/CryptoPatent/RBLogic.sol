@@ -22,7 +22,7 @@ DCPoA.proxyIDCBurn(msg.sender, repStake);
 globalRepCount++;
 DCPoA.replicationBlock( _ideaId,  _repAdd, msg.sender);
 DCPoA.increaseMemLev(msg.sender);
-DCPoA.increaseFacilityRank(msg.sender);
+DCPoA.increaseFacilityRank(msg.sender, 1);
 emit NewReplication(_repAdd);
   }
 ///@notice changeStakeAmount will allow the community to change the stake amount required to stake a replication if it sees fit through a voted

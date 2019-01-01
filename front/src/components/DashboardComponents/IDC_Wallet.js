@@ -45,7 +45,7 @@ class IDC_Wallet extends Component {
  };
 
   render() {
-    const { userBalance, symbol, chaosBalance } =this.props;
+    const { userBalance, symbol, chaosBalance } =this.state;
     return (
       <div>
       <div className='MemDash'>

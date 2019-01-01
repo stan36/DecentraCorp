@@ -167,6 +167,29 @@ width: 800px;
 
 }
 
+.ChaosCasino {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 20px;
+  width: 800px;
+
+}
+
+.DC_Depot {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 20px;
+  width: 800px;
+
+}
 .papers {
   width: 800px;
   margin-top: 20px;

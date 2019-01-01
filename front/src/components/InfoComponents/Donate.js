@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import mainEtherAccountQR from "../images/mainEtherAccountQR.png";
-
+import mainEtherAccountQR from "../../images/mainEtherAccountQR.png";
+import Info from './Info';
 class Donate extends Component {
   render() {
     return(
+      <div className="flex-container">
+
+        <Info />
       <div className='container'>
         <h3>Thank you for visiting DecentraCorp's dApp in its early alpha phase!</h3>
         <br/>
@@ -23,6 +26,7 @@ class Donate extends Component {
         <br/>
         </div>
     </div>
+  </div>
     );
   }
 }

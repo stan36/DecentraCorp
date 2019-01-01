@@ -13,10 +13,10 @@ import ChaosCasino from '../views/ChaosCasino';
 import Entropy21 from '../views/Entropy21';
 import RoadMap from '../views/RoadMap';
 import ApprovedIdeas from "../views/ApprovedIdeas";
-import Donate from '../views/Donate';
-import JoinCore from '../views/JoinCore';
+import Donate from '../components/InfoComponents/Donate';
+import JoinCore from '../components/InfoComponents/JoinCore';
 import Intro from '../components/InfoComponents/Intro.js';
-import WhatIsDAO from '../components/InfoComponents/WhatIsDAO.js';
+import WhatIsDAC from '../components/InfoComponents/WhatIsDAC.js';
 import Members from '../components/InfoComponents/Members.js';
 import DFM from '../components/InfoComponents/DFM.js';
 import DC_ContractStructure from '../components/InfoComponents/DC_ContractStructure.js';
@@ -25,6 +25,8 @@ import CPBStructure from '../components/InfoComponents/CPBStructure.js';
 import IdeaCoin from '../components/InfoComponents/IdeaCoin.js';
 import EPMS from '../components/InfoComponents/EPMS.js';
 import DCPoA from '../components/InfoComponents/DCPoA.js';
+import ChaosCasinoInfo from '../components/InfoComponents/ChaosCasinoInfo.js';
+import DC_DepotInfo from '../components/InfoComponents/DC_DepotInfo.js';
 import ExternalResources from '../components/InfoComponents/ExternalResources.js';
 import './NavBar.js';
 
@@ -41,7 +43,7 @@ class App extends Component {
 
 
   navigationLinks() {
-    const {  isMember, accounts } = this.props;
+    const {  isMember, accounts, memberCount, idcTotal } = this.props;
       if(accounts === null){
     return [
       <div class="Navbar">
@@ -52,8 +54,6 @@ class App extends Component {
         <li key={1}><NavLink to='/'>Home</NavLink></li>
         <li key={2}><NavLink to='/Intro'>Info</NavLink></li>
         <li key={3}><NavLink to='/RoadMap'>RoadMap</NavLink></li>
-        <li key={4}><NavLink to='/Donate'>Donate</NavLink></li>
-        <li key={5}><NavLink to='/JoinCore'>Join the Team</NavLink></li>
       </ul>
       </div>
       </nav>
@@ -77,11 +77,9 @@ return [
     <li key={2}><NavLink to='/Intro'>Info</NavLink></li>
     <li key={3}><NavLink to='/RoadMap'>RoadMap</NavLink></li>
     <li key={4}><NavLink to='/ApprovedIdeas'>Approved Ideas</NavLink></li>
-    <li key={5}><NavLink to='/Donate'>Donate</NavLink></li>
-    <li key={6}><NavLink to='/JoinCore'>Join the Team</NavLink></li>
-    <li key={7}><NavLink to='/IdeaBlockApplication'>IdeaBlock Application</NavLink></li>
-    <li key={8}><NavLink to='/BuyMembership'>Become a Member!</NavLink></li>
-    <li key={9}><NavLink to='/ChaosCasino'>ChaosCasino</NavLink></li>
+    <li key={5}><NavLink to='/IdeaBlockApplication'>IdeaBlock Application</NavLink></li>
+    <li key={6}><NavLink to='/BuyMembership'>Become a Member!</NavLink></li>
+    <li key={7}><NavLink to='/ChaosCasino'>ChaosCasino</NavLink></li>
   </ul>
   </div>
   </nav>
@@ -93,7 +91,7 @@ return [
   <div class="Navbar">
   <br/>
   <div>
-    <p style={{ fontSize: "14px", color: "red", textAlign: "right"}}>Total DecentraCorp members: { this.state.memberCount } IdeaCoin Total Supply: { this.state.idcTotal }</p>
+    <p style={{ fontSize: "14px", color: "red", textAlign: "right"}}>Total DecentraCorp members: { memberCount } IdeaCoin Total Supply: { idcTotal }</p>
     </div>
   <nav class="Navbar__Items">
   <div class="Navbar__Link Navbar__Link-brand">
@@ -102,12 +100,10 @@ return [
   <li key={1}><NavLink to='/'>Home</NavLink></li>
   <li key={2}><NavLink to='/Intro'>Info</NavLink></li>
   <li key={3}><NavLink to='/RoadMap'>RoadMap</NavLink></li>
-  <li key={4}><NavLink to='/ApprovedIdeas'>Approved Ideas</NavLink></li>
-  <li key={5}><NavLink to='/Donate'>Donate</NavLink></li>
-  <li key={6}><NavLink to='/JoinCore'>Join the Team</NavLink></li>
-  <li key={7}><NavLink to='/IdeaBlockApplication'>IdeaBlock Application</NavLink></li>
-  <li key={8}><NavLink to='/ChaosCasino'>ChaosCasino</NavLink></li>
-  <li key={9}><NavLink to='/Profile'>DashBoard</NavLink></li>
+  <li key={4}><NavLink to='/Profile'>DashBoard</NavLink></li>
+  <li key={5}><NavLink to='/ApprovedIdeas'>Approved Ideas</NavLink></li>
+  <li key={6}><NavLink to='/IdeaBlockApplication'>IdeaBlock Application</NavLink></li>
+  <li key={7}><NavLink to='/ChaosCasino'>ChaosCasino</NavLink></li>
 </ul>
 </div>
 </nav>
@@ -117,7 +113,7 @@ return [
 }
 
 navigationLinksMobile() {
-  const {  isMember, accounts } = this.props;
+  const {  isMember, accounts, memberCount, idcTotal  } = this.props;
     if(accounts === null){
 
   return [
@@ -128,8 +124,6 @@ navigationLinksMobile() {
       <li key={1}><NavLink to='/'><button onClick={this.closeOnClick.bind(this)}>Home</button></NavLink></li>
       <li key={2}><NavLink to='/Intro'><button onClick={this.closeOnClick.bind(this)}>Info</button></NavLink></li>
       <li key={3}><NavLink to='/RoadMap'><button onClick={this.closeOnClick.bind(this)}>RoadMap</button></NavLink></li>
-      <li key={4}><NavLink to='/Donate'><button onClick={this.closeOnClick.bind(this)}>Donate</button></NavLink></li>
-      <li key={5}><NavLink to='/JoinCore'><button onClick={this.closeOnClick.bind(this)}>Join the Team</button></NavLink></li>
     </ul>
     </div>
     </nav>
@@ -143,7 +137,7 @@ return [
 <div class="Navbar">
 <br/>
 <div>
-  <p style={{ fontSize: "14px", color: "red", textAlign: "right"}}>Total DecentraCorp members: { this.state.memberCount } IdeaCoin Total Supply: { this.state.idcTotal }</p>
+  <p style={{ fontSize: "14px", color: "red", textAlign: "right"}}>Total DecentraCorp members: { memberCount } IdeaCoin Total Supply: { idcTotal }</p>
   </div>
 <nav>
 <div>
@@ -152,11 +146,9 @@ return [
   <li key={2}><NavLink to='/Intro'><button onClick={this.closeOnClick.bind(this)}>Info</button></NavLink></li>
   <li key={3}><NavLink to='/RoadMap'><button onClick={this.closeOnClick.bind(this)}>RoadMap</button></NavLink></li>
   <li key={4}><NavLink to='/ApprovedIdeas'><button onClick={this.closeOnClick.bind(this)}>Approved Ideas</button></NavLink></li>
-  <li key={5}><NavLink to='/Donate'><button onClick={this.closeOnClick.bind(this)}>Donate</button></NavLink></li>
-  <li key={6}><NavLink to='/JoinCore'><button onClick={this.closeOnClick.bind(this)}>Join the Team</button></NavLink></li>
-  <li key={7}><NavLink to='/IdeaBlockApplication'><button onClick={this.closeOnClick.bind(this)}>IdeaBlock Application</button></NavLink></li>
-  <li key={8}><NavLink to='/BuyMembership'><button onClick={this.closeOnClick.bind(this)}>Become a Member!</button></NavLink></li>
-  <li key={9}><NavLink to='/ChaosCasino'><button onClick={this.closeOnClick.bind(this)}>ChaosCasino</button></NavLink></li>
+  <li key={5}><NavLink to='/IdeaBlockApplication'><button onClick={this.closeOnClick.bind(this)}>IdeaBlock Application</button></NavLink></li>
+  <li key={6}><NavLink to='/BuyMembership'><button onClick={this.closeOnClick.bind(this)}>Become a Member!</button></NavLink></li>
+  <li key={7}><NavLink to='/ChaosCasino'><button onClick={this.closeOnClick.bind(this)}>ChaosCasino</button></NavLink></li>
 </ul>
 </div>
 </nav>
@@ -168,7 +160,7 @@ return [
 <div class="Navbar">
 <br/>
 <div>
-  <p style={{ fontSize: "14px", color: "red", textAlign: "right"}}>Total DecentraCorp members: { this.state.memberCount } IdeaCoin Total Supply: { this.state.idcTotal }</p>
+  <p style={{ fontSize: "14px", color: "red", textAlign: "right"}}>Total DecentraCorp members: { memberCount } IdeaCoin Total Supply: { idcTotal }</p>
   </div>
 <nav>
 <div>
@@ -176,12 +168,10 @@ return [
 <li key={1}><NavLink to='/'><button onClick={this.closeOnClick.bind(this)}>Home</button></NavLink></li>
 <li key={2}><NavLink to='/Intro'><button onClick={this.closeOnClick.bind(this)}>Info</button></NavLink></li>
 <li key={3}><NavLink to='/RoadMap'><button onClick={this.closeOnClick.bind(this)}>RoadMap</button></NavLink></li>
-<li key={4}><NavLink to='/ApprovedIdeas'><button onClick={this.closeOnClick.bind(this)}>Approved Ideas</button></NavLink></li>
-<li key={5}><NavLink to='/Donate'><button onClick={this.closeOnClick.bind(this)}>Donate</button></NavLink></li>
-<li key={6}><NavLink to='/JoinCore'><button onClick={this.closeOnClick.bind(this)}>Join the Team</button></NavLink></li>
-<li key={7}><NavLink to='/IdeaBlockApplication'><button onClick={this.closeOnClick.bind(this)}>IdeaBlock Application</button></NavLink></li>
-<li key={8}><NavLink to='/ChaosCasino'><button onClick={this.closeOnClick.bind(this)}>ChaosCasino</button></NavLink></li>
-<li key={9}><NavLink to='/Profile'><button onClick={this.closeOnClick.bind(this)}>DashBoard</button></NavLink></li>
+<li key={4}><NavLink to='/Profile'><button onClick={this.closeOnClick.bind(this)}>DashBoard</button></NavLink></li>
+<li key={5}><NavLink to='/ApprovedIdeas'><button onClick={this.closeOnClick.bind(this)}>Approved Ideas</button></NavLink></li>
+<li key={6}><NavLink to='/IdeaBlockApplication'><button onClick={this.closeOnClick.bind(this)}>IdeaBlock Application</button></NavLink></li>
+<li key={7}><NavLink to='/ChaosCasino'><button onClick={this.closeOnClick.bind(this)}>ChaosCasino</button></NavLink></li>
 </ul>
 </div>
 </nav>
@@ -261,7 +251,7 @@ return [
           <Route exact path='/JoinCore' component={JoinCore}></Route>
           <Route exact path='/BuyMembership' component={BuyMembership}></Route>
           <Route exact path='/Intro' component={Intro}></Route>
-          <Route exact path='/WhatIsDAO' component={WhatIsDAO}></Route>
+          <Route exact path='/WhatIsDAC' component={WhatIsDAC}></Route>
           <Route exact path='/Members' component={Members}></Route>
           <Route exact path='/DFM' component={DFM}></Route>
           <Route exact path='/DC_ContractStructure' component={DC_ContractStructure}></Route>
@@ -272,6 +262,8 @@ return [
           <Route exact path='/DCPoA' component={DCPoA}></Route>
           <Route exact path='/IDC_Wallet' component={IDC_Wallet}></Route>
           <Route exact path='/UpdateProfile' component={UpdateProfile}></Route>
+          <Route exact path='/ChaosCasinoInfo' component={ChaosCasinoInfo}></Route>
+          <Route exact path='/DC_DepotInfo' component={DC_DepotInfo}></Route>
           <Route exact path='/ExternalResources' component={ExternalResources}></Route>
       </Switch>
       </div>

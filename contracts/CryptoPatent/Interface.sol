@@ -18,7 +18,7 @@ contract DecentraCorpPoA {
   function _checkIfMember(address _member) public view returns(bool);
   function getMemberCount() public view returns(uint);
   function increaseMemLev(address _add) external;
-  function increaseFacilityRank(address _facAdd) public;
+  function increaseFacilityRank(address _facAdd, uint _amount) public;
   function setProfileHash(address _add, string _hash) public;
   function addNewInvention(address _newInvention) external ;
 }
@@ -185,7 +185,7 @@ function checkIfMember(address _member) public view returns(bool) {
 
 function updateProfile(string _newHash) public {
     DCPoA.setProfileHash(msg.sender, _newHash);
-     ProfileUpdated(msg.sender);
+    emit ProfileUpdated(msg.sender);
 }
 
   ///@notice getPropID function allows one to rerieve a proposal ID by its ipfs hash
