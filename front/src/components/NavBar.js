@@ -7,6 +7,9 @@ import UpdateProfile from '../components/DashboardComponents/UpdateProfile';
 import IdeaBlockApplication from '../views/IdeaBlockApplication';
 import BuyMembership from './BuyMembership';
 import IdeaVote from '../views/IdeaVote';
+import DC_Depot from '../views/DC_Depot';
+import Sell_Item from './DC_Depot/Sell_Item';
+import ItemList from './DC_Depot/ItemList';
 import DecentraCorpLogo from "../images/DecentraCorpLogo.png";
 import Loader from "../images/75.gif";
 import ChaosCasino from '../views/ChaosCasino';
@@ -67,7 +70,7 @@ return [
   <div class="Navbar">
   <br/>
   <div>
-    <p style={{ fontSize: "14px", color: "red", textAlign: "right"}}>Total DecentraCorp members: { this.state.memberCount } IdeaCoin Total Supply: { this.state.idcTotal }</p>
+    <p style={{ fontSize: "14px", color: "red", textAlign: "right"}}>Total DecentraCorp members: { memberCount } IdeaCoin Total Supply: { idcTotal }</p>
     </div>
   <nav class="Navbar__Items">
   <div class="Navbar__Link Navbar__Link-brand">
@@ -80,6 +83,7 @@ return [
     <li key={5}><NavLink to='/IdeaBlockApplication'>IdeaBlock Application</NavLink></li>
     <li key={6}><NavLink to='/BuyMembership'>Become a Member!</NavLink></li>
     <li key={7}><NavLink to='/ChaosCasino'>ChaosCasino</NavLink></li>
+    <li key={8}><NavLink to='/DC_Depot'>DC Depot</NavLink></li>
   </ul>
   </div>
   </nav>
@@ -104,6 +108,7 @@ return [
   <li key={5}><NavLink to='/ApprovedIdeas'>Approved Ideas</NavLink></li>
   <li key={6}><NavLink to='/IdeaBlockApplication'>IdeaBlock Application</NavLink></li>
   <li key={7}><NavLink to='/ChaosCasino'>ChaosCasino</NavLink></li>
+  <li key={8}><NavLink to='/DC_Depot'>DC Depot</NavLink></li>
 </ul>
 </div>
 </nav>
@@ -243,6 +248,7 @@ return [
           <Route exact path='/Profile' component={Profile}></Route>
           <Route exact path='/IdeaBlockApplication' component={IdeaBlockApplication}></Route>
           <Route exact path='/IdeaVote' component={IdeaVote}></Route>
+          <Route exact path='/DC_Depot' component={DC_Depot}></Route>
           <Route exact path='/ChaosCasino' component={ChaosCasino}></Route>
           <Route exact path='/Entropy21' component={Entropy21}></Route>
           <Route exact path='/RoadMap' component={RoadMap}></Route>
@@ -265,6 +271,8 @@ return [
           <Route exact path='/ChaosCasinoInfo' component={ChaosCasinoInfo}></Route>
           <Route exact path='/DC_DepotInfo' component={DC_DepotInfo}></Route>
           <Route exact path='/ExternalResources' component={ExternalResources}></Route>
+          <Route exact path='/Sell_Item' component={Sell_Item}></Route>
+          <Route exact path='/ItemList' component={ItemList}></Route>
       </Switch>
       </div>
       );

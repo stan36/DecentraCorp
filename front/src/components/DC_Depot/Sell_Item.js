@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import web3 from '../../utils/web3';
 import ipfs from '../../utils/IPFS_util';
-import _CryptoPatentBlockchain from '../../ethereum/CryptoPatent';
+import _DC_Depot from '../../ethereum/DC_Depot';
 import { Redirect } from 'react-router-dom';
 import Loader from "../../images/75.gif";
-
-class UpdateProfile extends Component {
+import Depot_Nav from './Depot_Nav';
+class Sell_Item extends Component {
   constructor(props){
     super(props);
 
@@ -19,8 +19,10 @@ class UpdateProfile extends Component {
       ipfsHash: '',
       photoHash: '',
       message: "",
+      hashArray: [],
+      currentForSalehash: ''
      }
-
+this.updateForSaleHash = this.updateForSaleHash.bind(this);
 
   }
 
@@ -28,7 +30,13 @@ class UpdateProfile extends Component {
       this.setState({ loading : true });
      const accounts = await web3.eth.getAccounts();
      const userAccount = accounts[0];
-     this.setState({ userAccount, loading: false});
+     const currentForSalehash = await _DC_Depot.methods.getForSale().call();
+     console.log('current for sale:' + currentForSalehash);
+     if(currentForSalehash !== '') {
+     const hashArray = JSON.parse(await ipfs.cat(currentForSalehash));
+     this.setState({ hashArray });
+   }
+     this.setState({ userAccount, loading: false ,  currentForSalehash});
    }
 
 
@@ -51,20 +59,31 @@ class UpdateProfile extends Component {
    var buf = Buffer.from(JSON.stringify(jsonObject));
    await ipfs.add(buf, (err, ipfsHash) => {
    this.setState({ ipfsHash: ipfsHash[0].hash});
-  _CryptoPatentBlockchain.methods.updateProfile(this.state.ipfsHash)
-  .send({from : this.state.userAccount,
-    gas: '3000000'
-  }, (error, transactionHash) => {
-   this.setState({transactionHash});
-   this.onReturn();
-       });
+   this.updateForSaleHash();
      })
 };
 
+
+updateForSaleHash = async (event)=> {
+  var array = this.state.hashArray;
+  array.push(this.state.ipfsHash);
+   var buf = Buffer.from(JSON.stringify(array));
+    await ipfs.add(buf, (err, ipfsHash) => {
+      this.setState({ currentForSalehash: ipfsHash[0].hash  })
+      _DC_Depot.methods.sellItem(this.state.currentForSalehash)
+      .send({from : this.state.userAccount,
+        gas: '3000000'
+      }, (error, transactionHash) => {
+       this.setState({transactionHash});
+       this.onReturn();
+           });
+         })
+   };
+
 onReturn = async => {
 
-_CryptoPatentBlockchain.once( 'ProfileUpdated', {
-  filter: {member: this.state.userAccount},
+_DC_Depot.once( 'ItemForSale', {
+  filter: {itemHash: this.state.ipfsHash},
   fromBlock: '0',
   toBlock: 'latest',
 }, (error, event) => {
@@ -99,38 +118,38 @@ fileSelectedHandler = async (event) => {
     if(this.state.loading === true){
       return(
         <div className="Loader">
-          <h1>Please Wait While Your Profile is Updated on the Blockchain</h1>
+          <h1>Please Wait While Your item is Uploaded to the Blockchain</h1>
         <img src={Loader} alt ="Loader" className="Loader" />
-        <h2>You will be redirected to the Members Dashboard </h2>
+        <h2>You will be redirected to the For Sale Page </h2>
         <h2>once the transaction is complete.</h2>
         </div>
       );
     } else {
     return (
       <div>
-        <h3>This page allows you to update your profile</h3>
+        <h3>This page allows you to sell your item on the DC Depot</h3>
+        <div>
+        <Depot_Nav />
+        </div>
           <label htmlFor="details">Upload Profile Picture: </label>
           <input className='photo' id="photo" name="photo" type='file' onChange={this.fileSelectedHandler}/>
           <p>{ this.state.message }</p>
           <br/>
        <form onSubmit={this.handleSubmit}>
-    <label htmlFor="username">Your  Name: </label>
+    <label htmlFor="itemName">Item Name: </label>
     <br/>
-    <input id="username" name="username" type="text" placeholder = 'Optional'/>
+    <input id="itemName" name="itemName" type="text" placeholder = 'Name of your item'/>
     <br/>
-      <label htmlFor="Address">Facility Owners address: </label>
+      <label htmlFor="SellerAddress">Sellers Wallet address: </label>
       <br/>
-      <input id="Address" name="Address" type="text" placeholder = 'Address of the facility owner'/>
+      <input id="SellerAddress" name="SellerAddress" type="text" placeholder = 'Your Wallet Address'/>
       <br/>
-        <label htmlFor="FacilityName">Facility Name: </label>
+        <label htmlFor="Price">Asking Price: </label>
         <br/>
-        <input id="FacilityName" name="FacilityName" type="text" placeholder = 'The name of your Facility'/>
+        <input id="Price" name="Price" type="text" placeholder = 'The Price in Ether'/>
         <br/>
-          <label htmlFor="PhysicalAddress">Facility Physical Address: </label>
-          <br/>
-          <input id="PhysicalAddress" name="PhysicalAddress" type="text" placeholder = 'Optional'/>
-          <br/>
-    <button>Submit new Profile Info</button>
+
+    <button>List Item</button>
   </form>
      </div>
     );
@@ -138,4 +157,4 @@ fileSelectedHandler = async (event) => {
 }
 }
 }
-export default UpdateProfile;
+export default Sell_Item;

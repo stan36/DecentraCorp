@@ -58,9 +58,9 @@ class Profile extends Component {
               <p>{ Json.PhysicalAddress }</p>
               <hr/>
           </div>
-          <h3>Profile Information</h3>
-          <hr/>
           <div>
+            <h3>Profile Information</h3>
+            <hr/>
           <p>Your Facility Account Address is: </p>
           <p>{Json.Address}</p>
           <hr/>

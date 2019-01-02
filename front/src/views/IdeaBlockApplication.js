@@ -20,7 +20,8 @@ class IdeaBlockApplication extends Component {
       photoHash: '',
       loading: false,
       hasApplied: false,
-      home: false
+      home: false,
+      message: ''
      }
 
 
@@ -89,7 +90,7 @@ fileSelectedHandler = async (event) => {
   reader.onloadend = async () => {
     var buf = Buffer(reader.result);
     await ipfs.add(buf, (err, ipfsHash) => {
-    this.setState({ photoHash: ipfsHash[0].hash });
+    this.setState({ photoHash: ipfsHash[0].hash, message: <p>Photo Successfully Uploaded!</p> });
     console.log(this.state.photoHash);
   })
 }
@@ -101,9 +102,9 @@ goHome = () => {
 
 
   render() {
-    const { ipfsHash, photoHash } = this.state;
+    const { ipfsHash, photoHash, message } = this.state;
     if (this.state.home === true) {
-    return <Redirect to='/' />
+    return <Redirect to='/Profile' />
    }else{
     if(this.state.hasApplied === true){
       return(
@@ -111,13 +112,14 @@ goHome = () => {
       <h1>Thank you for Appying for a</h1>
       <h2>CryptoPatent IdeaBlock!</h2>
       <h3>Yor idea is now pending community approval!</h3>
-      <button onClick={this.goHome}>Click Here to go home</button>
+      <button onClick={this.goHome}>Click Here to return to your Profile</button>
         </div>
       );
     } else {
     if(this.state.loading === true){
       return(
         <div className="Loader">
+          <h2>Please Wait While the Blockchain Processes Your Application</h2>
         <img src={Loader} alt ="Loader" className="Loader" />
         </div>
       );
@@ -138,6 +140,7 @@ goHome = () => {
       </div>
       <label htmlFor="details">Upload Idea Photo: </label>
       <input className='photo' id="photo" name="photo" type='file' onChange={this.fileSelectedHandler}/>
+      <div>{message}</div>
       <br/>
       <form onSubmit={this.handleSubmit}>
        <label htmlFor="name">Applicant Name: </label>

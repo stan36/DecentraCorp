@@ -9,9 +9,6 @@ class Home extends Component {
         <div>
           <h2 style={{ color: "gold"}}>Welcome to DecentraCorp</h2>
         <br/>
-        <p style={{ fontSize: '12px', color:'red'}}>
-          If you just purchased a Membership please reload the page!
-        </p>
         <p>DecentraCorp is the world's first Decentralized Autonomous Corporation
         where the CEO’s and shareholders are the same people who build and maintain
         the machinery.</p>
@@ -31,7 +28,7 @@ class Home extends Component {
         <br/>
         <p> Please Feel Free to explore this dApp During its Early alpha phase!
         You must be connected to the ropsten test network Inorder to use this dApp!</p>
-        <Link style={{  color: "red"}} to='/About'> Click Here to visit the About page and find links to Our WhitePapers!</Link>
+      <Link style={{  color: "red"}} to='/intro'> Click Here to visit the Information pages and find links to Our WhitePapers!</Link>
       </div>
       <br/>
     </div>

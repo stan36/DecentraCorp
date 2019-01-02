@@ -44,11 +44,14 @@ class Intro extends Component {
         </p>
         <p>
           The CryptoPatent Blockchain allows physical replications of the ideas patented to it to mine
-          IdeaCoin, the cryptocurrency of DecentraCorp. Seeking to be a revenue source for open-source
+          IdeaCoin, the cryptocurrency of DecentraCorp. Replications of an idea are the products of DecentraCorp.
+        </p>
+        <p>
+         DecentraCorp seeks to be a revenue source for open-source
           developers (both hardware and software) as well as a driving force in open source innovation.
         </p>
         <p>
-          DecentraCorp will revolutionize what a corporation is and what it means to be enployed!
+          DecentraCorp will revolutionize what a corporation is and what it means to be employed!
         </p>
         </div>
       </div>

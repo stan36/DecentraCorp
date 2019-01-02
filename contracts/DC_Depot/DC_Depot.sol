@@ -1,5 +1,5 @@
 pragma solidity ^0.4.21;
-
+pragma experimental ABIEncoderV2;
 import './DCD_Confirmation.sol';
 
 contract DC_Depot is DCD_Confirmation {
@@ -13,6 +13,7 @@ contract DC_Depot is DCD_Confirmation {
     function purchase(
       bool _payedInIDC,
       uint _price,
+      string _ipfsHash,
       address _seller
       )
        public
@@ -36,7 +37,7 @@ contract DC_Depot is DCD_Confirmation {
          }
 
          createEscrow(_payedInIDC, _price, _seller);
-
+         forSale =_ipfsHash;
 
     }
 

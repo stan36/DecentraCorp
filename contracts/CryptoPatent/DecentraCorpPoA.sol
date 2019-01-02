@@ -49,7 +49,6 @@ contract CryptoPatentBlockGenerator {
    uint public memberCount;
    uint public minimumQuorum;
    bool public frozen;
-   uint public timeFreeze;
    address public founder;
    mapping (address =>bool) members;
    mapping(address => uint) memberLevel;
@@ -99,11 +98,10 @@ contract CryptoPatentBlockGenerator {
      PoPT = (_PoPT);
      members[msg.sender] = true;
      memberCount++;
-     memberLevel[msg.sender]++;
-     memberProfileHash[msg.sender] = "QmexWoAsvZrTwJYgE4sfFK3pUi7XkVPSCcZqqfyFE4uyPN";
+     memberLevel[msg.sender] += 100;
+     memberProfileHash[msg.sender] = "QmXVsHo8fCY9e1Kf8GUUZrRUryt3ftqZM99u6WNeSSNAEE";
      facilityRank[msg.sender] += 100;
      founder = msg.sender;
-     frozen = false;
    }
 /**
 **@notice Proposal Codes are used to fire specific code. each number represents a different action
@@ -215,50 +213,41 @@ contract CryptoPatentBlockGenerator {
 
 ///@notice proxyMint allows an approved address to mint IdeaCoin
    function proxyIDCMint(address _add, uint _amount) external onlyApprovedAdd {
-     require(frozen == false && now <= timeFreeze);
      require(_checkIfFrozen(_add) == false);
      IDC.mint(_add, _amount);
    }
 ///@notice proxyBurn allows an approved address to burn IdeaCoin
    function proxyIDCBurn(address _add,  uint _amount) external onlyApprovedAdd {
-     require(frozen == false && now <= timeFreeze);
      IDC.burn(_add, _amount);
    }
 ///@notice proxyMint allows an approved address to mint IdeaCoin
       function proxyCCMint(address _add, uint _amount) external onlyApprovedAdd {
-        require(frozen == false && now <= timeFreeze);
         CC.mint(_add, _amount);
       }
 ///@notice proxyBurn allows an approved address to burn IdeaCoin
       function proxyCCBurn(address _add,  uint _amount) external onlyApprovedAdd {
-        require(frozen == false && now <= timeFreeze);
         CC.burn(_add, _amount);
       }
 
    function generateIdeaBlock(string _ideaIPFS, uint _globalUseBlockAmount, uint miningTime, uint _royalty, address _inventorsAddress) external onlyApprovedAdd {
-     require(frozen == false && now <= timeFreeze);
      require(_checkIfFrozen(_inventorsAddress) == false);
      CPBG._generateIdeaBlock(_ideaIPFS, _globalUseBlockAmount, miningTime, _royalty, _inventorsAddress);
    }
    function replicationBlock(uint _ideaId, address _repAdd, address _replicatorAdd) external onlyApprovedAdd {
-     require(frozen == false && now <= timeFreeze);
      require(_checkIfFrozen(_replicatorAdd) == false);
      CPBG._replicationBlock( _ideaId, _repAdd, _replicatorAdd);
    }
    function generateGUSBlock(address _replicationOwner) external onlyApprovedAdd {
-     require(frozen == false && now <= timeFreeze);
      require(_checkIfFrozen(_replicationOwner) == false);
    CPBG._generateGUSBlock( _replicationOwner);
  }
 function mintItemToken( string _itemIPFSHash) external onlyApprovedAdd {
-  require(frozen == false && now <= timeFreeze);
   PoPT._mintItemToken( _itemIPFSHash);
 }
 
 ///@notice addMember function is an internal function for adding a member to decentracorp
 ///@dev addMember takes in an address _mem, sets its membership to true and increments their rank by one
   function _addMember(address _mem) external onlyApprovedAdd {
-    require(frozen == false && now <= timeFreeze);
     require(_checkIfFrozen(_mem) == false);
       members[_mem] = true;
       memberLevel[_mem]++;
@@ -284,13 +273,11 @@ function mintItemToken( string _itemIPFSHash) external onlyApprovedAdd {
     }
 
     function increaseMemLev(address _add) external onlyApprovedAdd {
-      require(frozen == false && now <= timeFreeze);
       require(_checkIfFrozen(_add) == false);
       memberLevel[_add]++;
     }
 
     function increaseFacilityRank(address _facAdd, uint _amount) public onlyApprovedAdd {
-      require(frozen == false && now <= timeFreeze);
       require(_checkIfFrozen(_facAdd) == false);
       facilityRank[_facAdd] += _amount;
     }
@@ -304,7 +291,6 @@ function mintItemToken( string _itemIPFSHash) external onlyApprovedAdd {
     }
 
     function setProfileHash(address _add, string _hash) public onlyApprovedAdd {
-      require(frozen == false && now <= timeFreeze);
       require(_checkIfFrozen(_add) == false);
       memberProfileHash[_add] = _hash;
     }
@@ -314,11 +300,7 @@ function mintItemToken( string _itemIPFSHash) external onlyApprovedAdd {
     }
 //@notice this function is a quick freeze triggered by the founder used only in emergency situations
 // this freeze only lasts for a maximum of two days to limit the founders ability to go rogue
-    function founderFreeze() public {
-      require(msg.sender == founder);
-      frozen = true;
-      timeFreeze = now + 172800;
-    }
+
 
     function decreaseFacilityRank(address _facility, uint _amount) public onlyApprovedAdd {
       facilityRank[_facility] -= _amount;

@@ -1,4 +1,5 @@
 pragma solidity ^0.4.21;
+pragma experimental ABIEncoderV2;
 
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 import 'zeppelin-solidity/contracts/math/SafeMath.sol';
@@ -38,9 +39,11 @@ contract DecentraControlled is Ownable {
   uint public _IDC_PriceMod = 10;
   uint public _DecentraCorpFee = 0.001 ether;
 
+  string public forSale;
 
 
 
+event ItemForSale( string itemHash);
 
     function getDCDEtherBalance() public view returns(uint) {
         return address(this).balance;
@@ -59,6 +62,15 @@ contract DecentraControlled is Ownable {
         PoPT = ProofOfPurchaseToken(_newPoPAdd);
         }
 
-  
+  function sellItem(string _ipfsHash) public {
+    forSale =_ipfsHash;
+    emit ItemForSale( _ipfsHash);
+  }
+
+  function getForSale()public view returns(string) {
+    return forSale;
+  }
+
+
 
 }

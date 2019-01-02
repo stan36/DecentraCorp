@@ -1,14 +1,14 @@
 import web3 from '../utils/web3';
-import CryptoPatent from '../contracts/CryptoPatentBlockchain.json';
+import DC_Depot from '../contracts/DC_Depot.json';
 
 
 
-const _CryptoPatentBlockchain = new web3.eth.Contract(
-	CryptoPatent.abi,
-	CryptoPatent.networks[5777].address
+const _DC_Depot = new web3.eth.Contract(
+	DC_Depot.abi,
+	DC_Depot.networks[5777].address
 );
 
-export default _CryptoPatentBlockchain;
+export default _DC_Depot;
 // export default contractInstance;
 
 
