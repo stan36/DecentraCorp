@@ -1,38 +1,56 @@
 import React, { Component } from 'react';
 import { NavLink, Switch, Route } from 'react-router-dom';
-import Home from '../views/Home';
-import Profile from '../components/DashboardComponents/Profile';
-import IDC_Wallet from '../components/DashboardComponents/IDC_Wallet';
-import UpdateProfile from '../components/DashboardComponents/UpdateProfile';
-import IdeaBlockApplication from '../views/IdeaBlockApplication';
-import BuyMembership from './BuyMembership';
-import IdeaVote from '../views/IdeaVote';
-import DC_Depot from '../views/DC_Depot';
-import Sell_Item from './DC_Depot/Sell_Item';
-import ItemList from './DC_Depot/ItemList';
-import DecentraCorpLogo from "../images/DecentraCorpLogo.png";
-import Loader from "../images/75.gif";
-import ChaosCasino from '../views/ChaosCasino';
-import Entropy21 from '../views/Entropy21';
-import RoadMap from '../views/RoadMap';
-import ApprovedIdeas from "../views/ApprovedIdeas";
-import Donate from '../components/InfoComponents/Donate';
-import JoinCore from '../components/InfoComponents/JoinCore';
-import Intro from '../components/InfoComponents/Intro.js';
-import WhatIsDAC from '../components/InfoComponents/WhatIsDAC.js';
-import Members from '../components/InfoComponents/Members.js';
-import DFM from '../components/InfoComponents/DFM.js';
-import DC_ContractStructure from '../components/InfoComponents/DC_ContractStructure.js';
-import CPBlockchain from '../components/InfoComponents/CPBlockchain.js';
-import CPBStructure from '../components/InfoComponents/CPBStructure.js';
-import IdeaCoin from '../components/InfoComponents/IdeaCoin.js';
-import EPMS from '../components/InfoComponents/EPMS.js';
-import DCPoA from '../components/InfoComponents/DCPoA.js';
-import ChaosCasinoInfo from '../components/InfoComponents/ChaosCasinoInfo.js';
-import DC_DepotInfo from '../components/InfoComponents/DC_DepotInfo.js';
-import ExternalResources from '../components/InfoComponents/ExternalResources.js';
-import './NavBar.js';
 
+//Views:
+import Home from '../../views/Home';
+import DC_Depot from '../../views/DC_Depot';
+import RoadMap from '../../views/RoadMap';
+import ChaosCasino from '../../views/ChaosCasino';
+import ApprovedIdeas from "../../views/ApprovedIdeas";
+import IdeaBlockApplication from '../../views/IdeaBlockApplication';
+
+//Chaos Components:
+import Entropy21 from '../ChaosComponents/Entropy21';
+
+//DashBoardComponents:
+import Profile from '../DashboardComponents/Profile';
+import IDC_Wallet from '../DashboardComponents/IDC_Wallet';
+import UpdateProfile from '../DashboardComponents/UpdateProfile';
+import Facility from '../DashboardComponents/Facility';
+import BuyMembership from '../DashboardComponents/BuyMembership'
+import IdeaVote from '../DashboardComponents/IdeaVote';
+import CreateFreezeProp from '../DashboardComponents/CreateFreezeProp';
+import CreateFundingProp from '../DashboardComponents/CreateFundingProp';
+import CreateTerminateProp from '../DashboardComponents/CreateTerminateProp';
+import ProposalVote from '../DashboardComponents/ProposalVote';
+
+
+
+//DC_Depot Components:
+import Sell_Item from '../DC_Depot/Sell_Item';
+import ItemList from '../DC_Depot/ItemList';
+
+//InfoComponents:
+import Donate from '../InfoComponents/Donate';
+import JoinCore from '../InfoComponents/JoinCore';
+import Intro from '../InfoComponents/Intro.js';
+import WhatIsDAC from '../InfoComponents/WhatIsDAC.js';
+import Members from '../InfoComponents/Members.js';
+import DFM from '../InfoComponents/DFM.js';
+import DC_ContractStructure from '../InfoComponents/DC_ContractStructure.js';
+import CPBlockchain from '../InfoComponents/CPBlockchain.js';
+import CPBStructure from '../InfoComponents/CPBStructure.js';
+import IdeaCoin from '../InfoComponents/IdeaCoin.js';
+import EPMS from '../InfoComponents/EPMS.js';
+import DCPoA from '../InfoComponents/DCPoA.js';
+import ChaosCasinoInfo from '../InfoComponents/ChaosCasinoInfo.js';
+import DC_DepotInfo from '../InfoComponents/DC_DepotInfo.js';
+import ExternalResources from '../InfoComponents/ExternalResources.js';
+
+//images and css:
+import './NavBar.css';
+import DecentraCorpLogo from "../../images/DecentraCorpLogo.png";
+import Loader from "../../images/75.gif";
 
 class App extends Component {
   constructor(props){
@@ -273,6 +291,11 @@ return [
           <Route exact path='/ExternalResources' component={ExternalResources}></Route>
           <Route exact path='/Sell_Item' component={Sell_Item}></Route>
           <Route exact path='/ItemList' component={ItemList}></Route>
+          <Route exact path='/Facility' component={Facility}></Route>
+            <Route exact path='/CreateFreezeProp' component={CreateFreezeProp}></Route>
+            <Route exact path='/CreateFundingProp' component={CreateFundingProp}></Route>
+            <Route exact path='/CreateTerminateProp' component={CreateTerminateProp}></Route>
+            <Route exact path='/ProposalVote' component={ProposalVote}></Route>
       </Switch>
       </div>
       );

@@ -13,7 +13,7 @@ import "zeppelin-solidity/contracts/math/SafeMath.sol";
 ////////////////////////////////////////////////////////////////////////////////////////////
 contract IdeaCoin {
     function mint(address _to, uint256 _value) external;
-    function burn(address _from, uint256 _value)  external;
+    function burnIDC(address _from, uint256 _value)  external;
     function balanceOf(address _addr) public constant returns (uint);
 }
 //IdeaCoin interface
@@ -25,7 +25,7 @@ contract ProofOfPurchaseToken{
 ////////////////////////////////////////////////////////////////////////////////////////////
 contract ChaosCoin {
     function mint(address _to, uint256 _value) external;
-    function burn(address _from, uint256 _value)  external;
+    function burnCC(address _from, uint256 _value)  external;
 
 }
 //ChaosCoin interface
@@ -57,9 +57,11 @@ contract CryptoPatentBlockGenerator {
    mapping(address => bool) frozenAccounts;
 ///@param approvedContracts is a mappiung of contracts alloud to call function on other
    mapping(address => bool) approvedContracts;
+   mapping(string => uint) getHash;
+   mapping(string => uint) getPropCode;
    Proposal[] public proposals;
 
-   event ProposalCreated(string _voteHash);
+   event ProposalCreated(string VoteHash, uint PropCode);
    event Voted(address _voter, bool inSupport);
 
 
@@ -117,11 +119,13 @@ contract CryptoPatentBlockGenerator {
            p.Address = _address;
            p.PropCode = _propCode;
            p.voteHash = _voteHash;
+           getHash[_voteHash] = ProposalID;
+           getPropCode[_voteHash] = _propCode;
            p.Amount = _amount;
            p.executed = false;
            p.proposalPassed = false;
            p.numberOfVotes = 0;
-           emit ProposalCreated(_voteHash);
+           emit ProposalCreated(_voteHash, _PropCode);
    }
 
    function vote(
@@ -218,7 +222,7 @@ contract CryptoPatentBlockGenerator {
    }
 ///@notice proxyBurn allows an approved address to burn IdeaCoin
    function proxyIDCBurn(address _add,  uint _amount) external onlyApprovedAdd {
-     IDC.burn(_add, _amount);
+     IDC.burnIDC(_add, _amount);
    }
 ///@notice proxyMint allows an approved address to mint IdeaCoin
       function proxyCCMint(address _add, uint _amount) external onlyApprovedAdd {
@@ -226,7 +230,7 @@ contract CryptoPatentBlockGenerator {
       }
 ///@notice proxyBurn allows an approved address to burn IdeaCoin
       function proxyCCBurn(address _add,  uint _amount) external onlyApprovedAdd {
-        CC.burn(_add, _amount);
+        CC.burnCC(_add, _amount);
       }
 
    function generateIdeaBlock(string _ideaIPFS, uint _globalUseBlockAmount, uint miningTime, uint _royalty, address _inventorsAddress) external onlyApprovedAdd {
@@ -308,12 +312,23 @@ function mintItemToken( string _itemIPFSHash) external onlyApprovedAdd {
 
     function terminateMember(address _member) internal {
       uint balance = IDC.balanceOf(_member);
-       IDC.burn(_member, balance);
+       IDC.burnIDC(_member, balance);
        members[_member] = false;
        memberLevel[_member] = 0;
        facilityRank[_member] = 0;
        frozenAccounts[_member] = true;
     }
 
+    function getPropID(string hash) public view returns(uint){
+      return getHash[hash];
+    }
 
+    function getPropCode(string hash) public view returns(uint){
+      return getPropCode[hash];
+    }
+
+    function checkIfVoted(address _add, uint _ProposalID) public view returns(bool) {
+      Proposal storage p = proposals[_ProposalID];
+      return p.voted[_add];
+    }
  }

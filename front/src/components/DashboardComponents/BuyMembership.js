@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import web3 from '../utils/web3';
-import ipfs from '../utils/IPFS_util';
-import _CryptoPatentBlockchain from '../ethereum/CryptoPatent';
+import web3 from '../../utils/web3';
+import ipfs from '../../utils/IPFS_util';
+import _CryptoPatentBlockchain from '../../ethereum/CryptoPatent';
 import { Redirect } from 'react-router-dom';
-import Loader from "../images/75.gif";
+import Loader from "../../images/75.gif";
 
 class BuyMembership extends Component {
   constructor(props){

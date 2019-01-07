@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import web3 from '../utils/web3';
-import ipfs from '../utils/IPFS_util';
-import _CryptoPatentBlockchain from '../ethereum/CryptoPatent';
-import  DisplayIPFSName  from '../components/DisplayIPFSName';
-import  DisplayIPFS  from '../components/DisplayIPFS';
+import web3 from '../../utils/web3';
+import _CryptoPatentBlockchain from '../../ethereum/CryptoPatent';
+import  DisplayIPFSName  from './DisplayIPFSName';
+import  DisplayIPFS  from './DisplayIPFS';
 import './IdeaList.css';
 
 

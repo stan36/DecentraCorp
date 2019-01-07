@@ -1,18 +1,18 @@
 
 import React, { Component } from 'react';
-import IdeaList from '../components/IdeaList';
-import Depot_Nav from '../components/DC_Depot/Depot_Nav';
+
+import ItemList from '../components/DC_Depot/ItemList';
+import './DC_Depot.css';
 
 class DC_Depot extends Component {
   render() {
     return(
-          <div className='MemDash'>
-        <Depot_Nav />
+          <div>
         <div className='container'>
         <p style={{color: 'red'}}>
-        This feature does not yet work on mobile! Please visit us on a desktop to view/vote on ideas.
+        This feature does not yet work on mobile! Please visit us on a desktop to use the DC Depot.
         </p>
-        <IdeaList />
+        <ItemList />
       </div>
     </div>
     );

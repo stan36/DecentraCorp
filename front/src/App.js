@@ -3,8 +3,8 @@ import './App.css';
 import web3 from './utils/web3';
 import _DecentraCorp from './ethereum/DecentraCorp';
 import _IdeaCoin from './ethereum/IdeaCoin';
-import NavBar from './components/NavBar';
-import Footer from './components/Footer';
+import NavBar from './components/NavComponents/NavBar';
+import Footer from './components/NavComponents/Footer';
 
 
 
@@ -37,12 +37,12 @@ class App extends Component {
       }
       const accounts = await web3.eth.getAccounts();
       const userAccount = accounts[0];
-      console.log(userAccount);
+
       if(userAccount === undefined){
         alert('MOST FEATURES ON THIS WEBSITE REQUIRE YOUR ACCOUNT TO BE UNLOCKED AND HAVE THERE FOR BEEN DISABLED! UNLOCK YOUR WALLET TO RE-ENABLE THEM!', null, null);
 
       }
-      console.log(userAccount);
+
       if(userAccount !== undefined){
 
         const isMember = await _DecentraCorp.methods._checkIfMember(userAccount).call();
@@ -50,7 +50,7 @@ class App extends Component {
         const total = await _IdeaCoin.methods.totalSupply().call();
         const idcTotal = web3.utils.fromWei(total);
         this.setState({ accounts, isMember, memberCount, idcTotal, loading: false });
-        console.log(this.state.loading);
+
 
       }
       this.setState({ loading: false });

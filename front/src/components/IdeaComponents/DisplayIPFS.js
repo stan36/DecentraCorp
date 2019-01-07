@@ -1,8 +1,8 @@
 
  import React, { Component } from 'react';
- import web3 from '../utils/web3';
- import ipfs from '../utils/IPFS_util';
-import _CryptoPatentBlockchain from '../ethereum/CryptoPatent';
+ import web3 from '../../utils/web3';
+ import ipfs from '../../utils/IPFS_util';
+import _CryptoPatentBlockchain from '../../ethereum/CryptoPatent';
 import './DisplayIPFS.css'
 
  class DisplayIPFS extends Component {

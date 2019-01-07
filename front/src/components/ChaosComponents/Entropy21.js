@@ -1,9 +1,9 @@
 import React from 'react';
 import './Entropy21.css';
-import {Card} from '../components/Cards';
-import _ChaosCasino from '../ethereum/ChaosCasino';
-import _ChaosCoin from '../ethereum/ChaosCoin';
-import web3 from '../utils/web3';
+import {Card} from './Cards';
+import _ChaosCasino from '../../ethereum/ChaosCasino';
+import _ChaosCoin from '../../ethereum/ChaosCoin';
+import web3 from '../../utils/web3';
 
 
 class Entropy21 extends React.Component {

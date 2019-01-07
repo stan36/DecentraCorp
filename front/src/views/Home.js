@@ -26,11 +26,13 @@ class Home extends Component {
          makers communities with a framework to help tinkerers and builders
          earn a living for doing what they love while simultaneously helping to better their communities.</p>
         <br/>
-        <p> Please Feel Free to explore this dApp During its Early alpha phase!
+        <p> Please feel free to explore this dApp During its Early alpha phase!
         You must be connected to the ropsten test network Inorder to use this dApp!</p>
       <Link style={{  color: "red"}} to='/intro'> Click Here to visit the Information pages and find links to Our WhitePapers!</Link>
       </div>
       <br/>
+      <p>Please report a description of any bugs, glitches, or mistakes you find to decentracorp@pm.me.</p>
+      <p>Your help is Greatly appreciated!</p>
     </div>
     );
   }

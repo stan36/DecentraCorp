@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import web3 from '../utils/web3';
-import ipfs from '../utils/IPFS_util';
+
 import _CryptoPatentBlockchain from '../ethereum/CryptoPatent';
-import  DisplayIPFSName  from '../components/DisplayIPFSName';
-import  DisplayIPFS  from '../components/DisplayIPFS';
+import  DisplayIPFSName  from '../components/IdeaComponents/DisplayIPFSName';
+import  DisplayIPFS  from '../components/IdeaComponents/DisplayIPFS';
 import Loader from "../images/75.gif";
 
 

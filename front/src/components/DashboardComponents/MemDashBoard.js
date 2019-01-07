@@ -15,8 +15,18 @@ class MemDashBoard extends Component {
           <hr/></li>
           <li><Link style={{ textDecoration: 'none', color: "white"}} to='/UpdateProfile'>Update Profile</Link>
           <hr/></li>
-            <li><Link style={{ textDecoration: 'none', color: "white"}} to='/IdeaVote'>IdeaBlock Voting Booth</Link>
+          <li><Link style={{ textDecoration: 'none', color: "white"}} to='/IdeaVote'>IdeaBlock Voting Booth</Link>
+          <hr/></li>
+          <li><Link style={{ textDecoration: 'none', color: "white"}} to='/ProposalVote'>Proposal Voting Booth</Link>
+          <hr/></li>
+            <li><Link style={{ textDecoration: 'none', color: "white"}} to='/CreateFundingProp'>Create a Proposal for Funding</Link>
             <hr/></li>
+              <li><Link style={{ textDecoration: 'none', color: "white"}} to='/CreateFreezeProp'>Create a Proposal to Investigate a Member for Fraud</Link>
+              <hr/></li>
+                <li><Link style={{ textDecoration: 'none', color: "white"}} to='/CreateTerminateProp'>Create a Proposal to have a Member Terminated</Link>
+                <hr/></li>
+                  <li><Link style={{ textDecoration: 'none', color: "white"}} to='/Facility'>Facility Upgrades</Link>
+                  <hr/></li>
           </ol>
         </div>
     );

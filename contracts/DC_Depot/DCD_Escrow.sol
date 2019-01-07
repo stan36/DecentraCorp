@@ -17,6 +17,8 @@ struct Escrow {
   uint Price;
   address buyer;
   address seller;
+  address facility;
+  string ItemIPFS;
   }
 
   mapping (uint => Escrow) public itemInEscrow;
@@ -24,7 +26,9 @@ struct Escrow {
 function createEscrow(
   bool _payedInIDC,
   uint _price,
-  address _seller
+  address _seller,
+  address _facility,
+  string _itemipfs
   )
   internal
   {
@@ -34,12 +38,14 @@ function createEscrow(
        PayedInIDC: bool(_payedInIDC),
        Price: uint(_price),
        buyer: address(_buyer),
-       seller: address(_seller)
+       seller: address(_seller),
+       facility: address(_facility),
+       ItemIPFS: string(_itemipfs)
       });
 
 globalEscrowCount++;
-
-  itemInEscrow[globalEscrowCount] = _escrow;
-
+itemInEscrow[globalEscrowCount] = _escrow;
+emit ItemInEscrow(globalEscrowCount, _facility, _itemipfs);
   }
+
 }

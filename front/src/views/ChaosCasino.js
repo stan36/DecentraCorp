@@ -3,7 +3,7 @@ import web3 from '../utils/web3';
 import { Link } from 'react-router-dom';
 import _ChaosCasino from '../ethereum/ChaosCasino';
 import _ChaosCoin from '../ethereum/ChaosCoin';
-import Entropy21 from './Entropy21';
+import Entropy21 from '../components/ChaosComponents/Entropy21';
 
 
 

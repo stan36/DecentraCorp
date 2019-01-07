@@ -1,8 +1,7 @@
 
 import React, { Component } from 'react';
-import ipfs from '../utils/IPFS_util';
-import IdeaList from '../components/IdeaList';
-import MemDashBoard from '../components/DashboardComponents/MemDashBoard';
+import IdeaList from '../IdeaComponents/IdeaList';
+import MemDashBoard from './MemDashBoard';
 
 class IdeaVote extends Component {
   render() {

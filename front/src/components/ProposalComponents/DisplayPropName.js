@@ -1,10 +1,10 @@
 
  import React, { Component } from 'react';
- import ipfs from '../utils/IPFS_util';
+ import ipfs from '../../utils/IPFS_util';
 
 
 
- class DisplayIPFSName extends Component {
+ class DisplayPropName extends Component {
    constructor(props){
      super(props);
 
@@ -33,10 +33,9 @@ onload = async ()=>{
    } else {
      this.onload();
      return(
-       <div className='DisplayIPFS'>
-         <img src={"https://ipfs.io/ipfs/" + Json.photo } alt ="No Image" className="ideaPhoto"/>
+<div>
 <form >
-   <label htmlFor="ideaName">Idea Name: { Json.ideaName } </label>
+   <label htmlFor="ProposalName">Proposal Name: { Json.ProposalName } </label>
    <br/>
 
 </form>
@@ -46,4 +45,4 @@ onload = async ()=>{
    }
  }
 
-     export default DisplayIPFSName;
+     export default DisplayPropName;
