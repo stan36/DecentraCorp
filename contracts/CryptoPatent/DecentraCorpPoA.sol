@@ -58,7 +58,8 @@ contract CryptoPatentBlockGenerator {
 ///@param approvedContracts is a mappiung of contracts alloud to call function on other
    mapping(address => bool) approvedContracts;
    mapping(string => uint) getHash;
-   mapping(string => uint) getPropCode;
+   mapping(string => uint) propCode;
+   mapping(address => string) profileComments;
    Proposal[] public proposals;
 
    event ProposalCreated(string VoteHash, uint PropCode);
@@ -101,7 +102,7 @@ contract CryptoPatentBlockGenerator {
      members[msg.sender] = true;
      memberCount++;
      memberLevel[msg.sender] += 100;
-     memberProfileHash[msg.sender] = "QmXVsHo8fCY9e1Kf8GUUZrRUryt3ftqZM99u6WNeSSNAEE";
+     memberProfileHash[msg.sender] = "QmSu93p6XRanSNmov4e5c8VQPBxKo2zWf1jZpvVTfwi2L9";
      facilityRank[msg.sender] += 100;
      founder = msg.sender;
    }
@@ -120,12 +121,12 @@ contract CryptoPatentBlockGenerator {
            p.PropCode = _propCode;
            p.voteHash = _voteHash;
            getHash[_voteHash] = ProposalID;
-           getPropCode[_voteHash] = _propCode;
+           propCode[_voteHash] = _propCode;
            p.Amount = _amount;
            p.executed = false;
            p.proposalPassed = false;
            p.numberOfVotes = 0;
-           emit ProposalCreated(_voteHash, _PropCode);
+           emit ProposalCreated(_voteHash, _propCode);
    }
 
    function vote(
@@ -324,11 +325,20 @@ function mintItemToken( string _itemIPFSHash) external onlyApprovedAdd {
     }
 
     function getPropCode(string hash) public view returns(uint){
-      return getPropCode[hash];
+      return propCode[hash];
     }
 
     function checkIfVoted(address _add, uint _ProposalID) public view returns(bool) {
       Proposal storage p = proposals[_ProposalID];
       return p.voted[_add];
     }
+
+    function postComment(address _member, string _commentsHash) public {
+       IDC.burnIDC(msg.sender, 10);
+      profileComments[_member] = _commentsHash;
+    }
+    function getComment(address _member) public view returns(string){
+      return profileComments[_member];
+    }
+
  }

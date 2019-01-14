@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import web3 from '../../utils/web3';
 import ipfs from '../../utils/IPFS_util';
 import _DC_Depot from '../../ethereum/DC_Depot';
-import Depot_Nav from './Depot_Nav';
+
 import  DisplayItemName  from './DisplayItemName';
 import  DisplayItem  from './DisplayItem';
 import './ItemList.css';
@@ -55,18 +55,18 @@ stateSetter = (ipfshash) =>{
   render() {
 if(!this.state.selectedIpfs){
     return(
-      <div className='MemDash'>
-    <Depot_Nav />
-      <div className='IdeaList'>
+
+      <div className='ItemList'>
         <div>
           <h1>Select an Item to view</h1>
           <h2>For Sale</h2>
+          <div className='item'>
           <div className ="item-details">
     {this.state.hashs.map((ipfshash, index) => (
       <div className="prop-detail" key ={index + 1}>
         <DisplayItemName key={index + 4} ipfsHash={ipfshash} />
-        <p key={index + 5}>IPFS Hash:</p>
-        <p className='ipfsHash' key={index}>{ipfshash}</p>
+        <p key={index + 5}>Items IPFS Hash:</p>
+        <p style={{ fontSize: '10px'}}className='ipfsHash' key={index}>{ipfshash}</p>
           <button  style={{ color: "red"}} onClick={() => this.stateSetter(ipfshash)} key={index + 2}>Click Here To View This Item</button>
           <br/>
           <br/>
@@ -74,9 +74,10 @@ if(!this.state.selectedIpfs){
           </div>
     ))}
     </div>
+  </div>
       </div>
       </div>
-    </div>
+
       );
     }else{
       return(

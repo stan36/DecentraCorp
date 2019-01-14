@@ -3,8 +3,8 @@ import web3 from '../../utils/web3';
 import ipfs from '../../utils/IPFS_util';
 import _DecentraCorp from '../../ethereum/DecentraCorp';
 import MemDashBoard from './MemDashBoard';
-
-
+import PostComments from './PostComments';
+import DisplayComments from './DisplayComments';
 
 class Profile extends Component {
 
@@ -17,7 +17,8 @@ class Profile extends Component {
        userLevel: null,
        facilityRank: null,
        Json: {},
-       profileHash: ""
+       profileHash: "",
+       hashArray: []
      }
 
 
@@ -30,13 +31,20 @@ class Profile extends Component {
      const userLevel =  await _DecentraCorp.methods.getLevel(userAccount).call();
      const facilityRank = await _DecentraCorp.methods.getRank(userAccount).call();
      const profileHash = await  _DecentraCorp.methods.getProfileHash(userAccount).call();
+     const currentCommentHash = await  _DecentraCorp.methods.getComment(userAccount).call();
+     console.log('the hash is: '+ currentCommentHash );
+     if(currentCommentHash !== '') {
+     const hashArray = JSON.parse(await ipfs.cat(currentCommentHash));
+     console.log(hashArray + ' componentDidMount');
+     this.setState({ hashArray });
+   }
      const Json =JSON.parse(await ipfs.cat(profileHash));
      this.setState({ userAccount,  userLevel, facilityRank, profileHash, Json});
    }
 
 
   render() {
-    const { Json, profileHash, userLevel, facilityRank } =this.state;
+    const { Json, profileHash, userLevel, facilityRank, hashArray, userAccount } =this.state;
     return (
       <div>
       <div className='MemDash'>
@@ -55,17 +63,24 @@ class Profile extends Component {
               <hr/>
               <p>Facility: { Json.FacilityName }</p>
               <p>Facility Level: {facilityRank}</p>
-              <p>{ Json.PhysicalAddress }</p>
               <hr/>
+              <p>{ Json.PhysicalAddress }</p>
+              <p>Contact Email: { Json.FacilityEmail}</p>
+
           </div>
           <div>
             <h3>Profile Information</h3>
-            <hr/>
+            <hr style={{ width: "auto"}}/>
+            <p>{Json.About}</p>
+              <hr style={{ width: "auto"}}/>
           <p>Your Facility Account Address is: </p>
           <p>{Json.Address}</p>
-          <hr/>
+          <hr style={{ width: "auto"}}/>
           <p>Your Profile Hash is:</p>
           <p>{profileHash}</p>
+          <hr style={{ width: "auto"}}/>
+          <DisplayComments hashArray={hashArray}/>
+          <PostComments hashArray={hashArray} Json={Json} userAccount={userAccount}/>
           </div>
         </div>
 </div>

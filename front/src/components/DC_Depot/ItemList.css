@@ -1,31 +1,51 @@
-.IdeaList{
+.ItemList{
   display: flex;
   flex: 1;
   flex-wrap: wrap;
-justify-content: space-between;
-flex-direction: row;
+justify-content: center;
+flex-direction: column;
+align-items: center;
 }
 
 .item-details{
   display: flex;
   flex: 1;
   flex-wrap: wrap;
-justify-content: space-between;
+  justify-content: center;
 flex-direction: row;
+align-items: center;
+
 }
 
 .prop-detail{
   display: flex;
-  flex: 1;
+  flex: 100;
   flex-wrap: wrap;
-justify-content: space-between;
-flex-direction: row;
+  justify-content: row;
+flex-direction: column;
+align-items: center;
+max-width: 60%;
+max-height: 80%;
 }
 
 .ipfsHash{
   display: flex;
   flex: 1;
   flex-wrap: wrap;
-justify-content: space-between;
+  justify-content: center;
+flex-direction: column;
+align-items: center;
+max-width: 50%;
+max-height: 40%;
+font-size: 5vw;
+}
+
+.item {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  justify-content: center;
 flex-direction: row;
+align-items: center;
+
 }

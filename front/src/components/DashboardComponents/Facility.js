@@ -43,13 +43,14 @@ class Facility extends Component {
 
  handleSubmit = async (event) => {
    event.preventDefault();
+   this.setState({ loading : true });
   await _DC_Depot.methods.applyForProcessingFacility(this.state.userAccount)
   .send({from : this.state.userAccount,
     gas: '3000000',
   }, (error, transactionHash) => {
    this.setState({transactionHash});
        });
-
+this.setState({ toDashboard : true });
 };
 
 onLoad = async => {
@@ -74,6 +75,11 @@ _DC_Depot.events.ItemInEscrow({
 
 
   render() {
+    if (this.state.toDashboard === true ) {
+       return <Redirect to='/Profile' />
+       }
+
+
     if (this.state.IsUpgraded === true ) {
       this.onLoad();
      return (
@@ -89,8 +95,7 @@ _DC_Depot.events.ItemInEscrow({
         <div className="Loader">
           <h1>Please Wait While Your Purchase is processed by the Blockchain</h1>
         <img src={Loader} alt ="Loader" className="Loader" />
-        <h2>You will be redirected to the Members Dashboard </h2>
-        <h2>once you become a Member.</h2>
+        <h2>You will be redirected to the Members Dashboard once your Facility is upgraded</h2>
         </div>
       );
     } else {

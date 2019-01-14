@@ -149,10 +149,6 @@ goHome = () => {
         <br/>
        <button>Send data!</button>
      </form>
-     <p>{this.state.transactionHash}</p>
-     <br/>
-     <p>Proposal hash: {ipfsHash}</p>
-     <br/>
      </div>
     );
   }

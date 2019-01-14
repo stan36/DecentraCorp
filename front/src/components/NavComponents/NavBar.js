@@ -3,7 +3,7 @@ import { NavLink, Switch, Route } from 'react-router-dom';
 
 //Views:
 import Home from '../../views/Home';
-import DC_Depot from '../../views/DC_Depot';
+import DCDepot from '../../views/DCDepot';
 import RoadMap from '../../views/RoadMap';
 import ChaosCasino from '../../views/ChaosCasino';
 import ApprovedIdeas from "../../views/ApprovedIdeas";
@@ -47,6 +47,9 @@ import ChaosCasinoInfo from '../InfoComponents/ChaosCasinoInfo.js';
 import DC_DepotInfo from '../InfoComponents/DC_DepotInfo.js';
 import ExternalResources from '../InfoComponents/ExternalResources.js';
 
+//Search Components:
+import ProfilSearch from '../IPFS_Search/ProfileSearch';
+
 //images and css:
 import './NavBar.css';
 import DecentraCorpLogo from "../../images/DecentraCorpLogo.png";
@@ -72,9 +75,9 @@ class App extends Component {
       <div class="Navbar__Link Navbar__Link-brand">
       <img src={DecentraCorpLogo} alt ="DecentraCorp Dapp" className="DecentraCorpLogo1" style={{ marginBottom: "-100px"}}/>
       <ul>
-        <li key={1}><NavLink to='/'>Home</NavLink></li>
-        <li key={2}><NavLink to='/Intro'>Info</NavLink></li>
-        <li key={3}><NavLink to='/RoadMap'>RoadMap</NavLink></li>
+      <li key={1}><NavLink to='/'>Home</NavLink></li>
+      <li key={2}><NavLink to='/Intro'>Info</NavLink></li>
+      <li key={2}><NavLink to='/BuyMembership'>Become a Member!</NavLink></li>
       </ul>
       </div>
       </nav>
@@ -96,12 +99,10 @@ return [
   <ul>
     <li key={1}><NavLink to='/'>Home</NavLink></li>
     <li key={2}><NavLink to='/Intro'>Info</NavLink></li>
-    <li key={3}><NavLink to='/RoadMap'>RoadMap</NavLink></li>
-    <li key={4}><NavLink to='/ApprovedIdeas'>Approved Ideas</NavLink></li>
-    <li key={5}><NavLink to='/IdeaBlockApplication'>IdeaBlock Application</NavLink></li>
-    <li key={6}><NavLink to='/BuyMembership'>Become a Member!</NavLink></li>
-    <li key={7}><NavLink to='/ChaosCasino'>ChaosCasino</NavLink></li>
-    <li key={8}><NavLink to='/DC_Depot'>DC Depot</NavLink></li>
+    <li key={3}><NavLink to='/BuyMembership'>Become a Member!</NavLink></li>
+    <li key={4}><NavLink to='/ApprovedIdeas'>The CryptoPatent Blockchain</NavLink></li>
+    <li key={5}><NavLink to='/ChaosCasino'>ChaosCasino</NavLink></li>
+    <li key={6}><NavLink to='/DCDepot'>DC Depot</NavLink></li>
   </ul>
   </div>
   </nav>
@@ -121,12 +122,10 @@ return [
 <ul>
   <li key={1}><NavLink to='/'>Home</NavLink></li>
   <li key={2}><NavLink to='/Intro'>Info</NavLink></li>
-  <li key={3}><NavLink to='/RoadMap'>RoadMap</NavLink></li>
-  <li key={4}><NavLink to='/Profile'>DashBoard</NavLink></li>
-  <li key={5}><NavLink to='/ApprovedIdeas'>Approved Ideas</NavLink></li>
-  <li key={6}><NavLink to='/IdeaBlockApplication'>IdeaBlock Application</NavLink></li>
-  <li key={7}><NavLink to='/ChaosCasino'>ChaosCasino</NavLink></li>
-  <li key={8}><NavLink to='/DC_Depot'>DC Depot</NavLink></li>
+  <li key={3}><NavLink to='/Profile'>DashBoard</NavLink></li>
+  <li key={4}><NavLink to='/ApprovedIdeas'>The CryptoPatent Blockchain</NavLink></li>
+  <li key={5}><NavLink to='/ChaosCasino'>ChaosCasino</NavLink></li>
+  <li key={6}><NavLink to='/DCDepot'>DC Depot</NavLink></li>
 </ul>
 </div>
 </nav>
@@ -135,116 +134,8 @@ return [
 }
 }
 
-navigationLinksMobile() {
-  const {  isMember, accounts, memberCount, idcTotal  } = this.props;
-    if(accounts === null){
 
-  return [
-    <div>
-    <nav>
-    <div>
-    <ul>
-      <li key={1}><NavLink to='/'><button onClick={this.closeOnClick.bind(this)}>Home</button></NavLink></li>
-      <li key={2}><NavLink to='/Intro'><button onClick={this.closeOnClick.bind(this)}>Info</button></NavLink></li>
-      <li key={3}><NavLink to='/RoadMap'><button onClick={this.closeOnClick.bind(this)}>RoadMap</button></NavLink></li>
-    </ul>
-    </div>
-    </nav>
-    <div>
-    </div>
-    </div>
-  ];
-}
-else if(!isMember){
-return [
-<div class="Navbar">
-<br/>
-<div>
-  <p style={{ fontSize: "14px", color: "red", textAlign: "right"}}>Total DecentraCorp members: { memberCount } IdeaCoin Total Supply: { idcTotal }</p>
-  </div>
-<nav>
-<div>
-<ul>
-  <li key={1}><NavLink to='/'><button onClick={this.closeOnClick.bind(this)}>Home</button></NavLink></li>
-  <li key={2}><NavLink to='/Intro'><button onClick={this.closeOnClick.bind(this)}>Info</button></NavLink></li>
-  <li key={3}><NavLink to='/RoadMap'><button onClick={this.closeOnClick.bind(this)}>RoadMap</button></NavLink></li>
-  <li key={4}><NavLink to='/ApprovedIdeas'><button onClick={this.closeOnClick.bind(this)}>Approved Ideas</button></NavLink></li>
-  <li key={5}><NavLink to='/IdeaBlockApplication'><button onClick={this.closeOnClick.bind(this)}>IdeaBlock Application</button></NavLink></li>
-  <li key={6}><NavLink to='/BuyMembership'><button onClick={this.closeOnClick.bind(this)}>Become a Member!</button></NavLink></li>
-  <li key={7}><NavLink to='/ChaosCasino'><button onClick={this.closeOnClick.bind(this)}>ChaosCasino</button></NavLink></li>
-</ul>
-</div>
-</nav>
-  </div>
-];
-} else {
-return [
-
-<div class="Navbar">
-<br/>
-<div>
-  <p style={{ fontSize: "14px", color: "red", textAlign: "right"}}>Total DecentraCorp members: { memberCount } IdeaCoin Total Supply: { idcTotal }</p>
-  </div>
-<nav>
-<div>
-<ul>
-<li key={1}><NavLink to='/'><button onClick={this.closeOnClick.bind(this)}>Home</button></NavLink></li>
-<li key={2}><NavLink to='/Intro'><button onClick={this.closeOnClick.bind(this)}>Info</button></NavLink></li>
-<li key={3}><NavLink to='/RoadMap'><button onClick={this.closeOnClick.bind(this)}>RoadMap</button></NavLink></li>
-<li key={4}><NavLink to='/Profile'><button onClick={this.closeOnClick.bind(this)}>DashBoard</button></NavLink></li>
-<li key={5}><NavLink to='/ApprovedIdeas'><button onClick={this.closeOnClick.bind(this)}>Approved Ideas</button></NavLink></li>
-<li key={6}><NavLink to='/IdeaBlockApplication'><button onClick={this.closeOnClick.bind(this)}>IdeaBlock Application</button></NavLink></li>
-<li key={7}><NavLink to='/ChaosCasino'><button onClick={this.closeOnClick.bind(this)}>ChaosCasino</button></NavLink></li>
-</ul>
-</div>
-</nav>
-</div>
-];
-}
-}
-
-
-  renderMobileNav() {
-    if(this.state.mobileNavVisible) {
-      return this.navigationLinksMobile();
-    }
-  }
-
-  handleNavClick() {
-    if(!this.state.mobileNavVisible) {
-      this.setState({mobileNavVisible: true});
-    } else {
-      this.setState({mobileNavVisible: false});
-    }
-  }
-
-  closeOnClick() {
-    this.setState({mobileNavVisible: false});
-  }
-
-  renderNavigation() {
-    if(this.state.windowWidth <= 720) {
-      return [
-        <div className="mobile_nav">
-          <p onClick={this.handleNavClick.bind(this)}><i className="menu">  <div>
-             MENU
-            </div></i></p>
-            <div>
-            <br/>
-            </div>
-          {this.renderMobileNav()}
-        </div>
-      ];
-    } else {
-      return [
-        <div key={7} className="nav_menu">
-        <nav>
-          {this.navigationLinks()}
-          </nav>
-        </div>
-      ];
-    }
-  }
+  
 
 
   render() {
@@ -259,14 +150,14 @@ return [
     return (
       <div className="app">
       <div>
-        {this.renderNavigation()}
+        {this.navigationLinks()}
       </div>
         <Switch>
           <Route exact path='/' component={Home}></Route>
           <Route exact path='/Profile' component={Profile}></Route>
           <Route exact path='/IdeaBlockApplication' component={IdeaBlockApplication}></Route>
           <Route exact path='/IdeaVote' component={IdeaVote}></Route>
-          <Route exact path='/DC_Depot' component={DC_Depot}></Route>
+          <Route exact path='/DCDepot' component={DCDepot}></Route>
           <Route exact path='/ChaosCasino' component={ChaosCasino}></Route>
           <Route exact path='/Entropy21' component={Entropy21}></Route>
           <Route exact path='/RoadMap' component={RoadMap}></Route>
@@ -296,6 +187,7 @@ return [
             <Route exact path='/CreateFundingProp' component={CreateFundingProp}></Route>
             <Route exact path='/CreateTerminateProp' component={CreateTerminateProp}></Route>
             <Route exact path='/ProposalVote' component={ProposalVote}></Route>
+              <Route exact path='/ProfilSearch' component={ProfilSearch}></Route>
       </Switch>
       </div>
       );

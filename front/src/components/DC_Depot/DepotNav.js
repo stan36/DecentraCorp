@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './Depot_Nav.css'
+import './DepotNav.css'
 
-class Depot_Nav extends Component {
+class DepotNav extends Component {
 
 
   render() {
     return (
-      <div className='SideBar'>
+      <div className='NavSideBar'>
         <ol>
           <li><Link style={{ textDecoration: 'none', color: "white"}} to='/Sell_Item'>Sell an Item</Link>
           <hr/></li>
@@ -19,4 +19,4 @@ class Depot_Nav extends Component {
   }
 }
 
-export default Depot_Nav;
+export default DepotNav;

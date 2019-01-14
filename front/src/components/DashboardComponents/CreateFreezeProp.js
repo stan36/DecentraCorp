@@ -111,6 +111,8 @@ goHome = () => {
         <div className="Loader">
           <h2>Please Wait While the Blockchain Processes Your  Proposal</h2>
         <img src={Loader} alt ="Loader" className="Loader" />
+        <p>It is important to note that if the community finds your proposal to be in bad taste or otherwise unfounded,
+           a freeze or termination of your account may occur.</p>
         </div>
       );
     } else {
@@ -149,10 +151,7 @@ goHome = () => {
         <br/>
        <button>Send data!</button>
      </form>
-     <p>{this.state.transactionHash}</p>
-     <br/>
-     <p>Proposal hash: {ipfsHash}</p>
-     <br/>
+
      </div>
     );
   }

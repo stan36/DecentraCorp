@@ -130,8 +130,8 @@ console.log('new array:' + newArray);
      const { Json, IDCDiscountPrice , IDCPrice }= this.state;
      this.onload();
      return(
-       <div className='container'>
-         <h2>Current Item Array: {this.state.currentForSalehash}</h2>
+       <div className='item'>
+      
           <img src={"https://ipfs.io/ipfs/" + Json.photo } alt ="No Image" className="ideaPhoto"/>
 <form >
    <label htmlFor="ideaName">Item Name: { Json.itemName } </label>

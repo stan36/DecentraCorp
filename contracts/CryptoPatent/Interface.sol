@@ -83,7 +83,7 @@ contract Interface is Ownable {
   ///@param IdeaProposal array of idea proposals
   IdeaProposal[] public proposals;
 
-  address[] public inventions;
+
   ///@param weightTracker tracks current global highest weight
   ///@param localWeightTracker maps a replications address to its replication ID and stores that replications current weight
   ///@param members tracks if an address is a member
@@ -93,7 +93,7 @@ contract Interface is Ownable {
   mapping (address => mapping (uint => uint)) localWeightTracker;
   mapping(string => uint) getHash;
   mapping(address => uint[]) getTokens;
-
+  mapping(address => bool) inventions;
 
 
   event IdeaProposed(string IdeaHash);

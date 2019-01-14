@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import web3 from '../utils/web3';
-
+import CryptoPatentNav from '../components/IdeaComponents/CryptoPatentNav';
 import _CryptoPatentBlockchain from '../ethereum/CryptoPatent';
 import  DisplayIPFSName  from '../components/IdeaComponents/DisplayIPFSName';
 import  DisplayIPFS  from '../components/IdeaComponents/DisplayIPFS';
 import Loader from "../images/75.gif";
+import './ApprovedIdeas.css';
 
 
 
@@ -70,22 +71,25 @@ stateSetter = (ipfshash) =>{
     } else {
 if(!this.state.selectedIpfs){
     return(
-      <div className='IdeaList'>
-        <div>
+      <div>
+        <div><CryptoPatentNav /></div>
+
+      <div className='ItemList'>
           <h1>Select an Idea to view</h1>
-          <h2>IdeaList</h2>
-          <div className ="idea-details">
+            <div className='item'>
+            <div className ="item-details">
     {this.state.hashs.map((ipfshash, index) => (
       <div className="prop-detail" key ={index + 1}>
         <DisplayIPFSName key={index + 4} ipfsHash={ipfshash} />
         <p key={index + 5}>IPFS Hash:</p>
-        <p className='ipfsHash' key={index}>{ipfshash}</p>
+        <p style={{ fontSize: '10px'}}className='ipfsHash'  key={index}>{ipfshash}</p>
           <button  style={{ color: "red"}} onClick={() => this.stateSetter(ipfshash)} key={index + 2}>Click Here To View This Idea</button>
           <br/>
           <br/>
           <br/>
           </div>
     ))}
+      </div>
     </div>
       </div>
       </div>

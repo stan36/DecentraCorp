@@ -27,6 +27,8 @@ class MemDashBoard extends Component {
                 <hr/></li>
                   <li><Link style={{ textDecoration: 'none', color: "white"}} to='/Facility'>Facility Upgrades</Link>
                   <hr/></li>
+                    <li><Link style={{ textDecoration: 'none', color: "white"}} to='/ProfilSearch'>Member Profile Search</Link>
+                    <hr/></li>
           </ol>
         </div>
     );

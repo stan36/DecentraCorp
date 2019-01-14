@@ -10,6 +10,8 @@ body {
   letter-spacing: .5px;
   font-size: 16px;
   font-weight: 300;
+  flex-direction: column;
+
 
 }
 
@@ -62,56 +64,34 @@ label {
   width: auto;
   }
 
-  @media only screen and (max-width: 720px) {
-
-    .container {
-      flex: 1;
-      display: flex;
-      flex-wrap: wrap;
-      width: 250px;
-      padding: 2px;
-      margin: 2px;
-    }
-    form {
-      display: flex;
-      flex-wrap: wrap;
-      width: 300px;
-      padding: 2px;
-      margin: 2px;
-      justify-content: center;
-      align-items: center;
-      padding-left : 100px;
-    }
-
-    input {
-      display: flex;
-      flex-wrap: wrap;
-      width: 300px;
-      padding: 5px;
-      margin: 5px;
-      justify-content: center;
-      align-items: center;
-      padding-left : 100px;
-    }
-
-    label {
-      display: flex;
-      flex-wrap: wrap;
-      width: 300px;
-      padding: 5px;
-      margin: 5px;
-      padding-left : 50px;
-    }
-
-    .info {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      font-size:3vw;
-      align-items: center;
-      padding: 2px;
-      margin: 2px;
-      width: 350px;
-        padding-left : 100px;
-    }
+  .outterC {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+  justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
   }
+
+  .C1 {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+  justify-content: space-around;
+    align-items: left;
+    flex-direction: column;
+    width: 600px;
+  }
+
+  .C2 {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+  justify-content: space-around;
+    align-items: right;
+    flex-direction: column;
+    width: 600px;
+
+  }
+
+  

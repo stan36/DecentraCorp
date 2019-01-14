@@ -1,5 +1,14 @@
+
+  @media only screen and (max-width: 720px) {
 .flex-container {
+  flex:1;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
-justify-content: space-between;
+  flex-direction: column;
+  
+  width: 350px;
+  padding: 5px;
+  margin: 5px;
+}
 }

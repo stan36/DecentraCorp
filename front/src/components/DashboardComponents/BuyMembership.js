@@ -4,6 +4,8 @@ import ipfs from '../../utils/IPFS_util';
 import _CryptoPatentBlockchain from '../../ethereum/CryptoPatent';
 import { Redirect } from 'react-router-dom';
 import Loader from "../../images/75.gif";
+import './BuyMembership.css';
+import downloadMetamask from '../../images/download-metamask.png';
 
 class BuyMembership extends Component {
   constructor(props){
@@ -26,11 +28,20 @@ class BuyMembership extends Component {
 
   async  componentDidMount(){
       this.setState({ loading : true });
-     const accounts = await web3.eth.getAccounts();
-     const userAccount = accounts[0];
+      if (typeof window === 'undefined' || typeof window.web3 === 'undefined') {
+        this.setState({ loading: false, userAccount: 'undefined'});
+      }
+
+      const accounts = await web3.eth.getAccounts();
+      const userAccount = accounts[0];
+      if(userAccount === undefined){
+        this.setState({ loading: false, userAccount: 'undefined' });
+      }else {
+
+
      this.setState({ userAccount, loading: false});
    }
-
+}
 
 
 
@@ -94,6 +105,23 @@ fileSelectedHandler = async (event) => {
 };
 
   render() {
+    if(this.state.userAccount === 'undefined') {
+      return(
+        <div>
+          <h1>You are not connected to web3. If you would like to become a member of DecentraCorp Please INSTALL
+          Metamask</h1>
+        <p>
+          The final version of this dApp will have internal account management and will not depend on metamask.
+          MetaMask is used for now while the Proof of Authority Network is being constructed.
+        </p>
+            <a href='http://metamask.io'>
+            <img src={downloadMetamask} alt ="vist https://metamask.io"/>
+
+          </a>
+
+        </div>
+      );
+    }
     if (this.state.toDashboard === true) {
      return <Redirect to='/Profile' />
    }else{
@@ -102,8 +130,12 @@ fileSelectedHandler = async (event) => {
         <div className="Loader">
           <h1>Please Wait While Your Purchase is processed by the Blockchain</h1>
         <img src={Loader} alt ="Loader" className="Loader" />
-        <h2>You will be redirected to the Members Dashboard </h2>
-        <h2>once you become a Member.</h2>
+        <h3>You will be redirected to the Members Dashboard </h3>
+        <h3>once you become a Member.</h3>
+        <p>This process may take several minutes due to its nature. Your DecentraCorp Profile
+        is built using two seperate file uploads to the InterPlanetary File System(IPFS). Once
+      this upload is complete, the IPFS Hash that represents your profile is then stored to the Blockchain.
+    </p>
         </div>
       );
     } else {
@@ -114,7 +146,12 @@ fileSelectedHandler = async (event) => {
         <p>It is important to note that while a membership is necissary to use this dApp</p>
         <p>to its full capabilities, buying a membership now</p>
         <p style={{  color: "red"}}>DOES NOT</p>
-        <p>Guaruntee anytype of membership when Decentracorp Goes Live!</p>
+        <p>Guaruntee anytype of membership when Decentracorp Goes Live!
+          Once Your Profile is
+         on the Blockchain, it
+       </p>
+       <p style={{ colour: 'red'}}>CANNOT</p>
+       <p> be taken down by anyone but you!</p>
           <p>To get early (alpha)access membership to DecentraCorp</p>
           <br/>
           <p> which includes 10,000 IdeaCoin and a Staked Replication Account, fill out the form below:</p>
@@ -122,25 +159,41 @@ fileSelectedHandler = async (event) => {
           <input className='photo' id="photo" name="photo" type='file' onChange={this.fileSelectedHandler}/>
           <p>{ this.state.message }</p>
           <br/>
-       <form onSubmit={this.handleSubmit}>
-    <label htmlFor="username">Your  Name: </label>
-    <br/>
-    <input id="username" name="username" type="text" placeholder = 'Optional'/>
-    <br/>
-      <label htmlFor="Address">Facility  address: </label>
-      <br/>
-      <input id="Address" name="Address" type="text" placeholder = 'Address of the facility Owner'/>
-      <br/>
-        <label htmlFor="FacilityName">Facility Name: </label>
-        <br/>
-        <input id="FacilityName" name="FacilityName" type="text" placeholder = 'The name of your Facility'/>
-        <br/>
-          <label htmlFor="PhysicalAddress">Facility Physical Address: </label>
-          <br/>
-          <input id="PhysicalAddress" name="PhysicalAddress" type="text" placeholder = 'Optional'/>
-          <br/>
-    <button>Buy Membership Now(1 Ropsten Test Ether)</button>
-  </form>
+            <form onSubmit={this.handleSubmit}>
+              <div className='outterC'>
+              <div className='C1'>
+                    <label htmlFor="username">Your  Name: </label>
+         <br/>
+         <input id="username" name="username" type="text" placeholder = 'Optional'/>
+         <br/>
+           <label htmlFor="Address">Facility Owners address: </label>
+           <br/>
+           <input id="Address" name="Address" type="text" placeholder = 'Address of the facility owner'/>
+           <br/>
+             <label htmlFor="FacilityName">Facility Name: </label>
+             <br/>
+             <input id="FacilityName" name="FacilityName" type="text" placeholder = 'The name of your Facility'/>
+             <br/>
+               <label htmlFor="PhysicalAddress">Facility Physical Address: </label>
+               <br/>
+               <input id="PhysicalAddress" name="PhysicalAddress" type="text" placeholder = 'Optional'/>
+               <br/>
+             </div>
+             <br/>
+             <div className='C2'>
+
+                 <label htmlFor="FacilityEmail">Facility Email Address: </label>
+                 <br/>
+                 <input id="FacilityEmail" name="FacilityEmail" type="text" placeholder = 'Optional'/>
+                 <br/>
+                   <label htmlFor="About">Your About Section: </label>
+                   <br/>
+                   <input className='About' id="About" name="About" type="text" placeholder = 'Tell Us About Yourself'/>
+                   <br/>
+         <button>Submit new Profile Info</button>
+         </div>
+         </div>
+       </form>
      </div>
     );
   }

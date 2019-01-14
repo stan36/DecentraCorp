@@ -21,9 +21,8 @@ body {
   border-radius: 5px;
   display: flex;
   flex: .2;
-  justify-content: left;
-  align-items: left;
-  flex-direction: column;
+  justify-content: space-between;
+  flex-direction: row;
 
 }
 
@@ -35,10 +34,10 @@ ol {
   flex: 1;
   display: flex;
   flex-wrap: wrap;
-justify-content: space-around;
-  align-items: left;
-  flex-direction: row;
+justify-content: space-between;
+  align-items: center;
 
+  flex-direction: row;
 }
 
 

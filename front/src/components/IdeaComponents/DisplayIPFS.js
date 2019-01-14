@@ -1,9 +1,10 @@
 
  import React, { Component } from 'react';
+ import { Redirect } from 'react-router-dom';
  import web3 from '../../utils/web3';
  import ipfs from '../../utils/IPFS_util';
 import _CryptoPatentBlockchain from '../../ethereum/CryptoPatent';
-import './DisplayIPFS.css'
+import Loader from "../../images/75.gif";
 
  class DisplayIPFS extends Component {
    constructor(props){
@@ -16,7 +17,9 @@ this.state={
   hasVoted: false,
   transactionHash: '',
   ProposalProps: [],
-  voted: false
+  voted: false,
+  loading: false,
+  toDashboard: false
 }
 
 this.onload = this.onload.bind(this);
@@ -27,12 +30,13 @@ this.onNo = this.onNo.bind(this);
 
 async  componentDidMount(){
   const { ipfsHash }= this.props;
+  this.setState({ loading: true });
    const accounts = await web3.eth.getAccounts();
    const userAccount = accounts[0];
    const ProposalId = await _CryptoPatentBlockchain.methods.getPropID(ipfsHash).call();
    const ProposalProps = await _CryptoPatentBlockchain.methods.proposals(ProposalId).call();
    const voted = await  _CryptoPatentBlockchain.methods.checkIfVoted(userAccount, ProposalId).call();
-   this.setState({  userAccount, ProposalId, ProposalProps, voted});
+   this.setState({  userAccount, ProposalId, ProposalProps, voted, loading: false});
    console.log(this.state.ProposalProps);
 
  };
@@ -46,6 +50,7 @@ onload = async ()=>{
 
   onYes = async (event)=>{
     event.preventDefault();
+    this.setState({ loading: true });
     console.log('voted yes');
     await _CryptoPatentBlockchain.methods.vote(
       this.state.ProposalId,
@@ -58,11 +63,13 @@ onload = async ()=>{
     )
     .send({from : this.state.userAccount}, (error, transactionHash) => {
     this.setState({transactionHash, hasVoted: true });
+    this.onReturn();
   });
 }
 
   onNo = async (event)=>{
     event.preventDefault();
+    this.setState({ loading: true });
     console.log('voted no');
     _CryptoPatentBlockchain.methods.vote(
       this.state.ProposalId,
@@ -75,12 +82,51 @@ onload = async ()=>{
     )
     .send({from : this.state.userAccount}, (error, transactionHash) => {
     this.setState({transactionHash, hasVoted: true });
+    this.onReturn();
   });
 }
 
+goHome = () => {
+  this.setState({ toDashboard: true})
+}
+
+onReturn = async => {
+
+  _CryptoPatentBlockchain.once( 'Voted', {
+    filter: {_voter: this.state.userAccount},
+    fromBlock: '0',
+    toBlock: 'latest',
+  }, (error, event) => {
+    console.log(event);
+    this.stateSetter();
+  })
+
+}
+
+stateSetter = async => {
+  this.setState({  loading: false, toDashboard: true  });
+}
+
    render() {
-     const { ipfsHash }= this.props;
      const { Json,  ProposalProps}= this.state;
+     if (this.state.toDashboard === true) {
+      return <Redirect to='/Profile' />
+    }else{
+     if(this.state.loading === true){
+       return(
+         <div className="Loader">
+           <h1>Please Wait While Your Vote is processed by the Blockchain</h1>
+         <img src={Loader} alt ="Loader" className="Loader" />
+         <h3>You will be redirected to the Members Dashboard </h3>
+         <h3>once your vote is processed.</h3>
+         <p>
+           The Application process may take several minutes depending on network congestion.
+           All IdeaBlock Applications require 60% of the total DecentraCorp communities approval to
+           become IdeaBlocks on the CryptoPatent Blockchain.
+     </p>
+         </div>
+       );
+     } else {
      if (!ProposalProps.executed){
      this.onload();
      return(
@@ -147,6 +193,7 @@ onload = async ()=>{
        <div className='container'>
        <h2>You have already voted on this Idea</h2>
        <h2>The number of votes for this Idea is {ProposalProps.numberOfVotes}</h2>
+         <button onClick={this.goHome}>Click Here to return to The Member Dashboard</button>
        <img src={"https://ipfs.io/ipfs/" + Json.photo } alt ="No Image" className="ideaPhoto"/>
          <form >
             <label htmlFor="ideaName">Idea Name: { Json.ideaName } </label>
@@ -203,5 +250,7 @@ onload = async ()=>{
    }
    }
  }
+}
+}
 
      export default DisplayIPFS;

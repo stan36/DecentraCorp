@@ -4,7 +4,7 @@ import ipfs from '../../utils/IPFS_util';
 import _DC_Depot from '../../ethereum/DC_Depot';
 import { Redirect } from 'react-router-dom';
 import Loader from "../../images/75.gif";
-import Depot_Nav from './Depot_Nav';
+import DepotNav from './DepotNav';
 class Sell_Item extends Component {
   constructor(props){
     super(props);
@@ -113,15 +113,15 @@ fileSelectedHandler = async (event) => {
 
   render() {
     if (this.state.toDashboard === true) {
-     return <Redirect to='/Profile' />
+     return <Redirect to='/DCDepot' />
    }else{
     if(this.state.loading === true){
       return(
         <div className="Loader">
           <h1>Please Wait While Your item is Uploaded to the Blockchain</h1>
         <img src={Loader} alt ="Loader" className="Loader" />
-        <h2>You will be redirected to the For Sale Page </h2>
-        <h2>once the transaction is complete.</h2>
+        <h3>You will be redirected to the For Sale Page
+        once the transaction is complete.</h3>
         </div>
       );
     } else {
@@ -129,7 +129,7 @@ fileSelectedHandler = async (event) => {
       <div>
         <h3>This page allows you to sell your item on the DC Depot</h3>
         <div>
-        <Depot_Nav />
+        <DepotNav />
         </div>
           <label htmlFor="details">Upload Profile Picture: </label>
           <input className='photo' id="photo" name="photo" type='file' onChange={this.fileSelectedHandler}/>

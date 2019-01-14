@@ -20,7 +20,7 @@ class CreateFundingProp extends Component {
       loading: false,
       hasApplied: false,
       home: false,
-      
+
      }
 
 
@@ -154,10 +154,7 @@ goHome = () => {
         <br/>
        <button>Send data!</button>
      </form>
-     <p>{this.state.transactionHash}</p>
-     <br/>
-     <p>Proposal hash: {ipfsHash}</p>
-     <br/>
+  
      </div>
     );
   }

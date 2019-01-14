@@ -5,8 +5,27 @@
   padding: 2px;
   margin: 2px;
   align-items: left;
+
 }
 
+.flex-container{
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: auto%;
+  flex-direction: row;
+}
+.container {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: auto%;
+  flex-direction: row;
+}
 .SideBar {
   list-style: none;
   background-color: gray;
@@ -209,6 +228,37 @@ width: 800px;
 
 .CIB_EPMS{
   max-width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.JoinCore {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 20px;
+  width: 800px;
+
+}
+
+.Donate {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 20px;
+  width: 800px;
+
+}
+
+.IdeaCoinPic{
+  max-width: 30%;
   height: auto;
   display: flex;
   flex-wrap: wrap;

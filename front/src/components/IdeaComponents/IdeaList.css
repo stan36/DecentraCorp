@@ -5,67 +5,63 @@ body {
   letter-spacing: .5px;
   font-size: 16px;
   font-weight: 300;
-
-}
-
-.IdeaList {
-  display: flex;
-  flex: 1;
-  flex-wrap: wrap;
-justify-content: space-between;
-flex-direction: row;
-
-}
-
-.prop-detail {
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  flex-wrap: wrap;
-  flex-direction: column;
-  border: 2px solid silver;
-  border-radius: 20px;
-  width: 400px;
-  height: 500px;
-}
-
-.ipfsHash {
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  flex-wrap: wrap;
-  flex-direction: column;
-  font-size: 1vw;
-}
-
-.idea-details{
-  display: flex;
-  flex: 1;
-  justify-content: space-between;
-  flex-wrap: wrap;
   flex-direction: row;
-  width: auto;
+}
+
+.ItemList{
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+justify-content: center;
+flex-direction: column;
+align-items: center;
+}
+
+.item-details{
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  justify-content: center;
+flex-direction: row;
+align-items: center;
 
 }
 
-@media only screen and (max-width: 720px) {
-  .idea-details{
-    display: flex;
-    flex: 1;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    flex-direction: column;
-    width: auto;
+.prop-detail{
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  justify-content: row;
+flex-direction: column;
+align-items: center;
+max-width: 60%;
+max-height: 80%;
+}
 
-  }
+.ipfsHash{
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  justify-content: center;
+flex-direction: column;
+align-items: center;
+max-width: 50%;
+max-height: 40%;
+font-size: 5vw;
+}
 
-  .ipfsHash {
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    flex-wrap: wrap;
-    flex-direction: column;
-    font-size:2vw;
-  }
+.item {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  justify-content: center;
+flex-direction: row;
+align-items: center;
 
+}
+
+
+
+.ideaPhoto {
+  max-width: 60%;
 }

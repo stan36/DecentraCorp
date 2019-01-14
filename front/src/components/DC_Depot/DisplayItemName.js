@@ -32,12 +32,13 @@ onload = async ()=>{
    } else {
      this.onload();
      return(
-       <div className='DisplayIPFS'>
+       <div className='DisplayItemIPFS'>
          <img src={"https://ipfs.io/ipfs/" + Json.photo } alt ="No Image" className="ideaPhoto"/>
 <form >
-   <label htmlFor="itemName">Item Name: { Json.itemName } </label>
+   <label htmlFor="itemName">{ Json.itemName } </label>
    <br/>
-   <label htmlFor="itemPrice">Item Price: { Json.Price } ETH</label>
+   <label htmlFor="itemPrice">Item Price: </label>
+   <p> { Json.Price } Ether</p>
 </form>
        </div>
      );

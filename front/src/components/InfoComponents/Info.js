@@ -32,10 +32,13 @@ class Info extends Component {
         <hr/></li>
         <li><Link style={{ textDecoration: 'none', color: "white"}} to='/DC_DepotInfo'>The DC Depot</Link>
         <hr/></li>
+        <li><Link style={{ textDecoration: 'none', color: "white"}} to='/RoadMap'>Project RoadMap</Link>
+        <hr/></li>
         <li><Link style={{ textDecoration: 'none', color: "white"}} to='/ExternalResources'>External Resources</Link>
         <hr/></li>
         <li><Link style={{ textDecoration: 'none', color: "white"}} to='/Donate'>Donate to the Project!</Link>
         <hr/></li>
+
         </ol>
       </div>
 

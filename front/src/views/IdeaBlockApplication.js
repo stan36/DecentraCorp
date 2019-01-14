@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import web3 from '../utils/web3';
 import ipfs from '../utils/IPFS_util';
 import _CryptoPatentBlockchain from '../ethereum/CryptoPatent';
+import CryptoPatentNav from '../components/IdeaComponents/CryptoPatentNav';
 import './IdeaBlockApplication.css';
 import Loader from "../images/75.gif";
 
@@ -21,7 +22,7 @@ class IdeaBlockApplication extends Component {
       loading: false,
       hasApplied: false,
       home: false,
-      message: ''
+
      }
 
 
@@ -102,25 +103,34 @@ goHome = () => {
 
 
   render() {
-    const { ipfsHash, photoHash, message } = this.state;
+    const {  message } = this.state;
     if (this.state.home === true) {
-    return <Redirect to='/Profile' />
+    return <Redirect to='/IdeaVote' />
    }else{
     if(this.state.hasApplied === true){
       return(
         <div>
+        <div><CryptoPatentNav /></div>
+        <div>
       <h1>Thank you for Appying for a</h1>
       <h2>CryptoPatent IdeaBlock!</h2>
       <h3>Yor idea is now pending community approval!</h3>
-      <button onClick={this.goHome}>Click Here to return to your Profile</button>
+      <button onClick={this.goHome}>Click Here to view Your IdeaBlock Proposal</button>
         </div>
+      </div>
       );
     } else {
     if(this.state.loading === true){
       return(
         <div className="Loader">
-          <h2>Please Wait While the Blockchain Processes Your Application</h2>
+          <h3>Thank you for submitting your Idea to the CryptoPatent Blockchain!</h3>
+          <h3>Please Wait While the Blockchain Processes Your Application</h3>
         <img src={Loader} alt ="Loader" className="Loader" />
+        <p>
+          The Application process may take several minutes depending on network congestion.
+          All IdeaBlock Applications require 60% of the total DecentraCorp communities approval to
+          become IdeaBlocks on the CryptoPatent Blockchain.
+        </p>
         </div>
       );
     } else {
@@ -138,11 +148,14 @@ goHome = () => {
         on the CryptoPatent Blockchain!</p>
 
       </div>
+      <div><CryptoPatentNav /></div>
       <label htmlFor="details">Upload Idea Photo: </label>
       <input className='photo' id="photo" name="photo" type='file' onChange={this.fileSelectedHandler}/>
       <div>{message}</div>
       <br/>
       <form onSubmit={this.handleSubmit}>
+        <div className='outterC'>
+        <div className='C1'>
        <label htmlFor="name">Applicant Name: </label>
        <br/>
        <input id="username" name="username" type="text" placeholder = 'Optional'/>
@@ -160,6 +173,9 @@ goHome = () => {
          <br/>
          <input id="inventionAddress" name="inventionAddress" type="text" placeholder = 'Address of the original invention'/>
          <br/>
+         </div>
+         <br/>
+         <div className='C2'>
        <label htmlFor="useblockamount">The amount your Idea should mint upon its Use: </label>
        <br/>
        <input id="useblockamount" name="useblockamount" type="text" placeholder = 'Enter amount as 18 decimals' onChange={event => this.handleChange(event)}/>
@@ -179,16 +195,16 @@ goHome = () => {
         <br/>
         <br/>
        <button>Send data!</button>
+       </div>
+       </div>
      </form>
 
      <br/>
+     <div>
      <p>{this.state.message}</p>
      <br/>
-     <p>{this.state.transactionHash}</p>
-     <br/>
-     <p>idea hash: {ipfsHash}</p>
-     <br/>
-     <p>photo hash: {photoHash}</p>
+     </div>
+
      </div>
     );
   }

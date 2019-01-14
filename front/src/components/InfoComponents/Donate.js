@@ -8,7 +8,7 @@ class Donate extends Component {
       <div className="flex-container">
 
         <Info />
-      <div className='container'>
+      <div className='Donate'>
         <h3>Thank you for visiting DecentraCorp's dApp in its early alpha phase!</h3>
         <br/>
         <h3>While DecentraCorp will not hold an ICO, the dev team is accepting donations!</h3>

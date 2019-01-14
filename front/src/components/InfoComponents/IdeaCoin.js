@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import IdeaCoinPic from "../../images/IdeaCoin.JPG";
 import Info from './Info';
 
 class IdeaCoin extends Component {
@@ -8,7 +9,8 @@ class IdeaCoin extends Component {
     <Info />
         <div className='IdeaCoin'>
         <br/>
-        <h2 style={{ color: "gold"}}>IdeaCoin:</h2>
+        
+          <img src={IdeaCoinPic} alt ="IdeaCoinPic" className="IdeaCoinPic"/>
         <br/>
         <p>
             IdeaCoin is an ERC20 utility token for DecentraCorp and its associated projects.

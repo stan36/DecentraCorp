@@ -16,3 +16,38 @@ body {
 .large{
    text-align:center;
 }
+
+.outterC {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.C1 {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+justify-content: space-around;
+  align-items: left;
+  flex-direction: column;
+  width: 600px;
+}
+
+.C2 {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+justify-content: space-around;
+  align-items: right;
+  flex-direction: column;
+  width: 600px;
+
+}
+
+.About{
+  height: 100px !important;
+  width: 400px;
+}

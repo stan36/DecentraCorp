@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 class JoinCore extends Component {
   render() {
     return(
-      <div className='container'>
+      <div className='JoinCore'>
         <h3>Thank you for visiting DecentraCorp's dApp in its early alpha phase!</h3>
         <br/>
         <h3>We are looking for talented developers to help build DecentraCorp!</h3>

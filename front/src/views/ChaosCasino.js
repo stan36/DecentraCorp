@@ -40,9 +40,9 @@ class ChaosCasino extends Component {
       });
   };
 
-  onClick = async (event) => {
+  onExchange = async (event) => {
       event.preventDefault();
-      const amount = web3.utils.toWei(this.state.exchangeAmount);
+      const amount = web3.utils.toWei(String(this.state.exchangeAmount));
       await _ChaosCasino.methods.cashOut(amount).send
       ({
         from: this.state.userAccount,
@@ -91,7 +91,7 @@ class ChaosCasino extends Component {
             onChange = { event => this.setState({exchangeAmount : event.target.value})}
           />
         <br/>
-        <button>Exchange ChaosCoin</button>
+        <button onClick={this.onExchange}>Exchange ChaosCoin</button>
         </div>
       </form>
 

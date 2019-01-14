@@ -59,23 +59,24 @@ stateSetter = (ipfshash) =>{
   render() {
 if(!this.state.selectedIpfs){
     return(
-      <div className='IdeaList'>
+      <div className='ItemList'>
         <div>
           <h1>Select an Idea to view</h1>
           <h2>IdeaList</h2>
-          <div className ="idea-details">
+            <div className='item'>
+            <div className ="item-details">
     {this.state.hashs.map((ipfshash, index) => (
       <div className="prop-detail" key ={index + 1}>
         <DisplayIPFSName key={index + 4} ipfsHash={ipfshash} />
-        <p key={index + 5}>IPFS Hash:</p>
-        <p className='ipfsHash' key={index}>{ipfshash}</p>
-          <button  style={{ color: "red"}} onClick={() => this.stateSetter(ipfshash)} key={index + 2}>Click Here To View This Idea</button>
-          <br/>
-          <br/>
-          <br/>
+        <div>
+        <p key={index + 5}>IDea IPFS Hash:</p>
+        <p style={{ maxWidth: "600px",  fontSize: "10px"}}className='ipfsHash' key={index}>{ipfshash}</p>
+          <button  style={{ color: "red", fontSize: "10px"}} onClick={() => this.stateSetter(ipfshash)} key={index + 2}>Click Here To View This Idea</button>
+        </div>
           </div>
     ))}
     </div>
+  </div>
       </div>
       </div>
       );
