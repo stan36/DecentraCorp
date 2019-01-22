@@ -35,7 +35,8 @@ contract CryptoPatentBlockGenerator {
     function getGlobalUseBlockAmount(uint _ideaId) public view returns(uint);
     function getRoyalty(uint _ideaId) public view returns(uint);
     function getInventor(uint _ideaId) public view returns(address);
-    function getMiningTime(uint _ideaId) public view returns(uint);
+    function getIdeaMiningTime(uint _ideaId) public view returns(uint);
+    function getRepMiningTime(address _repAdd) public view returns(uint);
     function setMiningTime(uint _ideaId) external view;
     function getBlockReward(address _repAdd) public view returns(uint);
     function getOwnersAddress(address _repAdd) public view returns(address);
@@ -48,6 +49,7 @@ contract CryptoPatentBlockGenerator {
     function getNumOfReps(address _add, uint _ideaId) external view returns(uint);
     function getRepTotal(uint _ideaId) external view returns(uint);
     function safeTransfer(address _from, address _to, uint _tokenId) public;
+    function setRepMiningTime(address _repAdd) external;
 }
 /// Block Generator interface
 /////////////////////////////////////////////////////////////////////////////////////////////

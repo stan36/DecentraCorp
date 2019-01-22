@@ -119,8 +119,8 @@ function setIdeaInfo(
     //sets royalty as the specific royalty amount for an idea
     uint blockReward = RepBlockReward - royalty;
     //subtracts the royalty amount from the block reward
-    uint _miningTime = getMiningTime(_ideaId);
-
+    uint _ideaMiningTime = getIdeaMiningTime(_ideaId);
+    uint _repMiningTime = now + _ideaMiningTime;
     address inventor = getInventor(_ideaId);
     //sets inventor as the specific inventor for an idea
 
@@ -136,7 +136,7 @@ function setIdeaInfo(
       IdeaID: uint(_ideaId),
       Royalty: uint(royalty),
       RepID: uint(_repId),
-      MiningTime: uint(_miningTime),
+      MiningTime: uint(_repMiningTime),
       InventorsAddress: address(inventor),
       ReplicationAddress: address(_repAdd)
       });
@@ -187,7 +187,7 @@ function setIdeaInfo(
       address inventorAdd = info.inventorAddress;
       return inventorAdd;
     }
-    function getMiningTime(uint _ideaId) public view returns(uint) {
+    function getIdeaMiningTime(uint _ideaId) public view returns(uint) {
       IdeaInfo memory info = ideaVariables[_ideaId];
       uint _miningTime = info.miningTime;
       return _miningTime;
@@ -243,15 +243,26 @@ function setIdeaInfo(
     function checkIfRep(address _add) external view returns(bool) {
     return replications[_add];
     }
+    
     function getNumOfReps(address _add, uint _ideaId) external view returns(uint) {
     return repOwnes[_add][_ideaId];
     }
+
     function getRepTotal(uint _ideaId) external view returns(uint) {
     return ideaRepCounter[_ideaId];
     }
-    function getMiningTime(address _repAdd) external view returns(uint) {
+
+    function getRepMiningTime(address _repAdd) external view returns(uint) {
     ReplicationInfo memory info = repInfo[_repAdd];
     uint miningTime = info.MiningTime;
     return miningTime;
+    }
+
+    function setRepMiningTime(address _repAdd) external onlyOwner {
+      ReplicationInfo memory info = repInfo[_repAdd];
+      uint _ideaId = getIdeaID(_repAdd);
+      uint _ideaMiningTime = getIdeaMiningTime(_ideaId);
+      info.MiningTime = now + _ideaMiningTime;
+
     }
 }

@@ -64,10 +64,15 @@ function UseBlockWeight(address _rep) internal {
 // increases the weight of a specific replication
   uint globalWeight = weightTracker[ideaID];
 //sets globalWeight as the current highest weight for a specific idea
-  uint timeLord = CPBG.getMiningTime(ideaID);
+  uint repTimeLord = CPBG.getRepMiningTime(_rep);
+//gets a replications mining time to prevent network spam/replication abuse
+  require(now >= repTimeLord);
+//this require fails if the rep is calling to frequently
   localWeightTracker[_rep][repID] = newWeight;
 //sets the newWeight for that specific replication
-  if(newWeight >= globalWeight && now >= timeLord) {
+  CPBG.setRepMiningTime(_rep);
+//sets _reps mining time back to zero(kinda)
+  if(newWeight >= globalWeight) {
 //checks if the replication has the heaviest weight
     generateGlobalUseBlock(_rep);
 //if it does it generates a global use block
