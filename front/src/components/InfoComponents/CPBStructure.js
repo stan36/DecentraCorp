@@ -24,7 +24,7 @@ class CPBStructure extends Component {
         <p>
           The third contract is the Global UseBlock Generator. This contract is responsible for issuing Global UseBlock tokens(GUB) when a replication of an idea has the largest
           Local Use-Weight for that idea within the patents use-mining time. When a GUB token is mined by a replication, the newly mined IdeaCoin is split between the inventor of the idea,
-          the replicator of the idea and in some cases, even the user of the replication. This is the main incintive to patent an idea to the CryptoPatent Blockchain.
+          the replicator of the idea and in some cases, even the user of the replication. This is the main incintive to patent and replicate ideas on the CryptoPatent Blockchain.
         </p>
         <br/>
         <p>

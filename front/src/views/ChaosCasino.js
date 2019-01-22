@@ -62,8 +62,10 @@ class ChaosCasino extends Component {
         <p>for ChaosCoin to play in ChaosCasino games!</p>
         <p>The current Entropy Unit is used by the dApp's to determine</p>
         <p>game outcomes like which card is drawn!</p>
-        <p>This number should change roughly every ten seconds</p>
+        <p>This number should change roughly every twenty seconds</p>
         <p>through the ChaosCasino contract!</p>
+        <p>Entropy 21 and the other ChaosCasino Games are still under development and DO NOT currently employ
+        most planned features.</p>
         <div style={{ textAlign: "center"}}>
         <Link style={{ textDecoration: 'none', color: "red"}} to='/Entropy21'>Click Here to Play Entropy21</Link>
         </div>

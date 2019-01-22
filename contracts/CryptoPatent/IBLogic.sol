@@ -36,6 +36,7 @@ function generateIdeaBlock(
       DCPoA._addMember(_inventor);
 }
 inventions[_invention] = true;
+Validators.addValidator(_invention);
     ideaBlockTimeLord();
     DCPoA.proxyIDCMint( _inventor, ideaBlockReward);
 //mints 1000 IDC and sends it to the inventor

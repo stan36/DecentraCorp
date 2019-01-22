@@ -20,7 +20,7 @@ class Intro extends Component {
         DecentraCorp seeks to revolutionize the corporate structure
         through the ideals of voluntary cooperation and open-source.
         <br/>
-        With the CryptoPatent Blockchain, DecentraCorp aims to redefine
+        With the CryptoPatent Blockchain DecentraCorp aims to redefine
         how ideas create value by incentivizing the free sharing and use of knowledge.
         </p>
         <br/>
@@ -36,22 +36,22 @@ class Intro extends Component {
         </p>
         <br/>
         <p>
-          DecentraCorp’s first project; The CryptoPatent Blockchain, creates a platform for garage
+          DecentraCorp’s first project; The CryptoPatent Blockchain creates a platform for garage
           tinkerers and backyard inventors to turn their hobby into a source of revenue. The CryptoPatent
           Blockchain will serve as the basis for DecentraCorp’s decentralized facilities model(DFM). Under the DFM
           anyone with the drive to be their own boss will have a ready made business and a platform of products
           they can easily build themselves.
         </p>
         <p>
-          The CryptoPatent Blockchain allows physical replications of the ideas patented to it to mine
-          IdeaCoin, the cryptocurrency of DecentraCorp. Replications of an idea are the products of DecentraCorp.
+          The CryptoPatent Blockchain allows physical replications of the ideas patented to it to mine the cryptocurrency of DecentraCorp,
+          IdeaCoin. Replications of an idea are the products of DecentraCorp.
         </p>
         <p>
          DecentraCorp seeks to be a revenue source for open-source
           developers (both hardware and software) as well as a driving force in open source innovation.
         </p>
         <p>
-          DecentraCorp will revolutionize what a corporation is and what it means to be employed!
+          DecentraCorp will revolutionize what a corporation is and what it means to be employed.
         </p>
         </div>
       </div>

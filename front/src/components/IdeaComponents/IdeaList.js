@@ -62,6 +62,9 @@ if(!this.state.selectedIpfs){
       <div className='ItemList'>
         <div>
           <h1>Select an Idea to view</h1>
+          <p style={{ fontSize: '15px', color: 'red'}}>
+            None of the Ideas seen here are operational yet. some images where pulled from a google image search.
+          </p>
           <h2>IdeaList</h2>
             <div className='item'>
             <div className ="item-details">

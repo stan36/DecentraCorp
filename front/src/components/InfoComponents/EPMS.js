@@ -49,7 +49,8 @@ class EPMS extends Component {
        </p>
        <p>
          The Account running the CIB is a seperate account from the Account used by an EPMS and will be locked down to all end users.
-      with elevated Permissions </p>
+       The CIB account will be run in its own docker container and will hold a privledged position on both DecentraCorp contracts which allow it
+        to call protected functions on each contract.</p>
         </div>
       </div>
     );

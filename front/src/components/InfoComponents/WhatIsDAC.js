@@ -27,7 +27,7 @@ class WhatIsDAC extends Component {
         </p>
         <br/>
         <p>
-        A DAO is made up of members, usually those who hold the DAO’s cryptocurrency. The
+        A DAO is made up of members usually those who hold the DAO’s cryptocurrency. The
         members of the DAO vote on decisions the DAO makes; things like what to do with its funding, who
         qualifies as a member, how it’s internal cryptocurrency operates, and even the rules for a virtual society
         or community.

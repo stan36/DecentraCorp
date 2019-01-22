@@ -9,7 +9,7 @@ class IdeaCoin extends Component {
     <Info />
         <div className='IdeaCoin'>
         <br/>
-        
+
           <img src={IdeaCoinPic} alt ="IdeaCoinPic" className="IdeaCoinPic"/>
         <br/>
         <p>
@@ -19,7 +19,7 @@ class IdeaCoin extends Component {
           </p>
           <p>
             As an ERC20 token, IdeaCoin is capable of existing on ANY blockchain that relies on the Ethereum Virtual Machine(EVM).
-            Two seperate IdeaCoin contracts will initially be deployed to the Ethereum Main Chain and the DecentraCorps PoA Chain.
+            Two seperate IdeaCoin contracts will initially be deployed, one to the Ethereum Main Chain and the other to DecentraCorps PoA Chain.
           </p>
           <p>
             Both of these contracts will be controlled by their respective chains DecentraCorp Contract and balance information will be bridged between the

@@ -24,7 +24,7 @@ class Info extends Component {
         <hr/></li>
         <li><Link style={{ textDecoration: 'none', color: "white"}} to='/IdeaCoin'>IdeaCoin: The Currency of Ideas</Link>
         <hr/></li>
-        <li><Link style={{ textDecoration: 'none', color: "white"}} to='/EPMS'>Embedded Program Mining Software</Link>
+        <li><Link style={{ textDecoration: 'none', color: "white"}} to='/EPMS'>Embedded Program Mining Software(EPMS) and the CIB</Link>
         <hr/></li>
         <li><Link style={{ textDecoration: 'none', color: "white"}} to='/DCPoA'>DC's Proof of Authority Network(PoA)</Link>
         <hr/></li>

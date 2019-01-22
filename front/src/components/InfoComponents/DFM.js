@@ -15,29 +15,29 @@ class DFM extends Component {
         <br/>
         <div>
           <p>
-          The DecentraCorp Decentralized Facility Model is a first of it's kind corporate structure. Where
+          The DecentraCorp Decentralized Facility Model is a first of it's kind corporate structure where
     privately owned and run facilities cooperate towards the betterment of themselves and DecentraCorp as
     a whole.
   </p>
   <p>
      With the ideas stored on the CryptoPatent Blockchain anyone looking to start their own
     DecentraCorp Facility can freely do so with minimal start up capital. There is no one to “seek
-    permission from” as there is no one “in charge” and there is no “right way” to do it.
+    permission from” as there is no one “in charge”. There is no “right way” to do it.
     DecentraCorp relies on it's Decentralized Facilities model to allow anyone to start their own
     Facility and begin earning income anyway they can.
   </p>
   <p>
     DecentraCorp is designed to give anyone who is
     willing the tools and methods to start making a living where they are their own boss.
-    In anyplace you can solder some wires, fit a 3D printer, or set up a computer it can be turned
+    Anyplace you can solder some wires, fit a 3D printer, or set up a computer3 can be turned
     into a DecentraCorp facility. Garages, sheds, car-ports, spare bedrooms, and even walk in closets can
     be turned into DecentraCorp facilities where they can begin making their operators income.
   </p>
   <p>
     With a decentralized facility a DecentraCorp member can begin producing replications of an
-    Idea patented to the CryptoPatent BlockChain. They can then sell/barter with/ or even give away the
+    idea patented to the CryptoPatent BlockChain. They can then sell/barter with/ or even give away the
     replications to others knowing that at the very least they will make an income on the IdeaCoin that their
-    replications produces (mining replications require a stake in IdeaCoin to activate).
+    replication produces (mining replications require a stake in IdeaCoin to activate).
   </p>
   <p>
     DecentraCorp provides a new way for entrepreneurs and young inventors to start their own

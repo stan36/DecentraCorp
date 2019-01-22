@@ -49,9 +49,13 @@ contract CryptoPatentBlockGenerator {
     function getRepTotal(uint _ideaId) external view returns(uint);
     function safeTransfer(address _from, address _to, uint _tokenId) public;
 }
-/// Idea Block Generator interface
+/// Block Generator interface
 /////////////////////////////////////////////////////////////////////////////////////////////
-
+  contract RelayedOwnedSet {
+    	function addValidator(address _validator) external;
+  }
+/// Validator contract interface
+/////////////////////////////////////////////////////////////////////////////////////////////
 
 /// @author Christopher Dixon
 /// @notice contract Interface is the first contract in the CryptoPatent Blockchain
@@ -61,7 +65,7 @@ contract Interface is Ownable {
   IdeaCoin public IDC;
   DecentraCorpPoA public DCPoA;
   CryptoPatentBlockGenerator public CPBG;
-
+  RelayedOwnedSet public Validators;
   ///@param above turn each interface into a useable variable
 
   ///@param globalIdeaCount tracks amount of ideas on the CryptoPatent Blockchain
@@ -211,4 +215,7 @@ function updateProfile(string _newHash) public {
     return getTokens[msg.sender];
   }
 
+  function setValidatorContract(address _valCon) public onlyOwner {
+        Validators = RelayedOwnedSet(_valCon);
+  }
 }

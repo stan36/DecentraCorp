@@ -76,6 +76,12 @@ if(!this.state.selectedIpfs){
 
       <div className='ItemList'>
           <h1>Select an Idea to view</h1>
+            <p style={{ fontSize: '15px', color: 'red'}}>
+              None of the Ideas seen here are operational yet. Some images where pulled from a google image search.
+            </p>
+            <p style={{ fontSize: '15px', color: 'red'}}>
+              Partnerships with existing Open-Source solutions will be sought before an in-house solution for an idea is built
+            </p>
             <div className='item'>
             <div className ="item-details">
     {this.state.hashs.map((ipfshash, index) => (

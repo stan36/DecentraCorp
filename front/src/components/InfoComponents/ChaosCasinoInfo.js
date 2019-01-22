@@ -23,8 +23,8 @@ class ChaosCasinoInfo extends Component {
         — Edward Lorenz
          </p>
       <p>
-        The Chaos Casino is a javascript based dApp (Decentralized application) built on a Ethereum
-        Virtual Machine (EVM) on DecentraCorp’s Proof of Authority (PoA) network.
+        The Chaos Casino is a javascript based dApp (Decentralized application) built on the Ethereum
+        Virtual Machine (EVM) running DecentraCorp’s Proof of Authority (PoA) network.
         </p>
         <p>
         The ChaosCasino

@@ -76,7 +76,7 @@ class App extends Component {
       <img src={DecentraCorpLogo} alt ="DecentraCorp Dapp" className="DecentraCorpLogo1" style={{ marginBottom: "-100px"}}/>
       <ul>
       <li key={1}><NavLink to='/'>Home</NavLink></li>
-      <li key={2}><NavLink to='/Intro'>Info</NavLink></li>
+      <li key={2}><NavLink to='/Intro'>About</NavLink></li>
       <li key={2}><NavLink to='/BuyMembership'>Become a Member!</NavLink></li>
       </ul>
       </div>
@@ -98,11 +98,12 @@ return [
   <img src={DecentraCorpLogo} alt ="DecentraCorp Dapp" className="DecentraCorpLogo1" style={{ marginBottom: "-100px"}}/>
   <ul>
     <li key={1}><NavLink to='/'>Home</NavLink></li>
-    <li key={2}><NavLink to='/Intro'>Info</NavLink></li>
-    <li key={3}><NavLink to='/BuyMembership'>Become a Member!</NavLink></li>
-    <li key={4}><NavLink to='/ApprovedIdeas'>The CryptoPatent Blockchain</NavLink></li>
-    <li key={5}><NavLink to='/ChaosCasino'>ChaosCasino</NavLink></li>
-    <li key={6}><NavLink to='/DCDepot'>DC Depot</NavLink></li>
+    <li key={2}><NavLink to='/Intro'>About</NavLink></li>
+    <li key={3}><NavLink to='/ApprovedIdeas'>The CryptoPatent Blockchain</NavLink></li>
+    <li key={4}><NavLink to='/ChaosCasino'>ChaosCasino</NavLink></li>
+    <li key={5}><NavLink to='/DCDepot'>DC Depot</NavLink></li>
+    <li key={6}><NavLink to='/ProfilSearch'>DecentraSearch</NavLink></li>
+    <li key={7}><NavLink to='/BuyMembership'>Become a Member!</NavLink></li>
   </ul>
   </div>
   </nav>
@@ -121,11 +122,12 @@ return [
 <img src={DecentraCorpLogo} alt ="DecentraCorp Dapp" className="DecentraCorpLogo1" style={{ marginBottom: "-100px"}}/>
 <ul>
   <li key={1}><NavLink to='/'>Home</NavLink></li>
-  <li key={2}><NavLink to='/Intro'>Info</NavLink></li>
-  <li key={3}><NavLink to='/Profile'>DashBoard</NavLink></li>
-  <li key={4}><NavLink to='/ApprovedIdeas'>The CryptoPatent Blockchain</NavLink></li>
-  <li key={5}><NavLink to='/ChaosCasino'>ChaosCasino</NavLink></li>
-  <li key={6}><NavLink to='/DCDepot'>DC Depot</NavLink></li>
+  <li key={2}><NavLink to='/Intro'>About</NavLink></li>
+  <li key={3}><NavLink to='/ApprovedIdeas'>The CryptoPatent Blockchain</NavLink></li>
+  <li key={4}><NavLink to='/ChaosCasino'>ChaosCasino</NavLink></li>
+  <li key={5}><NavLink to='/DCDepot'>DC Depot</NavLink></li>
+  <li key={6}><NavLink to='/ProfilSearch'>DecentraSearch</NavLink></li>
+  <li key={7}><NavLink to='/Profile'>DashBoard</NavLink></li>
 </ul>
 </div>
 </nav>
@@ -135,7 +137,7 @@ return [
 }
 
 
-  
+
 
 
   render() {

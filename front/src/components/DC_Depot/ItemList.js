@@ -60,6 +60,10 @@ if(!this.state.selectedIpfs){
         <div>
           <h1>Select an Item to view</h1>
           <h2>For Sale</h2>
+            <p style={{ fontSize: '15px', color: 'red'}}>
+                None of the items here are for sale. The DC Depo is still in its early alpha phase. All Items
+                shown here are for demonstration purposes and CANNOT be purchased.
+            </p>
           <div className='item'>
           <div className ="item-details">
     {this.state.hashs.map((ipfshash, index) => (
