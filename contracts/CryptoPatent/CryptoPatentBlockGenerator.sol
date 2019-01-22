@@ -55,7 +55,7 @@ struct ReplicationInfo {
 }
 // ReplicationInfo stores replication information
 
-
+event NewRep(address _newRep);
 
 ///@notice _generateIdeaBlock generates a Proof of Idea Ownership token. PoIO tokens act like patents
   function _generateIdeaBlock(
@@ -153,6 +153,7 @@ function setIdeaInfo(
   //sets ownerRepCount to how many replications of a specific idea a replicator owns
     repOwnes[_replicatorAdd][_ideaId] = ownerRepCount++;
   //increments the amount of replications for an idea a replicator owns
+  emit NewRep(_replicatorAdd);
   }
 
   ///@notice _generateGUSBlock is only called by the CryptoPatent Blockchain when certain criterea is met
@@ -243,7 +244,7 @@ function setIdeaInfo(
     function checkIfRep(address _add) external view returns(bool) {
     return replications[_add];
     }
-    
+
     function getNumOfReps(address _add, uint _ideaId) external view returns(uint) {
     return repOwnes[_add][_ideaId];
     }
@@ -264,5 +265,9 @@ function setIdeaInfo(
       uint _ideaMiningTime = getIdeaMiningTime(_ideaId);
       info.MiningTime = now + _ideaMiningTime;
 
+    }
+
+    function getID(address _ideaAdd) public view returns(uint){
+      return getIdeaID(_ideaAdd);
     }
 }

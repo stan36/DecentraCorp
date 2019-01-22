@@ -3,7 +3,7 @@ import ChaosCasino from '../contracts/ChaosCasino.json';
 
 const _ChaosCasino = new web3.eth.Contract(
 	ChaosCasino.abi,
-	ChaosCasino.networks[3].address
+	ChaosCasino.networks[3636].address
 );
 
 

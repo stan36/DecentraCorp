@@ -4,6 +4,7 @@
  import web3 from '../../utils/web3';
  import ipfs from '../../utils/IPFS_util';
 import _CryptoPatentBlockchain from '../../ethereum/CryptoPatent';
+import _Blocks from '../../ethereum/BlockGenerator';
 import Loader from "../../images/75.gif";
 
  class DisplayIPFS extends Component {
@@ -19,13 +20,15 @@ this.state={
   ProposalProps: [],
   voted: false,
   loading: false,
-  toDashboard: false
+  toDashboard: false,
+  toReplicate: false,
+  repAdd: ''
 }
 
 this.onload = this.onload.bind(this);
 this.onYes = this.onYes.bind(this);
 this.onNo = this.onNo.bind(this);
-
+this.replicate = this.replicate.bind(this);
 }
 
 async  componentDidMount(){
@@ -107,12 +110,69 @@ stateSetter = async => {
   this.setState({  loading: false, toDashboard: true  });
 }
 
+stateSetter2 = async => {
+  console.log('eat a dick and work you cunt')
+  this.setState({  toReplicate: true });
+}
+
+replicate = (event) => {
+  event.preventDefault();
+    console.log('button push');
+  this.stateSetter2();
+}
+
+activateReplicate = (event) => {
+  event.preventDefault();
+  const ideaId = _Blocks.methods.getId(this.state.Json.inventionAddress).call();
+    _CryptoPatentBlockchain.methods.generateReplicationBlock(
+      ideaId,
+      this.state.repAdd
+    ).send({from : this.state.userAccount}, (error, transactionHash) => {
+      this.onRepReturn();
+    });
+}
+
+onRepReturn = async => {
+
+  _CryptoPatentBlockchain.once( 'NewRep', {
+    filter: {_newRep: this.state.repAdd},
+    fromBlock: '0',
+    toBlock: 'latest',
+  }, (error, event) => {
+    console.log(event);
+    this.stateSetter();
+  })
+
+}
+
+handleChange (event) {
+  this.setState( [event.target.name]: event.target.value )
+}
    render() {
-     const { Json,  ProposalProps}= this.state;
+     const { Json,  ProposalProps, toReplicate}= this.state;
      if (this.state.toDashboard === true) {
       return <Redirect to='/Profile' />
-    }else{
-     if(this.state.loading === true){
+    }
+      else if(toReplicate === true ){
+       return(
+                 <div>
+                 <h2>You Must Have a staked account to activate a replication</h2>
+                 <p>If you havn't, please visit the Become a Member Page above.</p>
+                 <p>A properly assembled replication with an activated EPMS is Required
+                 to activate a replications mining status.</p>
+               <p>A staking of 100 IdeaCoin is also required from the member.</p>
+               <p>If you meet these requirements enter the address of the replication produced when you activated its EPMS</p>
+               <form>
+                 <label htmlFor="repAdd">Replication Address: </label>
+                 <br/>
+                 <input id="repAdd" name="repAdd" type="text" placeholder = 'this will be an ethereum address' onChange={this.handleChange}/>
+                 <br/>
+                 <button onClick={this.activateReplicate}>Activate Replication</button>
+                 </form>
+                 </div>
+               );
+      }
+      else if(this.state.loading === true){
        return(
          <div className="Loader">
            <h1>Please Wait While Your Vote is processed by the Blockchain</h1>
@@ -162,8 +222,9 @@ stateSetter = async => {
    }else if(ProposalProps.proposalPassed){
      return(
        <div className='container'>
-       <h2>This Proposal was approved and can no longer be voted on</h2>
+       <h2>This Proposal was approved</h2>
        <h2>The number of votes for this Idea is {ProposalProps.numberOfVotes}</h2>
+       <p>Members of DecentraCorp can replicate approved Ideas and use them to mine IdeaCoin.</p>
        <img src={"https://ipfs.io/ipfs/" + Json.photo } alt ="No Image" className="ideaPhoto"/>
          <form >
             <label htmlFor="ideaName">Idea Name: { Json.ideaName } </label>
@@ -185,6 +246,7 @@ stateSetter = async => {
             <br/>
             { Json.details }
             <br/>
+            <button onClick={this.replicate}>Replicate This Idea</button>
             </form>
        </div>
      );
@@ -218,7 +280,7 @@ stateSetter = async => {
             </form>
        </div>
      );
-   }else {
+   } else{
      return(
        <div className='container'>
        <h2>This Proposal can no longer be voted on and it was not approved!</h2>
@@ -251,6 +313,6 @@ stateSetter = async => {
    }
  }
 }
-}
+
 
      export default DisplayIPFS;

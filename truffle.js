@@ -10,7 +10,7 @@
 //test wallet mnemonic
  module.exports = {
    networks: {
-    Ganache: {
+    DCPoA: {
        host: "localhost",
        port: 8545,
        network_id: 3636, // Match any network id

@@ -26,6 +26,7 @@ import ProposalVote from '../DashboardComponents/ProposalVote';
 
 
 
+
 //DC_Depot Components:
 import Sell_Item from '../DC_Depot/Sell_Item';
 import ItemList from '../DC_Depot/ItemList';
@@ -185,12 +186,12 @@ return [
           <Route exact path='/Sell_Item' component={Sell_Item}></Route>
           <Route exact path='/ItemList' component={ItemList}></Route>
           <Route exact path='/Facility' component={Facility}></Route>
-            <Route exact path='/CreateFreezeProp' component={CreateFreezeProp}></Route>
-            <Route exact path='/CreateFundingProp' component={CreateFundingProp}></Route>
-            <Route exact path='/CreateTerminateProp' component={CreateTerminateProp}></Route>
-            <Route exact path='/ProposalVote' component={ProposalVote}></Route>
-              <Route exact path='/ProfilSearch' component={ProfilSearch}></Route>
-      </Switch>
+          <Route exact path='/CreateFreezeProp' component={CreateFreezeProp}></Route>
+          <Route exact path='/CreateFundingProp' component={CreateFundingProp}></Route>
+          <Route exact path='/CreateTerminateProp' component={CreateTerminateProp}></Route>
+          <Route exact path='/ProposalVote' component={ProposalVote}></Route>
+          <Route exact path='/ProfilSearch' component={ProfilSearch}></Route>
+    </Switch>
       </div>
       );
     }
