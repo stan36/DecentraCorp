@@ -44,7 +44,8 @@ function generateGlobalUseBlock(address _rep) internal {
   DCPoA.proxyIDCMint(inventor, royalty);
 //mints royalties to the idea inventor
 DCPoA.increaseMemLev( repOwnerAddress);
-
+//increases Member Level
+  emit GlobalUseBlock(_rep, ideaID);
 }
 
 ///@notice UseBlockWeight is an internal function that tracks loacal use weightTracker
@@ -79,5 +80,6 @@ function UseBlockWeight(address _rep) internal {
     CPBG.setMiningTime(ideaID);
 //resets the global mining time for a specific idea after a useBlock is mined
     }
+    emit LocalUseWeight(_rep, newWeight);
   }
 }

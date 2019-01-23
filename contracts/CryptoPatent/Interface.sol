@@ -108,7 +108,8 @@ contract Interface is Ownable {
   event NewMember(address member);
   event NewReplication(address _repAdd);
   event ProfileUpdated(address updatedAccount);
-
+  event LocalUseWeight(address repAdd, uint repWeight);
+  event GlobalUseBlock(address repAdd, uint ideaId);
 
 ///@struct IdeaProposal stores info of a proposal
 struct IdeaProposal {
