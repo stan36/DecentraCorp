@@ -31,7 +31,7 @@ contract ChaosCoin {
 //ChaosCoin interface
 /////////////////////////////////////////////////////////////////////////////////////////////
 contract CryptoPatentBlockGenerator {
-    function _generateIdeaBlock(string _ideaIPFS, uint _globalUseBlockAmount, uint miningTime, uint _royalty, address _inventorsAddress) external;
+    function _generateIdeaBlock(string _ideaIPFS, uint _globalUseBlockAmount, uint miningTime, uint _royalty, address _inventorsAddress, address _inventionAdd) external;
     function _replicationBlock(uint _ideaId, address _repAdd, address _replicatorAdd) external;
     function _generateGUSBlock(address _replicationOwner) external;
 }
@@ -234,9 +234,9 @@ contract CryptoPatentBlockGenerator {
         CC.burnCC(_add, _amount);
       }
 
-   function generateIdeaBlock(string _ideaIPFS, uint _globalUseBlockAmount, uint miningTime, uint _royalty, address _inventorsAddress) external onlyApprovedAdd {
+   function generateIdeaBlock(string _ideaIPFS, uint _globalUseBlockAmount, uint miningTime, uint _royalty, address _inventorsAddress, address _inventionAdd) external onlyApprovedAdd {
      require(_checkIfFrozen(_inventorsAddress) == false);
-     CPBG._generateIdeaBlock(_ideaIPFS, _globalUseBlockAmount, miningTime, _royalty, _inventorsAddress);
+     CPBG._generateIdeaBlock(_ideaIPFS, _globalUseBlockAmount, miningTime, _royalty, _inventorsAddress, _inventionAdd);
    }
    function replicationBlock(uint _ideaId, address _repAdd, address _replicatorAdd) external onlyApprovedAdd {
      require(_checkIfFrozen(_replicatorAdd) == false);

@@ -29,7 +29,7 @@ function generateIdeaBlock(
   onlyOwner
   {
 
-    DCPoA.generateIdeaBlock( _ideaIPFS, _globalUseBlockAmount, _miningTime, _royalty,  _inventor);
+    DCPoA.generateIdeaBlock( _ideaIPFS, _globalUseBlockAmount, _miningTime, _royalty,  _inventor, _invention);
 //generates IdeaBlock ERC721 Token
     globalIdeaCount++;
     if(checkIfMember(_inventor) != true){

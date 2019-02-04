@@ -63,7 +63,8 @@ event NewRep(address _newRep);
   uint _globalUseBlockAmount,
   uint _miningTime,
   uint _royalty,
-  address _inventorsAddress
+  address _inventorsAddress,
+  address _inventionAdd
   )
    external
   onlyOwner
@@ -73,7 +74,7 @@ event NewRep(address _newRep);
   _mint(_inventorsAddress , _ideaId);
 
   _setTokenURI(_ideaId, _ideaIPFS);
-
+  replications[_inventionAdd] = true;
   setIdeaInfo(
      _globalUseBlockAmount,
      _royalty,

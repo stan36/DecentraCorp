@@ -11,7 +11,7 @@ contract DecentraCorpPoA {
   function proxyIDCBurn(address _add, uint _amount) external;
   function proxyCCMint(address _add, uint _amount) external;
   function proxyCCBurn(address _add, uint _amount) external;
-  function generateIdeaBlock(string _ideaIPFS, uint _globalUseBlockAmount, uint miningTime, uint _royalty, address _inventorsAddress) external;
+  function generateIdeaBlock(string _ideaIPFS, uint _globalUseBlockAmount, uint miningTime, uint _royalty, address _inventorsAddress, address _invention) external;
   function replicationBlock(uint _ideaId, address _repAdd, address _replicatorAdd) external;
   function generateGUSBlock(address _replicationOwner) external;
   function _addMember(address _mem) external;

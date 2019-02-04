@@ -5,7 +5,7 @@ import DC_Depot from '../contracts/DC_Depot.json';
 
 const _DC_Depot = new web3.eth.Contract(
 	DC_Depot.abi,
-	DC_Depot.networks[3].address
+	DC_Depot.networks[3636].address
 );
 
 export default _DC_Depot;
