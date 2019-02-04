@@ -4,7 +4,7 @@ import ChaosCoin from '../contracts/ChaosCoin.json';
 
 const _ChaosCoin = new web3.eth.Contract(
 	ChaosCoin.abi,
-	ChaosCoin.networks[3636].address
+	ChaosCoin.networks[3].address
 );
 
 export default _ChaosCoin;
