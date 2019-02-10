@@ -36,8 +36,6 @@ contract CryptoPatentBlockGenerator {
     function getRoyalty(uint _ideaId) public view returns(uint);
     function getInventor(uint _ideaId) public view returns(address);
     function getIdeaMiningTime(uint _ideaId) public view returns(uint);
-    function getRepMiningTime(address _repAdd) public view returns(uint);
-    function setMiningTime(uint _ideaId) external view;
     function getBlockReward(address _repAdd) public view returns(uint);
     function getOwnersAddress(address _repAdd) public view returns(address);
     function getIdeaID(address _repAdd) public view returns(uint);
@@ -50,6 +48,7 @@ contract CryptoPatentBlockGenerator {
     function getRepTotal(uint _ideaId) external view returns(uint);
     function safeTransfer(address _from, address _to, uint _tokenId) public;
     function setRepMiningTime(address _repAdd) external;
+
 }
 /// Block Generator interface
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -100,6 +99,7 @@ contract Interface is Ownable {
   mapping(string => uint) getHash;
   mapping(address => uint[]) getTokens;
   mapping(address => bool) inventions;
+  mapping(address => uint) localMiningtimeTracker;
 
 
   event IdeaProposed(string IdeaHash);
@@ -127,11 +127,7 @@ struct IdeaProposal {
   }
 
 
-//@modifier requires that the address calling a function is a replication
-  modifier onlyReplication() {
-    require(CPBG.checkIfRep(msg.sender) == true);
-    _;
-  }
+
 
 //@modifier requires that the address calling a function is a member of DecentraCorp
   modifier onlyMember() {

@@ -43,6 +43,7 @@ Validators.addValidator(_invention);
     DCPoA.increaseMemLev(_inventor);
     getTokens[_inventor].push(globalIdeaCount);
     DCPoA.increaseFacilityRank( _inventor, 20);
+    localMiningtimeTracker[_invention] = now;
   }
 
 ///@notice ideaBlockTimeLord is called to half an ideablock reward every two years

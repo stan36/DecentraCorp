@@ -29,6 +29,7 @@ this.onload = this.onload.bind(this);
 this.onYes = this.onYes.bind(this);
 this.onNo = this.onNo.bind(this);
 this.replicate = this.replicate.bind(this);
+this.handleChange = this.handleChange.bind(this);
 }
 
 async  componentDidMount(){
@@ -121,9 +122,10 @@ replicate = (event) => {
   this.stateSetter2();
 }
 
-activateReplicate = (event) => {
+activateReplicate = async(event) => {
   event.preventDefault();
-  const ideaId = _Blocks.methods.getId(this.state.Json.inventionAddress).call();
+  const ideaId = await _Blocks.methods.getID(this.state.Json.inventionAddress).call();
+console.log("the Idea ID is: " + this.state.repAdd);
     _CryptoPatentBlockchain.methods.generateReplicationBlock(
       ideaId,
       this.state.repAdd
@@ -146,7 +148,8 @@ onRepReturn = async => {
 }
 
 handleChange (event) {
-  this.setState( [event.target.name]: event.target.value )
+  this.setState( {[event.target.name]: event.target.value })
+  console.log("the Idea ID is: " + this.state.repAdd);
 }
    render() {
      const { Json,  ProposalProps, toReplicate}= this.state;
@@ -169,7 +172,7 @@ handleChange (event) {
                  <br/>
                  <button onClick={this.activateReplicate}>Activate Replication</button>
                  </form>
-                 </div>
+               </div>
                );
       }
       else if(this.state.loading === true){
