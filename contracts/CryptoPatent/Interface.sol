@@ -14,7 +14,7 @@ contract DecentraCorpPoA {
   function generateIdeaBlock(string _ideaIPFS, uint _globalUseBlockAmount, uint miningTime, uint _royalty, address _inventorsAddress, address _invention) external;
   function replicationBlock(uint _ideaId, address _repAdd, address _replicatorAdd) external;
   function generateGUSBlock(address _replicationOwner) external;
-  function _addMember(address _mem) external;
+  function _addMember(address _mem, address _facility) external;
   function _checkIfMember(address _member) public view returns(bool);
   function getMemberCount() public view returns(uint);
   function increaseMemLev(address _add) external;
@@ -147,16 +147,16 @@ struct IdeaProposal {
 
 ///@notice addMember function is an internal function for adding a member to decentracorp
 ///@dev addMember takes in an address _mem, sets its membership to true and increments their rank by one
-  function addMember(address _mem) internal {
+  function addMember(address _mem, address _facility) internal {
     DCPoA._addMember(_mem);
   }
 
 ///@notice buyMembership function allows for the purchase of a membership for 6 months after official launch.
 ///@dev mints the user 10,000 IDC
-  function buyMembership(string _hash) public payable{
+  function buyMembership(string _hash, address _facility) public payable{
     require(now <= globalBlockHalfTime + 15780000 seconds);
     require(msg.value >= 1 ether);
-    addMember(msg.sender);
+    addMember(msg.sender, _facility);
     DCPoA.setProfileHash(msg.sender, _hash);
     DCPoA.proxyIDCMint(msg.sender, 10000000000000000000000);
     emit NewMember(msg.sender);
@@ -200,10 +200,10 @@ function updateProfile(string _newHash) public {
 ///@notice stakeReplicatorWallet function allows for the activation of a replication wallet by
 ///        burning IdeaCoin from the msg.sender
 ///@dev stakeReplicatorWallet costs 100 IDC and burns them from existence
-  function stakeReplicatorWallet(string _hash) public {
+  function stakeReplicatorWallet(string _hash, address _facility) public {
     require(IDC.balanceOf(msg.sender) >= 100000000000000000000);
     DCPoA.proxyIDCBurn(msg.sender, 100000000000000000000);
-    DCPoA._addMember(msg.sender);
+    DCPoA._addMember(msg.sender, _facility);
     DCPoA.setProfileHash(msg.sender, _hash);
     emit NewMember(msg.sender);
   }

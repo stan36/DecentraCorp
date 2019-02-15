@@ -1,5 +1,5 @@
 var IdeaCoin = artifacts.require("./CryptoPatent/IdeaCoin.sol");
-var DCPoA = artifacts.require("./CryptoPatent/DecentraCorpPoA.sol");
+var DCPoA = artifacts.require("./DecentraCorp/DecentraCorpPoA.sol");
 var BlockGen = artifacts.require("./CryptoPatent/CryptoPatentBlockGenerator.sol");
 var CryptoPatent = artifacts.require("./CryptoPatent/CryptoPatentBlockchain.sol");
 

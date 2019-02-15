@@ -134,16 +134,8 @@ console.log("the Idea ID is: " + this.state.repAdd);
     });
 }
 
-onRepReturn = async => {
-
-  _CryptoPatentBlockchain.once( 'NewRep', {
-    filter: {_newRep: this.state.repAdd},
-    fromBlock: '0',
-    toBlock: 'latest',
-  }, (error, event) => {
-    console.log(event);
-    this.stateSetter();
-  })
+onRepReturn = () => {
+this.setState({toDashboard: true});
 
 }
 
