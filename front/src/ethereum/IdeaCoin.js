@@ -1,11 +1,11 @@
 import web3 from '../utils/web3';
 import IdeaCoin from '../contracts/IdeaCoin.json';
 
-
+const net = web3.currentProvider.publicConfigStore._state.networkVersion;
 
  const _IdeaCoin = new web3.eth.Contract(
 	IdeaCoin.abi,
-	IdeaCoin.networks[3636].address
+	IdeaCoin.networks[net].address
 );
 
 

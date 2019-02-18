@@ -1,11 +1,11 @@
 import web3 from '../utils/web3';
 import CryptoPatent from '../contracts/CryptoPatentBlockchain.json';
 
-
+const net = web3.currentProvider.publicConfigStore._state.networkVersion;
 
 const _CryptoPatentBlockchain = new web3.eth.Contract(
 	CryptoPatent.abi,
-	CryptoPatent.networks[3636].address
+	CryptoPatent.networks[net].address
 );
 
 export default _CryptoPatentBlockchain;
