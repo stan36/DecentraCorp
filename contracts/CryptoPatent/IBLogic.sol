@@ -33,7 +33,8 @@ function generateIdeaBlock(
 //generates IdeaBlock ERC721 Token
     globalIdeaCount++;
     if(checkIfMember(_inventor) != true){
-      DCPoA._addMember(_inventor);
+      address fac = DCPoA.getFecilityOfMember(_inventor);
+      DCPoA._addMember(_inventor, fac);
 }
 inventions[_invention] = true;
 Validators.addValidator(_invention);

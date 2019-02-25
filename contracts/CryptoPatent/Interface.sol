@@ -21,6 +21,7 @@ contract DecentraCorpPoA {
   function increaseFacilityRank(address _facAdd, uint _amount) public;
   function setProfileHash(address _add, string _hash) public;
   function addNewInvention(address _newInvention) external ;
+  function getFecilityOfMember(address _mem) public view returns(address);
 }
 /// DecentraCorp PoA inteface
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -81,9 +82,11 @@ contract Interface is Ownable {
   uint public globalRepCount;
   uint public globalUseBlock;
   uint public globalBlockHalfTime;
+  uint public buyMemWindow;
   uint public ideaBlockReward = 1000000000000000000000;
   uint public repStake = 100000000000000000000;
   uint public minimumQuorum;
+  address public CrossChainInfoBridge;
 
   ///@param IdeaProposal array of idea proposals
   IdeaProposal[] public proposals;
@@ -135,6 +138,12 @@ struct IdeaProposal {
     _;
   }
 
+  //@modifier requires that the address calling a function is a member of DecentraCorp
+    modifier onlyCIB() {
+      require(msg.sender == CrossChainInfoBridge);
+      _;
+    }
+
 ///@notice calculatePromo function calculates the promotion a miner receives for having multiples of the same type of replication
 ///@dev calculatePromo takes in a block Reward and an idea ID to retun a specific block reward
   function calculatePromo(uint _blockReward, uint _ideaId) internal view returns(uint) {
@@ -148,18 +157,16 @@ struct IdeaProposal {
 ///@notice addMember function is an internal function for adding a member to decentracorp
 ///@dev addMember takes in an address _mem, sets its membership to true and increments their rank by one
   function addMember(address _mem, address _facility) internal {
-    DCPoA._addMember(_mem);
+    DCPoA._addMember(_mem, _facility);
   }
 
 ///@notice buyMembership function allows for the purchase of a membership for 6 months after official launch.
 ///@dev mints the user 10,000 IDC
-  function buyMembership(string _hash, address _facility) public payable{
-    require(now <= globalBlockHalfTime + 15780000 seconds);
-    require(msg.value >= 1 ether);
-    addMember(msg.sender, _facility);
-    DCPoA.setProfileHash(msg.sender, _hash);
-    DCPoA.proxyIDCMint(msg.sender, 10000000000000000000000);
-    emit NewMember(msg.sender);
+  function buyMembership(address _newMem, address _facility, string _hash) public onlyCIB{
+    require(now <= buyMemWindow + 15780000 seconds);
+    addMember(_newMem, _facility);
+    DCPoA.setProfileHash(_newMem, _hash);
+    emit NewMember(_newMem);
   }
 
 ///@notice setGenerators function takes in addresses of various contracts the CryptoPatent Blockchain inteacts with
@@ -217,4 +224,9 @@ function updateProfile(string _newHash) public {
   function setValidatorContract(address _valCon) public onlyOwner {
         Validators = RelayedOwnedSet(_valCon);
   }
+
+  function setCIB(address _CIB) public onlyOwner {
+  CrossChainInfoBridge = _CIB;
+  }
+
 }

@@ -66,6 +66,7 @@ contract CryptoPatentBlockGenerator {
 
    event ProposalCreated(string VoteHash, uint PropCode);
    event Voted(address _voter, bool inSupport);
+   event FundingApproved(address addToFund, uint amount);
 
 
    struct Proposal {
@@ -190,7 +191,7 @@ contract CryptoPatentBlockGenerator {
                      p.executed = true;
                      p.proposalPassed = true;
                      if(p.PropCode == 1) {
-                       p.Address.transfer(p.Amount);
+                      emit FundingApproved(p.Address, p.Amount);
                      }
                      if(p.PropCode == 2) {
                        frozenAccounts[p.Address] = true;
@@ -202,6 +203,7 @@ contract CryptoPatentBlockGenerator {
                        // Proposal failed
                      p.proposalPassed = false;
                  }
+
             }
 
 
