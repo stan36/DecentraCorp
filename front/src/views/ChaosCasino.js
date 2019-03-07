@@ -55,9 +55,12 @@ class ChaosCasino extends Component {
       <div className='ChaosCasino'>
           <form onSubmit={this.onSubmit}>
         <p>Welecome to the ChaosCasino Home Page!</p>
-        <p>Your Account Address is: {this.state.userAccount}</p>
-        <p>Your ChaosCoin Balance is: {this.state.userBalance}</p>
-        <p>The Current Entropy Unit Is:{this.state.entropyUnit}</p>
+        <p>Your Account Address is:</p>
+          <p style={{fontSize: '12px'}}> {this.state.userAccount}</p>
+        <p>Your ChaosCoin Balance is:</p>
+         <p>{this.state.userBalance}</p>
+        <p>The Current Entropy Unit Is:</p>
+        <p>{this.state.entropyUnit}</p>
         <p>Here you can exchange ether(ropsten test net Only!)</p>
         <p>for ChaosCoin to play in ChaosCasino games!</p>
         <p>The current Entropy Unit is used by the dApp's to determine</p>

@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import Info from './Info';
+
 
 class Intro extends Component {
   render() {
     return(
-<div className="flex-container">
-  <Info />
+<div>
       <div className='intro'>
         <h3 style={{ color: "green"}}>Thank you for visiting DecentraCorp's dApp in its early alpha phase!</h3>
         <br/>

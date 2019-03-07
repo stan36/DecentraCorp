@@ -17,18 +17,14 @@ class App extends Component {
       accounts: null,
       memberCount: '',
       idcTotal: null,
-      windowWidth: window.innerWidth,
-      mobileNavVisible: false,
       loading: false
      }
   }
 
-  handleResize() {
-  this.setState({windowWidth: window.innerWidth});
-}
+
 
   async componentDidMount() {
-      window.addEventListener('resize', this.handleResize.bind(this));
+
       this.setState({ loading: true });
       if (typeof window === 'undefined' || typeof window.web3 === 'undefined') {
         alert('THIS WEBSITE IS NOT MOBILE OPTIMIZED! YOU ARE NOT CONNECTED TO WEB3! MOST FEATURES ON THIS WEBSITE REQUIRE WEB3 AND HAVE BEEN DISABLED! PLEASE INSTALL METAMASK AND CREATE AN ETHEREUM WALLET TO RE-ENABLE THESE FEATURES ', null, null);
@@ -43,19 +39,12 @@ class App extends Component {
 
       }
 
-
-
-
-
      this.onLoad();
      this.updateInterface();
       this.setState({ loading: false });
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize.bind(this));
 
-  }
 
 updateInterface = async() => {
   const accounts = await web3.eth.getAccounts();
@@ -83,12 +72,14 @@ onLoad = () => {
   render() {
 const { isMember, accounts, memberCount, idcTotal} = this.state;
     return (
-      <div className="app">
-    <NavBar isMember={isMember} accounts={accounts} memberCount={memberCount} idcTotal={idcTotal}/>
       <div>
-<Footer />
-</div>
-
+        <NavBar isMember={isMember} accounts={accounts} memberCount={memberCount} idcTotal={idcTotal}/>
+      <div className="app">
+      <div>
+        <hr style={{ height: '20px' , width: 'auto', background: 'black'}}/>
+        <Footer />
+      </div>
+    </div>
       </div>
       );
     }

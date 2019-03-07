@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import DCRoadMapPart1 from "../images/DCRoadMapPart1.gif";
 import DCRoadMapPart2 from "../images/DCRoadMapPart2.gif";
 import DCRoadMapPart3 from "../images/DCRoadMapPart3.gif";
-import './RoadMap.css';
+
 
 class RoadMap extends Component {
   render() {

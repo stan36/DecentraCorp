@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import web3 from '../../utils/web3';
 import ipfs from '../../utils/IPFS_util';
 import _DecentraCorp from '../../ethereum/DecentraCorp';
-import MemDashBoard from '../DashboardComponents/MemDashBoard';
 import PostComments from '../DashboardComponents/PostComments';
 
 
@@ -61,7 +60,8 @@ async componentDidMount(){
     if(Searched === false) {
       return(
         <div>
-        <p>Your Wallet Address: {Account}</p>
+        <p>Your Wallet Address:</p>
+        <p style={{ fontSize: '12px'}}> {Account}</p>
 <input className='userAccount'id="userAccount" name="userAccount" type="text" placeholder = 'Search a Facility by address' onChange={event => this.handleChange(event)}/>
 <button onClick={event => this.getProfile(event)}>Search</button>
 <p>
@@ -75,7 +75,7 @@ async componentDidMount(){
 If you would like to try this feature out and see an example of a Membership page, you can view my DecentraCorp Profile at:
 </p>
 <br/>
-<p>0x65305Cf8B2334C95F3650772Aa54c77d6AD2157F</p>
+<p style={{ fontSize: '12px'}}>0x65305Cf8B2334C95F3650772Aa54c77d6AD2157F</p>
         </div>
       );
     }else{
@@ -86,7 +86,6 @@ If you would like to try this feature out and see an example of a Membership pag
     <button onClick={event => this.getProfile(event)}>Search</button>
             </div>
             <div className='MemDash'>
-            <MemDashBoard />
               <div className='ProfileInfo'>
               <div>
                 <img src={"https://ipfs.io/ipfs/" + Json.photo } alt ="No Image" className="memberPhoto"/>

@@ -3,7 +3,7 @@ import web3 from '../../utils/web3';
 import _CryptoPatentBlockchain from '../../ethereum/CryptoPatent';
 import  DisplayIPFSName  from './DisplayIPFSName';
 import  DisplayIPFS  from './DisplayIPFS';
-import './IdeaList.css';
+
 
 
 

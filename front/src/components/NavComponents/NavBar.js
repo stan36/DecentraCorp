@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink, Switch, Route } from 'react-router-dom';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+
 
 //Views:
 import Home from '../../views/Home';
@@ -34,6 +36,7 @@ import ItemList from '../DC_Depot/ItemList';
 //InfoComponents:
 import Donate from '../InfoComponents/Donate';
 import JoinCore from '../InfoComponents/JoinCore';
+import Info from '../InfoComponents/Info.js';
 import Intro from '../InfoComponents/Intro.js';
 import WhatIsDAC from '../InfoComponents/WhatIsDAC.js';
 import Members from '../InfoComponents/Members.js';
@@ -57,15 +60,54 @@ import DecentraCorpLogo from "../../images/DecentraCorpLogo.png";
 import Loader from "../../images/75.gif";
 
 class App extends Component {
+container = React.createRef();
+container2 = React.createRef();
   constructor(props){
     super(props);
 
     this.state = {
-      mobileNavVisible: false,
+       open: false,
+       open2: false,
       loading: false
      }
+
   }
 
+  componentDidMount() {
+     document.addEventListener("mousedown", this.handleClickOutside);
+   }
+   componentWillUnmount() {
+     document.removeEventListener("mousedown", this.handleClickOutside);
+   }
+   handleClickOutside = event => {
+     if (this.container.current && !this.container.current.contains(event.target)) {
+       this.setState({
+         open: false,
+       });
+     }
+   };
+   handleButtonClick = () => {
+     this.setState(state => {
+       return {
+         open: !state.open,
+       };
+     });
+   };
+
+   handleClickOutside2 = event => {
+     if (this.container2.current && !this.container2.current.contains(event.target)) {
+       this.setState({
+         open2: false,
+       });
+     }
+   };
+   handleButtonClick2 = () => {
+     this.setState(state => {
+       return {
+         open2: !state.open2,
+       };
+     });
+   };
 
   navigationLinks() {
     const {  isMember, accounts, memberCount, idcTotal } = this.props;
@@ -74,64 +116,101 @@ class App extends Component {
       <div class="Navbar">
       <nav class="Navbar__Items">
       <div class="Navbar__Link Navbar__Link-brand">
-      <img src={DecentraCorpLogo} alt ="DecentraCorp Dapp" className="DecentraCorpLogo1" style={{ marginBottom: "-100px"}}/>
+        <div className="container" ref={this.container}>
+        <button type="button" class="button" onClick={this.handleButtonClick}>
+                ☰ DecentraCorp
+                </button>
+                {this.state.open && (
+                  <div class="container">
       <ul>
-      <li key={1}><NavLink to='/'>Home</NavLink></li>
-      <li key={2}><NavLink to='/Intro'>About</NavLink></li>
-      <li key={2}><NavLink to='/BuyMembership'>Become a Member!</NavLink></li>
+      <li key={1}><NavLink onClick={this.handleButtonClick} to='/'>Home</NavLink></li>
+      <li key={2}><NavLink onClick={this.handleButtonClick} to='/Info'>About</NavLink></li>
+      <li key={2}><NavLink onClick={this.handleButtonClick} to='/BuyMembership'>Become a Member!</NavLink></li>
       </ul>
       </div>
+    )}
+    </div>
+  </div>
       </nav>
-      <div>
-      </div>
       </div>
     ];
   }
   else if(!isMember){
 return [
-  <div class="Navbar">
-  <br/>
+  <div>
+  <nav class="Navbar">
+    <div className="container" ref={this.container}>
+    <button type="button" class="button" onClick={this.handleButtonClick}>
+            ☰ DecentraCorp
+            </button>
+            {this.state.open && (
+              <div class="container">
+                  <ul>
+    <li key={1}><NavLink onClick={this.handleButtonClick} to='/'>Home</NavLink></li>
+    <li key={2}><NavLink onClick={this.handleButtonClick} to='/Info'>About</NavLink></li>
+    <li key={3}><NavLink onClick={this.handleButtonClick} to='/ApprovedIdeas'>The CryptoPatent Blockchain</NavLink></li>
+    <li key={4}><NavLink onClick={this.handleButtonClick} to='/ChaosCasino'>ChaosCasino</NavLink></li>
+    <li key={5}><NavLink onClick={this.handleButtonClick} to='/DCDepot'>DC Depot</NavLink></li>
+    <li key={6}><NavLink onClick={this.handleButtonClick} to='/ProfilSearch'>DecentraSearch</NavLink></li>
+    <li key={7}><NavLink onClick={this.handleButtonClick} to='/BuyMembership'>Become a Member!</NavLink></li>
+  </ul>
+  </div>
+)}
+</div>
+  </nav>
   <div>
     <p style={{ fontSize: "14px", color: "red", textAlign: "right"}}>Total DecentraCorp members: { memberCount } IdeaCoin Total Supply: { idcTotal }</p>
     </div>
-  <nav class="Navbar__Items">
-  <div class="Navbar__Link Navbar__Link-brand">
-  <img src={DecentraCorpLogo} alt ="DecentraCorp Dapp" className="DecentraCorpLogo1" style={{ marginBottom: "-100px"}}/>
-  <ul>
-    <li key={1}><NavLink to='/'>Home</NavLink></li>
-    <li key={2}><NavLink to='/Intro'>About</NavLink></li>
-    <li key={3}><NavLink to='/ApprovedIdeas'>The CryptoPatent Blockchain</NavLink></li>
-    <li key={4}><NavLink to='/ChaosCasino'>ChaosCasino</NavLink></li>
-    <li key={5}><NavLink to='/DCDepot'>DC Depot</NavLink></li>
-    <li key={6}><NavLink to='/ProfilSearch'>DecentraSearch</NavLink></li>
-    <li key={7}><NavLink to='/BuyMembership'>Become a Member!</NavLink></li>
-  </ul>
-  </div>
-  </nav>
     </div>
 ];
 } else {
 return [
 
-  <div class="Navbar">
-  <br/>
   <div>
-    <p style={{ fontSize: "14px", color: "red", textAlign: "right"}}>Total DecentraCorp members: { memberCount } IdeaCoin Total Supply: { idcTotal }</p>
-    </div>
-  <nav class="Navbar__Items">
-  <div class="Navbar__Link Navbar__Link-brand">
-<img src={DecentraCorpLogo} alt ="DecentraCorp Dapp" className="DecentraCorpLogo1" style={{ marginBottom: "-100px"}}/>
+  <nav class="Navbar">
+     <div className="container" ref={this.container}>
+    <button type="button" class="button" onClick={this.handleButtonClick}>
+             ☰ DecentraCorp
+             </button>
+             {this.state.open && (
+               <div class="container">
 <ul>
-  <li key={1}><NavLink to='/'>Home</NavLink></li>
-  <li key={2}><NavLink to='/Intro'>About</NavLink></li>
-  <li key={3}><NavLink to='/ApprovedIdeas'>The CryptoPatent Blockchain</NavLink></li>
-  <li key={4}><NavLink to='/ChaosCasino'>ChaosCasino</NavLink></li>
-  <li key={5}><NavLink to='/DCDepot'>DC Depot</NavLink></li>
-  <li key={6}><NavLink to='/ProfilSearch'>DecentraSearch</NavLink></li>
-  <li key={7}><NavLink to='/Profile'>DashBoard</NavLink></li>
+  <li key={1}><NavLink onClick={this.handleButtonClick} to='/'>Home</NavLink></li>
+  <li key={2}><NavLink onClick={this.handleButtonClick} to='/Info'>About</NavLink></li>
+  <li key={3}><NavLink onClick={this.handleButtonClick} to='/ApprovedIdeas'>The CryptoPatent Blockchain</NavLink></li>
+  <li key={4}><NavLink onClick={this.handleButtonClick} to='/ChaosCasino'>ChaosCasino</NavLink></li>
+  <li key={5}><NavLink onClick={this.handleButtonClick} to='/DCDepot'>DC Depot</NavLink></li>
+  <li key={6}><NavLink onClick={this.handleButtonClick} to='/ProfilSearch'>DecentraSearch</NavLink></li>
+  <li key={7}><NavLink onClick={this.handleButtonClick} to='/Profile'>DashBoard</NavLink></li>
 </ul>
 </div>
+)}
+</div>
+<div className="container2" ref={this.container2}>
+<button type="button" class="button" onClick={this.handleButtonClick2}>
+        <AccountCircle/>
+        </button>
+        {this.state.open2 && (
+          <div class="container2">
+<ul>
+<li key={1}><NavLink onClick={this.handleButtonClick2} to='/Profile'>Your Profile</NavLink></li>
+<li key={2}><NavLink onClick={this.handleButtonClick2} to='/IDC_Wallet'>IdeaCoin Wallet</NavLink></li>
+<li key={3}><NavLink onClick={this.handleButtonClick2} to='/UpdateProfile'>Update Profile</NavLink></li>
+<li key={4}><NavLink onClick={this.handleButtonClick2} to='/IdeaVote'>IdeaBlock Voting Booth</NavLink></li>
+<li key={5}><NavLink onClick={this.handleButtonClick2} to='/ProposalVote'>Proposal Voting Booth</NavLink></li>
+<li key={6}><NavLink onClick={this.handleButtonClick2} to='/CreateFundingProp'>Create a Proposal for Funding</NavLink></li>
+<li key={7}><NavLink onClick={this.handleButtonClick2} to='/CreateFreezeProp'>Create a Proposal to Investigate a Member for Fraud</NavLink></li>
+<li key={8}><NavLink onClick={this.handleButtonClick2} to='/CreateTerminateProp'>Create a Proposal to have a Member Terminated</NavLink></li>
+<li key={9}><NavLink onClick={this.handleButtonClick2} to='/Facility'>Facility Upgrades</NavLink></li>
+<li key={10}><NavLink onClick={this.handleButtonClick2} to='/ProfilSearch'>Member Profile Search</NavLink></li>
+</ul>
+</div>
+)}
+</div>
 </nav>
+<div>
+  <p style={{ fontSize: "14px", color: "red", textAlign: "right"}}>Total DecentraCorp members: { memberCount } IdeaCoin Total Supply: { idcTotal }</p>
+  </div>
   </div>
 ];
 }
@@ -168,6 +247,7 @@ return [
           <Route exact path='/Donate' component={Donate}></Route>
           <Route exact path='/JoinCore' component={JoinCore}></Route>
           <Route exact path='/BuyMembership' component={BuyMembership}></Route>
+          <Route exact path='/Info' component={Info}></Route>
           <Route exact path='/Intro' component={Intro}></Route>
           <Route exact path='/WhatIsDAC' component={WhatIsDAC}></Route>
           <Route exact path='/Members' component={Members}></Route>

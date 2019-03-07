@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import Info from './Info';
+
 
 class ChaosCasinoInfo extends Component {
   render() {
     return(
-<div className="flex-container">
-  <Info />
-
-        <div className='ChaosCasino'>
+<div>
+      <div className='ChaosCasino'>
         <h2 style={{ color: "red" }}>
         The ChaosCasino:
         </h2>

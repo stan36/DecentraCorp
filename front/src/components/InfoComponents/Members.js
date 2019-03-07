@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import Info from './Info';
+
 
 class Members extends Component {
   render() {
     return(
-<div className="flex-container">
-    <Info />
+<div>
         <div className='members'>
         <br/>
         <h3 style={{ color: 'purple'}}>

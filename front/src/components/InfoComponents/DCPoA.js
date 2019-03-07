@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import Info from './Info';
+
 
 class DCPoA extends Component {
   render() {
     return(
-<div className="flex-container">
-  <Info />
-
+<div>
         <div className='PoA'>
         <h2 style={{ color: "red" }}>
         DecentraCorp's Proof of Authority Network:

@@ -24,6 +24,7 @@ class ApprovedIdeas extends Component {
 this.PropHashs = this.PropHashs.bind(this);
 this.onClick = this.onClick.bind(this);
 this.stateSetter = this.stateSetter.bind(this);
+
   }
 
   async  componentDidMount(){
@@ -60,6 +61,7 @@ onClick = (event) =>{
 stateSetter = (ipfshash) =>{
   this.setState({ selectedIpfs: ipfshash})
 }
+
 
   render() {
     if(this.state.loading === true){

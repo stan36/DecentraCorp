@@ -1,85 +1,64 @@
+body {
+  background-color: black;
+  font-family: 'Open Sans', sans-serif;
+  color: gray;
+  letter-spacing: .5px;
+  font-size: 14px;
+  font-weight: 300;
+  justify-content: center;
+  flex: 1;
+  margin: 10px;
 
-html {
+}
+
+  .app{
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #334149;
+  }
+
+  .flex-container{
+    flex: 1;
     display: flex;
-    flex: 2 ;
-    display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+  }
 
-    }
-
-
-    .app {
-      flex: 1;
+    h2 {
       display: flex;
+      flex: 1;
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
       width: auto;
-      flex-direction: column;
-      justify-content: space-between;
-
-    }
-
-
-
-
-
-
-    h1 {
-      margin-bottom: 20px;
-      display: flex;
-      flex: 1;
-      flex-wrap: wrap;
-      justify-content: center;
-      font-size:4vw;
-      align-items: center;
-
-    }
-    h2 {
-      margin-bottom: 20px;
-      margin-top: 20px;
-      display: flex;
-      flex: 1;
-      flex-wrap: wrap;
-      justify-content: center;
-      font-size:3vw;
-      align-items: center;
+      height: auto;
+      margin: auto;
+      color: black;
 
     }
     h3 {
-      margin-top: 20px;
-      margin-bottom: 20px;
       display: flex;
       flex: 1;
       flex-wrap: wrap;
       justify-content: center;
-      font-size:2vw;
       align-items: center;
-
+      width: auto;
+      height: auto;
+      margin: auto;
+      color: black;
     }
 
     p {
-      margin-bottom: 10px;
-      margin-top: 10px;
       flex: 1;
       display: flex;
       justify-content: center;
-      font-size:1.5vw;
       align-items: center;
-
-    }
-
-    .DecentraCorpLogo1{
-        margin-bottom: -50px;
-        margin-top: 10px;
-        margin-right: 1000px;
-        margin-left: 0px;
-        max-width: 30%;
-        height: auto;
-        display: flex;
-        flex-wrap: wrap;
+      width: auto;
+      height: auto;
+      margin: 10px;
+      color: black;
     }
 
   .Loader {
@@ -88,4 +67,92 @@ html {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+  }
+
+
+
+
+
+  .ProfileInfo {
+    max-width: 50%;
+    flex: 1;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .memberPhoto {
+    max-width: 50%;
+    height: auto;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .Profile{
+    width: auto;
+    height: auto;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  .DCWallet {
+    flex: 1;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+  }
+
+  hr{
+    border: 0;
+    width: 80%;
+    color: #f00;
+    background-color: #f00;
+    height: 1px;
+  }
+
+
+  .outterC {
+    flex: 1;
+    flex-wrap: wrap;
+  justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .C1 {
+    flex: 1;
+    flex-wrap: wrap;
+  justify-content: space-around;
+    align-items: left;
+    flex-direction: column;
+    width: auto;
+  }
+
+  .C2 {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+  justify-content: space-around;
+    align-items: right;
+    flex-direction: column;
+    width: auto;
+
+  }
+
+  .About{
+    height: 100px !important;
+    width: auto;
+  }
+
+  .comment {
+    height: 100px !important;
+    width: auto;
   }

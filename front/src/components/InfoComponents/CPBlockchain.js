@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import Info from './Info';
+
 
 class CPBlockchain extends Component {
   render() {
     return(
-<div className="flex-container">
-  <Info />
-
+<div>
         <div className='CP_Blockchain'>
           <br/>
             <h2 style={{ color: "teal"}}>The CryptoPatent Blockchain:</h2>

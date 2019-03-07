@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import Info from './Info';
+
 
 class WhatIsDAC extends Component {
   render() {
     return(
-<div className="flex-container">
-  <Info />
+<div>
         <div className='What_is_DAO'>
         <h3 style={{ color: "red" }}>
         What is a Decentralized Autonomous Corporation?

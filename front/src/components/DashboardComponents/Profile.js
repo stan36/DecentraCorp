@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import web3 from '../../utils/web3';
 import ipfs from '../../utils/IPFS_util';
 import _DecentraCorp from '../../ethereum/DecentraCorp';
-import MemDashBoard from './MemDashBoard';
 import PostComments from './PostComments';
 import DisplayComments from './DisplayComments';
 
@@ -47,9 +46,8 @@ class Profile extends Component {
     const { Json, profileHash, userLevel, facilityRank, hashArray, userAccount } =this.state;
     return (
       <div>
-      <div className='MemDash'>
-      <MemDashBoard />
-        <div className='ProfileInfo'>
+      <div>
+        <div>
         <div>
           <img src={"https://ipfs.io/ipfs/" + Json.photo } alt ="No Image" className="memberPhoto"/>
           </div>

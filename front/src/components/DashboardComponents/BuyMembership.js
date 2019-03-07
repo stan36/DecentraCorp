@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import web3 from '../../utils/web3';
 import ipfs from '../../utils/IPFS_util';
-import _CryptoPatentBlockchain from '../../ethereum/CryptoPatent';
+import Faucet from '../../ethereum/IDCFaucet';
 import { Redirect } from 'react-router-dom';
 import Loader from "../../images/75.gif";
-import './BuyMembership.css';
 import downloadMetamask from '../../images/download-metamask.png';
 
 class BuyMembership extends Component {
@@ -62,10 +61,9 @@ class BuyMembership extends Component {
    var buf = Buffer.from(JSON.stringify(jsonObject));
    await ipfs.add(buf, (err, ipfsHash) => {
    this.setState({ ipfsHash: ipfsHash[0].hash});
-  _CryptoPatentBlockchain.methods.buyMembership(this.state.ipfsHash)
-  .send({from : this.state.userAccount,
-    gas: '3000000',
-    value: web3.utils.toWei(String(1), 'ether')
+  Faucet.methods.buyMembership(this.state.userAccount, this.state.userAccount, this.state.ipfsHash)
+  .send({
+    from : this.state.userAccount
   }, (error, transactionHash) => {
    this.setState({transactionHash});
    this.onReturn();
@@ -75,7 +73,7 @@ class BuyMembership extends Component {
 
 onReturn = async => {
 
-_CryptoPatentBlockchain.once( 'NewMember', {
+Faucet.once( 'NewMember', {
   filter: {member: this.state.userAccount},
   fromBlock: '0',
   toBlock: 'latest',
@@ -190,7 +188,7 @@ fileSelectedHandler = async (event) => {
                    <br/>
                    <input className='About' id="About" name="About" type="text" placeholder = 'Tell Us About Yourself'/>
                    <br/>
-         <button>Submit new Profile Info</button>
+         <button>Become a Member!</button>
          </div>
          </div>
        </form>

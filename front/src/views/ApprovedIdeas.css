@@ -1,15 +1,6 @@
-body {
-  background-color: #0c2033;
-  font-family: 'Open Sans', sans-serif;
-  color: #fff;
-  letter-spacing: .5px;
-  font-size: 16px;
-  font-weight: 300;
-  flex-direction: row;
-}
+
 
 .ItemList{
-  display: flex;
   flex: 1;
   flex-wrap: wrap;
 justify-content: center;
@@ -18,7 +9,6 @@ align-items: center;
 }
 
 .item-details{
-  display: flex;
   flex: 1;
   flex-wrap: wrap;
   justify-content: center;
@@ -28,7 +18,6 @@ align-items: center;
 }
 
 .prop-detail{
-  display: flex;
   flex: 1;
   flex-wrap: wrap;
   justify-content: row;
@@ -39,7 +28,6 @@ max-height: 80%;
 }
 
 .ipfsHash{
-  display: flex;
   flex: 1;
   flex-wrap: wrap;
   justify-content: center;
@@ -51,7 +39,6 @@ font-size: 5vw;
 }
 
 .item {
-  display: flex;
   flex: 1;
   flex-wrap: wrap;
   justify-content: center;

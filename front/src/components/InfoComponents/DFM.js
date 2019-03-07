@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import Info from './Info';
+
 
 class DFM extends Component {
   render() {
     return(
-<div className="flex-container">
-  <Info />
-
+<div>
         <div className='DFM'>
         <br/>
         <h3 style={{ color: 'silver'}}>

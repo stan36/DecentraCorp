@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
-import IdeaCoinPic from "../../images/IdeaCoin.JPG";
-import Info from './Info';
+
+
 
 class IdeaCoin extends Component {
   render() {
     return(
-<div className="flex-container">
-    <Info />
-        <div className='IdeaCoin'>
-        <br/>
+<div>
 
-          <img src={IdeaCoinPic} alt ="IdeaCoinPic" className="IdeaCoinPic"/>
-        <br/>
+        <div className='IdeaCoin'>
         <p>
             IdeaCoin is an ERC20 utility token for DecentraCorp and its associated projects.
             The first DecentraCorp project to utilize IdeaCoin will be the CryptoPatent Blockchain.

@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import CIB_EPMS from "../../images/CIB_EPMS_Diagram.gif";
-import Info from './Info';
+
 
 class EPMS extends Component {
   render() {
     return(
-<div className="flex-container">
-  <Info />
-
+<div>
         <div className='EPMS'>
         <h2 style={{color: "purple"}}>
           The EPMS:

@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import Info from './Info';
+
 
 class CPBStructure extends Component {
   render() {
     return(
-<div className="flex-container">
-  <Info />
-
+<div >
       <div className='CP_Structure'>
         <br/>
         <h2 style={{ color: "pink"}}>Structure of the CryptoPatent Blockchain:</h2>

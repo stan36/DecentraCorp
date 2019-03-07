@@ -137,7 +137,8 @@ goHome = () => {
     return (
       <div className='container'>
       <div>
-      <p className="info">Your Wallet address is: {this.state.applicantAddress}</p>
+      <p className="info">Your Wallet address is:</p>
+      <p style={{ fontSize: '12px'}}>{this.state.applicantAddress}</p>
       </div>
       <div>
         <h3 className="info">Welcome to The IdeaBlock Application Page!</h3>
@@ -149,13 +150,14 @@ goHome = () => {
 
       </div>
       <div><CryptoPatentNav /></div>
+      <div className='application'>
       <label htmlFor="details">Upload Idea Photo: </label>
       <input className='photo' id="photo" name="photo" type='file' onChange={this.fileSelectedHandler}/>
       <div>{message}</div>
       <br/>
       <form onSubmit={this.handleSubmit}>
-        <div className='outterC'>
-        <div className='C1'>
+        <div>
+        <div>
        <label htmlFor="name">Applicant Name: </label>
        <br/>
        <input id="username" name="username" type="text" placeholder = 'Optional'/>
@@ -175,7 +177,7 @@ goHome = () => {
          <br/>
          </div>
          <br/>
-         <div className='C2'>
+         <div>
        <label htmlFor="useblockamount">The amount your Idea should mint upon its Use: </label>
        <br/>
        <input id="useblockamount" name="useblockamount" type="text" placeholder = 'Enter amount as 18 decimals' onChange={event => this.handleChange(event)}/>
@@ -198,7 +200,7 @@ goHome = () => {
        </div>
        </div>
      </form>
-
+   </div>
      <br/>
      <div>
      <p>{this.state.message}</p>

@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import Info from './Info';
+
 
 class DC_DepotInfo extends Component {
   render() {
     return(
-<div className="flex-container">
-  <Info />
-
+<div>
         <div className='DC_Depot'>
         <h2 style={{ color: "red" }}>
       The DC Depot:

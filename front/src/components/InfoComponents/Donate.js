@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import mainEtherAccountQR from "../../images/mainEtherAccountQR.png";
-import Info from './Info';
+
 class Donate extends Component {
   render() {
     return(
-      <div className="flex-container">
-
-        <Info />
+      <div>
       <div className='Donate'>
         <h3>Thank you for visiting DecentraCorp's dApp in its early alpha phase!</h3>
         <br/>
@@ -15,10 +13,9 @@ class Donate extends Component {
         <br/>
         <p>Those interested in donating can send ANY ERC20 based token to the following address:</p>
         <div>
-          <img src={mainEtherAccountQR} alt ="Dev-Team-QR"/>
+        <img  src={mainEtherAccountQR} alt ="Dev-Team-QR" />
+        <p style={{ fontSize: '12px'}}>0x3b450bDF77FeC6EEC6b11e216c87f4ca6D4464F5</p>
         </div>
-        <br/>
-        <p>0x3b450bDF77FeC6EEC6b11e216c87f4ca6D4464F5</p>
         <br/>
         <div>
         <p>All Donations will be used to fund the further development of Decentracorp</p>

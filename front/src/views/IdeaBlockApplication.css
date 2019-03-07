@@ -1,97 +1,49 @@
-.details{
-height: 100px !important;
-width: 400px;
-}
 
-body {
-  background-color: #0c2033;
-  font-family: 'Open Sans', sans-serif;
-  color: #fff;
-  letter-spacing: .5px;
-  font-size: 16px;
-  font-weight: 300;
-  flex-direction: column;
-
-
-}
-
-.container {
+.info{
   flex: 1;
-  display: flex;
-  flex-wrap: wrap;
+justify-content: center;
+flex-direction: row;
+width: auto;
+align-items: center;
+}
+
+.application{
+  flex: 1;
   width: auto;
+  padding: 5px;
+  margin: 5px;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
 }
+
 
 form {
-  display: flex;
+  flex: 1;
   flex-wrap: wrap;
-  width:auto;
+  width: auto;
   padding: 2px;
   margin: 2px;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 input {
-  display: flex;
-  flex-wrap: wrap;
+  flex: 1;
   width: auto;
   padding: 2px;
   margin: 2px;
   justify-content: center;
   align-items: center;
-
+  flex-direction: row;
 }
 
 label {
-  display: flex;
+  flex: 1;
   flex-wrap: wrap;
   width: auto;
   padding: 2px;
   margin: 2px;
-
+  flex-direction: row;
 }
-
-.info {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2px;
-  margin: 2px;
-  width: auto;
-  }
-
-  .outterC {
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-  justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-  }
-
-  .C1 {
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-  justify-content: space-around;
-    align-items: left;
-    flex-direction: column;
-    width: 600px;
-  }
-
-  .C2 {
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-  justify-content: space-around;
-    align-items: right;
-    flex-direction: column;
-    width: 600px;
-
-  }
-
-  

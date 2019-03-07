@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import web3 from '../../utils/web3';
 import _IdeaCoin from '../../ethereum/IdeaCoin';
 import _ChaosCoin from '../../ethereum/ChaosCoin';
-import MemDashBoard from './MemDashBoard';
+
 
 
 class IDC_Wallet extends Component {
@@ -49,7 +49,6 @@ class IDC_Wallet extends Component {
     return (
       <div>
       <div className='MemDash'>
-      <MemDashBoard />
       <div className='DCWallet'>
       <p> Your IdeaCoin Balance Is: {userBalance} {symbol}</p>
       <hr/>

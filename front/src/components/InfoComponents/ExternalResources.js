@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import Info from './Info';
-import JoinCore from './JoinCore';
+
+
 
 class ExternalResources extends Component {
   render() {
     return(
-<div className="flex-container">
-  <Info />
+<div>
         <div className='papers'>
-          <JoinCore />
           <div>
         <p>To view the Introductory WhitePaper for DecentraCorp and its associated projects</p>
         <p><a style={{ textDecoration: 'none', color: "red"}} href='https://drive.google.com/open?id=1hhsuQ_JnBz5E0813V-4trPZhiflaTBwr'> Click Here!</a></p>

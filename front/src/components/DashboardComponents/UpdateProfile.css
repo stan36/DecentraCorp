@@ -1,6 +1,5 @@
 .outterC {
   flex: 1;
-  display: flex;
   flex-wrap: wrap;
 justify-content: space-between;
   align-items: center;
@@ -9,26 +8,24 @@ justify-content: space-between;
 
 .C1 {
   flex: 1;
-  display: flex;
   flex-wrap: wrap;
 justify-content: space-around;
   align-items: left;
   flex-direction: column;
-  width: 600px;
+  width: auto;
 }
 
 .C2 {
   flex: 1;
-  display: flex;
   flex-wrap: wrap;
 justify-content: space-around;
   align-items: right;
   flex-direction: column;
-  width: 600px;
+  width: auto;
 
 }
 
 .About{
   height: 100px !important;
-  width: 400px;
+  width: auto;
 }

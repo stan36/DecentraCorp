@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import DC_Contract_Structure from "../../images/DC_Contract_Structure.gif";
-import Info from './Info';
+
 
 class DC_ContractStructure extends Component {
   render() {
     return(
-<div className="flex-container">
-  <Info />
-
+<div>
         <div className='structure'>
         <br/>
         <h2 style={{ color: "orange" }}>

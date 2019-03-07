@@ -1,52 +1,92 @@
-*, *::before, *::after {
-  box-sizing: flex;
-  padding: 2px;
-  margin: 2px;
-  align-items: center;
-  justify-content: center;
 
-}
 
 nav ul {
   list-style: none;
-  background-color: gray;
+  background-color: #111314;
   margin-bottom: 10px;
   margin-top: 10px;
-  border-radius: 50px;
-  display: flex;
   flex: 1;
-  justify-content: left;
-  align-items: left;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 nav ul li {
-  padding-left : 15px;
-  padding-right : 10px;
-  padding-top : 50px;
-  padding-bottom : 5px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-
+  flex: 1;
+align-items: center;
+justify-content: center;
+align-items: center;
+padding-left : 0px;
+padding-right : 30px;
+padding-top : 10px;
+padding-bottom : 15px;
 }
 
 nav ul li a {
   color: darkred;
-  text-decoration: none;
   text-shadow: black 4px;
-  font-size: 15px;
-  display: flex;
+  font-size: 20px;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
+
+
 .Navbar {
-  flex: .2;
-  display: flex;
-  flex-wrap: wrap;
-justify-content: space-between;
+  flex: 1;
+  justify-content: space-between;
   align-items: center;
+  width: auto;
+  background-color: #111314;
   flex-direction: column;
+  position: top;
+  top: 100%;
+}
+
+.container {
+  position: relative;
+  display: inline-block;
+  justify-content: space-between;
+  align-items: left;
+}
+
+.container2 {
+  position: relative;
+  display: inline-block;
+  justify-content: space-between;
+  align-items: right;
+}
+
+.button {
+  padding: 10;
+  width: 100%;
+  border: 0;
+  background-color: #111314;
+  color: #3c3c3d;
+  cursor: pointer;
+  border: white;
+  font-size: 40px;
+  justify-content: space-around;
+  align-items: left;
+}
+
+.dropdown {
+  top: 100%;
+  width: auto;
+  z-index: 2;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14);
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+}
+
+li:hover {
+  background-color: rgba(0, 0, 0, 0.14);
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
 }
