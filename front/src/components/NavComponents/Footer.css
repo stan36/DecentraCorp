@@ -1,11 +1,8 @@
 
     .footer {
-      flex: 1;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      align-items: center;
-      width: auto;
+      width: 100% !important;
+      max-height: 10% !important;
       background-color: gray;
-      flex-direction: column;
+      flex-direction: row;
 
     }

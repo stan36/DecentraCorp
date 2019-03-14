@@ -155,15 +155,17 @@ handleChange (event) {
                  <p>If you havn't, please visit the Become a Member Page above.</p>
                  <p>A properly assembled replication with an activated EPMS is Required
                  to activate a replications mining status.</p>
-               <p>A staking of 100 IdeaCoin is also required from the member.</p>
+               <p>A staking of 100 Notio is also required from the member.</p>
                <p>If you meet these requirements enter the address of the replication produced when you activated its EPMS</p>
                <form>
                  <label htmlFor="repAdd">Replication Address: </label>
                  <br/>
-                 <input id="repAdd" name="repAdd" type="text" placeholder = 'this will be an ethereum address' onChange={this.handleChange}/>
+                 <p><input id="repAdd" name="repAdd" type="text" placeholder = 'this will be an ethereum address' onChange={this.handleChange}/></p>
                  <br/>
-                 <button onClick={this.activateReplicate}>Activate Replication</button>
-                 </form>
+                 <p>
+                 <button  style={{ fontSize: "20px"}} type="button" class="button" onClick={this.activateReplicate}>Activate Replication</button>
+                 </p>
+               </form>
                </div>
                );
       }
@@ -185,9 +187,10 @@ handleChange (event) {
      if (!ProposalProps.executed){
      this.onload();
      return(
-       <div className='container'>
+       <div className='ideaDisplayer'>
          <h2>Voting is open on this Idea!</h2>
          <h2>The number of votes on this Idea is {ProposalProps.numberOfVotes}</h2>
+         <div className='ideaDisplay'>
           <img src={"https://ipfs.io/ipfs/" + Json.photo } alt ="No Image" className="ideaPhoto"/>
 <form >
    <label htmlFor="ideaName">Idea Name: { Json.ideaName } </label>
@@ -209,17 +212,19 @@ handleChange (event) {
    <br/>
    { Json.details }
    <br/>
-   <button onClick={this.onYes}>Vote Yes</button><button onClick={this.onNo}>Vote No</button>
+   <p><button style={{ fontSize: "20px"}} type="button" class="button" onClick={this.onYes}>Vote Yes</button><button style={{ fontSize: "20px"}} type="button" class="button" onClick={this.onNo}>Vote No</button></p>
    <br/>
 </form>
+       </div>
        </div>
      );
    }else if(ProposalProps.proposalPassed){
      return(
-       <div className='container'>
+       <div className='ideaDisplayer'>
        <h2>This Proposal was approved</h2>
        <h2>The number of votes for this Idea is {ProposalProps.numberOfVotes}</h2>
-       <p>Members of DecentraCorp can replicate approved Ideas and use them to mine IdeaCoin.</p>
+       <p>Members of DecentraCorp can replicate approved Ideas and use them to mine Notio.</p>
+       <div className='ideaDisplay'>
        <img src={"https://ipfs.io/ipfs/" + Json.photo } alt ="No Image" className="ideaPhoto"/>
          <form >
             <label htmlFor="ideaName">Idea Name: { Json.ideaName } </label>
@@ -239,17 +244,19 @@ handleChange (event) {
             <br/>
             <label htmlFor="detailsdetails">Idea Details: </label>
             <br/>
-            { Json.details }
+            <p>{ Json.details }</p>
             <br/>
-            <button onClick={this.replicate}>Replicate This Idea</button>
+            <p><button style={{ fontSize: "20px"}} type="button" class="button"onClick={this.replicate}>Replicate This Idea</button></p>
             </form>
        </div>
+        </div>
      );
    }else if(this.state.voted === true ){
      return(
-       <div className='container'>
+       <div className='ideaDisplayer'>
        <h2>You have already voted on this Idea</h2>
        <h2>The number of votes for this Idea is {ProposalProps.numberOfVotes}</h2>
+       <div className='ideaDisplay'>
          <button onClick={this.goHome}>Click Here to return to The Member Dashboard</button>
        <img src={"https://ipfs.io/ipfs/" + Json.photo } alt ="No Image" className="ideaPhoto"/>
          <form >
@@ -270,16 +277,18 @@ handleChange (event) {
             <br/>
             <label htmlFor="detailsdetails">Idea Details: </label>
             <br/>
-            { Json.details }
+            <p>{ Json.details }</p>
             <br/>
             </form>
+       </div>
        </div>
      );
    } else{
      return(
-       <div className='container'>
+       <div className='ideaDisplayer'>
        <h2>This Proposal can no longer be voted on and it was not approved!</h2>
        <h2>The number of votes for this Idea is {ProposalProps.numberOfVotes}</h2>
+        <div className='ideaDisplay'>
        <img src={"https://ipfs.io/ipfs/" + Json.photo } alt ="No Image" className="ideaPhoto"/>
          <form >
             <label htmlFor="ideaName">Idea Name: { Json.ideaName } </label>
@@ -299,10 +308,11 @@ handleChange (event) {
             <br/>
             <label htmlFor="detailsdetails">Idea Details: </label>
             <br/>
-            { Json.details }
+          <p>{ Json.details }</p>
             <br/>
             </form>
        </div>
+     </div>
      );
    }
    }

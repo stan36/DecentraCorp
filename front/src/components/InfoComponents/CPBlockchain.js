@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import CPBStructure from './CPBStructure.js';
 
 class CPBlockchain extends Component {
   render() {
@@ -12,7 +12,7 @@ class CPBlockchain extends Component {
               <p>
               The CryptoPatent Blockchain allows any idea with an applicable use case to be
               patented. Once an idea receives community approval, it and replications of it can
-              be used to mine IdeaCoin. All ideas patented to the CryptoPatent Blockchain are
+              be used to mine Notio. All ideas patented to the CryptoPatent Blockchain are
               open-source and therefore can be freely replicated by ANYONE!
               </p>
           <br/>
@@ -21,10 +21,11 @@ class CPBlockchain extends Component {
             to the CryptoPatent Blockchain. This includes an ideas use case, use-mining reward, and its use-mining time as well as its build in regards to
             both hardware and software. This idea approval process is meant to ensure that ideas designed to abuse the system never make it on chain to begin with.</p>
             <br/>
-            <p>While Ideas are free to replicate, a stake in IdeaCoin is required to activate a replication
-              on the CryptoPatent Blockchain. Only Properly staked and activated Ideas are capable of mining IdeaCoin.</p>
+            <p>While Ideas are free to replicate, a stake in Notio is required to activate a replication
+              on the CryptoPatent Blockchain. Only Properly staked and activated Ideas are capable of mining Notio.</p>
             <br/>
       </div>
+      <CPBStructure />
       </div>
     );
   }

@@ -46,25 +46,20 @@ class Profile extends Component {
     const { Json, profileHash, userLevel, facilityRank, hashArray, userAccount } =this.state;
     return (
       <div>
-      <div>
         <div>
-        <div>
-          <img src={"https://ipfs.io/ipfs/" + Json.photo } alt ="No Image" className="memberPhoto"/>
-          </div>
-          <hr/>
+        <div className="memberPhoto">
+          <img src={"https://ipfs.io/ipfs/" + Json.photo } alt ="No Image" />
+          <div className='Profile'>
           <h3>{Json.username}</h3>
           <p>Membership Level: {userLevel}</p>
-          </div>
-          <div className='Profile'>
               <br/>
-              <h3>Facility Information</h3>
               <hr/>
               <p>Facility: { Json.FacilityName }</p>
               <p>Facility Level: {facilityRank}</p>
               <hr/>
               <p>{ Json.PhysicalAddress }</p>
               <p>Contact Email: { Json.FacilityEmail}</p>
-
+              </div>
           </div>
           <div>
             <h3>Profile Information</h3>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import members from "../../images/members.png";
 
 class Members extends Component {
   render() {
@@ -7,10 +7,12 @@ class Members extends Component {
 <div>
         <div className='members'>
         <br/>
-        <h3 style={{ color: 'purple'}}>
+        <h3 style={{ color: "red" , fontSize: '25px' }}>
         Members of DecentraCorp:
         </h3>
-        <br/>
+        <div className="mems">
+          <img src={members} alt ="members" />
+        </div>
         <p>
           In a traditional DAO structure the members are the people who hold it's CryptoCurrency. Due
           the structure of the CryptoPatent Blockchain this will not work for DecentraCorp.
@@ -20,7 +22,7 @@ class Members extends Component {
           While future projects tokens may grant their holders the ability to vote in DecentraCorp matters
           only members of the CryptoPatent Blockchain will have any voting power. Members of the
           CryptoPatent Blockchain are people who have either contributed an idea to the CryptoPatent
-          Blockchain or a person who has staked a replication wallet with IdeaCoin.
+          Blockchain or a person who has staked a replication wallet with Notio.
         </p>
         <p>
           This is done to ensure a relatively high stake in the company before one is granted a say in it's

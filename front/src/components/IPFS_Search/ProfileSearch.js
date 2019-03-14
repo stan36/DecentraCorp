@@ -67,7 +67,7 @@ async componentDidMount(){
 <p>
   This Feature allows you to look up a DecentraCorp Members Profile page by their account address.
   This Page will eventually feature a "featured Facilities" section in which members with appropriate facility ratings will be able to
-  purchase a spot on the list with IdeaCoin to promote their facility. This search feature is also planned to be tightly integrated into the DC Depot as it will allow
+  purchase a spot on the list with Notio to promote their facility. This search feature is also planned to be tightly integrated into the DC Depot as it will allow
   buyers to select an appropriately ranked facility near them to process their purchase.
 </p>
 <br/>

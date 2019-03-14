@@ -13,12 +13,11 @@ contract CryptoPatentBlockchain is UseLogic {
 ///@notice constructor is used to set up the CryptoPatent Blockchain
 ///@dev this contract is fed the addresses of the other contracts through truffle magic
 ///@dev the address that launches the contracts is set as the first DecentraCorp Member
-  constructor(address _dcpoa, address _IDC, address _CPBG) public {
+  constructor(address _dcpoa, address _NTC, address _CPBG) public {
     globalBlockHalfTime = now;
     DCPoA = DecentraCorpPoA(_dcpoa);
-    IDC = IdeaCoin(_IDC);
+    NTC = Notio(_NTC);
     CPBG = CryptoPatentBlockGenerator(_CPBG);
-    buyMemWindow = now;
   }
 
 ///@notice proposeIdea is used to allow ANYONE to petition the community for idea approval

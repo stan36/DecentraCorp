@@ -131,7 +131,7 @@ console.log('new array:' + newArray);
      this.onload();
      return(
        <div className='item'>
-      
+
           <img src={"https://ipfs.io/ipfs/" + Json.photo } alt ="No Image" className="ideaPhoto"/>
 <form >
    <label htmlFor="ideaName">Item Name: { Json.itemName } </label>
@@ -140,13 +140,13 @@ console.log('new array:' + newArray);
    <br/>
    <label htmlFor="Price">Item Price: { Json.Price } ETH </label>
    <br/>
-  <label htmlFor="IDCPrice">Item Price in IdeaCoin: { IDCDiscountPrice } IDC </label>
+  <label htmlFor="IDCPrice">Item Price in Notio: { IDCDiscountPrice } IDC </label>
     <br/>
    <label htmlFor="IPFS">Item IPFS Hash: { ipfsHash } </label>
    <br/>
    <button onClick={this.onETHPurchase}>Buy In Ether</button>
    <br/>
-   <button onClick={this.onIDCPurchase}>Buy In IdeaCoin</button>
+   <button onClick={this.onIDCPurchase}>Buy In Notio</button>
 </form>
        </div>
      );

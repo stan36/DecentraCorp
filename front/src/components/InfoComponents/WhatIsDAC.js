@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import what_is_DAC from "../../images/what_is_DAC.png";
 
 
 class WhatIsDAC extends Component {
@@ -6,10 +7,12 @@ class WhatIsDAC extends Component {
     return(
 <div>
         <div className='What_is_DAO'>
-        <h3 style={{ color: "red" }}>
+        <h3 style={{ color: "red" , fontSize: '25px'  }}>
         What is a Decentralized Autonomous Corporation?
         </h3>
-        <br/>
+        <div className="WhatIs">
+          <img src={what_is_DAC} alt ="what_is_DAC" />
+        </div>
         <p>
         A Decentralized Autonomous Corporation (DAC) is an extension of the Decentralized
         Autonomous Organization (DAO) concept.

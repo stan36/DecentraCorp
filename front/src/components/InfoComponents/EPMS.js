@@ -15,7 +15,7 @@ class EPMS extends Component {
         </h3>
         <br/>
         <p>
-            The EPMS is at the heart of what allows ideas and replications to mine UseBlocks and IdeaCoin.
+            The EPMS is at the heart of what allows ideas and replications to mine UseBlocks and Notio.
         </p>
         <p>
           The EPMS is desinged to be added to the code of a finished idea.

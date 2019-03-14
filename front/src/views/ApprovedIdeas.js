@@ -39,7 +39,7 @@ this.stateSetter = this.stateSetter.bind(this);
 
    PropHashs = async () => {
 
-      _CryptoPatentBlockchain.events.IdeaApproved({
+      await _CryptoPatentBlockchain.events.IdeaApproved({
             fromBlock: '0',
             toBlock: 'latest'
           },function(error, event){ console.log(event.returnValues[0]); })

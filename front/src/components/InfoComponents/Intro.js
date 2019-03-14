@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-
+import DecentraCorpDCLogo from "../../images/DecentraCorpDC.png";
 
 class Intro extends Component {
   render() {
     return(
 <div>
       <div className='intro'>
+        <div className='DecentraCorpLogo'>
+        <img src={DecentraCorpDCLogo} alt ="No Image"/>
+        </div>
         <h3 style={{ color: "green"}}>Thank you for visiting DecentraCorp's dApp in its early alpha phase!</h3>
         <br/>
         <h3 style={{ color: "gold"}}>
@@ -43,7 +46,7 @@ class Intro extends Component {
         </p>
         <p>
           The CryptoPatent Blockchain allows physical replications of the ideas patented to it to mine the cryptocurrency of DecentraCorp,
-          IdeaCoin. Replications of an idea are the products of DecentraCorp.
+          Notio. Replications of an idea are the products of DecentraCorp.
         </p>
         <p>
          DecentraCorp seeks to be a revenue source for open-source

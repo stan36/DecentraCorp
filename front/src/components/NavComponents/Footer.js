@@ -10,8 +10,12 @@ class Footer extends Component {
     const url = "https://now.us7.list-manage.com/subscribe/post?u=401abf674e067e00418a5775b&amp;id=db573f9511";
     return(
       <div className='footer'>
+        <div>
       <p>Join our Mailing list for project updates and upcoming promotional campaigns!</p>
-      <MailchimpSubscribe url={url}/>
+</div>
+<div className='email'>
+  <MailchimpSubscribe url={url}/>
+  </div>
       </div>
     );
   }

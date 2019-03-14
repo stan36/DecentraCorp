@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Donate from '../InfoComponents/Donate';
 
 
 class ExternalResources extends Component {
@@ -30,6 +30,7 @@ class ExternalResources extends Component {
         <br/>
         <br/>
         </div>
+        <Donate />
       </div>
     </div>
     );

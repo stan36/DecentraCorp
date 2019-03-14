@@ -109,11 +109,11 @@ _DC_Depot.events.ItemInEscrow({
         <p>Facility Upgrades allow a DecentraCorp Facility to act as a DC Depot</p>
         <p>Processing Facility</p>
         <p>A DC Depot Processing Facility Arbitrates Purchases made through the DC Depot</p>
-        <p>A Facility Operator Earns IdeaCoin for ensuring the conditions of an escrow are met</p>
+        <p>A Facility Operator Earns Notio for ensuring the conditions of an escrow are met</p>
         <p>You must have a Membership Level AND Facility Ranking of 100 to Upgrade your Facility</p>
           <hr/>
        <form onSubmit={this.handleSubmit}>
-    <button>Stake Facility Upgrade(100 IdeaCoin)</button>
+    <button>Stake Facility Upgrade(100 Notio)</button>
   </form>
      </div>
     );

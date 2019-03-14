@@ -19,7 +19,7 @@ class DC_ContractStructure extends Component {
         <p>The two contracts are bridged between one another on DecentraCorp's Crosschain Information Bridge.</p>
         <p>The Crosschain Information Bridge(CIB) is responsible for receiving events and firing transactions</p>
         <p>between the seperate chains ensuring both DecentraCorp Contracts remain in sync.</p>
-        <p>In addition, the CIB allows members of DecentraCorp to easily transfer over both their IdeaCoin</p>
+        <p>In addition, the CIB allows members of DecentraCorp to easily transfer over both their Notio</p>
         <p>and their Proof of Ownership tokens to the Ethereum Main Chain for additional asset security.</p>
         <p>Both The CryptoPatent Blockchain and the ChaosCasino run on </p>
         <p>DecentraCoprs Proof of Authority Network.</p>

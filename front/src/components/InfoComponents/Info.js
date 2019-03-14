@@ -9,18 +9,23 @@ import DFM from '../InfoComponents/DFM.js';
 import DC_ContractStructure from '../InfoComponents/DC_ContractStructure.js';
 import CPBlockchain from '../InfoComponents/CPBlockchain.js';
 import CPBStructure from '../InfoComponents/CPBStructure.js';
-import IdeaCoin from '../InfoComponents/IdeaCoin.js';
+import Notio from '../InfoComponents/Notio.js';
 import EPMS from '../InfoComponents/EPMS.js';
 import DCPoA from '../InfoComponents/DCPoA.js';
 import ChaosCasinoInfo from '../InfoComponents/ChaosCasinoInfo.js';
 import DC_DepotInfo from '../InfoComponents/DC_DepotInfo.js';
 import ExternalResources from '../InfoComponents/ExternalResources.js';
+import DecentraCorpDCLogo from "../../images/DecentraCorpDC.png";
+
 
 import './Info.css';
 class Info extends Component {
   render() {
     return(
     <div className='Info'>
+      <div className='DecentraCorpLogo'>
+      <img src={DecentraCorpDCLogo} alt ="No Image"/>
+      </div>
       <Intro />
       <hr style={{ height: '20px' , width: 'auto', background: 'black'}}/>
       <WhatIsDAC />
@@ -35,7 +40,7 @@ class Info extends Component {
       <hr style={{ height: '20px' , width: 'auto', background: 'black'}}/>
       <CPBStructure />
       <hr style={{ height: '20px' , width: 'auto', background: 'black'}}/>
-      <IdeaCoin />
+      <Notio />
       <hr style={{ height: '20px' , width: 'auto', background: 'black'}}/>
       <EPMS />
       <hr style={{ height: '20px' , width: 'auto', background: 'black'}}/>
