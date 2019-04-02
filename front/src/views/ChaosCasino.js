@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import web3 from '../utils/web3';
 import { Link } from 'react-router-dom';
 import _ChaosCasino from '../ethereum/ChaosCasino';
-import _ChaosCoin from '../ethereum/ChaosCoin';
 import Entropy21 from '../components/ChaosComponents/Entropy21';
 
 
@@ -23,7 +22,7 @@ class ChaosCasino extends Component {
   async componentDidMount() {
     const accounts = await web3.eth.getAccounts();
     const userAccount = accounts[0];
-    const balance = await _ChaosCoin.methods.balanceOf(userAccount).call();
+    const balance = await _ChaosCasino.methods.balanceOf(userAccount).call();
     const userBalance = web3.utils.fromWei(balance);
     const entropyUnit = await _ChaosCasino.methods.getRandomNum().call();
     this.setState({ userAccount, userBalance, entropyUnit });

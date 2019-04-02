@@ -44,7 +44,7 @@ import DFM from '../InfoComponents/DFM.js';
 import DC_ContractStructure from '../InfoComponents/DC_ContractStructure.js';
 import CPBlockchain from '../InfoComponents/CPBlockchain.js';
 import CPBStructure from '../InfoComponents/CPBStructure.js';
-import Notio from '../InfoComponents/Notio.js';
+import NotioInfo from '../InfoComponents/NotioInfo.js';
 import EPMS from '../InfoComponents/EPMS.js';
 import DCPoA from '../InfoComponents/DCPoA.js';
 import ChaosCasinoInfo from '../InfoComponents/ChaosCasinoInfo.js';
@@ -151,7 +151,7 @@ container3 = React.createRef();
           <li key={2}><NavLink className='NavLink' onClick={this.handleButtonClick} to='/DFM'>The Decentralized Facilities Model</NavLink></li>
           <li key={2}><NavLink className='NavLink' onClick={this.handleButtonClick} to='/DC_ContractStructure'>DecentraCorps Contract Structure</NavLink></li>
           <li key={2}><NavLink className='NavLink' onClick={this.handleButtonClick} to='/CPBlockchain'>The CryptoPatent Blockchain</NavLink></li>
-          <li key={2}><NavLink className='NavLink' onClick={this.handleButtonClick} to='/Notio'>Notio</NavLink></li>
+          <li key={2}><NavLink className='NavLink' onClick={this.handleButtonClick} to='/NotioInfo'>Notio</NavLink></li>
           <li key={2}><NavLink className='NavLink' onClick={this.handleButtonClick} to='/EPMS'>Embedded Program Mining Software</NavLink></li>
           <li key={2}><NavLink className='NavLink' onClick={this.handleButtonClick} to='/DCPoA'>DecentraCorps PoA Network</NavLink></li>
           <li key={2}><NavLink className='NavLink' onClick={this.handleButtonClick} to='/ChaosCasinoInfo'>The ChaosCasino</NavLink></li>
@@ -196,7 +196,7 @@ return [
         <li key={2}><Link className='NavLink' onClick={this.handleButtonClick} to='/DFM'>The Decentralized Facilities Model</Link></li>
         <li key={2}><Link className='NavLink' onClick={this.handleButtonClick} to='/DC_ContractStructure'>DecentraCorps Contract Structure</Link></li>
         <li key={2}><Link className='NavLink' onClick={this.handleButtonClick} to='/CPBlockchain'>The CryptoPatent Blockchain</Link></li>
-        <li key={2}><Link className='NavLink' onClick={this.handleButtonClick} to='/Notio'>Notio</Link></li>
+        <li key={2}><Link className='NavLink' onClick={this.handleButtonClick} to='/NotioInfo'>Notio</Link></li>
         <li key={2}><Link className='NavLink' onClick={this.handleButtonClick} to='/EPMS'>Embedded Program Mining Software</Link></li>
         <li key={2}><Link className='NavLink' onClick={this.handleButtonClick} to='/DCPoA'>DecentraCorps PoA Network</Link></li>
         <li key={2}><Link className='NavLink' onClick={this.handleButtonClick} to='/ChaosCasinoInfo'>The ChaosCasino</Link></li>
@@ -244,7 +244,7 @@ return [
         <li key={2}><Link className='NavLink' onClick={this.handleButtonClick} to='/DFM'>The Decentralized Facilities Model</Link></li>
         <li key={2}><Link className='NavLink' onClick={this.handleButtonClick} to='/DC_ContractStructure'>DecentraCorps Contract Structure</Link></li>
         <li key={2}><Link className='NavLink' onClick={this.handleButtonClick} to='/CPBlockchain'>The CryptoPatent Blockchain</Link></li>
-        <li key={2}><Link className='NavLink' onClick={this.handleButtonClick} to='/Notio'>Notio</Link></li>
+        <li key={2}><Link className='NavLink' onClick={this.handleButtonClick} to='/NotioInfo'>Notio</Link></li>
         <li key={2}><Link className='NavLink' onClick={this.handleButtonClick} to='/EPMS'>Embedded Program Mining Software</Link></li>
         <li key={2}><Link className='NavLink' onClick={this.handleButtonClick} to='/DCPoA'>DecentraCorps PoA Network</Link></li>
         <li key={2}><Link className='NavLink' onClick={this.handleButtonClick} to='/ChaosCasinoInfo'>The ChaosCasino</Link></li>
@@ -326,7 +326,7 @@ return [
           <Route exact path='/DC_ContractStructure' component={DC_ContractStructure}></Route>
           <Route exact path='/CPBlockchain' component={CPBlockchain}></Route>
           <Route exact path='/CPBStructure' component={CPBStructure}></Route>
-          <Route exact path='/Notio' component={Notio}></Route>
+          <Route exact path='/NotioInfo' component={NotioInfo}></Route>
           <Route exact path='/EPMS' component={EPMS}></Route>
           <Route exact path='/DCPoA' component={DCPoA}></Route>
           <Route exact path='/IDC_Wallet' component={IDC_Wallet}></Route>

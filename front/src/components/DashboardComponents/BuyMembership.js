@@ -50,7 +50,8 @@ class BuyMembership extends Component {
    this.setState({ loading : true });
    const formData = new FormData(event.target);
    let jsonObject = {
-       photo: this.state.photoHash
+       photo: this.state.photoHash,
+       address: this.state.applicantAddress
    };
 
      for (const [key, value]  of formData.entries()) {
@@ -171,9 +172,6 @@ fileSelectedHandler = async (event) => {
          <br/>
          <input id="username" name="username" type="text" placeholder = 'Optional'/>
          <br/>
-           <label htmlFor="Address">Facility Owners address: </label>
-           <br/>
-           <input id="Address" name="Address" type="text" placeholder = 'Address of the facility owner'/>
            <br/>
              <label htmlFor="FacilityName">Facility Name: </label>
              <br/>

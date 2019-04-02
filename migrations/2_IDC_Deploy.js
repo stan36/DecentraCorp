@@ -1,6 +1,6 @@
 
-var IdeaCoin = artifacts.require("./CryptoPatent/IdeaCoin.sol");
+var Notio = artifacts.require("./CryptoPatent/Notio.sol");
 
 module.exports = (deployer) => {
-  deployer.deploy(IdeaCoin)
+  deployer.deploy(Notio)
 };

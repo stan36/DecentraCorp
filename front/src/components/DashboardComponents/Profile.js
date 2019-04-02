@@ -14,7 +14,6 @@ class Profile extends Component {
        userAccount:'',
        chaosBalance: '',
        userLevel: null,
-       facilityRank: null,
        Json: {},
        profileHash: "",
        hashArray: []
@@ -28,7 +27,6 @@ class Profile extends Component {
     console.log(accounts[0]);
      const userAccount = accounts[0];
      const userLevel =  await _DecentraCorp.methods.getLevel(userAccount).call();
-     const facilityRank = await _DecentraCorp.methods.getRank(userAccount).call();
      const profileHash = await  _DecentraCorp.methods.getProfileHash(userAccount).call();
      const currentCommentHash = await  _DecentraCorp.methods.getComment(userAccount).call();
      console.log('the hash is: '+ currentCommentHash );
@@ -38,12 +36,12 @@ class Profile extends Component {
      this.setState({ hashArray });
    }
      const Json =JSON.parse(await ipfs.cat(profileHash));
-     this.setState({ userAccount,  userLevel, facilityRank, profileHash, Json});
+     this.setState({ userAccount,  userLevel,  profileHash, Json});
    }
 
 
   render() {
-    const { Json, profileHash, userLevel, facilityRank, hashArray, userAccount } =this.state;
+    const { Json, profileHash, userLevel,  hashArray, userAccount } =this.state;
     return (
       <div>
         <div>
@@ -55,7 +53,6 @@ class Profile extends Component {
               <br/>
               <hr/>
               <p>Facility: { Json.FacilityName }</p>
-              <p>Facility Level: {facilityRank}</p>
               <hr/>
               <p>{ Json.PhysicalAddress }</p>
               <p>Contact Email: { Json.FacilityEmail}</p>

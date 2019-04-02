@@ -20,7 +20,7 @@ onload = async ()=>{
     const { ipfsHash }= this.props;
     const Json =JSON.parse(await ipfs.cat(ipfsHash));
     this.setState({ Json })
-    console.log(this.state.Json )
+    console.log("this stuff" + this.state.Json + this.state.Json.ideaName + this.state.Json.username)
   };
 
    render() {

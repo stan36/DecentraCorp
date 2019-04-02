@@ -1,9 +1,9 @@
-var IdeaCoin = artifacts.require("./CryptoPatent/IdeaCoin.sol");
+var Notio = artifacts.require("./CryptoPatent/Notio.sol");
 var DCPoA = artifacts.require("./DecentraCorp/DecentraCorpPoA.sol");
-var BlockGen = artifacts.require("./CryptoPatent/CryptoPatentBlockGenerator.sol");
+var BlockGen = artifacts.require("./CryptoPatent/CryptoPatentBlockchain.sol");
 var CryptoPatent = artifacts.require("./CryptoPatent/CryptoPatentBlockchain.sol");
 
 
 module.exports = (deployer) => {
-  deployer.deploy(CryptoPatent, DCPoA.address, IdeaCoin.address, BlockGen.address)
+  deployer.deploy(CryptoPatent, DCPoA.address, Notio.address, BlockGen.address)
 };

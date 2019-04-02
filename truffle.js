@@ -1,13 +1,5 @@
 
- require("babel-register")({
-   ignore: /node_modules\/(?!zeppelin-solidity)/
- });
- require("babel-polyfill");
- var HDWalletProvider = require("truffle-hdwallet-provider");
 
- var infura_apikey = "lHjU6q5aNKEfjBA0FQJr";
- var mnemonic = "category claim bright modify pond mass pet coffee orbit series harsh wish";
-//test wallet mnemonic
  module.exports = {
    networks: {
     DCPoA: {

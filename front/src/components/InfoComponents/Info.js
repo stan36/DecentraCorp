@@ -9,7 +9,7 @@ import DFM from '../InfoComponents/DFM.js';
 import DC_ContractStructure from '../InfoComponents/DC_ContractStructure.js';
 import CPBlockchain from '../InfoComponents/CPBlockchain.js';
 import CPBStructure from '../InfoComponents/CPBStructure.js';
-import Notio from '../InfoComponents/Notio.js';
+import NotioInfo from '../InfoComponents/NotioInfo.js';
 import EPMS from '../InfoComponents/EPMS.js';
 import DCPoA from '../InfoComponents/DCPoA.js';
 import ChaosCasinoInfo from '../InfoComponents/ChaosCasinoInfo.js';
@@ -40,7 +40,7 @@ class Info extends Component {
       <hr style={{ height: '20px' , width: 'auto', background: 'black'}}/>
       <CPBStructure />
       <hr style={{ height: '20px' , width: 'auto', background: 'black'}}/>
-      <Notio />
+      <NotioInfo />
       <hr style={{ height: '20px' , width: 'auto', background: 'black'}}/>
       <EPMS />
       <hr style={{ height: '20px' , width: 'auto', background: 'black'}}/>

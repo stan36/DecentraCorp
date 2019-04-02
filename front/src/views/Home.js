@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import DecentraCorpLogo from "../images/DecentraCorpCube.png";
 import smart_contract from "../images/smart_contract.png";
-import Notio from "../images/Notio.png";
+
 
 class Home extends Component {
   render() {
@@ -38,7 +38,6 @@ class Home extends Component {
         earn a living doing what they love.
       </p>
       <div className='DecentraCorpLogo'>
-      <img src={Notio} alt ="No Image"/>
       </div>
       <p style={{ fontSize: "25px", color: 'gold'}}>
         DecentraCorp wants YOUR open-source idea to mine Notio on the CryptoPatent Blockchain! </p>
@@ -58,18 +57,7 @@ class Home extends Component {
         <div className='papers'>
           <div>
             <p>
-          <button  style={{ fontSize: "20px"}} type="button" class="button"><a style={{ textDecoration: 'none', color: "red"}} href='https://drive.google.com/open?id=1hhsuQ_JnBz5E0813V-4trPZhiflaTBwr'>To view the Introductory WhitePaper for DecentraCorp and its associated projects Click Here!</a></button>
-          </p>
-      <br/>
-        </div>
-        <div>
-          <p>
-          <button  style={{ fontSize: "20px"}} type="button" class="button"><a style={{ textDecoration: 'none', color: "red"}} href='https://drive.google.com/open?id=1Me8pn45kzBCucV-F1LyjYHv4LLBKWX6w'>To view the WhitePaper for the CryptoPatent Blockchain Click Here!</a></button>
-          </p>
-      </div>
-        <div>
-          <p>
-          <button  style={{ fontSize: "20px"}} type="button" class="button"><a style={{ textDecoration: 'none', color: "red"}} href='https://drive.google.com/open?id=12Fw9pM8V9B1zs1QvsQpNDL504ylq84Ic'>To view the WhitePaper for the ChaosCasino's Click Here!</a></button>
+          <button  style={{ fontSize: "20px"}} type="button" class="button"><a style={{ textDecoration: 'none', color: "red"}} href='https://github.com/DecentraCorp/Documentation'>To View our WhitePapers Click Here!</a></button>
           </p>
     </div>
       <div>

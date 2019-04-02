@@ -2,7 +2,6 @@ import React from 'react';
 import './Entropy21.css';
 import {Card} from './Cards';
 import _ChaosCasino from '../../ethereum/ChaosCasino';
-import _ChaosCoin from '../../ethereum/ChaosCoin';
 import web3 from '../../utils/web3';
 
 
@@ -124,7 +123,7 @@ async  placeBet() {
         from: this.state.userAccount,
         gas: '3000000',
       });
-      const bWallet = await _ChaosCoin.methods.balanceOf(this.state.userAccount).call();
+      const bWallet = await _ChaosCasino.methods.balanceOf(this.state.userAccount).call();
       const wallet = web3.utils.fromWei(bWallet);
       this.setState({ wallet, inputValue: '', currentBet });
     }
@@ -272,7 +271,7 @@ async  placeBet() {
       from: this.state.userAccount,
       gas: '3000000',
     });
-    const bWallet = await _ChaosCoin.methods.balanceOf(this.state.userAccount).call();
+    const bWallet = await _ChaosCasino.methods.balanceOf(this.state.userAccount).call();
     const wallet = web3.utils.fromWei(bWallet);
     this.setState({ wallet });
   }
@@ -291,7 +290,7 @@ async  placeBet() {
     this.setState({ entropyUnit });
     const accounts = await web3.eth.getAccounts();
     const userAccount = accounts[0];
-    const bWallet = await _ChaosCoin.methods.balanceOf(userAccount).call();
+    const bWallet = await _ChaosCasino.methods.balanceOf(userAccount).call();
     const wallet = web3.utils.fromWei(bWallet);
     this.setState({ wallet, userAccount });
   }

@@ -46,7 +46,8 @@ class IdeaBlockApplication extends Component {
     this.setState({ loading : true });
     const formData = new FormData(event.target);
     let jsonObject = {
-        photo: this.state.photoHash
+        photo: this.state.photoHash,
+        address: this.state.applicantAddress
     };
 
       for (const [key, value]  of formData.entries()) {
@@ -162,18 +163,13 @@ goHome = () => {
        <br/>
        <input id="username" name="username" type="text" placeholder = 'Optional'/>
        <br/>
-         <label htmlFor="address">Applicant Wallet address: </label>
-         <br/>
-         <input id="inventorAddress" name="inventorAddress" type="text" placeholder = 'Address that will hold the patent'/>
-         <br/>
        <label htmlFor="ideaName">Name of your Idea: </label>
        <br/>
        <input id="ideaName" name="ideaName" type="text" placeholder = 'The Name of Your Idea' onChange={event => this.handleChange(event)}/>
        <br/>
-         <br/>
        <label htmlFor="inventionAddress">Inventions Address:</label>
          <br/>
-         <input id="inventionAddress" name="inventionAddress" type="text" placeholder = 'Address of the original invention'/>
+         <input id="inventionAddress" name="inventionAddress" type="text" placeholder = 'Address of the original invention' onChange={event => this.handleChange(event)}/>
          <br/>
          </div>
          <br/>

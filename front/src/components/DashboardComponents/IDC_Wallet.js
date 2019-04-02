@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import web3 from '../../utils/web3';
-import _Notio from '../../ethereum/Notio';
-import _ChaosCoin from '../../ethereum/ChaosCoin';
+import _DecentraCorp from '../../ethereum/DecentraCorp';
+import _ChaosCasino from '../../ethereum/ChaosCasino';
 
 
 
@@ -26,12 +26,12 @@ class IDC_Wallet extends Component {
   async  componentDidMount(){
     const accounts = await web3.eth.getAccounts();
     console.log(accounts[0]);
-     const tokenName = await _Notio.methods.name().call();
-     const symbol = await _Notio.methods.symbol().call();
+     const tokenName = await _DecentraCorp.methods.name().call();
+     const symbol = await _DecentraCorp.methods.symbol().call();
      const userAccount = accounts[0];
-     const balance = await _Notio.methods.balanceOf(userAccount).call();
+     const balance = await _DecentraCorp.methods.balanceOf(userAccount).call();
      const userBalance = web3.utils.fromWei(balance);
-     const chaostoken = await _ChaosCoin.methods.balanceOf(userAccount).call();
+     const chaostoken = await _ChaosCasino.methods.balanceOf(userAccount).call();
      const chaosBalance = web3.utils.fromWei(chaostoken);
      this.setState({tokenName, symbol, userBalance, userAccount, chaosBalance});
      console.log(symbol, this.state.ownedIdeas);
@@ -41,7 +41,7 @@ class IDC_Wallet extends Component {
      const address = this.state.transfertoadd;
      const bAmount = this.state.transferamount;
      const amount = web3.utils.toWei(bAmount.toString());
-     await _Notio.methods.transfer( address, amount).send({from: this.state.userAccount});
+     await _DecentraCorp.methods.transfer( address, amount).send({from: this.state.userAccount});
  };
 
   render() {

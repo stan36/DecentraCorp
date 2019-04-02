@@ -39,7 +39,7 @@ this.stateSetter = this.stateSetter.bind(this);
           },function(error, event){ console.log(""); })
      .on('data', (event) => {
          const currentArray = this.state.hashs;
-         const hash = event.returnValues.IdeaHash;
+         const hash = event.returnValues.IPFS;
          const newArray = currentArray.push(hash);
          this.setState({ newArray });
 
@@ -53,6 +53,7 @@ onClick = (event) =>{
 }
 
 stateSetter = (ipfshash) =>{
+  console.log(ipfshash)
   this.setState({ selectedIpfs: ipfshash})
 }
 

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import web3 from './utils/web3';
 import _DecentraCorp from './ethereum/DecentraCorp';
-import _Notio from './ethereum/Notio';
 import NavBar from './components/NavComponents/NavBar';
 import Footer from './components/NavComponents/Footer';
 import Loader from "./images/75.gif";
@@ -52,7 +51,7 @@ updateInterface = async() => {
   if(userAccount !== undefined){
   const isMember = await _DecentraCorp.methods._checkIfMember(userAccount).call();
   const memberCount = await _DecentraCorp.methods.getMemberCount().call();
-  const total = await _Notio.methods.totalSupply().call();
+  const total = await _DecentraCorp.methods.totalSupply().call();
   const idcTotal = web3.utils.fromWei(total);
   this.setState({ accounts, isMember, memberCount, idcTotal, loading: false });
 }

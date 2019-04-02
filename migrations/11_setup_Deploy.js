@@ -1,4 +1,4 @@
-var IdeaCoin = artifacts.require("./CryptoPatent/IdeaCoin.sol");
+var Notio = artifacts.require("./CryptoPatent/Notio.sol");
 var DCPoA = artifacts.require("./DecentraCorp/DecentraCorpPoA.sol");
 var IdeaBlockGen = artifacts.require("./CryptoPatent/IdeaBlockGenerator.sol");
 var RepBlockGen = artifacts.require("./CryptoPatent/ReplicationBlockGenerator.sol");
@@ -8,7 +8,7 @@ var ChaosCoin = artifacts.require("./ChaosCasino/ChaosCoin.sol");
 var ChaosCasino = artifacts.require("./ChaosCasino/ChaosCasino.sol");
 var PoPT = artifacts.require("./DC_Depot/ProofOfPurchaseToken.sol");
 var Depot = artifacts.require("./DC_Depot/DC_Depot.sol");
-var BlockGen = artifacts.require("./CryptoPatent/CryptoPatentBlockGenerator.sol");
+var BlockGen = artifacts.require("./CryptoPatent/CryptoPatentBlockchain.sol");
 
 
 
@@ -22,7 +22,7 @@ module.exports = (deployer) => {
     b = instance;
     return b.transferOwnership(DCPoA.address);
   }).then(function() {
-    return IdeaCoin.deployed();
+    return Notio.deployed();
   }).then(function(instance) {
     b = instance;
     return b.transferOwnership(DCPoA.address);
